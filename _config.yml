@@ -1,0 +1,33 @@
+# Site settings
+title: Luca Cambiaghi's personal webpage
+subtitle: 
+email: lc.cambiaghi@gmail.com
+description:
+baseurl:  "/blog"# the subpath of your site, e.g. /blog
+url: "https://lccambiaghi.github.io" # the base hostname & protocol for your site
+author: Luca Cambiaghi
+street_address: Klokkerhøjen 9
+state:
+city: Copenhagen
+zip_code: 2400
+country: Denmark
+phone:
+
+# Homepage tiles
+tiles-source: pages # accepts "posts" or "pages"
+tiles-count: 3
+
+# Social settings
+500px_url:
+facebook_url:
+github_url:
+gitlab_url: 
+googleplus_url: 
+instagram_url: 
+linkedin_url: https://www.linkedin.com/in/luca-cambiaghi
+pinterest_url:
+slack_url:
+twitter_url:
+
+# Build settings
+markdown: kramdown
