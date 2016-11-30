@@ -3,7 +3,7 @@ title: Luca Cambiaghi's personal webpage
 subtitle: 
 email: lc.cambiaghi@gmail.com
 description:
-baseurl:  "/blog"# the subpath of your site, e.g. /blog
+baseurl:  # the subpath of your site, e.g. /blog
 url: "https://lccambiaghi.github.io" # the base hostname & protocol for your site
 author: Luca Cambiaghi
 street_address: Klokkerhøjen 9
