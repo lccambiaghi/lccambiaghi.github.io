@@ -31,31 +31,27 @@ color:
 
 # Footer settings
 footer:
-  copyright: Dr. Henry Jekyll
+  copyright: Jekyll
   location: Location
   social: Around the Web
   credits: Credits
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
-  - title: twitter
-    url: 
+  - title: linkedin
+    url:
   - title: facebook
     url:
-  - title: stack-overflow
-    url: 
-  - title: bitbucket
-    url: 
-  - title: github
+  - title: instagram
     url: 
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: 
-  - line: 
+  - line: Living in Kokkedal, Denmark
+  - line: Studying at Denmark Technical University, Kongens Lyngby
 
 # Credits content
-credits: 'Freelancer is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.'
+credits: 'Credits to the Freelancer theme.'
 
 # Build settings
 markdown: kramdown
