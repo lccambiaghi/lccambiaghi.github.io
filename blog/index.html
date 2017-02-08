@@ -1,8 +1,0 @@
----
-layout: default
----
-<h3 class="headline">{{site.title}}</h3>
-{% for post in site.posts %}
-<h4><a href="{{post.url | prepend: site.baseurl}}">{{post.title}}</a></h4>
-<h6>{{post.date | date: '%B %d, %Y'}}</h6>
-{% endfor %}
