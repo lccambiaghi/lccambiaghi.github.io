@@ -1,7 +1,7 @@
 ### your site title here
 
 title: Luca Cambiaghi's blog
-baseurl: /blog # name of the repository
+baseurl: https://lccambiaghi.github.io/blog # name of the repository
 email: lc.cambiaghi@gmail.com
 
 
