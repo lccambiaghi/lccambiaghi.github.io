@@ -1,10 +1,8 @@
 ### your site title here
 
-title: Luca Cambiaghi's blog
-baseurl: https://lccambiaghi.github.io/blog # name of the repository
+title: Luca Cambiaghi
+baseurl: /blog # name of the repository
 email: lc.cambiaghi@gmail.com
-
-
 
 highlighter: rouge
 markdown: kramdown
@@ -19,7 +17,7 @@ markdown: kramdown
 
 
 #optimization
-#compress.html
+#compress.html:
 compress_html:
   clippings: [html,div, p, ul, td, h1, h2, h3, h4,link, meta, footer, nav, img, header, hr, br, head, style, li, ul, ol, time, main, script, title]
   comments: ["<!-- ", " -->"]
@@ -41,3 +39,6 @@ exclude:
 
 
 gems: [jekyll-seo-tag, jekyll-paginate]
+
+paginate: 5
+paginate_path: "/blog/page:num/"

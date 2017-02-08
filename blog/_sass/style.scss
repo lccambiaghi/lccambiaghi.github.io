@@ -39,7 +39,7 @@ a {
     color: $brand-color;
     text-decoration: none;
     &:hover{
-     color: $text-color;   
+     color: $text-color;
     }
 }
 
@@ -96,14 +96,14 @@ blockquote {
 
 
 .headline {
-    font-size: 4em;
+    font-size: 3em;
         @include media-query($on-palm) {
             font-size: 2em;
     }
 }
 
 .post-headline {
-    font-size: 4em;
+    font-size: 3em;
         @include media-query($on-palm) {
             font-size: 1.5em;
     }
@@ -130,7 +130,7 @@ blockquote {
         opacity: 0.6;
     }
 
-    
+
 }
 
 .video {
@@ -141,7 +141,7 @@ blockquote {
     }
     @include media-query($on-palm) {
         height: 180px;
-    }   
+    }
 }
 
 // Adding 'Contents' headline to the TOC
@@ -184,7 +184,3 @@ footer {
 .links a {
     margin-right: 1em;
 }
-
-
-
-

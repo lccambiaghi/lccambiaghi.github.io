@@ -3,14 +3,14 @@ title: Luca Cambiaghi
 email: lc.cambiaghi@gmail.com
 url: https://lccambiaghi.github.io
 description: "Personal website of Luca Cambiaghi"
-skills: "Software Engineering - Data Science"
-meta_author: Cambiaghi Luca
+#skills: "Software Engineering - Data Science"
+#meta_author: Cambiaghi Luca
 
 # Google webmaster tools
-google_verify:
+#google_verify:
 
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
+#bing_verify:
 
 # Contact form:
 # - static : pass through formspree.io to validate email sending
@@ -20,20 +20,20 @@ contact: static
 
 # If you use disqus you need disqus shortname
 # https://help.disqus.com/customer/portal/articles/466208
-disqus_shortname: myshortname
+disqus_shortname: lccambiaghi
 
 # Color settings (hex-codes without the leading hash-tag)
 color:
-  primary: 18bc9c #80B3FF
-  primary-rgb: "24,288,156" #"128,179,255"
+  primary: 60c17d #80B3FF
+  primary-rgb: "96,193,125" #"128,179,255"
   secondary: 2c3e50 #FD6E8A
   secondary-dark: 233140 #A2122
-  
+
 # Footer settings
 footer:
-  copyright: Jekyll
+  #copyright: Jekyll
   location: Location
-  social: Around the Web
+  social: Social
   credits: Credits
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
@@ -43,7 +43,7 @@ social:
   - title: facebook
     url:
   - title: instagram
-    url: 
+    url:
 
 # Postal address (add as many lines as necessary)
 address:
