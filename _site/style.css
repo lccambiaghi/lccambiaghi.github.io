@@ -297,20 +297,6 @@ section.success {
     transition: all .3s ease-in-out;
 }
 
-.btn-lg {
-    margin-top: 15px;
-    border: solid 2px #fff;
-    font-size: 20px;
-    color: #eee;
-    background: #2c3e50;
-    transition: all .3s ease-in-out;
-}
-
-.btn-goto {
-    background: #2c3e50;
-    transition: all .3s ease-in-out;
-}
-
 .btn-outline:hover,
 .btn-outline:focus,
 .btn-outline:active,
@@ -320,10 +306,42 @@ section.success {
     background: #fff;
 }
 
+.btn-lg {
+    margin-top: 15px;
+    border: solid 2px #fff;
+    font-size: 20px;
+    color: #eee;
+    background: #2c3e50;
+    transition: all .3s ease-in-out;
+}
+
 .btn-lg:hover,
 .btn-lg:focus,
 .btn-lg:active,
-.btn-lg.active {
+.btn-lg.active. {
+    border: solid 2px #fff;
+    color: #2c3e50;
+    background: #fff;
+}
+
+.btn-goto {
+    color: #fff;
+    background: #2c3e50;
+    transition: all .3s ease-in-out;
+}
+
+.btn-go:hover,
+.btn-go:focus,
+.btn-go:active,
+.btn-go.active{
+    color: #2c3e50;
+    background: #fff;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
     border: solid 2px #fff;
     color: #2c3e50;
     background: #fff;
