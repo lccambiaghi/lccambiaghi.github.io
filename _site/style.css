@@ -306,6 +306,11 @@ section.success {
     transition: all .3s ease-in-out;
 }
 
+.btn-goto {
+    background: #2c3e50;
+    transition: all .3s ease-in-out;
+}
+
 .btn-outline:hover,
 .btn-outline:focus,
 .btn-outline:active,

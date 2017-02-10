@@ -5,75 +5,47 @@
     <description>Personal website of Luca Cambiaghi</description>
     <link>http://localhost:4000/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 10 Feb 2017 19:06:01 +0100</pubDate>
-    <lastBuildDate>Fri, 10 Feb 2017 19:06:01 +0100</lastBuildDate>
+    <pubDate>Fri, 10 Feb 2017 20:51:07 +0100</pubDate>
+    <lastBuildDate>Fri, 10 Feb 2017 20:51:07 +0100</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
-        <title>Council of four</title>
+        <title>Web Travel Agency</title>
+        <description>Blablabla</description>
+        <pubDate>Fri, 10 Feb 2017 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/2017/02/10/TravelGood-Web-Agency/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/10/TravelGood-Web-Agency/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Amazon Reviews Analysis</title>
+        <description>Blablabla</description>
+        <pubDate>Fri, 10 Feb 2017 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/2017/02/10/Amazon-Reviews-Analysis/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/10/Amazon-Reviews-Analysis/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Auth. Print Server</title>
+        <description>Blablabla</description>
+        <pubDate>Thu, 09 Feb 2017 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/2017/02/09/Secure-Print-Server/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/09/Secure-Print-Server/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Council of Four</title>
         <description>Blablabla</description>
         <pubDate>Sat, 14 Jan 2017 00:00:00 +0100</pubDate>
-        <link>http://localhost:4000/2017/01/14/Council-of-Four/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/14/Council-of-Four/</guid>
+        <link>http://localhost:4000/2017/01/14/Council-Of-Four/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/01/14/Council-Of-Four/</guid>
         
-        
-      </item>
-    
-      <item>
-        <title>Project 2</title>
-        <description>Use this area of the page to describe your project. The icon above is part of a free icon set by &lt;a href=&quot;https://sellfy.com/p/8Q9P/jV3VZ/&quot;&gt;Flat Icons&lt;/a&gt;. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</description>
-        <pubDate>Thu, 17 Jul 2014 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2014/07/17/project-2/</link>
-        <guid isPermaLink="true">http://localhost:4000/2014/07/17/project-2/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Project 3</title>
-        <description>Use this area of the page to describe your project. The icon above is part of a free icon set by &lt;a href=&quot;https://sellfy.com/p/8Q9P/jV3VZ/&quot;&gt;Flat Icons&lt;/a&gt;. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</description>
-        <pubDate>Wed, 16 Jul 2014 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/web%20development/2014/07/16/project-3/</link>
-        <guid isPermaLink="true">http://localhost:4000/web%20development/2014/07/16/project-3/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Project 4</title>
-        <description>Use this area of the page to describe your project. The icon above is part of a free icon set by &lt;a href=&quot;https://sellfy.com/p/8Q9P/jV3VZ/&quot;&gt;Flat Icons&lt;/a&gt;. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</description>
-        <pubDate>Tue, 15 Jul 2014 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/web%20development/2014/07/15/project-4/</link>
-        <guid isPermaLink="true">http://localhost:4000/web%20development/2014/07/15/project-4/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Project 6</title>
-        <description>Use this area of the page to describe your project. The icon above is part of a free icon set by &lt;a href=&quot;https://sellfy.com/p/8Q9P/jV3VZ/&quot;&gt;Flat Icons&lt;/a&gt;. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</description>
-        <pubDate>Tue, 15 Jul 2014 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/web%20development/2014/07/15/project-6/</link>
-        <guid isPermaLink="true">http://localhost:4000/web%20development/2014/07/15/project-6/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Project 5</title>
-        <description>Use this area of the page to describe your project. The icon above is part of a free icon set by &lt;a href=&quot;https://sellfy.com/p/8Q9P/jV3VZ/&quot;&gt;Flat Icons&lt;/a&gt;. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</description>
-        <pubDate>Mon, 14 Jul 2014 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/web%20development/2014/07/14/project-5/</link>
-        <guid isPermaLink="true">http://localhost:4000/web%20development/2014/07/14/project-5/</guid>
-        
-        
-        <category>Web Development</category>
         
       </item>
     

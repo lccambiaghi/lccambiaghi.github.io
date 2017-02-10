@@ -39,11 +39,11 @@ footer:
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
   - title: linkedin
-    url:
+    url: https://www.linkedin.com/in/luca-cambiaghi/
   - title: facebook
-    url:
+    url: https://www.facebook.com/Braciolo
   - title: instagram
-    url:
+    url: https://www.instagram.com/lucacambiaghi/
 
 # Postal address (add as many lines as necessary)
 address:
@@ -52,7 +52,7 @@ address:
   - line: Working in Copenhagen
 
 # Credits content
-credits: 'Credits to the Freelancer Theme for Bootstrap.'
+credits: 'Credits to the Freelancer Theme'
 
 # Build settings
 markdown: kramdown

@@ -1,7 +1,9 @@
 ---
+title: Council of Four
+link: Council-of-Four
 layout: default
 modal-id: 1
-img: cabin.png
+img: cof.png
 alt: image-alt
 course: Software Engineering
 project-date: Jun 2016

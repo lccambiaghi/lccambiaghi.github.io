@@ -1,6 +1,6 @@
  <!-- Portfolio Modals -->
  {% for post in site.posts %}
-    <div class="portfolio-modal modal fade" id="portfolioModal-{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="{{ post.link }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -30,6 +30,7 @@
                                     </strong>
                                 </li>
                             </ul>
+                            <button type="button" class="btn btn-default btn-goto"><i class="fa fa-github"></i> <a href="https://github.com/lccambiaghi/{{post.link}}">See the project</a></button>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>
