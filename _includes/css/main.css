@@ -294,7 +294,7 @@ section.success {
     border: solid 2px #fff;
     font-size: 20px;
     color: #eee;
-    background: #{{ site.color.primary }};
+    background: #{{ site.color.secondary }};
     transition: all .3s ease-in-out;
 }
 
@@ -312,7 +312,7 @@ section.success {
 .btn-lg:active,
 .btn-lg.active {
     border: solid 2px #fff;
-    color: #{{ site.color.primary }};
+    color: #{{ site.color.secondary }};
     background: #fff;
 }
 
