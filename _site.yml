@@ -1,0 +1,12 @@
+name: "lccambiaghi.github.io"
+title: "Luca Cambiaghi's Blog"
+description: |
+  Luca Cambiaghi's Blog
+output_dir: "."     # root of master branch
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
