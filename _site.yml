@@ -9,6 +9,8 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+    - text: "Dailies"
+      href: dailies.html
     - icon: fab fa-github
       href: https://github.com/lccambiaghi
 output: 
