@@ -1,5 +1,20 @@
 [
   {
+    "path": "posts/2020-01-16-daily/",
+    "title": "daily",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Luca Cambiaghi",
+        "url": {}
+      }
+    ],
+    "date": "2020-01-16",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-01-16T14:40:13+01:00"
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to My Blog",
     "description": "Welcome to our new blog, My Blog. We hope you enjoy \nreading what we have to say!",
