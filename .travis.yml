@@ -1,9 +1,6 @@
-deploy:
-  language: r
-  provider: script
-  script: make
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  on:
-    branch: master
+language: r
+provider: script
+script: Rscript -e 'rmarkdown::render_site()'
+skip_cleanup: true
+github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+keep_history: true
