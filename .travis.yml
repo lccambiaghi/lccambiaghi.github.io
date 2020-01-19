@@ -1,3 +1,7 @@
+language: r
+
+sudo: false
+
 branches:
   only:
     - master
