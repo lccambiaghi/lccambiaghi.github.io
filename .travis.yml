@@ -1,3 +1,6 @@
+language: r
+script:
+- make
 deploy:
   provider: pages
   skip_cleanup: true
@@ -5,6 +8,3 @@ deploy:
   keep_history: true
   on:
     branch: master
-language: r
-script:
-- make
