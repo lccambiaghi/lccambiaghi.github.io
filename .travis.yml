@@ -14,7 +14,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  repo: username/username.github.io
+  repo: lccambiaghi/lccambiaghi.github.io
   target_branch: master
   # local_dir: public
   # fqdn: travis-blogdown.yihui.name
