@@ -1,7 +1,0 @@
----
-title: ""
-site: distill::distill_website
-listing:
-  posts:
-    - 2020-01-16-daily
----
