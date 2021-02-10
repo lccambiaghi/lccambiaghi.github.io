@@ -1,0 +1,14 @@
+{% extends "base_layout.html" %}
+{% block main %}
+<article class="post">
+  <h1 class="post__title">
+    {{ post.title }}
+  </h1>
+  <section class="post__meta">
+    {{ post.date|strftime("%b %d, %Y") }}
+  </section>
+  <section>
+    {{ post.html|safe }}
+  </section>
+</article>
+{% endblock %}

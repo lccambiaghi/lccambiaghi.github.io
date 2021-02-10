@@ -1,0 +1,75 @@
+#+TITLE: New website!
+#+DATE: <2020-05-28>
+#+AUTHOR: Luca Cambiaghi
+#+OPTIONS: toc:nil num:nil
+#+OPTIONS: ^:nil
+#+FILETAGS: :clojurescript:shadow-cljs:org:
+
+* The problem
+I have always wanted a personal website. I have attempted several times at creating one.
+The first function a personal website should serve is showcase your achievements, e.g. your former experience and projects.
+The second function I have always seeked from my website is technical blogging.
+Moreover, I wanted my website to be hosted for free, without any limitations.
+
+In regards to blogging, I wanted to do it in the simplest way. Not too simple though, as Einstein said:
+#+BEGIN_QUOTE
+Everything should be made as simple as possible,
+but not any simpler ---Albert Einstein
+#+END_QUOTE
+In my previous attempts at building a website I never reached that sweet spot: things were either too complex or too simple.
+In this blog post I explain what brought me to this point.
+
+* Previous approaches
+A popular approach is to host a static website on Github Pages with Ruby+Jekyll.
+Github recently made this very easy with the [[https://github.com/github/personal-website][personal website project]].
+I tried twice that approach because of how easy and fast it is to set up.
+
+The first time I set up a simple website was few years ago and I did it with a minimal Jekyll template to showcase my github projects and my skills.
+I had a page where I could easily write blog posts in ~.md~ files, placing the posts in a certain folder structure with a certain filename.
+Simple enough, right? Maybe too simple. I could not easily control the website template. I had to write my posts in ~markdown~ files.
+I quickly lost interest in the website and never blogged once.
+
+The second time around was at the beginning of 2020, shortly after discovering Emacs.
+I saw a beautiful blog online and made it a day's quest to replicate it on my ~gh-pages~ branch.
+What the author was using was an R library called ~rmarkdown~, which under the hood uses ~knitr~ + ~pandoc~ to render ~.Rmd~ files.
+The final touch I added was so I could write posts using my favourite markup language, i.e. Org Mode.
+I could write ~.org~ files, export them to ~.Rmd~ files and finally render them with ~rmarkdown~.
+The website's style was stunning also! Very easy to steal some CSS from his website.
+
+I could blog writing ~.org~ files and I had a beautiful website.. Still I never blogged once. Maybe it was not simple enough.
+The setup must have been working very well for its original author, a Data Scientist writing a lot of ~.Rmd~ analyses. Not so much for me.
+
+* This approach
+Lately I have been very fascinated by the Clojure programming language. I will write a post in the future about it.
+In the websites I am lurking, the community often speaks about Clojurescript which can compile to Javascript code.
+Some of the ~cljs~ frameworks for simple-page applications seem simple and elegant (like most things Clojure related).
+
+Today I found a minimal, beautiful blog set up with ~shadow-cljs~, which had very little code, all of which was understandable enough.
+It looks like the author is a ~js~ and ~cljs~ developer, so it has been interesting to learn some best practices since I have absolutely zero knowledge of frontend development.
+
+Well, I forked his repo and it was extremely quick to build the website locally and deploy it to netlify!
+New concepts I need to understand more:
+- ~yarn~ > ~npm~ for managing dependencies, building and releasing
+- ~tailwind~ + ~postcss~ for easy customization of your website's style
+- ~yarn shadow-cljs watch app~ to develop while hot-reloading the website a-la-figwheel
+- Connecting to the ~clojurescript~ REPL to interact with the browser
+
+This is a very exciting environment to develop my website and customize it to my liking! No more deciphering templates and stealing off CSS, I will customize it how I want.
+
+The second news, even more exciting, is that the author wrote a simple logic to parse ~.md~ and populate the website.
+This means that to write my blog posts I can write with Org Mode and easily export to ~.md~.
+I will also adopt the approach used in ~ox-hugo~, that is to have a single ~.org~ file and have posts live under a heading.
+I can then export a single post with =,e C-s mm=, i.e. calling ~org-export-dispatch~, narrowing the scope to the subtree and exporting to a markdown file.
+
+I really like having the full control over the website. Deploying to netlify means that I am not limited to what Github Pages lets me do.
+In the future I would like to explore different things, like embedding an interactive ~D3~ visualization or a ~vega-lite~ SVG.
+I am happy to *need* to understand the details for these integrations instead of resorting to a magical plugin in an obscure template (like with ~hugo~).
+
+* Why blogging?
+Technical blogging is a great opportunity to learn how to explain something you _think_ you know something about and how to organise your thoughts.
+Before writing this post I thought I had a clear idea of what to write but at the end of the post I can see that I digressed and I could have benefitted from organizing the structure of the post beforehand.
+It's okay since it is my first post, but see? Already learning!
+
+In the future I plan to write about the things I deem interesting that I am exploring.
+I do this for self documentation and to maybe help a fellow user who might come across the same problem I was solving and maybe it will help him save some time.
+I will adjust with time around a certain size and type of content. I expect the two main categories will be data science and software engineering tooling.

@@ -1,0 +1,25 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/46ffadee-bc22-4274-bc6f-00392df3a2a1/deploy-status)](https://app.netlify.com/sites/lccambiaghi/deploys)
+
+[[https://lcccambiaghi.netlify.app/][Personal blog]]
+
+* Setup
+#+BEGIN_SRC sh
+yarn install
+#+END_SRC
+* Develop
+#+BEGIN_SRC sh
+yarn develop
+#+END_SRC
+* Release
+#+BEGIN_SRC sh
+yarn release
+#+END_SRC
+* Things to improve
+- Exporting from ~org~ to ~md~ has some issues:
+  1. When using ~ox-md~ the source of the code blocks is not recognized.
+  2. When using ~ox-md-gfm~ the title metadata needs backslash for newline, plus the links sometimes get line broken and therefore fail to render
+
+* References
+- Implementation: https://github.com/yosevu/yosevu
+- Styling: https://code.thheller.com/
+- D3 and Clojurescript: https://lambdaisland.com/blog/26-04-2018-d3-clojurescript
