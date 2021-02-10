@@ -1,7 +1,0 @@
-#+TITLE: Firn
-#+DATE_CREATED: <2020-05-28>
-#+FIRN_TAGS: org-mode clojure
-* Current solution
-blabla, export to md problems
-* Firn
-blabla, partials
