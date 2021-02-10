@@ -1,20 +1,26 @@
 ;;; publish.el --- Generate a simple static HTML blog
-;;; Commentary:
-;;
-;;    Define the routes of the static website.  Each of which
-;;    containing the pattern for finding Org-Mode files, which HTML
-;;    template to be used, as well as their output path and URL.
-;;
-;;; Code:
 
-(if (string= (getenv "ENV") "prod")
-    (setq weblorg-default-url "https://luca.cambiaghi.me"))
-(if (string= (getenv "ENV") "local")
-    (setq weblorg-default-url "http://localhost:8000"))
+;; Setup package management
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; Install and configure dependencies
+(use-package templatel :ensure t)
+(use-package htmlize :ensure t)
+(setq org-html-htmlize-output-type 'css)
+(use-package weblorg :ensure t)
+
+;; (if (string= (getenv "ENV") "prod")
+;;     (setq weblorg-default-url "https://luca.cambiaghi.me"))
+;; (if (string= (getenv "ENV") "local")
+;;     (setq weblorg-default-url "http://localhost:8000"))
 
 (defun init-site ()
 	(weblorg-site
-	 ;; :theme "autodoc"
 	 :template-vars '(("project_name" . "lccambiaghi")
 										("project_github" . "https://github.com/lccambiaghi/lccambiaghi")
 										("project_description" . "Luca's blog"))
