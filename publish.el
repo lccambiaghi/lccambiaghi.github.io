@@ -14,6 +14,8 @@
 	(use-package htmlize :ensure t)
 	(setq org-html-htmlize-output-type 'css)
 	(use-package weblorg :ensure t)
+	;; code blocks syntax highlight
+	(use-package clojure-mode :ensure t)
 	)
 
 (defun setup-site ()
