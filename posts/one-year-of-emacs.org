@@ -1,0 +1,92 @@
+#+TITLE: One year with Emacs
+#+DATE: <2020-11-25>
+#+AUTHOR: Luca Cambiaghi
+#+OPTIONS: toc:nil num:nil
+#+OPTIONS: ^:nil
+#+FILETAGS: :emacs:
+#+DRAFT: t
+
+outline?
+- prelude:
+  + interface between technologies: org
+  + consistency: buffers, windows, REPL(clojure and jupyter), LSP
+  + extensibility: LSP
+- Spacemacs
+- DOOM
+- Emacs
+
+workflows:
+- pyright + dap-mode
+- direnv
+- nix
+- magit
+- org-mode
+  + agenda
+  + org-cv
+  + inline latex
+  + org-babel
+- evil-mode
+- vterm (eshell)
+
+-> everything shell related is done in emacs
+-> programming-specific IDEs are unified
+
+* Prelude
+In a couple previous blog posts I described a workflow enabled by Emacs.
+The magic ~clojurescript~ does to compile to ~react-native~ is also enjoyable by developers who use Visual Studio Code.
+The features I described of ~org-mode~ can be achieved by using ~jupyter notebook~ if you don't mind about working in the browser and versioning ~.json~ files.
+
+The point of this blog post is not really about cool technologies like ~clojure~ or ~nix~.
+The 99% of the people in the world who don't use Emacs will find a way to make use of them efficiently and with joy.
+
+What I would like to describe are those workflows that are enabled by a smart interface between technologies.
+I would like to emphasize the beauty of consistency.
+But most importantly, the extensibility and how you can customize your development toolset to solve your personal problems.
+
+* Spacemacs
+Everything started on a random afternoon, browsing the web, downloading Emacs almost as a joke.
+I follow its tutorial, I like the concept of moving across the screen with the keyboard.
+I dislike everything else, most of all its odd look and arcane keybindings.
+
+I was so close to trash it and move on.. but I kept on reading and found out about the popular Spacemacs.
+The value proposition is clear:
+- Make Emacs modern
+- Gather all the cool packages and make them discoverable
+
+I downloaded it and spent WEEKS reading its documentation around Christmas 2019.
+Spacemacs comes with ~evil-mode~ (~vi~ keybindings) as default, so yep: learning Emacs and vim at the same time.
+I was extremely slow, I could not do anything productive with it, it was basically like re-learning to type AND code from scratch.
+
+I was hooked.
+There was something misteryous about this software that kept me curious.
+
+* DOOM
+After a couple of months I moved to DOOM emacs.
+The main reason was Spacemacs had become slow.
+Often, I would not understand how things were working and very often I would not understand why things were not working.
+
+DOOM has the same two goals as Spacemacs but it is much closer to the vanilla Emacs experience.
+You are encouraged from day one to write a literate ~config.org~ file and there you go.
+The first commit of my config is from 8th of February.
+
+DOOM makes it very easy to inspect the source code of an ~elisp~ function.
+You are encouraged to interrogate Emacs about what is happening: ~describe-variable~, ~describe-function~, ~describe-mode~, ~describe-key~.
+
+I am still not proficient in ~elisp~, I mostly steal pieces from the internet.
+I only wrote a couple of useful functions:
+- An advice which would set the right ~python~ path according to the ~poetry~ virtual env
+- A function which would start a ~ptvsd~ debugger in ~pytest~ on the test at point
+
+Both functions have been adapted from existing functions which did similar things.
+Both have been replaced by better tools (~direnv~ and ~dap-mode~) as of now.
+
+* Emacs
+- buffer: everything is text
+- windows
+- LISP (REPL)
+- projectile
+
+* Tools
+- Magit
+- org (babel)
+- LSP
