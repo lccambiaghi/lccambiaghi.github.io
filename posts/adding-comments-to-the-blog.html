@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>My personal weblorg - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Coltrane" />
+    <meta name="description" content="my personal blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://lccambiaghi.github.io/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    
+
+    
+    <header>
+      <h1 class="logo">
+        <a href="https://lccambiaghi.github.io/">My personal weblorg</a>
+      </h1>
+      <a href="#main" class="visually-hidden">jump to main content</a>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/about.html">about</a></li>
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/">blog</a></li>
+        </ul>
+        <ul class="social">
+          <li class="social__item">
+            <a class="social__link github" href="http://github.com/clarete/weblorg">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span class="visually-hidden">github</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+
+    
+    <main id="main">
+      
+<article class="post">
+  <h1 class="post__title">
+    Adding comments to the blog
+  </h1>
+  <section class="post__meta">
+    Jun 07, 2020
+  </section>
+  <section>
+    
+<div class="outline-2">
+<h2 id="the-requirements"><a id="org0764492"></a>The requirements</h2>
+<div class="outline-text-2">
+<p>
+I spent a day trying to integrate comments on this blog.
+As always, things were simple but since I am a terrible web developer I spent a lot of time figuring out how to do it.
+This gave me the opportunity to learn how to debug my clojurescript web app and to learn something about React so that is good!
+</p>
+
+<p>
+I wanted to add comments at the end of my posts so I could gather feedback on what I write, to know whether I helped a random stranger or if something about my process could be improved.
+My requirements for the commenting system I wanted to add were the following:
+</p>
+<ol class="org-ol">
+<li>Free: I did not want to pay a monthly fee for my small blog with few monthly pageviews</li>
+<li>Lightweight: my website's load speed should not suffer</li>
+<li>No ads: my readers should have no waiting time to leave a quick comment</li>
+<li>No login required: as above, I don't want to require my readers to have a Disqus or Github account</li>
+<li>Simple, no backend installation: I wanted to keep my simple JAMstack setup with Netlify</li>
+</ol>
+
+<p>
+It is not a small list when you look at it.
+The thing is that I would not accept a solution which compromised on even one of the above points.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="good-solutions"><a id="org1bb393a"></a>Good solutions</h2>
+<div class="outline-text-2">
+<p>
+The most popular solution for blogs is by far Disqus.
+It is simple and free, however it is not lightweight and it has ads(!!).
+They also have a bad reputation of not being privacy focused. Discarded.
+</p>
+
+<p>
+One project I really liked was <a href="https://utteranc.es/">utterances</a>, which allows you to store the comments in a github repo.
+It did not seem super trivial to integrate with my Reagent setup but it was a simple and elegant solution.
+However, it compromised on requirement 4: you need a Github account to comment. I kept looking.
+</p>
+
+<p>
+I found another interesting <a href="https://healeycodes.com/adding-comments-to-gatsby-with-netlify-and-github/">solution</a> which made us of Netlify forms and functions.
+When a commenter would post a comment, it would trigger a new website build.
+Comments are filtered for spam by Netlify and are stored in a JSON file on Github.
+However, again, it was not simple to integrate in my setup as the Netlify functions can only be written in Javascript.
+I found a good <a href="https://github.com/healeycodes/gatsby-serverless-comments">reference</a> to express functions in clojurescript and compile them and I was about to experiment to learn about serverless and lambda functions.
+I liked the low-level idea of not relying on any service at all.
+However, before diving into this project, I decided to try out a service which looked very simple AND respected all my requirements.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="the-winner"><a id="orgb36b7b0"></a>The winner</h2>
+<div class="outline-text-2">
+<p>
+I decided to try <a href="https://talk.hyvor.com/">Hyvor Talk</a>, they offer a similar service to Disqus but privacy-focused.
+It does not look lightweight when you see a demo site but then you found out that you can load the component "on scroll" or by clicking a button. Nice!
+They have a free tier, which seemed to be perfect for my use case.
+</p>
+
+<p>
+The integration was quite simple: just add this piece of HTML to your blog posts and if they have a canonical URL everything will work out of the box.
+Yeah, well, it is not easy with a single page application.
+My blog posts are React components, where the HTML is set with the <code>dangerouslySetInnerHTML</code> function.
+Fair enough, I said, I will write that piece of HTML in each of my post.
+Then I found out that if the innerHTML contains a <code>&lt;script&gt;</code> tag, it will be skipped. Damn.
+</p>
+
+<p>
+What I found out shortly after is that Hyvor Talk provides their own React component to embed the comments in your website!
+After a bit of research I found out that <code>shadow-cljs</code> makes it extremely easy to install an existing React component and include it in your SPA!
+</p>
+
+<p>
+Firs I installed the component with:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">yarn add hyvor-talk-react
+</pre>
+</div>
+
+<p>
+And this is my Reagent code:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(ns app.core
+  (:require ["hyvor-talk-react" :as HyvorTalk]))
+
+(defn- comments [post-id]
+  [:&gt; HyvorTalk/Embed {:websiteId 123 :id post-id :loadMode "scroll"}])
+</pre>
+</div>
+
+<p>
+The <code>:&gt;</code> is special Reagent syntax that allows you to easily use javascript components.
+Wow, the <code>cljs</code> + <code>reagent</code> + <code>shadow-cljs</code> combo really made this process so simple!
+In the process I learned something abut the philosophy of React and I understand components a bit more.
+</p>
+</div>
+</div>
+
+  </section>
+</article>
+
+    </main>
+
+
+    
+    
+    <footer class="footer">
+      <div class="ack">
+        Made with &#x2665; by
+        <a href="https://emacs.love/weblorg" target="_blank">
+          weblorg
+        </a>
+      </div>
+    </footer>
+    
+
+  </body>
+</html>
