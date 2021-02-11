@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>My personal weblorg - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Coltrane" />
+    <meta name="description" content="my personal blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="http://localhost:8000/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    
+
+    
+    <header>
+      <h1 class="logo">
+        <a href="http://localhost:8000/">My personal weblorg</a>
+      </h1>
+      <a href="#main" class="visually-hidden">jump to main content</a>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="http://localhost:8000/about.html">about</a></li>
+          <li class="menu__item"><a class="menu__link" href="http://localhost:8000/">blog</a></li>
+        </ul>
+        <ul class="social">
+          <li class="social__item">
+            <a class="social__link github" href="http://github.com/clarete/weblorg">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span class="visually-hidden">github</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+
+    
+    <main id="main">
+      
+<article class="post">
+  <h1 class="post__title">
+    New website!
+  </h1>
+  <section class="post__meta">
+    May 28, 2020
+  </section>
+  <section>
+    
+<div class="outline-2">
+<h2 id="the-problem">The problem</h2>
+<div class="outline-text-2">
+<p>
+I have always wanted a personal website. I have attempted several times at creating one.
+The first function a personal website should serve is showcase your achievements, e.g. your former experience and projects.
+The second function I have always seeked from my website is technical blogging.
+Moreover, I wanted my website to be hosted for free, without any limitations.
+</p>
+
+<p>
+In regards to blogging, I wanted to do it in the simplest way. Not too simple though, as Einstein said:
+</p>
+<blockquote>
+<p>
+Everything should be made as simple as possible,
+but not any simpler &#x2014;Albert Einstein
+</p>
+</blockquote>
+<p>
+In my previous attempts at building a website I never reached that sweet spot: things were either too complex or too simple.
+In this blog post I explain what brought me to this point.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="previous-approaches">Previous approaches</h2>
+<div class="outline-text-2">
+<p>
+A popular approach is to host a static website on Github Pages with Ruby+Jekyll.
+Github recently made this very easy with the <a href="https://github.com/github/personal-website">personal website project</a>.
+I tried twice that approach because of how easy and fast it is to set up.
+</p>
+
+<p>
+The first time I set up a simple website was few years ago and I did it with a minimal Jekyll template to showcase my github projects and my skills.
+I had a page where I could easily write blog posts in <code>.md</code> files, placing the posts in a certain folder structure with a certain filename.
+Simple enough, right? Maybe too simple. I could not easily control the website template. I had to write my posts in <code>markdown</code> files.
+I quickly lost interest in the website and never blogged once.
+</p>
+
+<p>
+The second time around was at the beginning of 2020, shortly after discovering Emacs.
+I saw a beautiful blog online and made it a day's quest to replicate it on my <code>gh-pages</code> branch.
+What the author was using was an R library called <code>rmarkdown</code>, which under the hood uses <code>knitr</code> + <code>pandoc</code> to render <code>.Rmd</code> files.
+The final touch I added was so I could write posts using my favourite markup language, i.e. Org Mode.
+I could write <code>.org</code> files, export them to <code>.Rmd</code> files and finally render them with <code>rmarkdown</code>.
+The website's style was stunning also! Very easy to steal some CSS from his website.
+</p>
+
+<p>
+I could blog writing <code>.org</code> files and I had a beautiful website.. Still I never blogged once. Maybe it was not simple enough.
+The setup must have been working very well for its original author, a Data Scientist writing a lot of <code>.Rmd</code> analyses. Not so much for me.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="this-approach">This approach</h2>
+<div class="outline-text-2">
+<p>
+Lately I have been very fascinated by the Clojure programming language. I will write a post in the future about it.
+In the websites I am lurking, the community often speaks about Clojurescript which can compile to Javascript code.
+Some of the <code>cljs</code> frameworks for simple-page applications seem simple and elegant (like most things Clojure related).
+</p>
+
+<p>
+Today I found a minimal, beautiful blog set up with <code>shadow-cljs</code>, which had very little code, all of which was understandable enough.
+It looks like the author is a <code>js</code> and <code>cljs</code> developer, so it has been interesting to learn some best practices since I have absolutely zero knowledge of frontend development.
+</p>
+
+<p>
+Well, I forked his repo and it was extremely quick to build the website locally and deploy it to netlify!
+New concepts I need to understand more:
+</p>
+<ul class="org-ul">
+<li><code>yarn</code> &gt; <code>npm</code> for managing dependencies, building and releasing</li>
+<li><code>tailwind</code> + <code>postcss</code> for easy customization of your website's style</li>
+<li><code>yarn shadow-cljs watch app</code> to develop while hot-reloading the website a-la-figwheel</li>
+<li>Connecting to the <code>clojurescript</code> REPL to interact with the browser</li>
+</ul>
+
+<p>
+This is a very exciting environment to develop my website and customize it to my liking! No more deciphering templates and stealing off CSS, I will customize it how I want.
+</p>
+
+<p>
+The second news, even more exciting, is that the author wrote a simple logic to parse <code>.md</code> and populate the website.
+This means that to write my blog posts I can write with Org Mode and easily export to <code>.md</code>.
+I will also adopt the approach used in <code>ox-hugo</code>, that is to have a single <code>.org</code> file and have posts live under a heading.
+I can then export a single post with <code>,e C-s mm</code>, i.e. calling <code>org-export-dispatch</code>, narrowing the scope to the subtree and exporting to a markdown file.
+</p>
+
+<p>
+I really like having the full control over the website. Deploying to netlify means that I am not limited to what Github Pages lets me do.
+In the future I would like to explore different things, like embedding an interactive <code>D3</code> visualization or a <code>vega-lite</code> SVG.
+I am happy to <b>need</b> to understand the details for these integrations instead of resorting to a magical plugin in an obscure template (like with <code>hugo</code>).
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="why-blogging">Why blogging?</h2>
+<div class="outline-text-2">
+<p>
+Technical blogging is a great opportunity to learn how to explain something you <span class="underline">think</span> you know something about and how to organise your thoughts.
+Before writing this post I thought I had a clear idea of what to write but at the end of the post I can see that I digressed and I could have benefitted from organizing the structure of the post beforehand.
+It's okay since it is my first post, but see? Already learning!
+</p>
+
+<p>
+In the future I plan to write about the things I deem interesting that I am exploring.
+I do this for self documentation and to maybe help a fellow user who might come across the same problem I was solving and maybe it will help him save some time.
+I will adjust with time around a certain size and type of content. I expect the two main categories will be data science and software engineering tooling.
+</p>
+</div>
+</div>
+
+  </section>
+</article>
+
+    </main>
+
+
+    
+    
+    <footer class="footer">
+      <div class="ack">
+        Made with &#x2665; by
+        <a href="https://emacs.love/weblorg" target="_blank">
+          weblorg
+        </a>
+      </div>
+    </footer>
+    
+
+  </body>
+</html>
