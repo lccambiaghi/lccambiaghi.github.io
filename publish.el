@@ -13,7 +13,7 @@
 (use-package htmlize :ensure t)
 (setq org-html-htmlize-output-type 'css)
 (use-package weblorg :ensure t)
-
+(setq weblorg-default-url "https://lccambiaghi.github.io")
 ;; (if (string= (getenv "ENV") "prod")
 ;;     (setq weblorg-default-url "https://luca.cambiaghi.me"))
 ;; (if (string= (getenv "ENV") "local")
