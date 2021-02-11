@@ -52,7 +52,7 @@
   <section>
     
 <div class="outline-2">
-<h2 id="the-requirements"><a id="org0764492"></a>The requirements</h2>
+<h2 id="the-requirements"><a id="org64b668e"></a>The requirements</h2>
 <div class="outline-text-2">
 <p>
 I spent a day trying to integrate comments on this blog.
@@ -80,7 +80,7 @@ The thing is that I would not accept a solution which compromised on even one of
 </div>
 
 <div class="outline-2">
-<h2 id="good-solutions"><a id="org1bb393a"></a>Good solutions</h2>
+<h2 id="good-solutions"><a id="orgc0d5e64"></a>Good solutions</h2>
 <div class="outline-text-2">
 <p>
 The most popular solution for blogs is by far Disqus.
@@ -107,7 +107,7 @@ However, before diving into this project, I decided to try out a service which l
 </div>
 
 <div class="outline-2">
-<h2 id="the-winner"><a id="orgb36b7b0"></a>The winner</h2>
+<h2 id="the-winner"><a id="org9465d8c"></a>The winner</h2>
 <div class="outline-text-2">
 <p>
 I decided to try <a href="https://talk.hyvor.com/">Hyvor Talk</a>, they offer a similar service to Disqus but privacy-focused.
@@ -140,11 +140,11 @@ Firs I installed the component with:
 And this is my Reagent code:
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">(ns app.core
-  (:require ["hyvor-talk-react" :as HyvorTalk]))
+<pre class="src src-clojure">(<span class="org-keyword">ns</span> <span class="org-type">app.core</span>
+  (<span class="org-clojure-keyword">:require</span> [<span class="org-string">"hyvor-talk-react"</span> <span class="org-clojure-keyword">:as</span> HyvorTalk]))
 
-(defn- comments [post-id]
-  [:&gt; HyvorTalk/Embed {:websiteId 123 :id post-id :loadMode "scroll"}])
+(<span class="org-keyword">defn-</span> <span class="org-function-name">comments</span> [post-id]
+  [<span class="org-clojure-keyword">:&gt;</span> <span class="org-type">HyvorTalk</span>/Embed {<span class="org-clojure-keyword">:websiteId</span> 123 <span class="org-clojure-keyword">:id</span> post-id <span class="org-clojure-keyword">:loadMode</span> <span class="org-string">"scroll"</span>}])
 </pre>
 </div>
 

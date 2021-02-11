@@ -52,7 +52,7 @@
   <section>
     
 <div class="outline-2">
-<h2 id="discovering-vega-lite"><a id="org124f8f7"></a>Discovering Vega-lite</h2>
+<h2 id="discovering-vega-lite"><a id="org331a40f"></a>Discovering Vega-lite</h2>
 <div class="outline-text-2">
 <p>
 I am in the middle of my journey discovering Clojure and its ecosystem of libraries.
@@ -81,67 +81,67 @@ Consider this plot:
 This is the plot specification, described in JSON:
 </p>
 <div class="org-src-container">
-<pre class="src src-json">{
-  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "description": "The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html",
-    "layer": [{
-      "data": {
-	"values": [
-	  {"Day": 1, "Value": 54.8},
-	  {"Day": 2, "Value": 112.1},
-	  {"Day": 3, "Value": 63.6},
-	  {"Day": 4, "Value": 37.6},
-	  {"Day": 5, "Value": 79.7},
-	  {"Day": 6, "Value": 137.9},
-	  {"Day": 7, "Value": 120.1},
-	  {"Day": 8, "Value": 103.3},
-	  {"Day": 9, "Value": 394.8},
-	  {"Day": 10, "Value": 199.5},
-	  {"Day": 11, "Value": 72.3},
-	  {"Day": 12, "Value": 51.1},
-	  {"Day": 13, "Value": 112.0},
-	  {"Day": 14, "Value": 174.5},
-	  {"Day": 15, "Value": 130.5}
-	]
+<pre class="src src-js">{
+  <span class="org-string">"$schema"</span>: <span class="org-string">"https://vega.github.io/schema/vega-lite/v4.json"</span>,
+  <span class="org-string">"description"</span>: <span class="org-string">"The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html"</span>,
+    <span class="org-string">"layer"</span>: [{
+      <span class="org-string">"data"</span>: {
+        <span class="org-string">"values"</span>: [
+          {<span class="org-string">"Day"</span>: 1, <span class="org-string">"Value"</span>: 54.8},
+          {<span class="org-string">"Day"</span>: 2, <span class="org-string">"Value"</span>: 112.1},
+          {<span class="org-string">"Day"</span>: 3, <span class="org-string">"Value"</span>: 63.6},
+          {<span class="org-string">"Day"</span>: 4, <span class="org-string">"Value"</span>: 37.6},
+          {<span class="org-string">"Day"</span>: 5, <span class="org-string">"Value"</span>: 79.7},
+          {<span class="org-string">"Day"</span>: 6, <span class="org-string">"Value"</span>: 137.9},
+          {<span class="org-string">"Day"</span>: 7, <span class="org-string">"Value"</span>: 120.1},
+          {<span class="org-string">"Day"</span>: 8, <span class="org-string">"Value"</span>: 103.3},
+          {<span class="org-string">"Day"</span>: 9, <span class="org-string">"Value"</span>: 394.8},
+          {<span class="org-string">"Day"</span>: 10, <span class="org-string">"Value"</span>: 199.5},
+          {<span class="org-string">"Day"</span>: 11, <span class="org-string">"Value"</span>: 72.3},
+          {<span class="org-string">"Day"</span>: 12, <span class="org-string">"Value"</span>: 51.1},
+          {<span class="org-string">"Day"</span>: 13, <span class="org-string">"Value"</span>: 112.0},
+          {<span class="org-string">"Day"</span>: 14, <span class="org-string">"Value"</span>: 174.5},
+          {<span class="org-string">"Day"</span>: 15, <span class="org-string">"Value"</span>: 130.5}
+        ]
       },
-      "layer": [{
-	"mark": "bar",
-	"encoding": {
-	  "x": {"field": "Day", "type": "ordinal", "axis": {"labelAngle": 0}},
-	  "y": {"field": "Value", "type": "quantitative"}
-	}
+      <span class="org-string">"layer"</span>: [{
+        <span class="org-string">"mark"</span>: <span class="org-string">"bar"</span>,
+        <span class="org-string">"encoding"</span>: {
+          <span class="org-string">"x"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"Day"</span>, <span class="org-string">"type"</span>: <span class="org-string">"ordinal"</span>, <span class="org-string">"axis"</span>: {<span class="org-string">"labelAngle"</span>: 0}},
+          <span class="org-string">"y"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"Value"</span>, <span class="org-string">"type"</span>: <span class="org-string">"quantitative"</span>}
+        }
       }, {
-	"mark": "bar",
-	"transform": [
-	  {"filter": "datum.Value &gt;= 300"},
-	  {"calculate": "300", "as": "baseline"}
-	],
-	"encoding": {
-	  "x": {"field": "Day", "type": "ordinal"},
-	  "y": {"field": "baseline", "type": "quantitative", "title": "PM2.5 Value"},
-	  "y2": {"field": "Value"},
-	  "color": {"value": "#e45755"}
-	}
+        <span class="org-string">"mark"</span>: <span class="org-string">"bar"</span>,
+        <span class="org-string">"transform"</span>: [
+          {<span class="org-string">"filter"</span>: <span class="org-string">"datum.Value &gt;= 300"</span>},
+          {<span class="org-string">"calculate"</span>: <span class="org-string">"300"</span>, <span class="org-string">"as"</span>: <span class="org-string">"baseline"</span>}
+        ],
+        <span class="org-string">"encoding"</span>: {
+          <span class="org-string">"x"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"Day"</span>, <span class="org-string">"type"</span>: <span class="org-string">"ordinal"</span>},
+          <span class="org-string">"y"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"baseline"</span>, <span class="org-string">"type"</span>: <span class="org-string">"quantitative"</span>, <span class="org-string">"title"</span>: <span class="org-string">"PM2.5 Value"</span>},
+          <span class="org-string">"y2"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"Value"</span>},
+          <span class="org-string">"color"</span>: {<span class="org-string">"value"</span>: <span class="org-string">"#e45755"</span>}
+        }
       }
     ]}, {
-      "data": {
-	 "values": [{}]
+      <span class="org-string">"data"</span>: {
+         <span class="org-string">"values"</span>: [{}]
       },
-      "encoding": {
-	"y": {"datum": 300}
+      <span class="org-string">"encoding"</span>: {
+        <span class="org-string">"y"</span>: {<span class="org-string">"datum"</span>: 300}
       },
-      "layer": [{
-	"mark": "rule"
+      <span class="org-string">"layer"</span>: [{
+        <span class="org-string">"mark"</span>: <span class="org-string">"rule"</span>
       }, {
-	"mark": {
-	  "type": "text",
-	  "align": "right",
-	  "baseline": "bottom",
-	  "dx": -2,
-	  "dy": -2,
-	  "x": "width",
-	  "text": "hazardous"
-	}
+        <span class="org-string">"mark"</span>: {
+          <span class="org-string">"type"</span>: <span class="org-string">"text"</span>,
+          <span class="org-string">"align"</span>: <span class="org-string">"right"</span>,
+          <span class="org-string">"baseline"</span>: <span class="org-string">"bottom"</span>,
+          <span class="org-string">"dx"</span>: -2,
+          <span class="org-string">"dy"</span>: -2,
+          <span class="org-string">"x"</span>: <span class="org-string">"width"</span>,
+          <span class="org-string">"text"</span>: <span class="org-string">"hazardous"</span>
+        }
       }]
     }
   ]
@@ -180,7 +180,7 @@ It is very simple to express the components and quite intuitive how to layer the
 </div>
 
 <div class="outline-2">
-<h2 id="oz"><a id="org0bc087f"></a>Oz</h2>
+<h2 id="oz"><a id="orgb43d828"></a>Oz</h2>
 <div class="outline-text-2">
 <p>
 Well, Vega-lite is nothing new, might not be so exciting for the majority of people.
@@ -197,22 +197,22 @@ It even allows us to export the plot to a self-contained HTML using the javascri
 Consider this neat code found in the repo's README:
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">(ns org.core
-  (:require [oz.core :as oz]))
+<pre class="src src-clojure">(<span class="org-keyword">ns</span> <span class="org-type">org.core</span>
+  (<span class="org-clojure-keyword">:require</span> [oz.core <span class="org-clojure-keyword">:as</span> oz]))
 
-(defn play-data [&amp; names]
-  (for [n names
-	i (range 20)]
-    {:time i :item n :quantity (+ (Math/pow (* i (count n)) 0.8) (rand-int (count n)))}))
+(<span class="org-keyword">defn</span> <span class="org-function-name">play-data</span> [&amp; names]
+  (<span class="org-keyword">for</span> [n names
+        i (range 20)]
+    {<span class="org-clojure-keyword">:time</span> i <span class="org-clojure-keyword">:item</span> n <span class="org-clojure-keyword">:quantity</span> (+ (<span class="org-type">Math</span>/pow (* i (count n)) 0.8) (rand-int (count n)))}))
 
-(def line-plot
-  {:data     {:values (play-data "monkey" "slipper" "broom")}
-   :encoding {:x     {:field "time" :type "quantitative"}
-	      :y     {:field "quantity" :type "quantitative"}
-	      :color {:field "item" :type "nominal"}}
-   :mark     "line"})
+(<span class="org-keyword">def</span> <span class="org-variable-name">line-plot</span>
+  {<span class="org-clojure-keyword">:data</span>     {<span class="org-clojure-keyword">:values</span> (play-data <span class="org-string">"monkey"</span> <span class="org-string">"slipper"</span> <span class="org-string">"broom"</span>)}
+   <span class="org-clojure-keyword">:encoding</span> {<span class="org-clojure-keyword">:x</span>     {<span class="org-clojure-keyword">:field</span> <span class="org-string">"time"</span> <span class="org-clojure-keyword">:type</span> <span class="org-string">"quantitative"</span>}
+              <span class="org-clojure-keyword">:y</span>     {<span class="org-clojure-keyword">:field</span> <span class="org-string">"quantity"</span> <span class="org-clojure-keyword">:type</span> <span class="org-string">"quantitative"</span>}
+              <span class="org-clojure-keyword">:color</span> {<span class="org-clojure-keyword">:field</span> <span class="org-string">"item"</span> <span class="org-clojure-keyword">:type</span> <span class="org-string">"nominal"</span>}}
+   <span class="org-clojure-keyword">:mark</span>     <span class="org-string">"line"</span>})
 
-(oz/export! line-plot "public/html/line.html")
+(<span class="org-type">oz</span>/export! line-plot <span class="org-string">"public/html/line.html"</span>)
 </pre>
 </div>
 
@@ -229,7 +229,7 @@ There is no class, no weird API syntax or function kwargs to memorize.
 </div>
 
 <div class="outline-2">
-<h2 id="blog-development"><a id="org5c0c390"></a>Blog development:</h2>
+<h2 id="blog-development"><a id="orgd557b50"></a>Blog development:</h2>
 <div class="outline-text-2">
 <p>
 Anoter interesting learning I had was how to embed Vega into this blog!

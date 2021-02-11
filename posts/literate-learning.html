@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>My personal weblorg - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Coltrane" />
+    <meta name="description" content="my personal blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://lccambiaghi.github.io/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    
+
+    
+    <header>
+      <h1 class="logo">
+        <a href="https://lccambiaghi.github.io/">My personal weblorg</a>
+      </h1>
+      <a href="#main" class="visually-hidden">jump to main content</a>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/about.html">about</a></li>
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/">blog</a></li>
+        </ul>
+        <ul class="social">
+          <li class="social__item">
+            <a class="social__link github" href="http://github.com/clarete/weblorg">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span class="visually-hidden">github</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+
+    
+    <main id="main">
+      
+<article class="post">
+  <h1 class="post__title">
+    Literate learning
+  </h1>
+  <section class="post__meta">
+    Jun 17, 2020
+  </section>
+  <section>
+    
+<div class="outline-2">
+<h2 id="think-stats"><a id="org8cf819e"></a>Think stats</h2>
+<div class="outline-text-2">
+<p>
+When I first approached Clojure my curiosity brough me to look up what people were using to do Data Science in Clojure.
+I found a book called <a href="https://www.packtpub.com/big-data-and-business-intelligence/clojure-data-science">Clojure for Data Science</a>, available through my employer's O'Reilly subscription.
+I skimmed through it and saw it was introducing stats concepts in a very simple and clear way.
+It was using the <code>incanter</code> "framework", which is unfortunately not in development anymore.
+</p>
+
+<p>
+The author Henry Garner has also written <a href="http://clojuredatascience.com/posts/2016-12-02-data-science-ladder-abstraction.html">an interesting essay</a> about his experience with Clojure.
+He is also the author of a stats library called <code>kixi.stats</code>.
+In the essay he says that what he wrote this library while reading the book "Think stats".
+He would re-implement the Python examples in Clojure.
+</p>
+
+<p>
+The second edition of the book is <a href="https://greenteapress.com/wp/think-stats-2e/">available for free</a> and so I went ahead and started reading it.
+Even though I was familiar with most concepts, implementing them with simple functions and data structures deepened my understanding.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="org-code-blocks"><a id="orgf0a8718"></a>Org code blocks</h2>
+<div class="outline-text-2">
+<p>
+One of my favourite features of Emcas is <code>org-mode</code>.
+It is a markup language (arguably the best), which allows you to mix prose and code blocks.
+A code block looks like this:
+</p>
+<pre class="example">
+#+BEGIN_SRC clojure
+(let [vec [1 2 3]]
+  (reduce + vec))
+#+END_SRC
+</pre>
+
+<p>
+It seems verbose to specify <code>#+BEGIN_SRC</code> and <code>#+END_SRC</code> everytime compared to, for example, markdown.
+The process can be quickly automated and it is in fact a built-in feature:
+just typing <code>&lt;s</code> and pressing TAB will expand the source block and move the cursor for you so that you can type the language.
+Another TAB will bring the cursor inside the block.
+</p>
+
+<p>
+Syntax highlighting inside the block is easy to achieve.
+The big wow moment is when you realize that you can <i>execute</i> code blocks with a backend.
+Cider kindly provides this backend.
+When I execute my code block, CIDER will start a REPL.
+</p>
+
+<p>
+Not only that, if I use <code>C-C '</code> to edit the code block, I get a temporary buffer where <code>clojure-mode</code> takes over:
+</p>
+<img src="resources/org-edit.png" alt="Editing org source blocks" style="float: left; margin-right: 10px;" />
+
+<p>
+In this screenshot I am editing this blog post in org-mode.
+I am editing the source block in the right-window.
+When executing it, a <code>shadow-cljs</code> nREPL server was started and org-mode seamlessly connected to the session.
+I can evaluate the <code>let</code> form with CIDER and print the result in the buffer.
+All of the amazing CIDER features are available (refactor, debug).
+</p>
+
+<p>
+Wait for the second wow moment.. you can execute different languages in the same document.
+Org mode provides the means for sharing simple data structures between languages.
+What is not supplied can be achieved easily by serializing intermediate results with one language and re-loading it in another language.
+Data analysis in Python, visualization in R, no context switching.
+</p>
+
+<p>
+You will need to give up Pycharm and Rstudio magics, though.
+Some people might consider this is a good thing.
+You need to understand what Pycharm handles behind the scenes and build it (better: compose it) yourself.
+In 5 years maybe there will be another IDE leading the market.
+I am pretty sure <code>org-mode</code> will still be there, along with the low-level concepts you learned in the effort.
+</p>
+
+<p>
+An <code>org-mode</code> file is structured in sections, or headings.
+Each of these headings can have subheadings.
+They can be collapsed and expanded easily by Emacs.
+This is very consistent with the structure of a book.
+</p>
+
+<p>
+Notes are naturally organized in sections and subsections of the book.
+The python code snippets of the book can be copied, pasted and executed.
+Below I can open a clojure code snippet and rewrite it.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="org-inline-plots"><a id="org1919f51"></a>Org inline plots</h2>
+<div class="outline-text-2">
+<p>
+Another fantastic feature of <code>org-mode</code>'s inline images.
+In fact we can embed the result of a plot directly in the document.
+Nowadays, with Jupyter Notebooks, this is expected and almost required.
+Without much effort, I managed to embed .png files produced by <code>vega-lite</code>.
+</p>
+
+<p>
+For that I am using <a href="https://github.com/behrica/vg-cli">a thin clojure wrapper</a> over <code>vg-cli</code>.
+This is an example of a source block which outputs graphics:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">defn</span> <span class="org-function-name">plot-spec</span> [spec]
+  (<span class="org-type">vg</span>/vg-cli {<span class="org-clojure-keyword">:spec</span> spec <span class="org-clojure-keyword">:format</span> <span class="org-clojure-keyword">:png</span> <span class="org-clojure-keyword">:output-filename</span> <span class="org-string">"data/plots/tmp.png"</span>}))
+
+(<span class="org-keyword">let</span> [ds   (<span class="org-type">ds</span>/-&gt;dataset <span class="org-string">"data/thinkstats/nsfg.csv"</span>)
+      spec {<span class="org-clojure-keyword">:data</span>      {<span class="org-clojure-keyword">:values</span> (<span class="org-keyword">-&gt;</span> (<span class="org-type">ds</span>/filter #(== 1 (get <span class="org-variable-name">%</span> <span class="org-string">"outcome"</span>)) ds)
+                                    (<span class="org-type">ds</span>/select-columns [<span class="org-string">"prglngth"</span>])
+                                    (<span class="org-type">ds</span>/mapseq-reader))}
+            <span class="org-clojure-keyword">:mark</span>      <span class="org-string">"bar"</span>
+            <span class="org-clojure-keyword">:encoding</span>  {<span class="org-clojure-keyword">:x</span> {<span class="org-clojure-keyword">:field</span> <span class="org-string">"prglngth"</span>
+                            <span class="org-clojure-keyword">:type</span>  <span class="org-string">"quantitative"</span>}
+                        <span class="org-clojure-keyword">:y</span> {<span class="org-clojure-keyword">:aggregate</span> <span class="org-string">"count"</span>
+                            <span class="org-clojure-keyword">:type</span>      <span class="org-string">"quantitative"</span>}}}]
+  (plot-spec spec))
+</pre>
+</div>
+
+<p>
+As described in my previous blog post, the specification is expressed in clojure and passed to the <code>vg-cli</code>, which writes the .png to a path.
+</p>
+
+<p>
+Note that the code block has certain <code>header args</code>:
+</p>
+<pre class="example">
+#+BEGIN_SRC clojure :results graphics file link :file ../../data/plots/tmp.png
+...
+#+END_SRC
+</pre>
+
+<p>
+They set the result to be a link to the path where the plot will be saved.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="clojer-to-metal"><a id="orgc741a86"></a>Clojer to metal</h2>
+<div class="outline-text-2">
+<p>
+Reading this book with this setup is a lot of fun.
+I usually have the .pdf open on the right and Emacs on the left.
+I can focus on one topic at a time, code in both languages, quickly see some plots.
+</p>
+
+<p>
+The python code often uses <code>pandas</code>, <code>numpy</code>, <code>matplotlib</code>.
+I am replacing them with <code>tech.ml.dataset</code> + <code>tablecloth</code>, <code>fastmath</code> and <code>vega-lite</code> respectively.
+</p>
+
+<p>
+The <code>dataset</code> abstraction in the Clojure world is better than the pandas one.
+I can express myself with maps and reduce on datasets or columns.
+After a groupby, I can operate on each grouped dataset.
+Which is nothing more than a sequence of maps.
+No series, no index, no arcane syntax.
+</p>
+
+<p>
+I could implement most functions like <code>percentile</code> or <code>covariance</code> on my own.
+When things get more complicated, I am relying on <code>fastmath</code>, which mostyly wraps <code>org.apache.commons.math3</code>.
+So far I used it for sampling from distributions and computing the kernel density estimate.
+</p>
+
+<p>
+Speaking of visualizations, <code>vega-lite</code> has really been a pleasure to use.
+Plots are supposed to be simple.
+You either have a bar plot, a line plot or a scatter plot.
+What is on the x axis and what is on the y axis?
+We usually have a sequence of maps containing <code>xs</code>, we can map functions over them to obtain <code>ys</code>, plot them.
+</p>
+
+<p>
+<code>vega-lite</code> makes it also extremely easy to compose visualizations: auto-layer them, concatenate them vertically, horizontally.
+This means that I can derive my building blocks as functions and very quickly compose them.
+Again, not a slave of <code>matplotlib</code> APIs: subplots, xticks formatters and so on.
+Visualizations as data.
+</p>
+
+<p>
+Here is a snippet demonstrating <code>tablecloth</code> and <code>vega-lite</code> layers:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">defn</span> <span class="org-function-name">weight-vs-height-mapseq</span> [ds rank]
+  (<span class="org-keyword">-&gt;</span> (<span class="org-type">ds</span>/select-columns ds [<span class="org-string">"htm3"</span> <span class="org-string">"wtkg2"</span>])
+      (<span class="org-type">dss</span>/drop-missing [<span class="org-string">"htm3"</span>])
+      (<span class="org-type">dss</span>/select-rows (<span class="org-keyword">fn</span> [row] (<span class="org-keyword">and</span> (&gt; (row <span class="org-string">"htm3"</span>) 135) (&lt; (row <span class="org-string">"htm3"</span>) 200))))
+      (<span class="org-type">dss</span>/group-by (<span class="org-keyword">fn</span> [row] (<span class="org-type">dfn</span>/round (<span class="org-type">dfn</span>// (row <span class="org-string">"htm3"</span>) 5))))
+      (<span class="org-type">dss</span>/aggregate {<span class="org-clojure-keyword">:mean-height</span>       #(<span class="org-type">dfn</span>/mean (<span class="org-variable-name">%</span> <span class="org-string">"htm3"</span>))
+                      <span class="org-clojure-keyword">:weight-percentile</span> #(percentile ((<span class="org-type">dss</span>/drop-missing <span class="org-variable-name">%</span> <span class="org-string">"wtkg2"</span>) <span class="org-string">"wtkg2"</span>) rank)} )
+      (<span class="org-type">ds</span>/mapseq-reader)))
+
+(<span class="org-keyword">let</span> [specs (<span class="org-keyword">for</span> [[rank color] [[25 <span class="org-string">"blue"</span>] [50 <span class="org-string">"green"</span>] [75 <span class="org-string">"red"</span>]]]
+              (line-spec (weight-vs-height-mapseq brfss rank) <span class="org-clojure-keyword">:x-field</span> <span class="org-clojure-keyword">:mean-height</span> <span class="org-clojure-keyword">:y-field</span> <span class="org-clojure-keyword">:weight-percentile</span> <span class="org-clojure-keyword">:mark-color</span> color))]
+  (plot-spec  {<span class="org-clojure-keyword">:layer</span> (into [] specs)}))
+</pre>
+</div>
+
+<img src="resources/weight-vs-height.png" alt="Editing org source blocks" style="float: center" />
+
+<p>
+Apart from these super cool libraries, I am gaining confidence with the language.
+I am solving problems faster, writing more idiomatic code (I like to refactor days-old code, extracting pure functions), getting comfortable with the tooling.
+I like the idea that these pure functions are forever added to my toolbox, ready to be applied to other problems and domains.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="conclusion"><a id="org925d64d"></a>Conclusion</h2>
+<div class="outline-text-2">
+<p>
+This post has briefly touched some topics and technologies that are really interesting to me such as data science, literate programming and clojure.
+I barely scratched the topic of literature programming but I was glad to experiment with one of its use cases.
+I will write another post in the future which showcases some other cool features such as weaving and tangling.
+I hope that somebody can learn from the approach that I shared and maybe can suggest improvements to this workflow!
+</p>
+</div>
+</div>
+
+  </section>
+</article>
+
+    </main>
+
+
+    
+    
+    <footer class="footer">
+      <div class="ack">
+        Made with &#x2665; by
+        <a href="https://emacs.love/weblorg" target="_blank">
+          weblorg
+        </a>
+      </div>
+    </footer>
+    
+
+  </body>
+</html>

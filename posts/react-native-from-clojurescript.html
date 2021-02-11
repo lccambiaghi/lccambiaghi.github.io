@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>My personal weblorg - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Coltrane" />
+    <meta name="description" content="my personal blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://lccambiaghi.github.io/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    
+
+    
+    <header>
+      <h1 class="logo">
+        <a href="https://lccambiaghi.github.io/">My personal weblorg</a>
+      </h1>
+      <a href="#main" class="visually-hidden">jump to main content</a>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/about.html">about</a></li>
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/">blog</a></li>
+        </ul>
+        <ul class="social">
+          <li class="social__item">
+            <a class="social__link github" href="http://github.com/clarete/weblorg">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span class="visually-hidden">github</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+
+    
+    <main id="main">
+      
+<article class="post">
+  <h1 class="post__title">
+    React Native from Clojurescript
+  </h1>
+  <section class="post__meta">
+    Sep 20, 2020
+  </section>
+  <section>
+    
+<div class="outline-2">
+<h2 id="react-native"><a id="orgebecb4b"></a>React Native</h2>
+<div class="outline-text-2">
+<p>
+I have always been curious about mobile apps development.
+In 2018 I tried with a friend to launch a startup and the first thing I tried was to develop a mobile app.
+I wanted to write my code only once for Android and iOS and not the same logic twice in Java+Swift.
+</p>
+
+<p>
+At the time of research the two opponents were <a href="https://dotnet.microsoft.com/apps/xamarin">Xamarin</a> and React Native.
+The promise is the same: write the logic once, have the framework manage the native code.
+</p>
+
+<p>
+After reading some pros and cons I decided to write <code>C#</code> with Xamarin because scared of React and Javascript and the fontend world.
+It was an ok experience but the framework was not mature and <code>C#</code> did not excite me.
+When I hit my first real problem when implementing authentication, I gave up.
+</p>
+
+<p>
+Fast forward 2 years and React Native is mature and I am no longer afraid!
+<a href="https://github.com/reagent-project/reagent">Reagent</a> made me fall in love React and Clojurescript allows me to skip Javascript.
+</p>
+
+<p>
+React Native with the support of Facebook has developed rapidly (most active github repo in 2019).
+It can leverage the React ecosystem, it has good documentation, its generic components are well designed.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="figwheel"><a id="orgb69f512"></a>Figwheel</h2>
+<div class="outline-text-2">
+<p>
+Inspired by <a href="https://increasinglyfunctional.com/2020/05/07/clojurescript-react-native-krell-emacs.html">this blog post</a>, my first attemp at React Native from Clojurescript was with Krell.
+Krell's philoshopy is to provide a very thin layer over React Native.
+Well, I had some hiccups during the setup, I found it still (too) barebones.
+</p>
+
+<p>
+Few months later I saw another announcement on Slack: <code>figwheel</code> for React Native.
+I followed the <a href="https://figwheel.org/docs/react-native.html">Getting Started</a> docs and I quickly had my iOS simulator running alongside <code>figwheel</code> hot-reloading.
+</p>
+
+<p>
+I had also been hearing very good things about <a href="https://expo.io/">Expo</a>, which should handle for you complicated things like camera, location, notifications.
+It was supported out of the box, here is my <code>ios.cljs.edn</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">^{<span class="org-clojure-keyword">:react-native</span> <span class="org-clojure-keyword">:expo</span>
+  <span class="org-clojure-keyword">:launch-js</span> [<span class="org-string">"yarn"</span> <span class="org-string">"ios"</span>]}
+{<span class="org-clojure-keyword">:main</span> app.core}
+</pre>
+</div>
+<p>
+When I run <code>cider-jack-in-cljs</code>, CIDER will ask me to run <code>figwheel-main</code>, <code>ios</code> configuration.
+This will return a <code>cljs</code> REPL and will run <code>yarn ios</code> in the background.
+This is defined in <code>package.json</code> and runs <code>"expo start --ios"</code>.
+With the iOS Simulator running I can then run the Expo app and select my iOS build.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="reagent"><a id="org67ab434"></a>Reagent</h2>
+<div class="outline-text-2">
+<p>
+My first steps consisted of learning what a React Native component is.
+This is the first example in the Rect Native docs:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">import</span> { Text, View } from <span class="org-string">'react-native'</span>;
+
+<span class="org-keyword">const</span> <span class="org-variable-name">YourApp</span> = () =&gt; {
+  <span class="org-keyword">return</span> (
+    &lt;View style={{ flex: 1, justifyContent: <span class="org-string">"center"</span>, alignItems: <span class="org-string">"center"</span> }}&gt;
+      &lt;Text&gt;
+        Hello World!
+      &lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}
+</pre>
+</div>
+<p>
+Javascript makes it slightly verbose but the concept is quite simple: our app includes a <code>View</code> component and inside that a <code>Text</code> component.
+Since <code>react-native</code> is really just React, we can use <code>reagent</code> to have hiccup-like syntax and smart UI reloading.
+</p>
+
+<p>
+Looking on github for repos using the <code>cljs</code> + <code>react-native</code> combo I realized that every developer uses <code>js</code> interop in a slightly different way to wrap <code>react-native</code> components.
+The <code>reagent-react-native</code> project helps eliminating this "common boilerplate" by providing ready-to-use components.
+This is my <code>deps.edn</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">{<span class="org-clojure-keyword">:deps</span> {<span class="org-type">org.clojure</span>/clojurescript     {<span class="org-clojure-keyword">:</span><span class="org-type">mvn</span><span class="org-default">/</span><span class="org-clojure-keyword">version</span> <span class="org-string">"1.10.773"</span>}
+        <span class="org-type">io.vouch</span>/reagent-react-native {<span class="org-clojure-keyword">:</span><span class="org-type">git</span><span class="org-default">/</span><span class="org-clojure-keyword">url</span> <span class="org-string">"https://github.com/vouch-opensource/reagent-react-native.git"</span>
+                                       <span class="org-clojure-keyword">:sha</span>     <span class="org-string">"54bf52788ab051920ed7641f386177374419e847"</span>}
+        reagent                       {<span class="org-clojure-keyword">:</span><span class="org-type">mvn</span><span class="org-default">/</span><span class="org-clojure-keyword">version</span> <span class="org-string">"0.10.0"</span>
+                                       <span class="org-clojure-keyword">:exclusions</span>  [<span class="org-type">cljsjs</span>/react <span class="org-type">cljsjs</span>/react-dom]}
+        <span class="org-type">com.bhauman</span>/figwheel-main     {<span class="org-clojure-keyword">:</span><span class="org-type">mvn</span><span class="org-default">/</span><span class="org-clojure-keyword">version</span> <span class="org-string">"0.2.10-SNAPSHOT"</span>}}}
+</pre>
+</div>
+
+<p>
+And here is the minimal example above, with <code>reagent</code> syntax:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">ns</span> <span class="org-type">core.app</span>
+  (<span class="org-clojure-keyword">:require</span> [react]
+            [reagent.react-native <span class="org-clojure-keyword">:as</span> rrn]))
+
+(<span class="org-keyword">defn</span> <span class="org-function-name">hello</span> []
+  [<span class="org-type">rrn</span>/view {<span class="org-clojure-keyword">:style</span> {<span class="org-clojure-keyword">:flex</span> 1 <span class="org-clojure-keyword">:align-items</span> <span class="org-string">"center"</span> <span class="org-clojure-keyword">:justify-content</span> <span class="org-string">"center"</span>}}
+   [<span class="org-type">rrn</span>/text <span class="org-string">"Hello World!"</span>]])
+</pre>
+</div>
+<p>
+It can't get any more simple.
+The reagent code is an abstraction for this lower level interop code:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">def</span> <span class="org-variable-name">&lt;&gt;</span> <span class="org-type">react</span>/createElement)
+
+(&lt;&gt; <span class="org-type">rn</span>/View
+      #js {<span class="org-clojure-keyword">:style</span> #js {<span class="org-clojure-keyword">:flex</span>            1
+                       <span class="org-clojure-keyword">:align-items</span> <span class="org-string">"center"</span>
+                       <span class="org-clojure-keyword">:justifyContent</span>  <span class="org-string">"center"</span>}}
+      (&lt;&gt; <span class="org-type">rn</span>/Text (str <span class="org-string">"HELLO WORLD!!"</span>)))
+</pre>
+</div>
+
+<p>
+Following the React Native docs was relatively easy.
+I only had troubles when wrapping the <a href="https://reactnative.dev/docs/using-a-listview">FlatList</a> example:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">const</span> <span class="org-variable-name">FlatListBasics</span> = () =&gt; {
+  <span class="org-keyword">return</span> (
+    &lt;View style={styles.container}&gt;
+      &lt;FlatList
+        data={[
+          {key: <span class="org-string">'Devin'</span>},
+          {key: <span class="org-string">'Dan'</span>},
+        ]}
+        renderItem={({item}) =&gt; &lt;Text style={styles.item}&gt;{item.key}&lt;/Text&gt;}
+      /&gt;
+    &lt;/View&gt;
+  );
+}
+</pre>
+</div>
+
+<p>
+This is how I solved it:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">defn</span> <span class="org-function-name">flat-list</span> []
+  [<span class="org-type">rrn</span>/flat-list
+   {<span class="org-clojure-keyword">:data</span>        [{<span class="org-clojure-keyword">:key</span> <span class="org-string">"Devin"</span>}
+                  {<span class="org-clojure-keyword">:key</span> <span class="org-string">"Devn"</span>}]
+    <span class="org-clojure-keyword">:render-item</span> #(&lt;&gt; <span class="org-type">rn</span>/Text
+                      #js {<span class="org-clojure-keyword">:style</span> #js {<span class="org-clojure-keyword">:color</span>     <span class="org-string">"black"</span> <span class="org-clojure-keyword">:textAlign</span> <span class="org-string">"center"</span>}}
+                      (.-key (.-item <span class="org-variable-name">%</span>)))}])
+
+</pre>
+</div>
+<p>
+The <code>render-item</code> function is passed a single argument, an object.
+We can access the data accessing the <code>.-item</code> key.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="calling-clojure"><a id="orgc6c82c7"></a>Calling clojure</h2>
+<div class="outline-text-2">
+<p>
+You soon come to the realization that 99% of the mobile apps we use can be represented by React Native components, some simple data logic and styling.
+What makes <code>cljs</code> attractive for mobile app development is that you can write your logic in <code>clojure</code>.
+</p>
+
+<p>
+To go beyond the basic tutorial, I decided to develop a quick app to play sudoku.
+First I set up the View code to represent the Sudoku grid as a <code>flat-list</code>, as explained above.
+Then, to implement the Model code I resorted to Clojure, functional programming and lazy sequences.
+</p>
+
+<p>
+Instead of having to spin up <code>figwheel</code> + <code>Expo</code> + Simulator, I could simply open a <code>clj</code> REPL.
+After writing the code for my sudoku grid in <code>sudoku.clj</code> (note the <code>defmacro</code>):
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">defmacro</span> <span class="org-function-name">sudoku-grid</span> []
+  (<span class="org-keyword">-&gt;&gt;</span> (repeatedly nine-rows)
+       (filter valid-rows?)
+       (filter valid-columns?)
+       (filter valid-blocks?)
+       first))
+</pre>
+</div>
+
+<p>
+I could simply "require it" in <code>sudoku.cljs</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">ns</span> <span class="org-type">app.sudoku</span>
+  (<span class="org-clojure-keyword">:require-macros</span> [app.sudoku]))
+</pre>
+</div>
+<p>
+I could have just written the logic directly in <code>sudoku.cljs</code> but this approach allows to leverage the whole <code>clj</code> ecosystem and permits faster experimentation.
+This is the screenshot of the result, it was a lot of fun:
+</p>
+
+
+<div class="figure">
+<p><img src="https://raw.githubusercontent.com/lccambiaghi/sudoku-cljsrn/master/assets/screen.png" alt="screen.png" />
+</p>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+    </main>
+
+
+    
+    
+    <footer class="footer">
+      <div class="ack">
+        Made with &#x2665; by
+        <a href="https://emacs.love/weblorg" target="_blank">
+          weblorg
+        </a>
+      </div>
+    </footer>
+    
+
+  </body>
+</html>
