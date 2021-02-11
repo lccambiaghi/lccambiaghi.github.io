@@ -13,14 +13,18 @@
 (use-package htmlize :ensure t)
 (setq org-html-htmlize-output-type 'css)
 (use-package weblorg :ensure t)
-(setq weblorg-default-url "https://lccambiaghi.github.io")
+
 ;; (if (string= (getenv "ENV") "prod")
 ;;     (setq weblorg-default-url "https://luca.cambiaghi.me"))
 ;; (if (string= (getenv "ENV") "local")
 ;;     (setq weblorg-default-url "http://localhost:8000"))
 
+
 (defun init-site ()
+	(setq weblorg-default-url "https://lccambiaghi.github.io")
+
 	(weblorg-site
+	 :base-url "https://lccambiaghi.github.io"
 	 :template-vars '(("project_name" . "lccambiaghi")
 										("project_github" . "https://github.com/lccambiaghi/lccambiaghi")
 										("project_description" . "Luca's blog"))
