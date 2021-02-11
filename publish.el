@@ -1,34 +1,31 @@
 ;;; publish.el --- Generate a simple static HTML blog
 
-;; Setup package management
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(defun setup-deps ()
+	;; Setup package management
+	(require 'package)
+	(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+	(package-initialize)
+	(unless (package-installed-p 'use-package)
+		(package-refresh-contents)
+		(package-install 'use-package))
 
-;; Install and configure dependencies
-(use-package templatel :ensure t)
-(use-package htmlize :ensure t)
-(setq org-html-htmlize-output-type 'css)
-(use-package weblorg :ensure t)
+	;; Install and configure dependencies
+	(use-package templatel :ensure t)
+	(use-package htmlize :ensure t)
+	(setq org-html-htmlize-output-type 'css)
+	(use-package weblorg :ensure t)
+	)
 
-;; (if (string= (getenv "ENV") "prod")
-;;     (setq weblorg-default-url "https://luca.cambiaghi.me"))
-;; (if (string= (getenv "ENV") "local")
-;;     (setq weblorg-default-url "http://localhost:8000"))
-
-
-(defun init-site ()
-	(setq weblorg-default-url "https://lccambiaghi.github.io")
+(defun setup-site ()
+	(when (string= (getenv "ENV") "GHUB")
+		(setup-deps)
+	  (setq weblorg-default-url "https://lccambiaghi.github.io")) ;; default is localhost:8000
 
 	(weblorg-site
-	 :base-url "https://lccambiaghi.github.io"
+	 :base-url weblorg-default-url
 	 :template-vars '(("project_name" . "lccambiaghi")
 										("project_github" . "https://github.com/lccambiaghi/lccambiaghi")
-										("project_description" . "Luca's blog"))
-	 )
+										("project_description" . "Luca's blog")))
 
 	(weblorg-route
 	 :name "posts"
@@ -59,6 +56,7 @@
 	 :url "/static/{{ file }}")
 	)
 
-(init-site)
+(setup-site)
 (weblorg-export)
+
 ;;; publish.el ends here

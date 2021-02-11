@@ -11,6 +11,9 @@ jobs:
           - 26.3
     steps:
       - uses: actions/checkout@v2
+      - name: Set env
+        run: |
+            echo "ENV=GHUB" >> $GITHUB_ENV
       - uses: purcell/setup-emacs@master
         with:
           version: ${{ matrix.emacs_version }}
