@@ -52,7 +52,7 @@
   <section>
     
 <div class="outline-2">
-<h2 id="think-stats"><a id="org8cf819e"></a>Think stats</h2>
+<h2 id="think-stats"><a id="org9fb174d"></a>Think stats</h2>
 <div class="outline-text-2">
 <p>
 When I first approached Clojure my curiosity brough me to look up what people were using to do Data Science in Clojure.
@@ -76,7 +76,7 @@ Even though I was familiar with most concepts, implementing them with simple fun
 </div>
 
 <div class="outline-2">
-<h2 id="org-code-blocks"><a id="orgf0a8718"></a>Org code blocks</h2>
+<h2 id="org-code-blocks"><a id="org8d2d11a"></a>Org code blocks</h2>
 <div class="outline-text-2">
 <p>
 One of my favourite features of Emcas is <code>org-mode</code>.
@@ -107,7 +107,7 @@ When I execute my code block, CIDER will start a REPL.
 <p>
 Not only that, if I use <code>C-C '</code> to edit the code block, I get a temporary buffer where <code>clojure-mode</code> takes over:
 </p>
-<img src="resources/org-edit.png" alt="Editing org source blocks" style="float: left; margin-right: 10px;" />
+<img src="../static/img/org-edit.png" alt="Editing org source blocks" style="float: left; margin-right: 10px;" />
 
 <p>
 In this screenshot I am editing this blog post in org-mode.
@@ -148,7 +148,7 @@ Below I can open a clojure code snippet and rewrite it.
 </div>
 
 <div class="outline-2">
-<h2 id="org-inline-plots"><a id="org1919f51"></a>Org inline plots</h2>
+<h2 id="org-inline-plots"><a id="org9705fe0"></a>Org inline plots</h2>
 <div class="outline-text-2">
 <p>
 Another fantastic feature of <code>org-mode</code>'s inline images.
@@ -185,20 +185,20 @@ As described in my previous blog post, the specification is expressed in clojure
 <p>
 Note that the code block has certain <code>header args</code>:
 </p>
-<pre class="example">
-#+BEGIN_SRC clojure :results graphics file link :file ../../data/plots/tmp.png
+<div class="org-src-container">
+<pre class="src src-org">#+BEGIN_SRC clojure :results graphics file link :file ../../data/plots/tmp.png
 ...
-#+END_SRC
 </pre>
-
+</div>
 <p>
+#+end_src
 They set the result to be a link to the path where the plot will be saved.
 </p>
 </div>
 </div>
 
 <div class="outline-2">
-<h2 id="clojer-to-metal"><a id="orgc741a86"></a>Clojer to metal</h2>
+<h2 id="clojer-to-metal"><a id="orgad33ada"></a>Clojer to metal</h2>
 <div class="outline-text-2">
 <p>
 Reading this book with this setup is a lot of fun.
@@ -259,7 +259,7 @@ Here is a snippet demonstrating <code>tablecloth</code> and <code>vega-lite</cod
 </pre>
 </div>
 
-<img src="resources/weight-vs-height.png" alt="Editing org source blocks" style="float: center" />
+<img src="../static/img/weight-vs-height.png" alt="Editing org source blocks" style="float: center" />
 
 <p>
 Apart from these super cool libraries, I am gaining confidence with the language.
@@ -270,7 +270,7 @@ I like the idea that these pure functions are forever added to my toolbox, ready
 </div>
 
 <div class="outline-2">
-<h2 id="conclusion"><a id="org925d64d"></a>Conclusion</h2>
+<h2 id="conclusion"><a id="org3f3dbd0"></a>Conclusion</h2>
 <div class="outline-text-2">
 <p>
 This post has briefly touched some topics and technologies that are really interesting to me such as data science, literate programming and clojure.
