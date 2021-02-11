@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>My personal weblorg - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Coltrane" />
+    <meta name="description" content="my personal blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://lccambiaghi.github.io/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    
+
+    
+    <header>
+      <h1 class="logo">
+        <a href="https://lccambiaghi.github.io/">My personal weblorg</a>
+      </h1>
+      <a href="#main" class="visually-hidden">jump to main content</a>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/about.html">about</a></li>
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/">blog</a></li>
+        </ul>
+        <ul class="social">
+          <li class="social__item">
+            <a class="social__link github" href="http://github.com/clarete/weblorg">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span class="visually-hidden">github</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+
+    
+    <main id="main">
+      
+<article class="post">
+  <h1 class="post__title">
+    Nix, the functional package manager
+  </h1>
+  <section class="post__meta">
+    Nov 01, 2020
+  </section>
+  <section>
+    
+<div class="outline-2">
+<h2 id="why-should-you-care"><a id="org52b9939"></a>Why should you care?</h2>
+<div class="outline-text-2">
+<p>
+I recently had to restore my Mac, as I covered in my previous blog post.
+I have now experienced what it is to start from scratch and have a software configure your new OS.
+</p>
+
+<p>
+It was liberating to think that next time it would take me less than an hour to get up to speed.
+This is called having a portable configuration.
+Of course, the solution I described was not portable, actually limited to macOS.
+</p>
+
+<p>
+I spent the past week or so learning about Nix.
+Nix is a functional package manager that takes the concept of portable configuration to its furthest point.
+In <code>NixOS</code> you can declare your whole system configuration, including hardware (eg. audio and display drivers).
+</p>
+
+<p>
+It is the oldest story in the world, it is what the <code>.emacs</code> allows the Emacs user to do.
+Declare the needed packages and how you want them configured, bring your configuration with you forever.
+<code>nix</code> extends this power to the entire computing environment.
+</p>
+
+<p>
+My objective was to declare the fundamental building blocks of my workflow:
+</p>
+<ul class="org-ul">
+<li><code>CLI</code> packages (<code>kubectl</code>, <code>python</code>, <code>poetry</code>, etc.)</li>
+<li><code>GUI</code> apps (Dropbox, 1Password, Slack, etc.)</li>
+<li><code>zsh</code> (<code>oh-my-zsh</code>, plugins, theme, etc.)</li>
+<li><code>emacs</code> (<code>gccemacs</code> and <code>~/.doom.d/</code>)</li>
+<li>Dotfiles (e.g. <code>~/.kube/config</code>, <code>~/.ssh/id_rsa.pub</code>, &#x2026;)</li>
+</ul>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="installing-nix"><a id="org7d26979"></a>Installing Nix</h2>
+<div class="outline-text-2">
+<p>
+If you are on <code>macOS</code>, there are very high chances you are using <code>brew</code>.
+It is stable, user friendly, basically all packages are available.
+</p>
+
+<p>
+Well, <code>nix</code> is far from that user experience.
+I found its documentation quite difficult.
+The installation process was hard.
+There are not so many examples online you can learn from.
+</p>
+
+<p>
+Let me now give you the good news.
+As it is common with software that is difficult to tame..
+it is totally worth it.
+</p>
+
+<p>
+When you get a stable installation and you climb the first part of the steep learning curve..
+it is impossible to come back.
+Like Emacs.
+</p>
+
+<p>
+So, with a good dose of patience follow my tutorial.
+</p>
+</div>
+
+<div class="outline-3">
+<h3 id="create-the-nix-volume"><a id="orgb5f917e"></a>Create the <code>nix</code> volume</h3>
+<div class="outline-text-3">
+<p>
+If you have the latest <code>macOS</code> Catalina, we will need to create a volume
+where <code>nix</code> will download packages and build our environment.
+A very cool feature is that we will be able to roll-back to previous "generations" of our environment.
+</p>
+
+<p>
+We will issue a few commands at the terminal.
+We are not doing anything dramatic and if something goes wrong we can easily delete the volume with Disk Utility and start the process from the beginning.
+For reference, I followed <a href="https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/">this</a> and <a href="https://dubinets.io/installing-nix-on-macos-catalina/">this</a> blog posts.
+</p>
+
+<p>
+First we create the volume with the <code>diskutil</code> program:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo diskutil apfs addVolume disk1 &#8216;APFS&#8217; nix
+</pre>
+</div>
+
+<p>
+Then we need to ask <code>diskutil</code> for the <code>UUID</code> of our volume:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">diskutil info /dev/disk1s6 | grep UUID
+</pre>
+</div>
+
+<p>
+Let's copy that information and paste it in the below command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-builtin">echo</span> <span class="org-string">"UUID=12345678-1234-1234-1234-123456789123 /nix apfs  rw"</span> | sudo tee -a /etc/fstab
+</pre>
+</div>
+
+<p>
+Finally, let's edit the <code>/etc/synthetic.conf</code> file:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-builtin">echo</span> <span class="org-string">'nix'</span> | sudo tee -a /etc/synthetic.conf
+</pre>
+</div>
+
+<p>
+and restart.
+</p>
+</div>
+</div>
+
+<div class="outline-3">
+<h3 id="iinstall-nix"><a id="org67015d1"></a>Iinstall <code>nix</code></h3>
+<div class="outline-text-3">
+<p>
+After the restart, we can set the volume as read-only:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo chown -R $(whoami) /nix
+</pre>
+</div>
+
+<p>
+And install <code>nix</code>:
+z
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sh &lt;(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon
+</pre>
+</div>
+
+<p>
+The installer is pretty straightforward.
+To test that the installation went through, try a <code>nix-shell</code> command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-shell -p ripgrep
+</pre>
+</div>
+
+<p>
+If everything went well, congratulations!
+Else, head over to the Troubleshooting section.
+</p>
+</div>
+</div>
+
+<div class="outline-3">
+<h3 id="install-nix-darwin"><a id="orgd623926"></a>Install <code>nix-darwin</code></h3>
+<div class="outline-text-3">
+<p>
+In order for <code>nix</code> to control some of the system services of <code>macOS</code>, we need to install <code>nix-darwin</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+</pre>
+</div>
+
+<p>
+And execute the built installer:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">./result/bin/darwin-installer
+</pre>
+</div>
+
+<p>
+Finally, let's add the <code>nixpkgs</code> channel:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo -i nix-channel --add https://nixos.org/channels/nixpkgs-20.09-darwin nixpkgs
+sudo -i nix-channel --update nixpkgs
+</pre>
+</div>
+
+<p>
+A channel is simply a repository where <code>nix</code> will look for downloads.
+<a href="https://github.com/NixOS/nixpkgs">Here</a> you can find the repository with the "recipe" for all the packages.
+Once you gained confidence with the <code>nix</code> language, it is easy to write a recipe for a package and contribute it to the community.
+</p>
+</div>
+</div>
+
+<div class="outline-3">
+<h3 id="troubleshooting"><a id="orga02077c"></a>Troubleshooting</h3>
+<div class="outline-text-3">
+<p>
+Skip this section if you installed successfully.
+</p>
+
+<p>
+In case the <code>nix</code> commands are not available to your path:
+</p>
+<ul class="org-ul">
+<li>First check that <code>source ~/.nix-profile/etc/profile.d/nix.sh</code> is in your <code>~/.zshrc</code> or <code>~/.bashrc</code></li>
+<li>Next, check that your <code>.nix-profile</code> is populated.</li>
+</ul>
+
+<p>
+In my case, it was empty and I had to create the symlink myself with:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ln -s /nix/var/nix/profiles/default/bin .nix-profile
+</pre>
+</div>
+
+<p>
+And then switching profile:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-env --switch-profile /nix/var/nix/profiles/per-user/$<span class="org-variable-name">USER</span>/profile
+</pre>
+</div>
+
+<p>
+I faced another couple of misteryous errors when installing <code>nix-darwin</code>, solved by exporting environment variables as indicated in some remote github issues.
+Export them and run the commands again:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-builtin">export</span> <span class="org-variable-name">NIX_SSL_CERT_FILE</span>=<span class="org-string">"/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt"</span>
+<span class="org-builtin">export</span> <span class="org-variable-name">NIX_PATH</span>=~/.nix-defexpr/channels:$<span class="org-variable-name">NIX_PATH</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="home-manager"><a id="org44ed232"></a>Home Manager</h2>
+<div class="outline-text-2">
+<p>
+Alright, the complicated part is behind us.
+We have just opened the door to new cool functional workflows.
+</p>
+
+<p>
+The <code>nix</code> ecosystem is rich and complex.
+I started with a package which aims to simplify "home" configuration.
+It is called <a href="https://github.com/nix-community/home-manager">Home Manager</a>.
+</p>
+
+<p>
+I recommend to start by cloning <a href="https://github.com/ryantm/home-manager-template">this repository</a>.
+It contains a great template that you can start customizing right away.
+</p>
+
+<p>
+The main thing to consider is the <code>home.nix</code> file:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">{ pkgs, ... }:
+{
+  home.username = "$USER";
+  home.homeDirectory = "$HOME";
+  home.stateVersion = "20.09";
+  #
+  programs.bash = {
+    enable = true;
+  };
+  home.packages = [
+    pkgs.htop
+    pkgs.fortune
+  ];
+}
+</pre>
+</div>
+
+<p>
+Start by inserting your username and home directory.
+</p>
+
+<p>
+Now you can run the helper commands available in the repo:
+z
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">./update-dependencies.sh
+./switch.sh
+</pre>
+</div>
+
+<p>
+When the process completes, start a new shell.
+If you didn't have it before, you have installed <code>htop</code> and can use it in your terminal.
+</p>
+
+<p>
+It also installed another <code>bash</code> executable.
+You can see all executables with <code>which -a</code>:
+z
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">~ &#10095; which -a bash
+/Users/luca/.nix-profile/bin/bash
+/run/current-system/sw/bin/bash
+/bin/bash
+</pre>
+</div>
+
+<p>
+When you ran <code>switch</code>, <code>nix</code> downloaded the declared packages and symlinked the executables in your <code>~/.nix-profile</code> folder.
+<code>nix</code> will simply add the packages to your <code>PATH</code> and it will not break your existing installation.
+</p>
+
+<p>
+This is great because you can slowly migrate your <code>brew</code> packages.
+And if something goes wrong, you can rollback to the previously built configuration with:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-env --rollback
+</pre>
+</div>
+
+<p>
+In fact, I accepted that on <code>macOS</code> my <code>home-manager</code> configuration will live algonside a <code>Brewfile</code> to install <code>GUI</code> apps (<code>brew cask</code> is much more stable and furnished).
+Restoring my system will just amount to:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">./update-dependencies.sh
+./switch.sh
+<span class="org-comment-delimiter"># </span><span class="org-comment">install brew</span>
+ruby -e <span class="org-string">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</span>
+brew bundle
+</pre>
+</div>
+
+<p>
+and this is an extract of my <code>Brewfile</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-comment-delimiter"># </span><span class="org-comment">Taps</span>
+tap <span class="org-string">"homebrew/cask"</span>
+tap <span class="org-string">"homebrew/cask-versions"</span>
+tap <span class="org-string">"homebrew/core"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">Not available on nixpkgs</span>
+brew <span class="org-string">"azure-cli"</span>
+brew <span class="org-string">"parquet-tool"</span>
+brew <span class="org-string">"mas"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">GUI apps</span>
+cask <span class="org-string">"1password6"</span>
+cask <span class="org-string">"discord"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">...</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="next-steps"><a id="org7794201"></a>Next steps</h2>
+<div class="outline-text-2">
+<p>
+In this short post I tried to keep things simple.
+There is a lot to explore in the ecosystem.
+</p>
+
+<p>
+Some of the great tools to learn about:
+</p>
+<ul class="org-ul">
+<li><code>nix-shell</code> allows you to spawn a shell with declared dependencies.
+Think one shell for building a LaTeX document.
+Another shell for a <code>python</code> project.
+You can avoid polluting your system and achieve stable, portable, sharable environments.</li>
+<li>The logical follower is <code>nix-build</code>, which allows you to package your <code>python</code> project easily.</li>
+<li>We have seen <code>nix-env</code> in action with <code>home-manager</code>.
+It is used for managing system configuration.</li>
+</ul>
+
+<p>
+I will just end with a link to my personal <code>nixpkgs</code> repo which holds <a href="https://github.com/lccambiaghi/nixpkgs">my home configuration</a>.
+</p>
+</div>
+</div>
+
+  </section>
+</article>
+
+    </main>
+
+
+    
+    
+    <footer class="footer">
+      <div class="ack">
+        Made with &#x2665; by
+        <a href="https://emacs.love/weblorg" target="_blank">
+          weblorg
+        </a>
+      </div>
+    </footer>
+    
+
+  </body>
+</html>

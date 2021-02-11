@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8">
+    <title>My personal weblorg - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="John Coltrane" />
+    <meta name="description" content="my personal blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://lccambiaghi.github.io/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    
+
+    
+    <header>
+      <h1 class="logo">
+        <a href="https://lccambiaghi.github.io/">My personal weblorg</a>
+      </h1>
+      <a href="#main" class="visually-hidden">jump to main content</a>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/about.html">about</a></li>
+          <li class="menu__item"><a class="menu__link" href="https://lccambiaghi.github.io/">blog</a></li>
+        </ul>
+        <ul class="social">
+          <li class="social__item">
+            <a class="social__link github" href="http://github.com/clarete/weblorg">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span class="visually-hidden">github</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+
+    
+    <main id="main">
+      
+<article class="post">
+  <h1 class="post__title">
+    Doom gccemacs on MacOS
+  </h1>
+  <section class="post__meta">
+    Oct 03, 2020
+  </section>
+  <section>
+    
+<div class="outline-2">
+<h2 id="emacs-is-born"><a id="org4a50d21"></a>Emacs is born</h2>
+<div class="outline-text-2">
+<p>
+The first time I saw Emacs was on the ThinkPad of my Master Thesis' supervisor.
+He was coding in R and he had split the screen in two parts, writing code to the left, evaluating it to see the results in the REPL on the right.
+I was impressed by it, my setup at the time consisted of Jupyter Notebooks for exploration, Visual Studio to write LaTeX, Pycharm to debug and deploy batch jobs to the VM.
+</p>
+
+<p>
+Little did I know that 2 years later I would have <b>integrated</b> my worfklow into one editor, the very same one he was using.
+Another colleague of mine was using Emacs and when pair programming with him I was again struck by his workflow and some of the features of its editor.
+One weekend, almost joking, I downloaded vanilla Emacs and I followed the tutorial.
+</p>
+
+<p>
+Maaan, these weird keybindings.
+Now I know that Emacs has been developed before the <a href="https://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.f54dg00/cuahlp.htm">Common User Access</a> guidelines were designed.
+Its philoshopy allows the user to change keybindings to whatever you expect from it but it won't suggest it to you!
+</p>
+
+<p>
+Of course I did not know how easy it would be to configure <code>cua-mode</code> in case I wanted standard <code>s-x</code>, <code>s-v</code> bindings to copy and paste.
+However, on the same day I discovered that a popular alternative to the vanillla keybindings was the so-called <code>evil-mode</code>.
+The power of <code>vim</code>'s modal editing and the expressivity of the <code>lisp</code> machine.
+</p>
+
+<p>
+Very soon I learned about Emacs "distributions" or "starter kits".
+The most popular is Spacemacs: it comes configured with all the "cool" packages, among them <code>evil-mode</code>.
+I then spent weeks learning about Spacemacs, Emacs and <code>emacs-lisp</code>.
+</p>
+
+<p>
+I will have to write another blog post to celebrate all my achievements with Emacs.
+This one will just bedicated to the configuration of it.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="doom"><a id="orgb32fe48"></a>Doom</h2>
+<div class="outline-text-2">
+<p>
+Some of Spacemacs qualities:
+</p>
+<ul class="org-ul">
+<li>Spacemacs is well documented and perfect for a first Emacs user.</li>
+<li>It is a community effort, things movest fast. Maybe too fast, looking at the number of open issues.</li>
+<li>It is feature complete. Maybe too complete, someone would argue it is slow.</li>
+<li>It abstracts away much of the complexity of Emacs. Maybe a bit too much, I would sometimes learn Spacemacs specific terminology but not so much <code>elisp</code>.</li>
+</ul>
+
+<p>
+Beacuse I am curios, I decided to try the second most popular Emacs distribution: <a href="https://github.com/hlissner/doom-emacs">Doom</a> (I am still not amused by the name).
+Here some of its qualities:
+</p>
+<ul class="org-ul">
+<li>Doom is not a comunity effort like Spacemacs but is mantained by one person, very active and helpful.</li>
+<li>There is a great community of users on <a href="https://discord.gg/qvGgnVx">Discord</a>, helpful and respectful.</li>
+<li>It is modular and completely configurable. The default configuration for the available modules is always well thought.</li>
+<li>It is carefully designed with performance in mind.</li>
+<li>It is much closer to the <code>elisp</code> metal. It offers cool macros to rebind keys, to install packages, etc.</li>
+</ul>
+
+<p>
+Thanks to Doom I started to <b>configure</b> my editor and not just to rely on other people's modules.
+I finally learned to inspect Emacs by describing functions and variables.
+I learned about modes, hooks, advices.
+I wrote some simple elisp functions to add features I needed.
+<a href="https://lccambiaghi.github.io/.doom.d/readme.html">Here</a> you can see an HTML render of my config.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="gccemacs"><a id="org45557f6"></a>gccemacs</h2>
+<div class="outline-text-2">
+<p>
+The Doom Emacs community is active on Discord, here is where I hear about the latest trends.
+Lately (August 2020) the latest trend has definitely been <a href="https://www.emacswiki.org/emacs/GccEmacs">gccemacs</a>.
+This is a development branch of Emacs HEAD which compiled elisp code to native code, bringing huge performance benefits.
+</p>
+
+<p>
+Emacs is often accused of being slow compared to modern editors.
+The dynamic nature of the <code>elisp</code> machine makes it by nature slower than the compiled counterparts.
+This clever solution has gained popularity lately, so much that it has been announced it will be merged into master.
+</p>
+
+<p>
+During these COVID times our team is working from home.
+My work laptop is a dual core MacBook Pro, which has some performance issues when I am screen sharing and programming with Emacs.
+One day I decided I had to try it. It was worth it.
+</p>
+
+<p>
+I used <a href="https://github.com/jimeh/build-emacs-for-macos">this repo</a> to build Emacs 28, <code>feature/native-comp</code> branch.
+After cloning it, I first had to install a patched <code>gcc</code> version:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">./install-patched-gcc
+</pre>
+</div>
+<p>
+I had some installation issues which were solved by updating to the latest Apple's Command Line Tools.
+You can do that with:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">xcode-select --install
+</pre>
+</div>
+
+<p>
+Once <code>gcc</code> was installed, I could build Emacs 28 with:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">./build-emacs-for-macos --git-sha 3023eb569213a3dd5183640f6e322acd00ea536a feature/native-comp
+</pre>
+</div>
+<p>
+You should pick a recent git sha by looking at <a href="https://github.com/jimeh/build-emacs-for-macos/issues/6">this issue</a> which tracks "good commits" that lead to stable versions.
+</p>
+
+<p>
+I then replaced my previous Emacs.app with the one just built.
+Maybe that won't work for everybody, it depends how you installed Emacs27.
+My previous installation was this tap of <code>emacs-plus</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">brew tap d12frosted/emacs-plus
+</pre>
+</div>
+<p>
+And this are the install options:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">brew install emacs-plus --without-spacemacs-icon --HEAD --with-emacs-27-branch --with-jansson --with-modern-icon
+</pre>
+</div>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="gotchas"><a id="orgfa3aa75"></a>Gotchas</h2>
+<div class="outline-text-2">
+<p>
+Doom Emacs already unofficially kind of supports <code>gccemacs</code>.
+I just replaced my Emacs.app with the new one and had to run:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">doom sync &amp;&amp; doom build
+</pre>
+</div>
+<p>
+And wait for the compilation jobs to finish.
+</p>
+
+<p>
+Once that was done I faced a few issues, which were not exactly well documented.
+After running a second <code>doom sync</code> my Emacs failed to start with an error about some misteryous magit variable.
+I found the solution on Discord: the guilty is a compiled autoloads file:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">rm -rf ~/.emacs.d/local/cache/eln/x86_64-apple-darwin19.5.0-8b26f6d2e293e8b6/autoloads*.eln
+</pre>
+</div>
+
+<p>
+Another important remark: Emacs 28 is unstable and some packages don't support it yet.
+My workflow relies heavily on two packages: <code>emacs-jupyter</code> and <code>dap-mode</code>.
+Both of them were broken after the update.
+</p>
+
+<p>
+When I tried to run <code>emacs-jupyter</code> in an <code>.org</code> file I was asked to download the <code>zmq</code> module, to which I agreed.
+But then the installation broke because of a missing file.
+I found the solution on a remote github issue: I had to change the extension of the downloaded <code>.so</code> file:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-builtin">cd</span> ~/.emacs.d/.local/straight/build/emacs-zmq
+cp emacs-zmq.so emacs-zmq.dylib
+</pre>
+</div>
+
+<p>
+To fix <code>dap-mode</code> I had to unpin few packages to enable the support of Emacs 28.
+In fact, Doom locks pacakges to specific versions to make sure nothing breaks on the stable version (Emacs 27).
+All I had to do was to write:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(unpin! dap-mode lsp-mode treemacs)
+</pre>
+</div>
+<p>
+In my <code>.doom.d/packages.el</code>.
+</p>
+
+<p>
+I hope some early adopter can find this blog post and solve some of his installation/configuration issues with these solutions!
+</p>
+</div>
+</div>
+
+  </section>
+</article>
+
+    </main>
+
+
+    
+    
+    <footer class="footer">
+      <div class="ack">
+        Made with &#x2665; by
+        <a href="https://emacs.love/weblorg" target="_blank">
+          weblorg
+        </a>
+      </div>
+    </footer>
+    
+
+  </body>
+</html>
