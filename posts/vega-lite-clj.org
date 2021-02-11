@@ -24,7 +24,7 @@ Consider this plot:
 #+END_EXPORT
 
 This is the plot specification, described in JSON:
-#+BEGIN_SRC json
+#+BEGIN_SRC js
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "description": "The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html",
