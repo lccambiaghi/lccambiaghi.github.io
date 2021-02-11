@@ -12,10 +12,12 @@ The second function I have always seeked from my website is technical blogging.
 Moreover, I wanted my website to be hosted for free, without any limitations.
 
 In regards to blogging, I wanted to do it in the simplest way. Not too simple though, as Einstein said:
+
 #+BEGIN_QUOTE
 Everything should be made as simple as possible,
 but not any simpler ---Albert Einstein
 #+END_QUOTE
+
 In my previous attempts at building a website I never reached that sweet spot: things were either too complex or too simple.
 In this blog post I explain what brought me to this point.
 
