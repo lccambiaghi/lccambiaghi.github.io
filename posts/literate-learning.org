@@ -42,7 +42,7 @@ When I execute my code block, CIDER will start a REPL.
 
 Not only that, if I use =C-C '= to edit the code block, I get a temporary buffer where ~clojure-mode~ takes over:
 #+BEGIN_EXPORT html
-<img src="resources/org-edit.png" alt="Editing org source blocks" style="float: left; margin-right: 10px;" />
+<img src="../static/img/org-edit.png" alt="Editing org source blocks" style="float: left; margin-right: 10px;" />
 #+END_EXPORT
 
 In this screenshot I am editing this blog post in org-mode.
@@ -98,12 +98,11 @@ This is an example of a source block which outputs graphics:
 As described in my previous blog post, the specification is expressed in clojure and passed to the ~vg-cli~, which writes the .png to a path.
 
 Note that the code block has certain ~header args~:
-#+BEGIN_EXAMPLE
+#+begin_src org
 #+BEGIN_SRC clojure :results graphics file link :file ../../data/plots/tmp.png
 ...
 #+END_SRC
-#+END_EXAMPLE
-
+#+end_src
 They set the result to be a link to the path where the plot will be saved.
 
 * Clojer to metal
@@ -152,7 +151,7 @@ Here is a snippet demonstrating ~tablecloth~ and ~vega-lite~ layers:
 #+END_SRC
 
 #+BEGIN_EXPORT html
-<img src="resources/weight-vs-height.png" alt="Editing org source blocks" style="float: center" />
+<img src="../static/img/weight-vs-height.png" alt="Editing org source blocks" style="float: center" />
 #+END_EXPORT
 
 Apart from these super cool libraries, I am gaining confidence with the language.

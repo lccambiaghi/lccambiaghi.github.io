@@ -27,6 +27,7 @@
 	 :base-url weblorg-default-url
 	 :template-vars '(("project_name" . "lccambiaghi")
 										("project_github" . "https://github.com/lccambiaghi/lccambiaghi")
+										;; ("static_path" . "$site/static")
 										("project_description" . "Luca's blog")))
 
 	(weblorg-route

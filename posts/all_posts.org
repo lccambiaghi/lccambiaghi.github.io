@@ -265,7 +265,7 @@ Consider this neat code found in the repo's README:
 
 Here 3 random time series are generated, encoded in the most obvious, concise, simple way and the result is what you would expect:
 #+BEGIN_EXPORT html
-<iframe src="html/line.html" style="overflow:visible;min-height:300px;height:100%;width:100%;padding:20px" scrolling="no" border="none" width="100%" height="100%" marginheight="0" frameborder="0"></iframe>
+<iframe src="../static/html/line.html" style="overflow:visible;min-height:300px;height:100%;width:100%;padding:20px" scrolling="no" border="none" width="100%" height="100%" marginheight="0" frameborder="0"></iframe>
 #+END_EXPORT
 
 What I love about this example is that you work with raw, naked data.
