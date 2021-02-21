@@ -1,0 +1,1799 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:georss="http://www.georss.org/georss"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Luca&#39;s blog</title>
+    <atom:link
+      href="https://lccambiaghi.github.io/feed.xml"
+      rel="self" type="application/rss+xml" />
+    <link>https://lccambiaghi.github.io</link>
+    <description><![CDATA[]]></description>
+    <language>en</language>
+    <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
+    <lastBuildDate>Sun, 21 Feb 2021 22:53:18 +0000</lastBuildDate>
+    <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
+    <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
+    <image>
+      <url>https://lccambiaghi.github.io/favicon.png</url>
+      <title>Luca&#39;s blog</title>
+      <link>https://lccambiaghi.github.io</link>
+    </image>
+
+    
+    <item>
+      <title>Nix, the functional package manager</title>
+      <link>https://lccambiaghi.github.io/posts/nix-the-functional-package-manager.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/nix-the-functional-package-manager.html</guid>
+      <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>Declare your software and dotfiles and make them reproducible forever</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="why-should-you-care">Why should you care?</h2>
+<div class="outline-text-2">
+<p>
+I recently had to restore my Mac, as I covered in my previous blog post.
+I have now experienced what it is to start from scratch and have a software configure your new OS.
+</p>
+
+<p>
+It was liberating to think that next time it would take me less than an hour to get up to speed.
+This is called having a portable configuration.
+Of course, the solution I described was not portable, actually limited to macOS.
+</p>
+
+<p>
+I spent the past week or so learning about Nix.
+Nix is a functional package manager that takes the concept of portable configuration to its furthest point.
+In <code>NixOS</code> you can declare your whole system configuration, including hardware (eg. audio and display drivers).
+</p>
+
+<p>
+It is the oldest story in the world, it is what the <code>.emacs</code> allows the Emacs user to do.
+Declare the needed packages and how you want them configured, bring your configuration with you forever.
+<code>nix</code> extends this power to the entire computing environment.
+</p>
+
+<p>
+My objective was to declare the fundamental building blocks of my workflow:
+</p>
+<ul class="org-ul">
+<li><code>CLI</code> packages (<code>kubectl</code>, <code>python</code>, <code>poetry</code>, etc.)</li>
+<li><code>GUI</code> apps (Dropbox, 1Password, Slack, etc.)</li>
+<li><code>zsh</code> (<code>oh-my-zsh</code>, plugins, theme, etc.)</li>
+<li><code>emacs</code> (<code>gccemacs</code> and <code>~/.doom.d/</code>)</li>
+<li>Dotfiles (e.g. <code>~/.kube/config</code>, <code>~/.ssh/id_rsa.pub</code>, &#x2026;)</li>
+</ul>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="installing-nix">Installing Nix</h2>
+<div class="outline-text-2">
+<p>
+If you are on <code>macOS</code>, there are very high chances you are using <code>brew</code>.
+It is stable, user friendly, basically all packages are available.
+</p>
+
+<p>
+Well, <code>nix</code> is far from that user experience.
+I found its documentation quite difficult.
+The installation process was hard.
+There are not so many examples online you can learn from.
+</p>
+
+<p>
+Let me now give you the good news.
+As it is common with software that is difficult to tame..
+it is totally worth it.
+</p>
+
+<p>
+When you get a stable installation and you climb the first part of the steep learning curve..
+it is impossible to come back.
+Like Emacs.
+</p>
+
+<p>
+So, with a good dose of patience follow my tutorial.
+</p>
+</div>
+
+<div class="outline-3">
+<h3 id="create-the-nix-volume">Create the <code>nix</code> volume</h3>
+<div class="outline-text-3">
+<p>
+If you have the latest <code>macOS</code> Catalina, we will need to create a volume
+where <code>nix</code> will download packages and build our environment.
+A very cool feature is that we will be able to roll-back to previous "generations" of our environment.
+</p>
+
+<p>
+We will issue a few commands at the terminal.
+We are not doing anything dramatic and if something goes wrong we can easily delete the volume with Disk Utility and start the process from the beginning.
+For reference, I followed <a href="https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/">this</a> and <a href="https://dubinets.io/installing-nix-on-macos-catalina/">this</a> blog posts.
+</p>
+
+<p>
+First we create the volume with the <code>diskutil</code> program:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo diskutil apfs addVolume disk1 &#8216;APFS&#8217; nix
+</pre>
+</div>
+
+<p>
+Then we need to ask <code>diskutil</code> for the <code>UUID</code> of our volume:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">diskutil info /dev/disk1s6 | grep UUID
+</pre>
+</div>
+
+<p>
+Let's copy that information and paste it in the below command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-builtin">echo</span> <span class="org-string">"UUID=12345678-1234-1234-1234-123456789123 /nix apfs  rw"</span> | sudo tee -a /etc/fstab
+</pre>
+</div>
+
+<p>
+Finally, let's edit the <code>/etc/synthetic.conf</code> file:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-builtin">echo</span> <span class="org-string">'nix'</span> | sudo tee -a /etc/synthetic.conf
+</pre>
+</div>
+
+<p>
+and restart.
+</p>
+</div>
+</div>
+
+<div class="outline-3">
+<h3 id="iinstall-nix">Iinstall <code>nix</code></h3>
+<div class="outline-text-3">
+<p>
+After the restart, we can set the volume as read-only:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo chown -R $(whoami) /nix
+</pre>
+</div>
+
+<p>
+And install <code>nix</code>:
+z
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sh &lt;(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon
+</pre>
+</div>
+
+<p>
+The installer is pretty straightforward.
+To test that the installation went through, try a <code>nix-shell</code> command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-shell -p ripgrep
+</pre>
+</div>
+
+<p>
+If everything went well, congratulations!
+Else, head over to the Troubleshooting section.
+</p>
+</div>
+</div>
+
+<div class="outline-3">
+<h3 id="install-nix-darwin">Install <code>nix-darwin</code></h3>
+<div class="outline-text-3">
+<p>
+In order for <code>nix</code> to control some of the system services of <code>macOS</code>, we need to install <code>nix-darwin</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+</pre>
+</div>
+
+<p>
+And execute the built installer:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">./result/bin/darwin-installer
+</pre>
+</div>
+
+<p>
+Finally, let's add the <code>nixpkgs</code> channel:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo -i nix-channel --add https://nixos.org/channels/nixpkgs-20.09-darwin nixpkgs
+sudo -i nix-channel --update nixpkgs
+</pre>
+</div>
+
+<p>
+A channel is simply a repository where <code>nix</code> will look for downloads.
+<a href="https://github.com/NixOS/nixpkgs">Here</a> you can find the repository with the "recipe" for all the packages.
+Once you gained confidence with the <code>nix</code> language, it is easy to write a recipe for a package and contribute it to the community.
+</p>
+</div>
+</div>
+
+<div class="outline-3">
+<h3 id="troubleshooting">Troubleshooting</h3>
+<div class="outline-text-3">
+<p>
+Skip this section if you installed successfully.
+</p>
+
+<p>
+In case the <code>nix</code> commands are not available to your path:
+</p>
+<ul class="org-ul">
+<li>First check that <code>source ~/.nix-profile/etc/profile.d/nix.sh</code> is in your <code>~/.zshrc</code> or <code>~/.bashrc</code></li>
+<li>Next, check that your <code>.nix-profile</code> is populated.</li>
+</ul>
+
+<p>
+In my case, it was empty and I had to create the symlink myself with:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ln -s /nix/var/nix/profiles/default/bin .nix-profile
+</pre>
+</div>
+
+<p>
+And then switching profile:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-env --switch-profile /nix/var/nix/profiles/per-user/$<span class="org-variable-name">USER</span>/profile
+</pre>
+</div>
+
+<p>
+I faced another couple of misteryous errors when installing <code>nix-darwin</code>, solved by exporting environment variables as indicated in some remote github issues.
+Export them and run the commands again:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-builtin">export</span> <span class="org-variable-name">NIX_SSL_CERT_FILE</span>=<span class="org-string">"/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt"</span>
+<span class="org-builtin">export</span> <span class="org-variable-name">NIX_PATH</span>=~/.nix-defexpr/channels:$<span class="org-variable-name">NIX_PATH</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="home-manager">Home Manager</h2>
+<div class="outline-text-2">
+<p>
+Alright, the complicated part is behind us.
+We have just opened the door to new cool functional workflows.
+</p>
+
+<p>
+The <code>nix</code> ecosystem is rich and complex.
+I started with a package which aims to simplify "home" configuration.
+It is called <a href="https://github.com/nix-community/home-manager">Home Manager</a>.
+</p>
+
+<p>
+I recommend to start by cloning <a href="https://github.com/ryantm/home-manager-template">this repository</a>.
+It contains a great template that you can start customizing right away.
+</p>
+
+<p>
+The main thing to consider is the <code>home.nix</code> file:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">{ pkgs, ... }:
+{
+  home.username = "$USER";
+  home.homeDirectory = "$HOME";
+  home.stateVersion = "20.09";
+  #
+  programs.bash = {
+    enable = true;
+  };
+  home.packages = [
+    pkgs.htop
+    pkgs.fortune
+  ];
+}
+</pre>
+</div>
+
+<p>
+Start by inserting your username and home directory.
+</p>
+
+<p>
+Now you can run the helper commands available in the repo:
+z
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">./update-dependencies.sh
+./switch.sh
+</pre>
+</div>
+
+<p>
+When the process completes, start a new shell.
+If you didn't have it before, you have installed <code>htop</code> and can use it in your terminal.
+</p>
+
+<p>
+It also installed another <code>bash</code> executable.
+You can see all executables with <code>which -a</code>:
+z
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">~ &#10095; which -a bash
+/Users/luca/.nix-profile/bin/bash
+/run/current-system/sw/bin/bash
+/bin/bash
+</pre>
+</div>
+
+<p>
+When you ran <code>switch</code>, <code>nix</code> downloaded the declared packages and symlinked the executables in your <code>~/.nix-profile</code> folder.
+<code>nix</code> will simply add the packages to your <code>PATH</code> and it will not break your existing installation.
+</p>
+
+<p>
+This is great because you can slowly migrate your <code>brew</code> packages.
+And if something goes wrong, you can rollback to the previously built configuration with:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nix-env --rollback
+</pre>
+</div>
+
+<p>
+In fact, I accepted that on <code>macOS</code> my <code>home-manager</code> configuration will live algonside a <code>Brewfile</code> to install <code>GUI</code> apps (<code>brew cask</code> is much more stable and furnished).
+Restoring my system will just amount to:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">./update-dependencies.sh
+./switch.sh
+<span class="org-comment-delimiter"># </span><span class="org-comment">install brew</span>
+ruby -e <span class="org-string">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</span>
+brew bundle
+</pre>
+</div>
+
+<p>
+and this is an extract of my <code>Brewfile</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-comment-delimiter"># </span><span class="org-comment">Taps</span>
+tap <span class="org-string">"homebrew/cask"</span>
+tap <span class="org-string">"homebrew/cask-versions"</span>
+tap <span class="org-string">"homebrew/core"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">Not available on nixpkgs</span>
+brew <span class="org-string">"azure-cli"</span>
+brew <span class="org-string">"parquet-tool"</span>
+brew <span class="org-string">"mas"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">GUI apps</span>
+cask <span class="org-string">"1password6"</span>
+cask <span class="org-string">"discord"</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">...</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="next-steps">Next steps</h2>
+<div class="outline-text-2">
+<p>
+In this short post I tried to keep things simple.
+There is a lot to explore in the ecosystem.
+</p>
+
+<p>
+Some of the great tools to learn about:
+</p>
+<ul class="org-ul">
+<li><code>nix-shell</code> allows you to spawn a shell with declared dependencies.
+Think one shell for building a LaTeX document.
+Another shell for a <code>python</code> project.
+You can avoid polluting your system and achieve stable, portable, sharable environments.</li>
+<li>The logical follower is <code>nix-build</code>, which allows you to package your <code>python</code> project easily.</li>
+<li>We have seen <code>nix-env</code> in action with <code>home-manager</code>.
+It is used for managing system configuration.</li>
+</ul>
+
+<p>
+I will just end with a link to my personal <code>nixpkgs</code> repo which holds <a href="https://github.com/lccambiaghi/nixpkgs">my home configuration</a>.
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
+    
+    <item>
+      <title>Restoring my Mac</title>
+      <link>https://lccambiaghi.github.io/posts/restoring-my-mac.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/restoring-my-mac.html</guid>
+      <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>With an auto-configuring script</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="setup-org">setup.org</h2>
+<div class="outline-text-2">
+<p>
+This week-end I restored my Mac.
+I was having some major iCloud issues, my Documents and Desktop folders would not sync.
+My Mac in general looked really tired.
+</p>
+
+<p>
+I was prepared.
+I took inspiration from a colleague's bash script to write my own configuration script, in <code>org-mode</code>.
+This format allows me to organize my <code>sh</code> code blocks within headlines and comments.
+I can then <code>tangle</code> the blocks to a file <code>setup.sh</code>, which I can run on the new Mac.
+</p>
+
+<p>
+I can do this by having this property at the top of <code>setup.org</code>:
+</p>
+<pre class="example">
+#+PROPERTY: header-args :tangle ~/git/org/personal/setup.sh
+</pre>
+
+<p>
+This is the structure of the document:
+</p>
+<pre class="example">
+* macOs settings
+* brew
+* zsh
+* fonts
+* cli
+* gui
+* dotfiles
+* execute all
+</pre>
+
+<p>
+In each section I have a <code>sh</code> code block.
+This is an example block from the "gui" section:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-function-name">install_apps</span>() {
+    <span class="org-builtin">echo</span> <span class="org-string">"Installing: base apps"</span>
+    <span class="org-variable-name">BASE_APPS</span>=<span class="org-string">"google-chrome amethyst slack visual-studio-code firefox iterm2 iina menumeters 1password6 qbitorrent private-internet-access"</span>
+    brew tap homebrew/cask-versions
+    brew cask install $<span class="org-variable-name">BASE_APPS</span>
+    <span class="org-builtin">echo</span> <span class="org-string">"Installing: docker"</span>
+    brew cask install docker
+    <span class="org-builtin">echo</span> <span class="org-string">"Installing: corporate"</span>
+    <span class="org-variable-name">CORPORATE</span>=<span class="org-string">"microsoft-office keybase microsoft-azure-storage-explorer intune-company-portal microsoft-teams"</span>
+    brew cask install $<span class="org-variable-name">CORPORATE</span>
+}
+</pre>
+</div>
+
+<p>
+I can "export" the <code>org</code> file to <code>setup.sh</code> with <code>M-x org-babel-tangle</code>.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="recovery-mode-and-setup-sh">Recovery Mode and setup.sh</h2>
+<div class="outline-text-2">
+<p>
+Before erasing all content gathered in 12 months, I quickly offloaded some files to a USB key.
+I mostly cared about an "AI for trading" course and some work analyses not in version control.
+</p>
+
+<p>
+Without thinking too much, I booted in Recovery Mode with cmd+R, erase the HD and reinstalled.
+(I found out later that I forgot about my <code>.gnupg</code> folder with my private <code>gpg</code> key..)
+</p>
+
+<p>
+While running my <code>install.sh</code> script, I realized my main needs:
+</p>
+<ul class="org-ul">
+<li>Emacs (+ Doom)</li>
+<li>Dropbox (org)</li>
+<li>Password Manager</li>
+</ul>
+
+<p>
+I could survive with a browser and Emacs for a week.
+Okay, maybe I would need Slack for work but not much else.
+</p>
+
+<p>
+My first impulse was to rebuild <code>gccemacs</code> on my Mac, in parallel to my already big configuration efforts.
+To my surprise, the process has been incredibly easy.
+Well, maybe because I have already spent a few hours fighting <code>gccemacs</code> in the past weeks.
+</p>
+
+<p>
+All I did to install it was to clone <a href="https://github.com/jimeh/build-emacs-for-macos">this</a> repo and run:
+</p>
+<ol class="org-ol">
+<li><code>brew bundle</code></li>
+<li><code>./build-emacs-for-macos --git-sha d5791ba5feeb5500433ca43506dda13c7c67ce14 feature/native-comp</code></li>
+<li>Move the app to <code>Applications</code>.</li>
+</ol>
+
+<p>
+In the meanwhile, my <code>install.sh</code> script was having some hiccups.
+I got somehow 90% of the functionalities working (loads of <code>brew</code> downloads: CLI tools and GUI apps)
+I had to manually copy-paste some commands from the harder sections such as <code>install-zsh</code> and <code>restore-dotfiles</code>.
+Overall, I am very satisfied: it really saved a lot of time.
+</p>
+
+<p>
+Once I had built Emacs, I simply had to reinstall Doom.
+On its first run with <code>gccemacs</code>, Doom will now compile AOT all packages, which takes a while.
+</p>
+
+<p>
+Halfway through, I cloned my Doom configuration (stored in git) to <code>.doom.d</code> and build the extra packages in my config.
+With minimal effort, few minutes later, I had restored my feature-complete IDE.
+<code>straight</code> and <code>Doom</code> in general is amazing.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="last-manual-steps">Last manual steps</h2>
+<div class="outline-text-2">
+<p>
+I then documented some final manual steps I had forgotten to include in my install script.
+Some examples:
+</p>
+<ul class="org-ul">
+<li>Forgot to backup SSH keys&#x2026; <code>ssh-keygen</code></li>
+<li>My <a href="https://rstudio.github.io/renv/articles/renv.html">renv</a> library does not work. I had to add <code>export R_LIBS_USER=...</code> to my <code>.zshenv</code></li>
+<li>Forgot to install pyright.. <code>brew install node &amp;&amp; npm install -g pyright</code></li>
+<li>iTerm2 does not send escape sequences.. follow <a href="https://www.clairecodes.com/blog/2018-10-15-making-the-alt-key-work-in-iterm2/">this</a> guide.</li>
+</ul>
+
+<p>
+It sounds like a waste of time and a lot of work to start from scratch and fight these issues.
+I find it a valuable task that lets me learn about my workflow.
+I document it and declare it.
+</p>
+
+<p>
+I have achieved full reproducibility when it comes to my IDE.
+Next step is my full computing environment.
+That is why I am now looking at <code>nix</code> and <code>home-manager</code>.
+Expect a blog post about it in the near future!
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
+    
+    <item>
+      <title>Doom gccemacs on MacOS</title>
+      <link>https://lccambiaghi.github.io/posts/doom-gccemacs-on-macos.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/doom-gccemacs-on-macos.html</guid>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>The best IDE, now even faster</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="emacs-is-born">Emacs is born</h2>
+<div class="outline-text-2">
+<p>
+The first time I saw Emacs was on the ThinkPad of my Master Thesis' supervisor.
+He was coding in R and he had split the screen in two parts, writing code to the left, evaluating it to see the results in the REPL on the right.
+I was impressed by it, my setup at the time consisted of Jupyter Notebooks for exploration, Visual Studio to write LaTeX, Pycharm to debug and deploy batch jobs to the VM.
+</p>
+
+<p>
+Little did I know that 2 years later I would have <b>integrated</b> my worfklow into one editor, the very same one he was using.
+Another colleague of mine was using Emacs and when pair programming with him I was again struck by his workflow and some of the features of its editor.
+One weekend, almost joking, I downloaded vanilla Emacs and I followed the tutorial.
+</p>
+
+<p>
+Maaan, these weird keybindings.
+Now I know that Emacs has been developed before the <a href="https://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.f54dg00/cuahlp.htm">Common User Access</a> guidelines were designed.
+Its philoshopy allows the user to change keybindings to whatever you expect from it but it won't suggest it to you!
+</p>
+
+<p>
+Of course I did not know how easy it would be to configure <code>cua-mode</code> in case I wanted standard <code>s-x</code>, <code>s-v</code> bindings to copy and paste.
+However, on the same day I discovered that a popular alternative to the vanillla keybindings was the so-called <code>evil-mode</code>.
+The power of <code>vim</code>'s modal editing and the expressivity of the <code>lisp</code> machine.
+</p>
+
+<p>
+Very soon I learned about Emacs "distributions" or "starter kits".
+The most popular is Spacemacs: it comes configured with all the "cool" packages, among them <code>evil-mode</code>.
+I then spent weeks learning about Spacemacs, Emacs and <code>emacs-lisp</code>.
+</p>
+
+<p>
+I will have to write another blog post to celebrate all my achievements with Emacs.
+This one will just bedicated to the configuration of it.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="doom">Doom</h2>
+<div class="outline-text-2">
+<p>
+Some of Spacemacs qualities:
+</p>
+<ul class="org-ul">
+<li>Spacemacs is well documented and perfect for a first Emacs user.</li>
+<li>It is a community effort, things movest fast. Maybe too fast, looking at the number of open issues.</li>
+<li>It is feature complete. Maybe too complete, someone would argue it is slow.</li>
+<li>It abstracts away much of the complexity of Emacs. Maybe a bit too much, I would sometimes learn Spacemacs specific terminology but not so much <code>elisp</code>.</li>
+</ul>
+
+<p>
+Beacuse I am curios, I decided to try the second most popular Emacs distribution: <a href="https://github.com/hlissner/doom-emacs">Doom</a> (I am still not amused by the name).
+Here some of its qualities:
+</p>
+<ul class="org-ul">
+<li>Doom is not a comunity effort like Spacemacs but is mantained by one person, very active and helpful.</li>
+<li>There is a great community of users on <a href="https://discord.gg/qvGgnVx">Discord</a>, helpful and respectful.</li>
+<li>It is modular and completely configurable. The default configuration for the available modules is always well thought.</li>
+<li>It is carefully designed with performance in mind.</li>
+<li>It is much closer to the <code>elisp</code> metal. It offers cool macros to rebind keys, to install packages, etc.</li>
+</ul>
+
+<p>
+Thanks to Doom I started to <b>configure</b> my editor and not just to rely on other people's modules.
+I finally learned to inspect Emacs by describing functions and variables.
+I learned about modes, hooks, advices.
+I wrote some simple elisp functions to add features I needed.
+<a href="https://lccambiaghi.github.io/.doom.d/readme.html">Here</a> you can see an HTML render of my config.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="gccemacs">gccemacs</h2>
+<div class="outline-text-2">
+<p>
+The Doom Emacs community is active on Discord, here is where I hear about the latest trends.
+Lately (August 2020) the latest trend has definitely been <a href="https://www.emacswiki.org/emacs/GccEmacs">gccemacs</a>.
+This is a development branch of Emacs HEAD which compiled elisp code to native code, bringing huge performance benefits.
+</p>
+
+<p>
+Emacs is often accused of being slow compared to modern editors.
+The dynamic nature of the <code>elisp</code> machine makes it by nature slower than the compiled counterparts.
+This clever solution has gained popularity lately, so much that it has been announced it will be merged into master.
+</p>
+
+<p>
+During these COVID times our team is working from home.
+My work laptop is a dual core MacBook Pro, which has some performance issues when I am screen sharing and programming with Emacs.
+One day I decided I had to try it. It was worth it.
+</p>
+
+<p>
+I used <a href="https://github.com/jimeh/build-emacs-for-macos">this repo</a> to build Emacs 28, <code>feature/native-comp</code> branch.
+After cloning it, I first had to install a patched <code>gcc</code> version:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">./install-patched-gcc
+</pre>
+</div>
+<p>
+I had some installation issues which were solved by updating to the latest Apple's Command Line Tools.
+You can do that with:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">xcode-select --install
+</pre>
+</div>
+
+<p>
+Once <code>gcc</code> was installed, I could build Emacs 28 with:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">./build-emacs-for-macos --git-sha 3023eb569213a3dd5183640f6e322acd00ea536a feature/native-comp
+</pre>
+</div>
+<p>
+You should pick a recent git sha by looking at <a href="https://github.com/jimeh/build-emacs-for-macos/issues/6">this issue</a> which tracks "good commits" that lead to stable versions.
+</p>
+
+<p>
+I then replaced my previous Emacs.app with the one just built.
+Maybe that won't work for everybody, it depends how you installed Emacs27.
+My previous installation was this tap of <code>emacs-plus</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">brew tap d12frosted/emacs-plus
+</pre>
+</div>
+<p>
+And this are the install options:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">brew install emacs-plus --without-spacemacs-icon --HEAD --with-emacs-27-branch --with-jansson --with-modern-icon
+</pre>
+</div>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="gotchas">Gotchas</h2>
+<div class="outline-text-2">
+<p>
+Doom Emacs already unofficially kind of supports <code>gccemacs</code>.
+I just replaced my Emacs.app with the new one and had to run:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">doom sync &amp;&amp; doom build
+</pre>
+</div>
+<p>
+And wait for the compilation jobs to finish.
+</p>
+
+<p>
+Once that was done I faced a few issues, which were not exactly well documented.
+After running a second <code>doom sync</code> my Emacs failed to start with an error about some misteryous magit variable.
+I found the solution on Discord: the guilty is a compiled autoloads file:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">rm -rf ~/.emacs.d/local/cache/eln/x86_64-apple-darwin19.5.0-8b26f6d2e293e8b6/autoloads*.eln
+</pre>
+</div>
+
+<p>
+Another important remark: Emacs 28 is unstable and some packages don't support it yet.
+My workflow relies heavily on two packages: <code>emacs-jupyter</code> and <code>dap-mode</code>.
+Both of them were broken after the update.
+</p>
+
+<p>
+When I tried to run <code>emacs-jupyter</code> in an <code>.org</code> file I was asked to download the <code>zmq</code> module, to which I agreed.
+But then the installation broke because of a missing file.
+I found the solution on a remote github issue: I had to change the extension of the downloaded <code>.so</code> file:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-builtin">cd</span> ~/.emacs.d/.local/straight/build/emacs-zmq
+cp emacs-zmq.so emacs-zmq.dylib
+</pre>
+</div>
+
+<p>
+To fix <code>dap-mode</code> I had to unpin few packages to enable the support of Emacs 28.
+In fact, Doom locks pacakges to specific versions to make sure nothing breaks on the stable version (Emacs 27).
+All I had to do was to write:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(unpin! dap-mode lsp-mode treemacs)
+</pre>
+</div>
+<p>
+In my <code>.doom.d/packages.el</code>.
+</p>
+
+<p>
+I hope some early adopter can find this blog post and solve some of his installation/configuration issues with these solutions!
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
+    
+    <item>
+      <title>React Native from Clojurescript</title>
+      <link>https://lccambiaghi.github.io/posts/react-native-from-clojurescript.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/react-native-from-clojurescript.html</guid>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>Develop native mobile apps in the most elegant way</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="react-native">React Native</h2>
+<div class="outline-text-2">
+<p>
+I have always been curious about mobile apps development.
+In 2018 I tried with a friend to launch a startup and the first thing I tried was to develop a mobile app.
+I wanted to write my code only once for Android and iOS and not the same logic twice in Java+Swift.
+</p>
+
+<p>
+At the time of research the two opponents were <a href="https://dotnet.microsoft.com/apps/xamarin">Xamarin</a> and React Native.
+The promise is the same: write the logic once, have the framework manage the native code.
+</p>
+
+<p>
+After reading some pros and cons I decided to write <code>C#</code> with Xamarin because scared of React and Javascript and the fontend world.
+It was an ok experience but the framework was not mature and <code>C#</code> did not excite me.
+When I hit my first real problem when implementing authentication, I gave up.
+</p>
+
+<p>
+Fast forward 2 years and React Native is mature and I am no longer afraid!
+<a href="https://github.com/reagent-project/reagent">Reagent</a> made me fall in love React and Clojurescript allows me to skip Javascript.
+</p>
+
+<p>
+React Native with the support of Facebook has developed rapidly (most active github repo in 2019).
+It can leverage the React ecosystem, it has good documentation, its generic components are well designed.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="figwheel">Figwheel</h2>
+<div class="outline-text-2">
+<p>
+Inspired by <a href="https://increasinglyfunctional.com/2020/05/07/clojurescript-react-native-krell-emacs.html">this blog post</a>, my first attemp at React Native from Clojurescript was with Krell.
+Krell's philoshopy is to provide a very thin layer over React Native.
+Well, I had some hiccups during the setup, I found it still (too) barebones.
+</p>
+
+<p>
+Few months later I saw another announcement on Slack: <code>figwheel</code> for React Native.
+I followed the <a href="https://figwheel.org/docs/react-native.html">Getting Started</a> docs and I quickly had my iOS simulator running alongside <code>figwheel</code> hot-reloading.
+</p>
+
+<p>
+I had also been hearing very good things about <a href="https://expo.io/">Expo</a>, which should handle for you complicated things like camera, location, notifications.
+It was supported out of the box, here is my <code>ios.cljs.edn</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">^{<span class="org-clojure-keyword">:react-native</span> <span class="org-clojure-keyword">:expo</span>
+  <span class="org-clojure-keyword">:launch-js</span> [<span class="org-string">"yarn"</span> <span class="org-string">"ios"</span>]}
+{<span class="org-clojure-keyword">:main</span> app.core}
+</pre>
+</div>
+<p>
+When I run <code>cider-jack-in-cljs</code>, CIDER will ask me to run <code>figwheel-main</code>, <code>ios</code> configuration.
+This will return a <code>cljs</code> REPL and will run <code>yarn ios</code> in the background.
+This is defined in <code>package.json</code> and runs <code>"expo start --ios"</code>.
+With the iOS Simulator running I can then run the Expo app and select my iOS build.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="reagent">Reagent</h2>
+<div class="outline-text-2">
+<p>
+My first steps consisted of learning what a React Native component is.
+This is the first example in the Rect Native docs:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">import</span> { Text, View } from <span class="org-string">'react-native'</span>;
+
+<span class="org-keyword">const</span> <span class="org-variable-name">YourApp</span> = () =&gt; {
+  <span class="org-keyword">return</span> (
+    &lt;View style={{ flex: 1, justifyContent: <span class="org-string">"center"</span>, alignItems: <span class="org-string">"center"</span> }}&gt;
+      &lt;Text&gt;
+        Hello World!
+      &lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}
+</pre>
+</div>
+<p>
+Javascript makes it slightly verbose but the concept is quite simple: our app includes a <code>View</code> component and inside that a <code>Text</code> component.
+Since <code>react-native</code> is really just React, we can use <code>reagent</code> to have hiccup-like syntax and smart UI reloading.
+</p>
+
+<p>
+Looking on github for repos using the <code>cljs</code> + <code>react-native</code> combo I realized that every developer uses <code>js</code> interop in a slightly different way to wrap <code>react-native</code> components.
+The <code>reagent-react-native</code> project helps eliminating this "common boilerplate" by providing ready-to-use components.
+This is my <code>deps.edn</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">{<span class="org-clojure-keyword">:deps</span> {<span class="org-type">org.clojure</span>/clojurescript     {<span class="org-clojure-keyword">:</span><span class="org-type">mvn</span><span class="org-default">/</span><span class="org-clojure-keyword">version</span> <span class="org-string">"1.10.773"</span>}
+        <span class="org-type">io.vouch</span>/reagent-react-native {<span class="org-clojure-keyword">:</span><span class="org-type">git</span><span class="org-default">/</span><span class="org-clojure-keyword">url</span> <span class="org-string">"https://github.com/vouch-opensource/reagent-react-native.git"</span>
+                                       <span class="org-clojure-keyword">:sha</span>     <span class="org-string">"54bf52788ab051920ed7641f386177374419e847"</span>}
+        reagent                       {<span class="org-clojure-keyword">:</span><span class="org-type">mvn</span><span class="org-default">/</span><span class="org-clojure-keyword">version</span> <span class="org-string">"0.10.0"</span>
+                                       <span class="org-clojure-keyword">:exclusions</span>  [<span class="org-type">cljsjs</span>/react <span class="org-type">cljsjs</span>/react-dom]}
+        <span class="org-type">com.bhauman</span>/figwheel-main     {<span class="org-clojure-keyword">:</span><span class="org-type">mvn</span><span class="org-default">/</span><span class="org-clojure-keyword">version</span> <span class="org-string">"0.2.10-SNAPSHOT"</span>}}}
+</pre>
+</div>
+
+<p>
+And here is the minimal example above, with <code>reagent</code> syntax:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">ns</span> <span class="org-type">core.app</span>
+  (<span class="org-clojure-keyword">:require</span> [react]
+            [reagent.react-native <span class="org-clojure-keyword">:as</span> rrn]))
+
+(<span class="org-keyword">defn</span> <span class="org-function-name">hello</span> []
+  [<span class="org-type">rrn</span>/view {<span class="org-clojure-keyword">:style</span> {<span class="org-clojure-keyword">:flex</span> 1 <span class="org-clojure-keyword">:align-items</span> <span class="org-string">"center"</span> <span class="org-clojure-keyword">:justify-content</span> <span class="org-string">"center"</span>}}
+   [<span class="org-type">rrn</span>/text <span class="org-string">"Hello World!"</span>]])
+</pre>
+</div>
+<p>
+It can't get any more simple.
+The reagent code is an abstraction for this lower level interop code:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">def</span> <span class="org-variable-name">&lt;&gt;</span> <span class="org-type">react</span>/createElement)
+
+(&lt;&gt; <span class="org-type">rn</span>/View
+      #js {<span class="org-clojure-keyword">:style</span> #js {<span class="org-clojure-keyword">:flex</span>            1
+                       <span class="org-clojure-keyword">:align-items</span> <span class="org-string">"center"</span>
+                       <span class="org-clojure-keyword">:justifyContent</span>  <span class="org-string">"center"</span>}}
+      (&lt;&gt; <span class="org-type">rn</span>/Text (str <span class="org-string">"HELLO WORLD!!"</span>)))
+</pre>
+</div>
+
+<p>
+Following the React Native docs was relatively easy.
+I only had troubles when wrapping the <a href="https://reactnative.dev/docs/using-a-listview">FlatList</a> example:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">const</span> <span class="org-variable-name">FlatListBasics</span> = () =&gt; {
+  <span class="org-keyword">return</span> (
+    &lt;View style={styles.container}&gt;
+      &lt;FlatList
+        data={[
+          {key: <span class="org-string">'Devin'</span>},
+          {key: <span class="org-string">'Dan'</span>},
+        ]}
+        renderItem={({item}) =&gt; &lt;Text style={styles.item}&gt;{item.key}&lt;/Text&gt;}
+      /&gt;
+    &lt;/View&gt;
+  );
+}
+</pre>
+</div>
+
+<p>
+This is how I solved it:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">defn</span> <span class="org-function-name">flat-list</span> []
+  [<span class="org-type">rrn</span>/flat-list
+   {<span class="org-clojure-keyword">:data</span>        [{<span class="org-clojure-keyword">:key</span> <span class="org-string">"Devin"</span>}
+                  {<span class="org-clojure-keyword">:key</span> <span class="org-string">"Devn"</span>}]
+    <span class="org-clojure-keyword">:render-item</span> #(&lt;&gt; <span class="org-type">rn</span>/Text
+                      #js {<span class="org-clojure-keyword">:style</span> #js {<span class="org-clojure-keyword">:color</span>     <span class="org-string">"black"</span> <span class="org-clojure-keyword">:textAlign</span> <span class="org-string">"center"</span>}}
+                      (.-key (.-item <span class="org-variable-name">%</span>)))}])
+
+</pre>
+</div>
+<p>
+The <code>render-item</code> function is passed a single argument, an object.
+We can access the data accessing the <code>.-item</code> key.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="calling-clojure">Calling clojure</h2>
+<div class="outline-text-2">
+<p>
+You soon come to the realization that 99% of the mobile apps we use can be represented by React Native components, some simple data logic and styling.
+What makes <code>cljs</code> attractive for mobile app development is that you can write your logic in <code>clojure</code>.
+</p>
+
+<p>
+To go beyond the basic tutorial, I decided to develop a quick app to play sudoku.
+First I set up the View code to represent the Sudoku grid as a <code>flat-list</code>, as explained above.
+Then, to implement the Model code I resorted to Clojure, functional programming and lazy sequences.
+</p>
+
+<p>
+Instead of having to spin up <code>figwheel</code> + <code>Expo</code> + Simulator, I could simply open a <code>clj</code> REPL.
+After writing the code for my sudoku grid in <code>sudoku.clj</code> (note the <code>defmacro</code>):
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">defmacro</span> <span class="org-function-name">sudoku-grid</span> []
+  (<span class="org-keyword">-&gt;&gt;</span> (repeatedly nine-rows)
+       (filter valid-rows?)
+       (filter valid-columns?)
+       (filter valid-blocks?)
+       first))
+</pre>
+</div>
+
+<p>
+I could simply "require it" in <code>sudoku.cljs</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">ns</span> <span class="org-type">app.sudoku</span>
+  (<span class="org-clojure-keyword">:require-macros</span> [app.sudoku]))
+</pre>
+</div>
+<p>
+I could have just written the logic directly in <code>sudoku.cljs</code> but this approach allows to leverage the whole <code>clj</code> ecosystem and permits faster experimentation.
+This is the screenshot of the result, it was a lot of fun:
+</p>
+
+
+<div class="figure">
+<p><img src="https://raw.githubusercontent.com/lccambiaghi/sudoku-cljsrn/master/assets/screen.png" alt="screen.png" />
+</p>
+</div>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
+    
+    <item>
+      <title>Literate learning</title>
+      <link>https://lccambiaghi.github.io/posts/literate-learning.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/literate-learning.html</guid>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>How to learn stats, clojure and vega-lite while having fun</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="think-stats">Think stats</h2>
+<div class="outline-text-2">
+<p>
+When I first approached Clojure my curiosity brough me to look up what people were using to do Data Science in Clojure.
+I found a book called <a href="https://www.packtpub.com/big-data-and-business-intelligence/clojure-data-science">Clojure for Data Science</a>, available through my employer's O'Reilly subscription.
+I skimmed through it and saw it was introducing stats concepts in a very simple and clear way.
+It was using the <code>incanter</code> "framework", which is unfortunately not in development anymore.
+</p>
+
+<p>
+The author Henry Garner has also written <a href="http://clojuredatascience.com/posts/2016-12-02-data-science-ladder-abstraction.html">an interesting essay</a> about his experience with Clojure.
+He is also the author of a stats library called <code>kixi.stats</code>.
+In the essay he says that what he wrote this library while reading the book "Think stats".
+He would re-implement the Python examples in Clojure.
+</p>
+
+<p>
+The second edition of the book is <a href="https://greenteapress.com/wp/think-stats-2e/">available for free</a> and so I went ahead and started reading it.
+Even though I was familiar with most concepts, implementing them with simple functions and data structures deepened my understanding.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="org-code-blocks">Org code blocks</h2>
+<div class="outline-text-2">
+<p>
+One of my favourite features of Emcas is <code>org-mode</code>.
+It is a markup language (arguably the best), which allows you to mix prose and code blocks.
+A code block looks like this:
+</p>
+<pre class="example">
+#+BEGIN_SRC clojure
+(let [vec [1 2 3]]
+  (reduce + vec))
+#+END_SRC
+</pre>
+
+<p>
+It seems verbose to specify <code>#+BEGIN_SRC</code> and <code>#+END_SRC</code> everytime compared to, for example, markdown.
+The process can be quickly automated and it is in fact a built-in feature:
+just typing <code>&lt;s</code> and pressing TAB will expand the source block and move the cursor for you so that you can type the language.
+Another TAB will bring the cursor inside the block.
+</p>
+
+<p>
+Syntax highlighting inside the block is easy to achieve.
+The big wow moment is when you realize that you can <i>execute</i> code blocks with a backend.
+Cider kindly provides this backend.
+When I execute my code block, CIDER will start a REPL.
+</p>
+
+<p>
+Not only that, if I use <code>C-C '</code> to edit the code block, I get a temporary buffer where <code>clojure-mode</code> takes over:
+</p>
+<img src="../static/img/org-edit.png" alt="Editing org source blocks" style="float: left; margin-right: 10px;" />
+
+<p>
+In this screenshot I am editing this blog post in org-mode.
+I am editing the source block in the right-window.
+When executing it, a <code>shadow-cljs</code> nREPL server was started and org-mode seamlessly connected to the session.
+I can evaluate the <code>let</code> form with CIDER and print the result in the buffer.
+All of the amazing CIDER features are available (refactor, debug).
+</p>
+
+<p>
+Wait for the second wow moment.. you can execute different languages in the same document.
+Org mode provides the means for sharing simple data structures between languages.
+What is not supplied can be achieved easily by serializing intermediate results with one language and re-loading it in another language.
+Data analysis in Python, visualization in R, no context switching.
+</p>
+
+<p>
+You will need to give up Pycharm and Rstudio magics, though.
+Some people might consider this is a good thing.
+You need to understand what Pycharm handles behind the scenes and build it (better: compose it) yourself.
+In 5 years maybe there will be another IDE leading the market.
+I am pretty sure <code>org-mode</code> will still be there, along with the low-level concepts you learned in the effort.
+</p>
+
+<p>
+An <code>org-mode</code> file is structured in sections, or headings.
+Each of these headings can have subheadings.
+They can be collapsed and expanded easily by Emacs.
+This is very consistent with the structure of a book.
+</p>
+
+<p>
+Notes are naturally organized in sections and subsections of the book.
+The python code snippets of the book can be copied, pasted and executed.
+Below I can open a clojure code snippet and rewrite it.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="org-inline-plots">Org inline plots</h2>
+<div class="outline-text-2">
+<p>
+Another fantastic feature of <code>org-mode</code>'s inline images.
+In fact we can embed the result of a plot directly in the document.
+Nowadays, with Jupyter Notebooks, this is expected and almost required.
+Without much effort, I managed to embed .png files produced by <code>vega-lite</code>.
+</p>
+
+<p>
+For that I am using <a href="https://github.com/behrica/vg-cli">a thin clojure wrapper</a> over <code>vg-cli</code>.
+This is an example of a source block which outputs graphics:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">defn</span> <span class="org-function-name">plot-spec</span> [spec]
+  (<span class="org-type">vg</span>/vg-cli {<span class="org-clojure-keyword">:spec</span> spec <span class="org-clojure-keyword">:format</span> <span class="org-clojure-keyword">:png</span> <span class="org-clojure-keyword">:output-filename</span> <span class="org-string">"data/plots/tmp.png"</span>}))
+
+(<span class="org-keyword">let</span> [ds   (<span class="org-type">ds</span>/-&gt;dataset <span class="org-string">"data/thinkstats/nsfg.csv"</span>)
+      spec {<span class="org-clojure-keyword">:data</span>      {<span class="org-clojure-keyword">:values</span> (<span class="org-keyword">-&gt;</span> (<span class="org-type">ds</span>/filter #(== 1 (get <span class="org-variable-name">%</span> <span class="org-string">"outcome"</span>)) ds)
+                                    (<span class="org-type">ds</span>/select-columns [<span class="org-string">"prglngth"</span>])
+                                    (<span class="org-type">ds</span>/mapseq-reader))}
+            <span class="org-clojure-keyword">:mark</span>      <span class="org-string">"bar"</span>
+            <span class="org-clojure-keyword">:encoding</span>  {<span class="org-clojure-keyword">:x</span> {<span class="org-clojure-keyword">:field</span> <span class="org-string">"prglngth"</span>
+                            <span class="org-clojure-keyword">:type</span>  <span class="org-string">"quantitative"</span>}
+                        <span class="org-clojure-keyword">:y</span> {<span class="org-clojure-keyword">:aggregate</span> <span class="org-string">"count"</span>
+                            <span class="org-clojure-keyword">:type</span>      <span class="org-string">"quantitative"</span>}}}]
+  (plot-spec spec))
+</pre>
+</div>
+
+<p>
+As described in my previous blog post, the specification is expressed in clojure and passed to the <code>vg-cli</code>, which writes the .png to a path.
+</p>
+
+<p>
+Note that the code block has certain <code>header args</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-org">#+BEGIN_SRC clojure :results graphics file link :file ../../data/plots/tmp.png
+...
+</pre>
+</div>
+<p>
+#+end_src
+They set the result to be a link to the path where the plot will be saved.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="clojer-to-metal">Clojer to metal</h2>
+<div class="outline-text-2">
+<p>
+Reading this book with this setup is a lot of fun.
+I usually have the .pdf open on the right and Emacs on the left.
+I can focus on one topic at a time, code in both languages, quickly see some plots.
+</p>
+
+<p>
+The python code often uses <code>pandas</code>, <code>numpy</code>, <code>matplotlib</code>.
+I am replacing them with <code>tech.ml.dataset</code> + <code>tablecloth</code>, <code>fastmath</code> and <code>vega-lite</code> respectively.
+</p>
+
+<p>
+The <code>dataset</code> abstraction in the Clojure world is better than the pandas one.
+I can express myself with maps and reduce on datasets or columns.
+After a groupby, I can operate on each grouped dataset.
+Which is nothing more than a sequence of maps.
+No series, no index, no arcane syntax.
+</p>
+
+<p>
+I could implement most functions like <code>percentile</code> or <code>covariance</code> on my own.
+When things get more complicated, I am relying on <code>fastmath</code>, which mostyly wraps <code>org.apache.commons.math3</code>.
+So far I used it for sampling from distributions and computing the kernel density estimate.
+</p>
+
+<p>
+Speaking of visualizations, <code>vega-lite</code> has really been a pleasure to use.
+Plots are supposed to be simple.
+You either have a bar plot, a line plot or a scatter plot.
+What is on the x axis and what is on the y axis?
+We usually have a sequence of maps containing <code>xs</code>, we can map functions over them to obtain <code>ys</code>, plot them.
+</p>
+
+<p>
+<code>vega-lite</code> makes it also extremely easy to compose visualizations: auto-layer them, concatenate them vertically, horizontally.
+This means that I can derive my building blocks as functions and very quickly compose them.
+Again, not a slave of <code>matplotlib</code> APIs: subplots, xticks formatters and so on.
+Visualizations as data.
+</p>
+
+<p>
+Here is a snippet demonstrating <code>tablecloth</code> and <code>vega-lite</code> layers:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">defn</span> <span class="org-function-name">weight-vs-height-mapseq</span> [ds rank]
+  (<span class="org-keyword">-&gt;</span> (<span class="org-type">ds</span>/select-columns ds [<span class="org-string">"htm3"</span> <span class="org-string">"wtkg2"</span>])
+      (<span class="org-type">dss</span>/drop-missing [<span class="org-string">"htm3"</span>])
+      (<span class="org-type">dss</span>/select-rows (<span class="org-keyword">fn</span> [row] (<span class="org-keyword">and</span> (&gt; (row <span class="org-string">"htm3"</span>) 135) (&lt; (row <span class="org-string">"htm3"</span>) 200))))
+      (<span class="org-type">dss</span>/group-by (<span class="org-keyword">fn</span> [row] (<span class="org-type">dfn</span>/round (<span class="org-type">dfn</span>// (row <span class="org-string">"htm3"</span>) 5))))
+      (<span class="org-type">dss</span>/aggregate {<span class="org-clojure-keyword">:mean-height</span>       #(<span class="org-type">dfn</span>/mean (<span class="org-variable-name">%</span> <span class="org-string">"htm3"</span>))
+                      <span class="org-clojure-keyword">:weight-percentile</span> #(percentile ((<span class="org-type">dss</span>/drop-missing <span class="org-variable-name">%</span> <span class="org-string">"wtkg2"</span>) <span class="org-string">"wtkg2"</span>) rank)} )
+      (<span class="org-type">ds</span>/mapseq-reader)))
+
+(<span class="org-keyword">let</span> [specs (<span class="org-keyword">for</span> [[rank color] [[25 <span class="org-string">"blue"</span>] [50 <span class="org-string">"green"</span>] [75 <span class="org-string">"red"</span>]]]
+              (line-spec (weight-vs-height-mapseq brfss rank) <span class="org-clojure-keyword">:x-field</span> <span class="org-clojure-keyword">:mean-height</span> <span class="org-clojure-keyword">:y-field</span> <span class="org-clojure-keyword">:weight-percentile</span> <span class="org-clojure-keyword">:mark-color</span> color))]
+  (plot-spec  {<span class="org-clojure-keyword">:layer</span> (into [] specs)}))
+</pre>
+</div>
+
+<img src="../static/img/weight-vs-height.png" alt="Editing org source blocks" style="float: center" />
+
+<p>
+Apart from these super cool libraries, I am gaining confidence with the language.
+I am solving problems faster, writing more idiomatic code (I like to refactor days-old code, extracting pure functions), getting comfortable with the tooling.
+I like the idea that these pure functions are forever added to my toolbox, ready to be applied to other problems and domains.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="conclusion">Conclusion</h2>
+<div class="outline-text-2">
+<p>
+This post has briefly touched some topics and technologies that are really interesting to me such as data science, literate programming and clojure.
+I barely scratched the topic of literature programming but I was glad to experiment with one of its use cases.
+I will write another post in the future which showcases some other cool features such as weaving and tangling.
+I hope that somebody can learn from the approach that I shared and maybe can suggest improvements to this workflow!
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
+    
+    <item>
+      <title>Adding comments to the blog</title>
+      <link>https://lccambiaghi.github.io/posts/adding-comments-to-the-blog.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/adding-comments-to-the-blog.html</guid>
+      <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>The simple, privacy-focused, not bloated way</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="the-requirements">The requirements</h2>
+<div class="outline-text-2">
+<p>
+I spent a day trying to integrate comments on this blog.
+As always, things were simple but since I am a terrible web developer I spent a lot of time figuring out how to do it.
+This gave me the opportunity to learn how to debug my clojurescript web app and to learn something about React so that is good!
+</p>
+
+<p>
+I wanted to add comments at the end of my posts so I could gather feedback on what I write, to know whether I helped a random stranger or if something about my process could be improved.
+My requirements for the commenting system I wanted to add were the following:
+</p>
+<ol class="org-ol">
+<li>Free: I did not want to pay a monthly fee for my small blog with few monthly pageviews</li>
+<li>Lightweight: my website's load speed should not suffer</li>
+<li>No ads: my readers should have no waiting time to leave a quick comment</li>
+<li>No login required: as above, I don't want to require my readers to have a Disqus or Github account</li>
+<li>Simple, no backend installation: I wanted to keep my simple JAMstack setup with Netlify</li>
+</ol>
+
+<p>
+It is not a small list when you look at it.
+The thing is that I would not accept a solution which compromised on even one of the above points.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="good-solutions">Good solutions</h2>
+<div class="outline-text-2">
+<p>
+The most popular solution for blogs is by far Disqus.
+It is simple and free, however it is not lightweight and it has ads(!!).
+They also have a bad reputation of not being privacy focused. Discarded.
+</p>
+
+<p>
+One project I really liked was <a href="https://utteranc.es/">utterances</a>, which allows you to store the comments in a github repo.
+It did not seem super trivial to integrate with my Reagent setup but it was a simple and elegant solution.
+However, it compromised on requirement 4: you need a Github account to comment. I kept looking.
+</p>
+
+<p>
+I found another interesting <a href="https://healeycodes.com/adding-comments-to-gatsby-with-netlify-and-github/">solution</a> which made us of Netlify forms and functions.
+When a commenter would post a comment, it would trigger a new website build.
+Comments are filtered for spam by Netlify and are stored in a JSON file on Github.
+However, again, it was not simple to integrate in my setup as the Netlify functions can only be written in Javascript.
+I found a good <a href="https://github.com/healeycodes/gatsby-serverless-comments">reference</a> to express functions in clojurescript and compile them and I was about to experiment to learn about serverless and lambda functions.
+I liked the low-level idea of not relying on any service at all.
+However, before diving into this project, I decided to try out a service which looked very simple AND respected all my requirements.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="the-winner">The winner</h2>
+<div class="outline-text-2">
+<p>
+I decided to try <a href="https://talk.hyvor.com/">Hyvor Talk</a>, they offer a similar service to Disqus but privacy-focused.
+It does not look lightweight when you see a demo site but then you found out that you can load the component "on scroll" or by clicking a button. Nice!
+They have a free tier, which seemed to be perfect for my use case.
+</p>
+
+<p>
+The integration was quite simple: just add this piece of HTML to your blog posts and if they have a canonical URL everything will work out of the box.
+Yeah, well, it is not easy with a single page application.
+My blog posts are React components, where the HTML is set with the <code>dangerouslySetInnerHTML</code> function.
+Fair enough, I said, I will write that piece of HTML in each of my post.
+Then I found out that if the innerHTML contains a <code>&lt;script&gt;</code> tag, it will be skipped. Damn.
+</p>
+
+<p>
+What I found out shortly after is that Hyvor Talk provides their own React component to embed the comments in your website!
+After a bit of research I found out that <code>shadow-cljs</code> makes it extremely easy to install an existing React component and include it in your SPA!
+</p>
+
+<p>
+Firs I installed the component with:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">yarn add hyvor-talk-react
+</pre>
+</div>
+
+<p>
+And this is my Reagent code:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">ns</span> <span class="org-type">app.core</span>
+  (<span class="org-clojure-keyword">:require</span> [<span class="org-string">"hyvor-talk-react"</span> <span class="org-clojure-keyword">:as</span> HyvorTalk]))
+
+(<span class="org-keyword">defn-</span> <span class="org-function-name">comments</span> [post-id]
+  [<span class="org-clojure-keyword">:&gt;</span> <span class="org-type">HyvorTalk</span>/Embed {<span class="org-clojure-keyword">:websiteId</span> 123 <span class="org-clojure-keyword">:id</span> post-id <span class="org-clojure-keyword">:loadMode</span> <span class="org-string">"scroll"</span>}])
+</pre>
+</div>
+
+<p>
+The <code>:&gt;</code> is special Reagent syntax that allows you to easily use javascript components.
+Wow, the <code>cljs</code> + <code>reagent</code> + <code>shadow-cljs</code> combo really made this process so simple!
+In the process I learned something abut the philosophy of React and I understand components a bit more.
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
+    
+    <item>
+      <title>Vega-lite in Clojure</title>
+      <link>https://lccambiaghi.github.io/posts/vega-lite-in-clojure.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/vega-lite-in-clojure.html</guid>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>How to write visualizations as code</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="discovering-vega-lite">Discovering Vega-lite</h2>
+<div class="outline-text-2">
+<p>
+I am in the middle of my journey discovering Clojure and its ecosystem of libraries.
+So far I have explored quite thoroughly the areas of Data Science (most notable mention: <code>tech.ml.dataset</code>) and R/Python interoperability (mentions: <code>libpython-clj</code> and <code>clojisr</code>).
+The incredible developers behind these libraries often discuss about data visualization and they seem fond of one "framework" in particular, and that is Vega-Lite.
+</p>
+
+<p>
+Of course, there is a particularly popular Clojure library for manipulating visualizations and that is <code>Oz</code>.
+Out of curiousity, I have watched the canonical <a href="https://www.youtube.com/watch?v=9uaHRWj04D4">introductory video</a> to Vega-Lite and I was really amazed by its simplicity and power of expression.
+In brief:
+</p>
+<ul class="org-ul">
+<li>Vega is designed by following guidelines outlined in the Grammar of Graphics</li>
+<li>Vega is built "on top" of <code>d3.js</code></li>
+<li>Vega-lite is a "lighter" version of Vega, less verbose and with "sane defaults"</li>
+</ul>
+
+<p>
+After reading about it and experimenting with it, I understand why the smart people of the Clojure community are fascinated by this library.
+Consider this plot:
+</p>
+<div> <svg class="marks" width="350" height="247" viewBox="0 0 350 247" style="background-color: white;"><defs><style>.vega-svg-root * { fill: none; } .vega-svg-root tspan { fill: inherit; } .vega-svg-root path { stroke-miterlimit: 10; }</style></defs><g class="vega-svg-root" transform="translate(44,10)"><g class="mark-group role-frame root" role="graphics-object" aria-roledescription="group mark container"><g transform="translate(0,0)"><path class="background" aria-hidden="true" d="M0.5,0.5h300v200h-300Z" style="fill: transparent; stroke: rgb(221, 221, 221);"></path><g><g class="mark-group role-axis" aria-hidden="true"><g transform="translate(0.5,0.5)"><path class="background" aria-hidden="true" d="M0,0h0v0h0Z" style="pointer-events: none;"></path><g><g class="mark-rule role-axis-grid" style="pointer-events: none;"><line transform="translate(0,200)" x2="300" y2="0" style="stroke: rgb(221, 221, 221); stroke-width: 1px; opacity: 1;"></line><line transform="translate(0,150)" x2="300" y2="0" style="stroke: rgb(221, 221, 221); stroke-width: 1px; opacity: 1;"></line><line transform="translate(0,100)" x2="300" y2="0" style="stroke: rgb(221, 221, 221); stroke-width: 1px; opacity: 1;"></line><line transform="translate(0,50)" x2="300" y2="0" style="stroke: rgb(221, 221, 221); stroke-width: 1px; opacity: 1;"></line><line transform="translate(0,0)" x2="300" y2="0" style="stroke: rgb(221, 221, 221); stroke-width: 1px; opacity: 1;"></line></g></g><path class="foreground" aria-hidden="true" d="" style="pointer-events: none; display: none;"></path></g></g><g class="mark-group role-axis" role="graphics-symbol" aria-roledescription="axis" aria-label="X-axis titled 'Day' for a discrete scale with 15 values: 1, 2, 3, 4, 5, ending with 15"><g transform="translate(0.5,200.5)"><path class="background" aria-hidden="true" d="M0,0h0v0h0Z" style="pointer-events: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(10,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(30,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(50,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(70,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(90,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(110,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(130,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(150,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(170,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(190,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(210,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(230,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(250,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(270,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(290,0)" x2="0" y2="5" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="middle" transform="translate(9.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">1</text><text text-anchor="middle" transform="translate(29.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">2</text><text text-anchor="middle" transform="translate(49.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">3</text><text text-anchor="middle" transform="translate(69.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">4</text><text text-anchor="middle" transform="translate(89.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">5</text><text text-anchor="middle" transform="translate(109.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">6</text><text text-anchor="middle" transform="translate(129.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">7</text><text text-anchor="middle" transform="translate(149.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">8</text><text text-anchor="middle" transform="translate(169.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">9</text><text text-anchor="middle" transform="translate(189.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">10</text><text text-anchor="middle" transform="translate(209.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">11</text><text text-anchor="middle" transform="translate(229.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">12</text><text text-anchor="middle" transform="translate(249.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">13</text><text text-anchor="middle" transform="translate(269.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">14</text><text text-anchor="middle" transform="translate(289.5,15)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">15</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,0)" x2="300" y2="0" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line></g><g class="mark-text role-axis-title" style="pointer-events: none;"><text text-anchor="middle" transform="translate(150,30)" style="font-family: sans-serif; font-size: 11px; font-weight: bold; fill: rgb(0, 0, 0); opacity: 1;">Day</text></g></g><path class="foreground" aria-hidden="true" d="" style="pointer-events: none; display: none;"></path></g></g><g class="mark-group role-axis" role="graphics-symbol" aria-roledescription="axis" aria-label="Y-axis titled 'PM2.5 Value' for a linear scale with values from 0 to 400"><g transform="translate(0.5,0.5)"><path class="background" aria-hidden="true" d="M0,0h0v0h0Z" style="pointer-events: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(0,200)" x2="-5" y2="0" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(0,150)" x2="-5" y2="0" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(0,100)" x2="-5" y2="0" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(0,50)" x2="-5" y2="0" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line><line transform="translate(0,0)" x2="-5" y2="0" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="end" transform="translate(-7,203)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">0</text><text text-anchor="end" transform="translate(-7,153)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">100</text><text text-anchor="end" transform="translate(-7,103)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">200</text><text text-anchor="end" transform="translate(-7,53)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">300</text><text text-anchor="end" transform="translate(-7,3)" style="font-family: sans-serif; font-size: 10px; fill: rgb(0, 0, 0); opacity: 1;">400</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,200)" x2="0" y2="-200" style="stroke: rgb(136, 136, 136); stroke-width: 1px; opacity: 1;"></line></g><g class="mark-text role-axis-title" style="pointer-events: none;"><text text-anchor="middle" transform="translate(-27.701492309570312,100) rotate(-90) translate(0,-2)" style="font-family: sans-serif; font-size: 11px; font-weight: bold; fill: rgb(0, 0, 0); opacity: 1;">PM2.5 Value</text></g></g><path class="foreground" aria-hidden="true" d="" style="pointer-events: none; display: none;"></path></g></g><g class="mark-rect role-mark layer_0_layer_0_marks" role="graphics-object" aria-roledescription="rect mark container"><path aria-label="Day: 1; Value: 54.8" role="graphics-symbol" aria-roledescription="bar" d="M1,172.6h18v27.400000000000006h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 2; Value: 112.1" role="graphics-symbol" aria-roledescription="bar" d="M21,143.95h18v56.05000000000001h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 3; Value: 63.6" role="graphics-symbol" aria-roledescription="bar" d="M41,168.2h18v31.80000000000001h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 4; Value: 37.6" role="graphics-symbol" aria-roledescription="bar" d="M61,181.20000000000002h18v18.799999999999983h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 5; Value: 79.7" role="graphics-symbol" aria-roledescription="bar" d="M81,160.15h18v39.849999999999994h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 6; Value: 137.9" role="graphics-symbol" aria-roledescription="bar" d="M101,131.05h18v68.94999999999999h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 7; Value: 120.1" role="graphics-symbol" aria-roledescription="bar" d="M121,139.95000000000002h18v60.04999999999998h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 8; Value: 103.3" role="graphics-symbol" aria-roledescription="bar" d="M141,148.35h18v51.650000000000006h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 9; Value: 394.8" role="graphics-symbol" aria-roledescription="bar" d="M161,2.6000000000000023h18v197.4h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 10; Value: 199.5" role="graphics-symbol" aria-roledescription="bar" d="M181,100.25h18v99.75h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 11; Value: 72.3" role="graphics-symbol" aria-roledescription="bar" d="M201,163.85h18v36.150000000000006h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 12; Value: 51.1" role="graphics-symbol" aria-roledescription="bar" d="M221,174.45h18v25.55000000000001h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 13; Value: 112" role="graphics-symbol" aria-roledescription="bar" d="M241,144h18v56h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 14; Value: 174.5" role="graphics-symbol" aria-roledescription="bar" d="M261,112.75h18v87.25h-18Z" style="fill: rgb(76, 120, 168);"></path><path aria-label="Day: 15; Value: 130.5" role="graphics-symbol" aria-roledescription="bar" d="M281,134.75h18v65.25h-18Z" style="fill: rgb(76, 120, 168);"></path></g><g class="mark-rect role-mark layer_0_layer_1_marks" role="graphics-object" aria-roledescription="rect mark container"><path aria-label="Day: 9; PM2.5 Value: 300; Value: 394.8" role="graphics-symbol" aria-roledescription="bar" d="M161,2.6000000000000023h18v47.4h-18Z" style="fill: rgb(228, 87, 85);"></path></g><g class="mark-rule role-mark layer_1_layer_0_marks" role="graphics-symbol" aria-roledescription="rule mark container"><line transform="translate(300,50)" x2="-300" y2="0" style="stroke: black;"></line></g><g class="mark-text role-mark layer_1_layer_1_marks" role="graphics-object" aria-roledescription="text mark container"><text text-anchor="end" transform="translate(298,46)" style="font-family: sans-serif; font-size: 11px; fill: black;">hazardous</text></g></g><path class="foreground" aria-hidden="true" d="" style="display: none;"></path></g></g></g></svg> </div>
+
+<p>
+This is the plot specification, described in JSON:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">{
+  <span class="org-string">"$schema"</span>: <span class="org-string">"https://vega.github.io/schema/vega-lite/v4.json"</span>,
+  <span class="org-string">"description"</span>: <span class="org-string">"The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html"</span>,
+    <span class="org-string">"layer"</span>: [{
+      <span class="org-string">"data"</span>: {
+        <span class="org-string">"values"</span>: [
+          {<span class="org-string">"Day"</span>: 1, <span class="org-string">"Value"</span>: 54.8},
+          {<span class="org-string">"Day"</span>: 2, <span class="org-string">"Value"</span>: 112.1},
+          {<span class="org-string">"Day"</span>: 3, <span class="org-string">"Value"</span>: 63.6},
+          {<span class="org-string">"Day"</span>: 4, <span class="org-string">"Value"</span>: 37.6},
+          {<span class="org-string">"Day"</span>: 5, <span class="org-string">"Value"</span>: 79.7},
+          {<span class="org-string">"Day"</span>: 6, <span class="org-string">"Value"</span>: 137.9},
+          {<span class="org-string">"Day"</span>: 7, <span class="org-string">"Value"</span>: 120.1},
+          {<span class="org-string">"Day"</span>: 8, <span class="org-string">"Value"</span>: 103.3},
+          {<span class="org-string">"Day"</span>: 9, <span class="org-string">"Value"</span>: 394.8},
+          {<span class="org-string">"Day"</span>: 10, <span class="org-string">"Value"</span>: 199.5},
+          {<span class="org-string">"Day"</span>: 11, <span class="org-string">"Value"</span>: 72.3},
+          {<span class="org-string">"Day"</span>: 12, <span class="org-string">"Value"</span>: 51.1},
+          {<span class="org-string">"Day"</span>: 13, <span class="org-string">"Value"</span>: 112.0},
+          {<span class="org-string">"Day"</span>: 14, <span class="org-string">"Value"</span>: 174.5},
+          {<span class="org-string">"Day"</span>: 15, <span class="org-string">"Value"</span>: 130.5}
+        ]
+      },
+      <span class="org-string">"layer"</span>: [{
+        <span class="org-string">"mark"</span>: <span class="org-string">"bar"</span>,
+        <span class="org-string">"encoding"</span>: {
+          <span class="org-string">"x"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"Day"</span>, <span class="org-string">"type"</span>: <span class="org-string">"ordinal"</span>, <span class="org-string">"axis"</span>: {<span class="org-string">"labelAngle"</span>: 0}},
+          <span class="org-string">"y"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"Value"</span>, <span class="org-string">"type"</span>: <span class="org-string">"quantitative"</span>}
+        }
+      }, {
+        <span class="org-string">"mark"</span>: <span class="org-string">"bar"</span>,
+        <span class="org-string">"transform"</span>: [
+          {<span class="org-string">"filter"</span>: <span class="org-string">"datum.Value &gt;= 300"</span>},
+          {<span class="org-string">"calculate"</span>: <span class="org-string">"300"</span>, <span class="org-string">"as"</span>: <span class="org-string">"baseline"</span>}
+        ],
+        <span class="org-string">"encoding"</span>: {
+          <span class="org-string">"x"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"Day"</span>, <span class="org-string">"type"</span>: <span class="org-string">"ordinal"</span>},
+          <span class="org-string">"y"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"baseline"</span>, <span class="org-string">"type"</span>: <span class="org-string">"quantitative"</span>, <span class="org-string">"title"</span>: <span class="org-string">"PM2.5 Value"</span>},
+          <span class="org-string">"y2"</span>: {<span class="org-string">"field"</span>: <span class="org-string">"Value"</span>},
+          <span class="org-string">"color"</span>: {<span class="org-string">"value"</span>: <span class="org-string">"#e45755"</span>}
+        }
+      }
+    ]}, {
+      <span class="org-string">"data"</span>: {
+         <span class="org-string">"values"</span>: [{}]
+      },
+      <span class="org-string">"encoding"</span>: {
+        <span class="org-string">"y"</span>: {<span class="org-string">"datum"</span>: 300}
+      },
+      <span class="org-string">"layer"</span>: [{
+        <span class="org-string">"mark"</span>: <span class="org-string">"rule"</span>
+      }, {
+        <span class="org-string">"mark"</span>: {
+          <span class="org-string">"type"</span>: <span class="org-string">"text"</span>,
+          <span class="org-string">"align"</span>: <span class="org-string">"right"</span>,
+          <span class="org-string">"baseline"</span>: <span class="org-string">"bottom"</span>,
+          <span class="org-string">"dx"</span>: -2,
+          <span class="org-string">"dy"</span>: -2,
+          <span class="org-string">"x"</span>: <span class="org-string">"width"</span>,
+          <span class="org-string">"text"</span>: <span class="org-string">"hazardous"</span>
+        }
+      }]
+    }
+  ]
+}
+</pre>
+</div>
+
+<p>
+It is not the simplest example but I think it speaks great of Vega-Lite expressiveness.
+The visualization is divided in two layers and each layer has two sublayers:
+</p>
+<ul class="org-ul">
+<li>The first layer has simple data associated with it, with the fields "Day" and "Value"
+<ul class="org-ul">
+<li>The first sublayer has a mark specifying a "bar" plot</li>
+<li>The field "Day" is encoded to the x axis and "Value" to the y axis</li>
+<li>The second sublayer is another bar mark with defines transforms:
+<ul class="org-ul">
+<li>Data below 300 is filtered and 300 is defined as baseline</li>
+<li>In the encoding there is y, which is the defined baseline</li>
+<li>There is also y2, which is the values above 300 that we filtered, colored of red</li>
+</ul></li>
+</ul></li>
+<li>The second layer has no data but a fixed y encoding to 300
+<ul class="org-ul">
+<li>The first sublayer has mark "rule", which draws an horizontal line in y</li>
+<li>The second sublayer has mark "text" and the options describe positioning</li>
+</ul></li>
+</ul>
+
+<p>
+I really like this way of composing a visualization.
+It is very simple to express the components and quite intuitive how to layer them together.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="oz">Oz</h2>
+<div class="outline-text-2">
+<p>
+Well, Vega-lite is nothing new, might not be so exciting for the majority of people.
+What makes it extremely interesting for me is that it has something in common with Clojure: this visualization spec is just data.
+Instead of JSON, it can be represented in YAML or EDN. In fact, it's nothing more than a map of vectors and maps.
+</p>
+
+<p>
+The library called <code>Oz</code> allows us to define a Vega-Lite spec in Clojure, it compiles it to vega and renders it in a browser with minimal effort.
+It even allows us to export the plot to a self-contained HTML using the javascript library <code>vega-embed</code>.
+</p>
+
+<p>
+Consider this neat code found in the repo's README:
+</p>
+<div class="org-src-container">
+<pre class="src src-clojure">(<span class="org-keyword">ns</span> <span class="org-type">org.core</span>
+  (<span class="org-clojure-keyword">:require</span> [oz.core <span class="org-clojure-keyword">:as</span> oz]))
+
+(<span class="org-keyword">defn</span> <span class="org-function-name">play-data</span> [&amp; names]
+  (<span class="org-keyword">for</span> [n names
+        i (range 20)]
+    {<span class="org-clojure-keyword">:time</span> i <span class="org-clojure-keyword">:item</span> n <span class="org-clojure-keyword">:quantity</span> (+ (<span class="org-type">Math</span>/pow (* i (count n)) 0.8) (rand-int (count n)))}))
+
+(<span class="org-keyword">def</span> <span class="org-variable-name">line-plot</span>
+  {<span class="org-clojure-keyword">:data</span>     {<span class="org-clojure-keyword">:values</span> (play-data <span class="org-string">"monkey"</span> <span class="org-string">"slipper"</span> <span class="org-string">"broom"</span>)}
+   <span class="org-clojure-keyword">:encoding</span> {<span class="org-clojure-keyword">:x</span>     {<span class="org-clojure-keyword">:field</span> <span class="org-string">"time"</span> <span class="org-clojure-keyword">:type</span> <span class="org-string">"quantitative"</span>}
+              <span class="org-clojure-keyword">:y</span>     {<span class="org-clojure-keyword">:field</span> <span class="org-string">"quantity"</span> <span class="org-clojure-keyword">:type</span> <span class="org-string">"quantitative"</span>}
+              <span class="org-clojure-keyword">:color</span> {<span class="org-clojure-keyword">:field</span> <span class="org-string">"item"</span> <span class="org-clojure-keyword">:type</span> <span class="org-string">"nominal"</span>}}
+   <span class="org-clojure-keyword">:mark</span>     <span class="org-string">"line"</span>})
+
+(<span class="org-type">oz</span>/export! line-plot <span class="org-string">"public/html/line.html"</span>)
+</pre>
+</div>
+
+<p>
+Here 3 random time series are generated, encoded in the most obvious, concise, simple way and the result is what you would expect:
+</p>
+<iframe src="../static/html/line.html" style="overflow:visible;min-height:300px;height:100%;width:100%;padding:20px" scrolling="no" border="none" width="100%" height="100%" marginheight="0" frameborder="0"></iframe>
+
+<p>
+What I love about this example is that you work with raw, naked data.
+There is no class, no weird API syntax or function kwargs to memorize.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="blog-development">Blog development:</h2>
+<div class="outline-text-2">
+<p>
+Anoter interesting learning I had was how to embed Vega into this blog!
+Because I don't know enough about web development, it took me way more than it should have.
+Actually, it was really easy since you can just write plain HTML in markdown and that will be correctly parsed by <code>markdown.core</code> and <code>reagent</code>.
+</p>
+
+<p>
+When taking a compiled Vega spec, I can just put the SVG in a div tag.
+When exporting it from Clojure, I can put the HTML file in an iframe.
+It is just a bit annoying that this does not resize automatically but I can control it with the CSS attribute <code>min-height</code> and set it to the height I specify in Vega-lite.
+</p>
+
+<p>
+Oz also has a facility to render a Reagent component directly from Clojure.
+At the moment I am not using it as my blog posts are written in markdown/HTML, I could use it to populate another page of the website.
+</p>
+
+<p>
+As a final cherry on top, writing my blog in Org mode has already shown its value.
+Executing <code>yarn develop</code> starts the <code>shadow-cljs</code> server which will watch for changed files.
+At the same time it will expose a Clojure REPL that I can connect to in order to execute my org src blocks.
+When I am satisfied, I can just export to markdown and see the blog post reloading.
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
+    
+    <item>
+      <title>New website!</title>
+      <link>https://lccambiaghi.github.io/posts/new-website.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/new-website.html</guid>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>Why and how I set up my personal website</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="the-problem">The problem</h2>
+<div class="outline-text-2">
+<p>
+I have always wanted a personal website. I have attempted several times at creating one.
+The first function a personal website should serve is showcase your achievements, e.g. your former experience and projects.
+The second function I have always seeked from my website is technical blogging.
+Moreover, I wanted my website to be hosted for free, without any limitations.
+</p>
+
+<p>
+In regards to blogging, I wanted to do it in the simplest way. Not too simple though, as Einstein said:
+</p>
+
+<blockquote>
+<p>
+Everything should be made as simple as possible,
+but not any simpler &#x2014;Albert Einstein
+</p>
+</blockquote>
+
+<p>
+In my previous attempts at building a website I never reached that sweet spot: things were either too complex or too simple.
+In this blog post I explain what brought me to this point.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="previous-approaches">Previous approaches</h2>
+<div class="outline-text-2">
+<p>
+A popular approach is to host a static website on Github Pages with Ruby+Jekyll.
+Github recently made this very easy with the <a href="https://github.com/github/personal-website">personal website project</a>.
+I tried twice that approach because of how easy and fast it is to set up.
+</p>
+
+<p>
+The first time I set up a simple website was few years ago and I did it with a minimal Jekyll template to showcase my github projects and my skills.
+I had a page where I could easily write blog posts in <code>.md</code> files, placing the posts in a certain folder structure with a certain filename.
+Simple enough, right? Maybe too simple. I could not easily control the website template. I had to write my posts in <code>markdown</code> files.
+I quickly lost interest in the website and never blogged once.
+</p>
+
+<p>
+The second time around was at the beginning of 2020, shortly after discovering Emacs.
+I saw a beautiful blog online and made it a day's quest to replicate it on my <code>gh-pages</code> branch.
+What the author was using was an R library called <code>rmarkdown</code>, which under the hood uses <code>knitr</code> + <code>pandoc</code> to render <code>.Rmd</code> files.
+The final touch I added was so I could write posts using my favourite markup language, i.e. Org Mode.
+I could write <code>.org</code> files, export them to <code>.Rmd</code> files and finally render them with <code>rmarkdown</code>.
+The website's style was stunning also! Very easy to steal some CSS from his website.
+</p>
+
+<p>
+I could blog writing <code>.org</code> files and I had a beautiful website.. Still I never blogged once. Maybe it was not simple enough.
+The setup must have been working very well for its original author, a Data Scientist writing a lot of <code>.Rmd</code> analyses. Not so much for me.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="this-approach">This approach</h2>
+<div class="outline-text-2">
+<p>
+Lately I have been very fascinated by the Clojure programming language. I will write a post in the future about it.
+In the websites I am lurking, the community often speaks about Clojurescript which can compile to Javascript code.
+Some of the <code>cljs</code> frameworks for simple-page applications seem simple and elegant (like most things Clojure related).
+</p>
+
+<p>
+Today I found a minimal, beautiful blog set up with <code>shadow-cljs</code>, which had very little code, all of which was understandable enough.
+It looks like the author is a <code>js</code> and <code>cljs</code> developer, so it has been interesting to learn some best practices since I have absolutely zero knowledge of frontend development.
+</p>
+
+<p>
+Well, I forked his repo and it was extremely quick to build the website locally and deploy it to netlify!
+New concepts I need to understand more:
+</p>
+<ul class="org-ul">
+<li><code>yarn</code> &gt; <code>npm</code> for managing dependencies, building and releasing</li>
+<li><code>tailwind</code> + <code>postcss</code> for easy customization of your website's style</li>
+<li><code>yarn shadow-cljs watch app</code> to develop while hot-reloading the website a-la-figwheel</li>
+<li>Connecting to the <code>clojurescript</code> REPL to interact with the browser</li>
+</ul>
+
+<p>
+This is a very exciting environment to develop my website and customize it to my liking! No more deciphering templates and stealing off CSS, I will customize it how I want.
+</p>
+
+<p>
+The second news, even more exciting, is that the author wrote a simple logic to parse <code>.md</code> and populate the website.
+This means that to write my blog posts I can write with Org Mode and easily export to <code>.md</code>.
+I will also adopt the approach used in <code>ox-hugo</code>, that is to have a single <code>.org</code> file and have posts live under a heading.
+I can then export a single post with <code>,e C-s mm</code>, i.e. calling <code>org-export-dispatch</code>, narrowing the scope to the subtree and exporting to a markdown file.
+</p>
+
+<p>
+I really like having the full control over the website. Deploying to netlify means that I am not limited to what Github Pages lets me do.
+In the future I would like to explore different things, like embedding an interactive <code>D3</code> visualization or a <code>vega-lite</code> SVG.
+I am happy to <b>need</b> to understand the details for these integrations instead of resorting to a magical plugin in an obscure template (like with <code>hugo</code>).
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="why-blogging">Why blogging?</h2>
+<div class="outline-text-2">
+<p>
+Technical blogging is a great opportunity to learn how to explain something you <span class="underline">think</span> you know something about and how to organise your thoughts.
+Before writing this post I thought I had a clear idea of what to write but at the end of the post I can see that I digressed and I could have benefitted from organizing the structure of the post beforehand.
+It's okay since it is my first post, but see? Already learning!
+</p>
+
+<p>
+In the future I plan to write about the things I deem interesting that I am exploring.
+I do this for self documentation and to maybe help a fellow user who might come across the same problem I was solving and maybe it will help him save some time.
+I will adjust with time around a certain size and type of content. I expect the two main categories will be data science and software engineering tooling.
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
+    
+  </channel>
+</rss>
