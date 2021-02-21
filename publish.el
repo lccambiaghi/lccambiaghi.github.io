@@ -19,16 +19,24 @@
 	)
 
 (defun setup-site ()
+	(require 'weblorg)
+	(require 'templatel)
+	(require 'htmlize)
 	(when (string= (getenv "ENV") "GHUB")
 		(setup-deps)
 	  (setq weblorg-default-url "https://lccambiaghi.github.io")) ;; default is localhost:8000
 
+	(setq site-template-vars '(("project_github" . "https://github.com/lccambiaghi/lccambiaghi")
+														 ;; ("static_path" . "$site/static")
+														 ("site_author" . "Luca Cambiaghi")
+														 ("site_name" . "Luca's blog")
+														 ("site_url" . "https://lccambiaghi.github.io")
+														 ("site_email" . "luca.cambiaghi@me.com")
+														 ("project_description" . "Luca's blog")))
+
 	(weblorg-site
 	 :base-url weblorg-default-url
-	 :template-vars '(("project_name" . "lccambiaghi")
-										("project_github" . "https://github.com/lccambiaghi/lccambiaghi")
-										;; ("static_path" . "$site/static")
-										("project_description" . "Luca's blog")))
+	 :template-vars site-template-vars)
 
 	(weblorg-route
 	 :name "posts"
@@ -53,6 +61,16 @@
 	 :template "page.html"
 	 :output "output/{{ slug }}.html"
 	 :url "/{{ slug }}.html")
+
+	(weblorg-route
+	 :name "feed"
+	 :input-pattern "posts/*.org"
+	 :input-aggregate #'weblorg-input-aggregate-all-desc
+	 :template "feed.xml"
+	 :output "output/feed.xml"
+	 :url "/feed.xml"
+	 :template-vars site-template-vars
+	 )
 
 	(weblorg-copy-static
 	 :output "output/static/{{ file }}"

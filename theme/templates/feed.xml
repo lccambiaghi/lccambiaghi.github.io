@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:georss="http://www.georss.org/georss"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>{{ site_name }}</title>
+    <atom:link
+      href="{{ url_for("feed") }}"
+      rel="self" type="application/rss+xml" />
+    <link>{{ site_url }}</link>
+    <description><![CDATA[]]></description>
+    <language>en</language>
+    <pubDate>{{ posts | first | getattr("date") | strftime("%a, %d %b %Y %H:%M:%S %z") }}</pubDate>
+    <lastBuildDate>{{ now() | strftime("%a, %d %b %Y %H:%M:%S %z") }}</lastBuildDate>
+    <generator>{{ meta.generator }}</generator>
+    <webMaster>{{ site_email }} ({{ site_author }})</webMaster>
+    <image>
+      <url>{{ site_url }}/favicon.png</url>
+      <title>{{ site_name }}</title>
+      <link>{{ site_url }}</link>
+    </image>
+
+    {% for post in posts %}
+    <item>
+      <title>{{ post.title }}</title>
+      <link>{{ url_for("posts", slug=post.slug) }}</link>
+      <author>{{ post.author|default("{{ site_email }} ({{ site_author }})") }}</author>
+      <guid isPermaLink="false">{{ url_for("posts", slug=post.slug) }}</guid>
+      <pubDate>{{ post.date|strftime("%a, %d %b %Y %H:%M:%S %z") }}</pubDate>
+      <description>
+        <![CDATA[
+          {% if post.subtitle %}<p><strong>{{ post.subtitle|safe }}</strong></p>{% endif %}
+          {% if post.description %}<p>{{ post.description|safe }}</p>{% endif %}
+          {{ post.html|safe }}
+        ]]>
+      </description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
