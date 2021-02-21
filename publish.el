@@ -1,6 +1,6 @@
 ;;; publish.el --- Generate a simple static HTML blog
 
-(defun setup-deps ()
+(defun setup-deps-github ()
 	;; Setup package management
 	(require 'package)
 	(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -16,15 +16,18 @@
 	(use-package weblorg :ensure t)
 	;; code blocks syntax highlight
 	(use-package clojure-mode :ensure t)
+	(setq weblorg-default-url "https://lccambiaghi.github.io")
 	)
 
-(defun setup-site ()
+(defun setup-deps-local ()
 	(require 'weblorg)
 	(require 'templatel)
-	(require 'htmlize)
-	(when (string= (getenv "ENV") "GHUB")
-		(setup-deps)
-	  (setq weblorg-default-url "https://lccambiaghi.github.io")) ;; default is localhost:8000
+	(require 'htmlize))
+
+(defun setup-site ()
+	(if (string= (getenv "ENV") "GHUB")
+			(setup-deps-github)
+		(setup-deps-local))
 
 	(setq site-template-vars '(("project_github" . "https://github.com/lccambiaghi/lccambiaghi")
 														 ;; ("static_path" . "$site/static")
