@@ -1,4 +1,5 @@
 #+TITLE: Doom gccemacs on MacOS
+#+SUBTITLE: The best IDE, now even faster
 #+DATE: <2020-10-03>
 #+AUTHOR: Luca Cambiaghi
 #+OPTIONS: toc:nil num:nil

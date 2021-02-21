@@ -1,4 +1,5 @@
 #+TITLE: React Native from Clojurescript
+#+SUBTITLE: Develop native mobile apps in the most elegant way
 #+DATE: <2020-09-20>
 #+AUTHOR: Luca Cambiaghi
 #+OPTIONS: toc:nil num:nil

@@ -1,4 +1,5 @@
 #+TITLE: One year with Emacs
+#+SUBTITLE: Or, how I integrated my worfklows into one Environment
 #+DATE: <2020-11-25>
 #+AUTHOR: Luca Cambiaghi
 #+OPTIONS: toc:nil num:nil

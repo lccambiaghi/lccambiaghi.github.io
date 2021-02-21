@@ -1,4 +1,5 @@
 #+TITLE: Nix, the functional package manager
+#+SUBTITLE: Declare your software and dotfiles and make them reproducible forever
 #+DATE: <2020-11-01>
 #+AUTHOR: Luca Cambiaghi
 #+OPTIONS: toc:nil num:nil
