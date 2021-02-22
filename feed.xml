@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
-    <lastBuildDate>Sun, 21 Feb 2021 22:53:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Feb 2021 22:38:38 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -317,14 +317,14 @@ The main thing to consider is the <code>home.nix</code> file:
 <div class="org-src-container">
 <pre class="src src-nix">{ pkgs, ... }:
 {
-  home.username = "$USER";
-  home.homeDirectory = "$HOME";
-  home.stateVersion = "20.09";
-  #
-  programs.bash = {
-    enable = true;
+  <span class="org-nix-attribute">home.username</span> = <span class="org-string">"$USER"</span>;
+  <span class="org-nix-attribute">home.homeDirectory</span> = <span class="org-string">"$HOME"</span>;
+  <span class="org-nix-attribute">home.stateVersion</span> = <span class="org-string">"20.09"</span>;
+  <span class="org-comment">#</span>
+  <span class="org-nix-attribute">programs.bash</span> = {
+    <span class="org-nix-attribute">enable</span> = <span class="org-nix-builtin">true</span>;
   };
-  home.packages = [
+  <span class="org-nix-attribute">home.packages</span> = [
     pkgs.htop
     pkgs.fortune
   ];

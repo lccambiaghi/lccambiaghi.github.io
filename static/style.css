@@ -47,7 +47,7 @@ body                  {
   flex-direction: column;
   min-height: 100vh;
   font-size: 22px;
-  font-family: sans;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 
   /* Colors */
   background: var(--cl-background);
@@ -67,8 +67,8 @@ header {
 }
 
 .logo a {
-  background: url('https://api.adorable.io/avatars/100/blorg.png');
-  height: 65px;
+  background: url('https://avatars.dicebear.com/4.5/api/male/lucaaaaaa.svg');
+	height: 65px;
   width: 65px;
   text-indent: -1000px;
   display: block;
