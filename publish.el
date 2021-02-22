@@ -16,6 +16,8 @@
 	(use-package weblorg :ensure t)
 	;; code blocks syntax highlight
 	(use-package clojure-mode :ensure t)
+	(use-package nix-mode :ensure t)
+	;; set github URL
 	(setq weblorg-default-url "https://lccambiaghi.github.io")
 	)
 
@@ -24,6 +26,8 @@
 	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/emacs-htmlize/htmlize.el"))
 	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/weblorg/weblorg.el"))
 	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/clojure-mode/clojure-mode.el"))
+	(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/straight/repos/nix-mode"))
+	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/nix-mode/nix-mode.el"))
 	(setq org-html-htmlize-output-type 'css))
 
 (defun setup-site ()
