@@ -1,25 +1,22 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/46ffadee-bc22-4274-bc6f-00392df3a2a1/deploy-status)](https://app.netlify.com/sites/lccambiaghi/deploys)
-
-[[https://lcccambiaghi.netlify.app/][Personal blog]]
-
-* Setup
+* Org -> HTML
 #+BEGIN_SRC sh
-yarn install
+make build
 #+END_SRC
-* Develop
+* HTML server
 #+BEGIN_SRC sh
-yarn develop
+make serve
 #+END_SRC
-* Release
-#+BEGIN_SRC sh
-yarn release
-#+END_SRC
-* Things to improve
-- Exporting from ~org~ to ~md~ has some issues:
-  1. When using ~ox-md~ the source of the code blocks is not recognized.
-  2. When using ~ox-md-gfm~ the title metadata needs backslash for newline, plus the links sometimes get line broken and therefore fail to render
+* Tailwind CSS
+** Initial setup
+#+begin_src shell
+npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+npx tailwindcss init
+npx tailwindcss-cli@latest build -o ./theme/static/tailwind.css
+#+end_src
 
-* References
-- Implementation: https://github.com/yosevu/yosevu
-- Styling: https://code.thheller.com/
-- D3 and Clojurescript: https://lambdaisland.com/blog/26-04-2018-d3-clojurescript
+** Compiling for production
+In production:
+#+begin_src shell
+NODE_ENV=production npx tailwindcss-cli@latest build -o ./theme/static/tailwind.css
+#+end_src
+

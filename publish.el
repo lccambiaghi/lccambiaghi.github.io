@@ -1,14 +1,14 @@
 ;;; publish.el --- Generate a simple static HTML blog
-
-(defun setup-deps-github ()
-	;; Setup package management
+(defun init-use-package ()
 	(require 'package)
 	(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 	(package-initialize)
 	(unless (package-installed-p 'use-package)
 		(package-refresh-contents)
-		(package-install 'use-package))
+		(package-install 'use-package)))
 
+(defun setup-deps-github ()
+	(init-use-package)
 	;; Install and configure dependencies
 	(use-package templatel :ensure t)
 	(use-package htmlize :ensure t)
@@ -20,9 +20,11 @@
 	)
 
 (defun setup-deps-local ()
-	(require 'weblorg)
-	(require 'templatel)
-	(require 'htmlize))
+	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/templatel/templatel.el"))
+	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/emacs-htmlize/htmlize.el"))
+	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/weblorg/weblorg.el"))
+	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/clojure-mode/clojure-mode.el"))
+	(setq org-html-htmlize-output-type 'css))
 
 (defun setup-site ()
 	(if (string= (getenv "ENV") "GHUB")
