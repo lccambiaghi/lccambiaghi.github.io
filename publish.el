@@ -28,7 +28,9 @@
 	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/clojure-mode/clojure-mode.el"))
 	(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/straight/repos/nix-mode"))
 	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/nix-mode/nix-mode.el"))
-	(setq org-html-htmlize-output-type 'css))
+	(setq org-html-htmlize-output-type 'css)
+	(setq weblorg-default-url "http://localhost") 	;; "http://localhost:8000"
+	)
 
 (defun setup-site ()
 	(if (string= (getenv "ENV") "GHUB")

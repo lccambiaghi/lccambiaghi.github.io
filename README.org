@@ -1,10 +1,12 @@
+* Configure macOS Apache server
+#+BEGIN_SRC sh
+mkdir ~/Sites
+sudo ln -s ~/Sites /Library/WebServer/Documents
+sudo apachectl start
+#+END_SRC
 * Org -> HTML
 #+BEGIN_SRC sh
 make build
-#+END_SRC
-* HTML server
-#+BEGIN_SRC sh
-make serve
 #+END_SRC
 * Tailwind CSS
 ** Initial setup
