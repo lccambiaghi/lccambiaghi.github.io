@@ -57,6 +57,7 @@ body {
 header {
   display: flex;
 	width: 80%;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--cl-border);
