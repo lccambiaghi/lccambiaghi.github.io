@@ -7,6 +7,8 @@
     {% for post in posts %}
       <li class="post-title">
         <a href="{{ url_for("posts", slug=post.slug) }}">{{ post.title }}</a>
+				<p class="post__meta"> {{ post.date|strftime("%b %d, %Y") }} {{ post.filetags }} </p>
+				<p> {{ post.subtitle }} </p>
       </li>
     {% endfor %}
   </ul>

@@ -39,8 +39,8 @@
   display: none;
 }
 
-body                  {
-  /* Reset */
+body {
+		/* Reset */
   margin: 0;
   padding: 0;
   display: flex;
@@ -56,6 +56,8 @@ body                  {
 
 header {
   display: flex;
+	width: 80%;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--cl-border);
