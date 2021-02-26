@@ -17,8 +17,8 @@
     <link>https://lccambiaghi.github.io</link>
     <description><![CDATA[]]></description>
     <language>en</language>
-    <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
-    <lastBuildDate>Fri, 26 Feb 2021 20:29:56 +0000</lastBuildDate>
+    <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
+    <lastBuildDate>Fri, 26 Feb 2021 21:37:29 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -27,6 +27,129 @@
       <link>https://lccambiaghi.github.io</link>
     </image>
 
+    
+    <item>
+      <title>New blog setup</title>
+      <link>https://lccambiaghi.github.io/posts/weblorg.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/weblorg.html</guid>
+      <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>Simpler is better</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="what-was-wrong">What was wrong?</h2>
+<div class="outline-text-2">
+<p>
+Ooops, I did it again! In my <a href="https://lccambiaghi.github.io/posts/new-website.html">first blog post</a> I described how cool was my setup with
+<code>shadow-cljs</code>, <code>clojurescript</code> and <code>react-native</code> and big my ambitions of improving my knowledge
+of this amazing stack was.
+</p>
+
+<p>
+Well, I learned <i>something</i> (see <a href="https://lccambiaghi.github.io/posts/blog-comments.html">this blog post</a>) but I am going to be honest: the setup had its quirks. Org files
+would be converted to markdown and the markdown would be then exported to HTMl by a <a href="https://github.com/yogthos/markdown-clj">clojure library</a>.
+Plus, the routing logic was using another clojure library which was kind of hard to work with: I spent hours
+trying to place a link to my resume.
+</p>
+
+<p>
+I sat down and I thought: what do I want from my blog? I want it to be <b>simple</b> so I can focus on writing.
+I was losing enough time with my previous setup to make everything work.
+Still, it was a very valuable experience.
+It is still available at <a href="https://luca--lccambiaghi.netlify.app">this URL</a>.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="welcome-to-the-past">Welcome to the past!!</h2>
+<div class="outline-text-2">
+<p>
+Since that first blog post in May 2020, I must admit I have become even more of an emacs fanboy.
+I am now heavily invested in org mode for all my prose and most of my experimental code
+(I'll write about my <code>emacs-jupyter</code> setup one day).
+</p>
+
+<p>
+Recently I stumbled upon a <a href="https://emacs.love/weblorg/doc/index.html">really elegant solution</a> that uses the <code>emacs</code> exporting facility to export
+org to HTML and collects them in a static site. That's it.
+</p>
+
+<p>
+As a developer you need to worry about three things:
+</p>
+<ul class="org-ul">
+<li>Initial setup (mostly <code>publish.el</code> file)</li>
+<li>HTML templates</li>
+<li>CSS styling</li>
+</ul>
+
+<p>
+You can basically copy the minimal working example from <a href="https://github.com/emacs-love/weblorg">the github project</a> and start writing your
+org blog posts. You can then refine the default style and templates.
+</p>
+
+<p>
+Once the blog is setup, you can just focus on the writing. Oh, and it provides an RSS feed out of the box!!
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="my-workflow">My workflow</h2>
+<div class="outline-text-2">
+<p>
+Starting from the basic example I added a few nice things.
+</p>
+
+<p>
+I started with defining a <a href="https://github.com/lccambiaghi/lccambiaghi.github.io/blob/master/.github/workflows/build.yml">Github Action</a> that on every build will re-generate the website and publish it
+to Github Pages. In the Github Action I install emacs and run <code>emacs --script publish.el</code>.
+In my <code>publish.el</code> script I check for a <code>GHUB</code> env variable and if present I install the required dependencies.
+</p>
+
+<p>
+I also ported the 2 tools I was using in my previous setup, the <code>Hyvor Talk</code> comments and
+the <code>clicky.com</code> analytics. To do so I simply had to add HTML to the <code>index.html</code> and <code>post.html</code> templates.
+</p>
+
+<p>
+Finally, I edited some CSS to adjust the default size of the header and to add the dates of each blog post to the index.
+I just had to edit the <code>blog.html</code> templates, where I can extract file properties of org files with this syntax:
+</p>
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span class="org-function-name">h1</span>&gt;<span class="org-underline"><span class="org-bold">Posts</span></span>&lt;/<span class="org-function-name">h1</span>&gt;
+
+&lt;<span class="org-function-name">ul</span> <span class="org-variable-name">class</span>=<span class="org-string">"posts"</span>&gt;
+  {% for post in posts %}
+  &lt;<span class="org-function-name">li</span> <span class="org-variable-name">class</span>=<span class="org-string">"post-title"</span>&gt;
+    &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"{{ url_for("</span>posts<span class="org-string">", slug=post.slug) }}"</span>&gt;{{ post.title }}&lt;/<span class="org-function-name">a</span>&gt;
+    &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"post__meta"</span>&gt; {{ post.date|strftime("<span class="org-variable-name">%b</span> <span class="org-variable-name">%d</span>, <span class="org-variable-name">%Y</span>") }} {{ post.filetags }} &lt;/<span class="org-function-name">p</span>&gt;
+    &lt;<span class="org-function-name">p</span>&gt; {{ post.subtitle }} &lt;/<span class="org-function-name">p</span>&gt;
+  &lt;/<span class="org-function-name">li</span>&gt;
+  {% endfor %}
+&lt;/<span class="org-function-name">ul</span>&gt;
+</pre>
+</div>
+
+<p>
+The default style of the blog is not as nice as the previous one I had but if needed I can
+adjust the <code>post__meta</code> class. I plan to start using <code>Tailwind CSS</code> soon.
+</p>
+
+<p>
+In conclusion, I had a lot of fun porting my posts over this new setup and in addition I
+am confident this will further reduce the friction between me and blogging!
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
     
     <item>
       <title>Nix, the functional package manager</title>
