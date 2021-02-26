@@ -2,6 +2,7 @@
 #+SUBTITLE: Develop native mobile apps in the most elegant way
 #+DATE: <2020-09-20>
 #+AUTHOR: Luca Cambiaghi
+#+SLUG: react-native-cljs
 #+OPTIONS: toc:nil num:nil
 #+OPTIONS: ^:nil
 #+FILETAGS: :clojurescript:reagent:react-native:

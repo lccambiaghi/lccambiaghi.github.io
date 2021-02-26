@@ -2,6 +2,7 @@
 #+SUBTITLE: With an auto-configuring script
 #+DATE: <2020-10-26>
 #+AUTHOR: Luca Cambiaghi
+#+SLUG: restoring-my-mac
 #+OPTIONS: toc:nil num:nil
 #+OPTIONS: ^:nil
 #+FILETAGS: :macos:emacs:

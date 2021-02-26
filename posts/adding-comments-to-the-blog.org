@@ -2,6 +2,7 @@
 #+SUBTITLE: The simple, privacy-focused, not bloated way
 #+DATE: <2020-06-07>
 #+AUTHOR: Luca Cambiaghi
+#+SLUG: blog-comments
 #+OPTIONS: toc:nil num:nil
 #+OPTIONS: ^:nil
 #+FILETAGS: :clojurescript:react:

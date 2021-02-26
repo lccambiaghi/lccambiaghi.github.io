@@ -2,6 +2,7 @@
 #+SUBTITLE: The best IDE, now even faster
 #+DATE: <2020-10-03>
 #+AUTHOR: Luca Cambiaghi
+#+SLUG: doom-emacs
 #+OPTIONS: toc:nil num:nil
 #+OPTIONS: ^:nil
 #+FILETAGS: :emacs:macos:doom:

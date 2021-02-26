@@ -2,6 +2,7 @@
 #+SUBTITLE: How to write visualizations as code
 #+DATE: <2020-06-02>
 #+AUTHOR: Luca Cambiaghi
+#+SLUG: vega-lite-clj
 #+OPTIONS: toc:nil num:nil
 #+OPTIONS: ^:nil
 #+FILETAGS: :vega-lite:clojure:

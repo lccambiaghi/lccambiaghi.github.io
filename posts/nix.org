@@ -2,6 +2,7 @@
 #+SUBTITLE: Declare your software and dotfiles and make them reproducible forever
 #+DATE: <2020-11-01>
 #+AUTHOR: Luca Cambiaghi
+#+SLUG: nix-package-manager
 #+OPTIONS: toc:nil num:nil
 #+OPTIONS: ^:nil
 #+FILETAGS: :nix:home-manager:
