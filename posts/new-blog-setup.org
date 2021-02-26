@@ -1,0 +1,73 @@
+#+TITLE: New blog setup
+#+SUBTITLE: Simpler is better
+#+DATE: <2021-02-26>
+#+AUTHOR: Luca Cambiaghi
+#+SLUG: weblorg
+#+OPTIONS: toc:nil num:nil
+#+OPTIONS: ^:nil
+#+FILETAGS: :emacs:org:weblorg:
+
+* What was wrong?
+Ooops, I did it again! In my [[url_for:posts,slug=new-website][first blog post]] I described how cool was my setup with
+~shadow-cljs~, ~clojurescript~ and ~react-native~ and big my ambitions of improving my knowledge
+of this amazing stack was.
+
+Well, I learned /something/ (see [[url_for:posts,slug=blog-comments][this blog post]]) but I am going to be honest: the setup had its quirks. Org files
+would be converted to markdown and the markdown would be then exported to HTMl by a [[https://github.com/yogthos/markdown-clj][clojure library]].
+Plus, the routing logic was using another clojure library which was kind of hard to work with: I spent hours
+trying to place a link to my resume.
+
+I sat down and I thought: what do I want from my blog? I want it to be *simple* so I can focus on writing.
+I was losing enough time with my previous setup to make everything work.
+Still, it was a very valuable experience.
+It is still available at [[https://luca--lccambiaghi.netlify.app][this URL]].
+
+* Welcome to the past!!
+Since that first blog post in May 2020, I must admit I have become even more of an emacs fanboy.
+I am now heavily invested in org mode for all my prose and most of my experimental code
+(I'll write about my ~emacs-jupyter~ setup one day).
+
+Recently I stumbled upon a [[https://emacs.love/weblorg/doc/index.html][really elegant solution]] that uses the ~emacs~ exporting facility to export
+org to HTML and collects them in a static site. That's it.
+
+As a developer you need to worry about three things:
+- Initial setup (mostly ~publish.el~ file)
+- HTML templates
+- CSS styling
+
+You can basically copy the minimal working example from [[https://github.com/emacs-love/weblorg][the github project]] and start writing your
+org blog posts. You can then refine the default style and templates.
+
+Once the blog is setup, you can just focus on the writing. Oh, and it provides an RSS feed out of the box!!
+
+* My workflow
+Starting from the basic example I added a few nice things.
+
+I started with defining a [[https://github.com/lccambiaghi/lccambiaghi.github.io/blob/master/.github/workflows/build.yml][Github Action]] that on every build will re-generate the website and publish it
+to Github Pages. In the Github Action I install emacs and run ~emacs --script publish.el~.
+In my ~publish.el~ script I check for a ~GHUB~ env variable and if present I install the required dependencies.
+
+I also ported the 2 tools I was using in my previous setup, the ~Hyvor Talk~ comments and
+the ~clicky.com~ analytics. To do so I simply had to add HTML to the ~index.html~ and ~post.html~ templates.
+
+Finally, I edited some CSS to adjust the default size of the header and to add the dates of each blog post to the index.
+I just had to edit the ~blog.html~ templates, where I can extract file properties of org files with this syntax:
+#+begin_src html
+<h1>Posts</h1>
+
+<ul class="posts">
+  {% for post in posts %}
+  <li class="post-title">
+    <a href="{{ url_for("posts", slug=post.slug) }}">{{ post.title }}</a>
+    <p class="post__meta"> {{ post.date|strftime("%b %d, %Y") }} {{ post.filetags }} </p>
+    <p> {{ post.subtitle }} </p>
+  </li>
+  {% endfor %}
+</ul>
+#+end_src
+
+The default style of the blog is not as nice as the previous one I had but if needed I can
+adjust the ~post__meta~ class. I plan to start using ~Tailwind CSS~ soon.
+
+In conclusion, I had a lot of fun porting my posts over this new setup and in addition I
+am confident this will further reduce the friction between me and blogging!
