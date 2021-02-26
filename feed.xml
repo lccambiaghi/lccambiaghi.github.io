@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
-    <lastBuildDate>Tue, 23 Feb 2021 16:52:40 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Feb 2021 19:58:53 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -30,9 +30,9 @@
     
     <item>
       <title>Nix, the functional package manager</title>
-      <link>https://lccambiaghi.github.io/posts/nix-the-functional-package-manager.html</link>
+      <link>https://lccambiaghi.github.io/posts/nix-package-manager.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/nix-the-functional-package-manager.html</guid>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/nix-package-manager.html</guid>
       <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -616,9 +616,9 @@ Expect a blog post about it in the near future!
     
     <item>
       <title>Doom gccemacs on MacOS</title>
-      <link>https://lccambiaghi.github.io/posts/doom-gccemacs-on-macos.html</link>
+      <link>https://lccambiaghi.github.io/posts/doom-emacs.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/doom-gccemacs-on-macos.html</guid>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/doom-emacs.html</guid>
       <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -835,9 +835,9 @@ I hope some early adopter can find this blog post and solve some of his installa
     
     <item>
       <title>React Native from Clojurescript</title>
-      <link>https://lccambiaghi.github.io/posts/react-native-from-clojurescript.html</link>
+      <link>https://lccambiaghi.github.io/posts/react-native-cljs.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/react-native-from-clojurescript.html</guid>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/react-native-cljs.html</guid>
       <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1075,9 +1075,9 @@ This is the screenshot of the result, it was a lot of fun:
     
     <item>
       <title>Literate learning</title>
-      <link>https://lccambiaghi.github.io/posts/literate-learning.html</link>
+      <link>https://lccambiaghi.github.io/posts/think-stats.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/literate-learning.html</guid>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/think-stats.html</guid>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1320,9 +1320,9 @@ I hope that somebody can learn from the approach that I shared and maybe can sug
     
     <item>
       <title>Adding comments to the blog</title>
-      <link>https://lccambiaghi.github.io/posts/adding-comments-to-the-blog.html</link>
+      <link>https://lccambiaghi.github.io/posts/blog-comments.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/adding-comments-to-the-blog.html</guid>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/blog-comments.html</guid>
       <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1440,9 +1440,9 @@ In the process I learned something abut the philosophy of React and I understand
     
     <item>
       <title>Vega-lite in Clojure</title>
-      <link>https://lccambiaghi.github.io/posts/vega-lite-in-clojure.html</link>
+      <link>https://lccambiaghi.github.io/posts/vega-lite-clj.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/vega-lite-in-clojure.html</guid>
+      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/vega-lite-clj.html</guid>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
