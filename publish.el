@@ -18,7 +18,7 @@
 	(use-package clojure-mode :ensure t)
 	(use-package nix-mode :ensure t)
 	;; set github URL
-	(setq weblorg-default-url "https://lccambiaghi.github.io")
+	(setq weblorg-default-url "https://luca.cambiaghi.me")
 	)
 
 (defun setup-deps-local ()
@@ -41,7 +41,7 @@
 														 ;; ("static_path" . "$site/static")
 														 ("site_author" . "Luca Cambiaghi")
 														 ("site_name" . "Luca's blog")
-														 ("site_url" . "https://lccambiaghi.github.io")
+														 ("site_url" . "https://luca.cambiaghi.me")
 														 ("site_email" . "luca.cambiaghi@me.com")
 														 ("project_description" . "Luca's blog")))
 
