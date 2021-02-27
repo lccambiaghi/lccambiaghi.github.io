@@ -12,27 +12,27 @@
   <channel>
     <title>Luca&#39;s blog</title>
     <atom:link
-      href="https://lccambiaghi.github.io/feed.xml"
+      href="https://luca.cambiaghi.me/feed.xml"
       rel="self" type="application/rss+xml" />
-    <link>https://lccambiaghi.github.io</link>
+    <link>https://luca.cambiaghi.me</link>
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
-    <lastBuildDate>Fri, 26 Feb 2021 21:37:29 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Feb 2021 12:02:14 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
-      <url>https://lccambiaghi.github.io/favicon.png</url>
+      <url>https://luca.cambiaghi.me/favicon.png</url>
       <title>Luca&#39;s blog</title>
-      <link>https://lccambiaghi.github.io</link>
+      <link>https://luca.cambiaghi.me</link>
     </image>
 
     
     <item>
       <title>New blog setup</title>
-      <link>https://lccambiaghi.github.io/posts/weblorg.html</link>
+      <link>https://luca.cambiaghi.me/posts/weblorg.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/weblorg.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/weblorg.html</guid>
       <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -43,13 +43,13 @@
 <h2 id="what-was-wrong">What was wrong?</h2>
 <div class="outline-text-2">
 <p>
-Ooops, I did it again! In my <a href="https://lccambiaghi.github.io/posts/new-website.html">first blog post</a> I described how cool was my setup with
+Ooops, I did it again! In my <a href="https://luca.cambiaghi.me/posts/new-website.html">first blog post</a> I described how cool was my setup with
 <code>shadow-cljs</code>, <code>clojurescript</code> and <code>react-native</code> and big my ambitions of improving my knowledge
 of this amazing stack was.
 </p>
 
 <p>
-Well, I learned <i>something</i> (see <a href="https://lccambiaghi.github.io/posts/blog-comments.html">this blog post</a>) but I am going to be honest: the setup had its quirks. Org files
+Well, I learned <i>something</i> (see <a href="https://luca.cambiaghi.me/posts/blog-comments.html">this blog post</a>) but I am going to be honest: the setup had its quirks. Org files
 would be converted to markdown and the markdown would be then exported to HTMl by a <a href="https://github.com/yogthos/markdown-clj">clojure library</a>.
 Plus, the routing logic was using another clojure library which was kind of hard to work with: I spent hours
 trying to place a link to my resume.
@@ -153,9 +153,9 @@ am confident this will further reduce the friction between me and blogging!
     
     <item>
       <title>Nix, the functional package manager</title>
-      <link>https://lccambiaghi.github.io/posts/nix-package-manager.html</link>
+      <link>https://luca.cambiaghi.me/posts/nix-package-manager.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/nix-package-manager.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/nix-package-manager.html</guid>
       <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -571,9 +571,9 @@ I will just end with a link to my personal <code>nixpkgs</code> repo which holds
     
     <item>
       <title>Restoring my Mac</title>
-      <link>https://lccambiaghi.github.io/posts/restoring-my-mac.html</link>
+      <link>https://luca.cambiaghi.me/posts/restoring-my-mac.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/restoring-my-mac.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/restoring-my-mac.html</guid>
       <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -739,9 +739,9 @@ Expect a blog post about it in the near future!
     
     <item>
       <title>Doom gccemacs on MacOS</title>
-      <link>https://lccambiaghi.github.io/posts/doom-emacs.html</link>
+      <link>https://luca.cambiaghi.me/posts/doom-emacs.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/doom-emacs.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/doom-emacs.html</guid>
       <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -958,9 +958,9 @@ I hope some early adopter can find this blog post and solve some of his installa
     
     <item>
       <title>React Native from Clojurescript</title>
-      <link>https://lccambiaghi.github.io/posts/react-native-cljs.html</link>
+      <link>https://luca.cambiaghi.me/posts/react-native-cljs.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/react-native-cljs.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/react-native-cljs.html</guid>
       <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1198,9 +1198,9 @@ This is the screenshot of the result, it was a lot of fun:
     
     <item>
       <title>Literate learning</title>
-      <link>https://lccambiaghi.github.io/posts/think-stats.html</link>
+      <link>https://luca.cambiaghi.me/posts/think-stats.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/think-stats.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/think-stats.html</guid>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1443,9 +1443,9 @@ I hope that somebody can learn from the approach that I shared and maybe can sug
     
     <item>
       <title>Adding comments to the blog</title>
-      <link>https://lccambiaghi.github.io/posts/blog-comments.html</link>
+      <link>https://luca.cambiaghi.me/posts/blog-comments.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/blog-comments.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/blog-comments.html</guid>
       <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1563,9 +1563,9 @@ In the process I learned something abut the philosophy of React and I understand
     
     <item>
       <title>Vega-lite in Clojure</title>
-      <link>https://lccambiaghi.github.io/posts/vega-lite-clj.html</link>
+      <link>https://luca.cambiaghi.me/posts/vega-lite-clj.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/vega-lite-clj.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/vega-lite-clj.html</guid>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1784,9 +1784,9 @@ When I am satisfied, I can just export to markdown and see the blog post reloadi
     
     <item>
       <title>New website!</title>
-      <link>https://lccambiaghi.github.io/posts/new-website.html</link>
+      <link>https://luca.cambiaghi.me/posts/new-website.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://lccambiaghi.github.io/posts/new-website.html</guid>
+      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/new-website.html</guid>
       <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
