@@ -21,6 +21,13 @@
 	(setq weblorg-default-url "https://luca.cambiaghi.me")
 	)
 
+(defun suppress-indentation-message ()
+	(require 'cl-lib)
+	(advice-add 'sh-set-shell :around
+							(lambda (orig-fun &rest args)
+								(cl-letf (((symbol-function 'message) #'ignore))
+									(apply orig-fun args)))))
+
 (defun setup-deps-local ()
 	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/templatel/templatel.el"))
 	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/emacs-htmlize/htmlize.el"))
@@ -30,6 +37,7 @@
 	(load (concat (getenv "HOME") "/.emacs.d/straight/repos/nix-mode/nix-mode.el"))
 	(setq org-html-htmlize-output-type 'css)
 	(setq weblorg-default-url "http://localhost") 	;; "http://localhost:8000"
+	(suppress-indentation-message)
 	)
 
 (defun setup-site ()

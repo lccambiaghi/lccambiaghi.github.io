@@ -41,12 +41,12 @@
 
 body {
 		/* Reset */
-  margin: 0;
-  padding: 0;
+  margin: auto;
   display: flex;
-  flex-direction: column;
+	flex-direction: column;
   min-height: 100vh;
-  font-size: 22px;
+	max-width: 70rem;
+  font-size: 20px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 
   /* Colors */
@@ -56,12 +56,12 @@ body {
 
 header {
   display: flex;
-	width: 80%;
-  margin: 0 auto;
+  margin: auto;
+  width: 95%;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--cl-border);
-  padding: 10px 30px;
+  padding: 5px;
 }
 
 .logo {
@@ -108,6 +108,10 @@ header nav ul li {
   display: inline;
 }
 
+ul.no-bullets {
+		list-style-type: none;
+}
+
 /* -- main content -- */
 a {
   text-decoration: none;
@@ -116,7 +120,7 @@ a {
 }
 
 .post h1 {
-    font-size: 55px;
+    font-size: 40px;
 }
 .post h2 {
     font-size: 26px;
@@ -135,7 +139,7 @@ a {
 }
 
 #main {
-  width: 80%;
+  width: 95%;
   margin: 0 auto;
   flex-grow: 1;
 }
@@ -184,6 +188,9 @@ footer {
   color: var(--cl-background);
   height: 70px;
   display: flex;
+	flex-direction: column;
+	margin: auto;
+  width: 95%;
   align-items: center;
   justify-content: center;
 }
