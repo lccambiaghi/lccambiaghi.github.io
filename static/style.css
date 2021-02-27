@@ -57,7 +57,7 @@ body {
 header {
   display: flex;
   margin: auto;
-  width: 100%;
+  width: 95%;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--cl-border);
@@ -139,7 +139,7 @@ a {
 }
 
 #main {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   flex-grow: 1;
 }
@@ -190,7 +190,7 @@ footer {
   display: flex;
 	flex-direction: column;
 	margin: auto;
-  width: 100%;
+  width: 95%;
   align-items: center;
   justify-content: center;
 }
