@@ -1,3 +1,4 @@
+.DEFAULT_GOAL := build
 EMACS := /Applications/Emacs.app/Contents/MacOS/Emacs
 SITES_DIR := /Users/luca/Sites
 
