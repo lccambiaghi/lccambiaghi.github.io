@@ -28,7 +28,7 @@ My team is responsible for providing users with hundreds of thousand of time ser
 I have experience in developing real world, scalable machine learning pipelines.
 I am skilled in big data ingestion and cleaning, feature engineering, model development, deployment and monitoring.
 
-Here you can see my full [[url_for:static,file=resume.pdf][Resume]] .
+Here you can see my full [[https://luca.cambiaghi.me/static/resume.pdf][Resume]] .
 
 ** How I do it
 I am most productive with Python.
