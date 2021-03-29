@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+		<!-- Clicky -->
+		<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101260027);</script>
+		<script async src="//static.getclicky.com/js"></script>
+		<!-- Clicky -->
+		<meta charset="utf-8">
+    <title>Luca's blog - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Luca Cambiaghi" />
+    <meta name="description" content="Luca&#39;s blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://luca.cambiaghi.me/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+  </head>
+  <body>
+    
+
+    
+    <header>
+      <h1 class="logo">
+        <a href="https://luca.cambiaghi.me/"></a>
+      </h1>
+      <a href="#main" class="visually-hidden">jump to main content</a>
+      <nav>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="https://luca.cambiaghi.me/about.html">about</a></li>
+          <li class="menu__item"><a class="menu__link" href="http://luca.cambiaghi.me/vanilla-emacs/readme.html">emacs</a></li>
+          <li class="menu__item"><a class="menu__link" href="http://luca.cambiaghi.me/nixpkgs/readme.html">nix</a></li>
+        </ul>
+        <ul class="social">
+          <li class="social__item">
+            <a class="social__link github" href="https://github.com/lccambiaghi">
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <span class="visually-hidden">github</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    
+
+    
+    <main id="main">
+      
+<article class="post">
+  <h1 class="post__title">
+    My simple org mode system
+  </h1>
+  <section class="post__meta">
+    Mar 29, 2021 :emacs:org:
+  </section>
+  <section>
+    
+<div class="outline-2">
+<h2 id="organize-your-life">Organize your life</h2>
+<div class="outline-text-2">
+<p>
+Org mode has so many useful features, in this year of Emacs I integrated the following in my life:
+</p>
+<ul class="org-ul">
+<li>Literate emacs configuration (you can see the HTMl export of mine <a href="https://luca.cambiaghi.me/vanilla-emacs/readme.html">here</a> )</li>
+<li>Literate programming (explained in <a href="https://luca.cambiaghi.me/posts/think-stats.html">this previous blog post</a>)</li>
+<li>Publish a static blog (explained in <a href="https://luca.cambiaghi.me/posts/weblorg.html">this previous blog post</a>)</li>
+<li>Knowledge library</li>
+<li>Task management</li>
+</ul>
+
+<p>
+In this post I will focus on the GTD (Getting Things Done) org facilities and how I interface with them.
+</p>
+
+<p>
+The first org mode abstraction is an headline with a TODO  status.
+The first natural step is then to create an org file (e.g. <code>todos.org</code>) where we can monitor our TODO headings.
+When we complete one, we set it to DONE and archive it with <code>org-archive-subtree</code>.
+</p>
+
+<p>
+Example file:
+</p>
+<div class="org-src-container">
+<pre class="src src-org"><span class="org-org-level-1">* </span><span class="org-org-todo">TODO</span><span class="org-org-level-1"> finish to write slides </span>
+<span class="org-org-level-1">* </span><span class="org-org-done">DONE</span><span class="org-org-level-1"> add docs </span>
+</pre>
+</div>
+
+<p>
+This all sounds great, except..
+</p>
+<ol class="org-ol">
+<li>I don't know what tasks are important</li>
+<li>I forget to check the file for days, also forgetting tasks</li>
+<li>I am not good at capturing my tasks in this file during my day.</li>
+</ol>
+
+<p>
+Solving any of these 3 problems is useless, we need to solve all three of them.
+</p>
+
+<p>
+Problem 1. is solved by scheduling a task.
+You commit to do a task on a certain day (e.g. today, or tomorrow. Why wait?) and you execute <code>org-schedule</code> on that heading.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org"> * TODO finish to write slides 
+<span class="org-org-special-keyword">SCHEDULED:</span> <span class="org-org-date">&lt;2021-03-02 Tue&gt;</span>
+ * DONE add docs 
+</pre>
+</div>
+
+<p>
+This leads to the next big org abstraction, the agenda!
+When you call <code>org-agenda-list</code> you will see all the <b>scheduled</b> TODOs for the week (including the task you just scheduled for today).
+This is now your <i>agenda</i>, it would be great to follow it and to complete the tasks that you have just marked as important!
+</p>
+
+<p>
+Let's tackle problem 2. by introducing habits!! Let's say we want to check our <code>todos.org</code> every 3 days?
+Then we can mark it as an habit:
+</p>
+<div class="org-src-container">
+<pre class="src src-org"> * TODO finish to write slides 
+<span class="org-org-special-keyword">SCHEDULED:</span> <span class="org-org-date">&lt;2021-01-24 Tue&gt;</span>
+ * DONE add docs 
+ * TODO Check todos.org (start with #inbox)
+<span class="org-org-special-keyword">SCHEDULED:</span> <span class="org-org-date">&lt;2021-01-24 Sun .+2d/4d&gt;</span>
+<span class="org-org-drawer">:PROPERTIES:</span>
+<span class="org-org-special-keyword">:STYLE:</span>    <span class="org-org-property-value">habit</span>
+<span class="org-org-special-keyword">:LAST_REPEAT:</span> <span class="org-org-date">[2021-01-22 Fri 18:08]</span>
+<span class="org-org-drawer">:END:</span>
+- State "DONE"       from "TODO"       <span class="org-org-date">[2021-01-22 Fri 18:08]</span>
+- State "DONE"       from "TODO"       <span class="org-org-date">[2021-01-18 Mon 20:53]</span>
+- State "DONE"       from "TODO"       <span class="org-org-date">[2021-01-17 Sun 21:40]</span>
+</pre>
+</div>
+
+<p>
+Now it will be scheduled in the agenda once every 3 days..
+Now, if we only weren't so bad at checking our agendas&#x2026;
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="show-agenda-in-emacs-dashboard">Show agenda in emacs-dashboard</h2>
+<div class="outline-text-2">
+<p>
+In the previous section we introduced the fundamental blocks of org GTD system: scheduled
+tasks, habits and the agenda.
+</p>
+
+<p>
+I use the <code>dashboard</code> package so that my first buffer is a "dashboard" which provides
+a quick access to weekly agenda and my next tasks.
+</p>
+<img src="../static/img/dashboard-agenda.png" alt="Dashboard with agenda section" style="margin:auto; width:80%;" />
+
+<p>
+Here is my configuration for the package (you can read the up-to-date configuration <a href="https://luca.cambiaghi.me/vanilla-emacs/readme.html#h:2F4C0A6C-96BE-4818-B794-D1593C23FB00">here</a>):
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">dashboard</span>
+  <span class="org-builtin">:demand</span>
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> initial-buffer-choice (<span class="org-keyword">lambda</span> () (get-buffer <span class="org-string">"*dashboard*"</span>)))
+  (<span class="org-keyword">setq</span> dashboard-center-content t)
+  (<span class="org-keyword">setq</span> dashboard-projects-backend 'projectile)
+  (<span class="org-keyword">setq</span> dashboard-set-heading-icons t)
+  (<span class="org-keyword">setq</span> dashboard-set-file-icons t)
+  (<span class="org-keyword">setq</span> dashboard-banner-logo-title nil)
+  (<span class="org-keyword">setq</span> dashboard-set-footer nil)
+  (<span class="org-keyword">setq</span> dashboard-set-navigator t)
+  (<span class="org-keyword">defun</span> <span class="org-function-name">lc/is-after-17-or-weekends?</span> ()
+    (<span class="org-keyword">or</span> (-&gt; (nth 3 (split-string (current-time-string) <span class="org-string">" "</span>)) <span class="org-comment-delimiter">; </span><span class="org-comment">time of the day e.g. 18</span>
+            (substring 0 2)
+            (string-to-number)
+            (&gt; 16))
+        (-&gt; (substring (current-time-string) 0 3) <span class="org-comment-delimiter">; </span><span class="org-comment">day of the week e.g. Fri</span>
+            (member  '(<span class="org-string">"Sat"</span> <span class="org-string">"Sun"</span>)))))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">exclude work items after 17 and on weekends</span>
+  (run-at-time <span class="org-string">"00:00"</span> (* 60 60 24)
+               (<span class="org-keyword">lambda</span> ()
+                 (<span class="org-keyword">if</span> (lc/is-after-17-or-weekends?)
+                     (<span class="org-keyword">setq</span> dashboard-match-agenda-entry <span class="org-string">"life|habits"</span>
+                           dashboard-match-next-entry <span class="org-string">"TODO=\"NEXT\"-work"</span>)
+                   (<span class="org-keyword">setq</span> dashboard-match-agenda-entry <span class="org-string">"work|life|habits"</span>
+                         dashboard-match-next-entry <span class="org-string">"TODO=\"NEXT\""</span>))))
+        <span class="org-comment-delimiter">;; </span><span class="org-comment">buttons above agenda</span>
+  (<span class="org-keyword">setq</span> dashboard-navigator-buttons
+        `((<span class="org-comment-delimiter">;; </span><span class="org-comment">Github</span>
+           (,(all-the-icons-octicon <span class="org-string">"mark-github"</span> <span class="org-builtin">:height</span> 1.1 <span class="org-builtin">:v-adjust</span> 0.0)
+            <span class="org-string">"Github"</span>
+            <span class="org-string">"Go to wondercast"</span>
+            (<span class="org-keyword">lambda</span> (<span class="org-type">&amp;rest</span> _) (browse-url <span class="org-string">"https://github.com/Maersk-Global/wondercast"</span>)))
+           <span class="org-comment-delimiter">;; </span><span class="org-comment">Codebase</span>
+           (,(all-the-icons-faicon <span class="org-string">"briefcase"</span> <span class="org-builtin">:height</span> 1.1 <span class="org-builtin">:v-adjust</span> -0.1)
+            <span class="org-string">"JIRA"</span>
+            <span class="org-string">"Go to Kanban"</span>
+            (<span class="org-keyword">lambda</span> (<span class="org-type">&amp;rest</span> _) (browse-url <span class="org-string">"https://jira.maerskdev.net/secure/RapidBoard.jspa?rapidView=6378&amp;projectKey=AVOC&amp;quickFilter=15697"</span>)))
+           <span class="org-comment-delimiter">;; </span><span class="org-comment">Perspectives</span>
+           (,(all-the-icons-octicon <span class="org-string">"history"</span> <span class="org-builtin">:height</span> 1.1 <span class="org-builtin">:v-adjust</span> 0.0)
+            <span class="org-string">"Restore"</span>
+            <span class="org-string">"Restore"</span>
+            (<span class="org-keyword">lambda</span> (<span class="org-type">&amp;rest</span> _) (persp-state-load persp-state-default-file)))
+           )))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">show next tasks in dashboard</span>
+  (<span class="org-keyword">defun</span> <span class="org-function-name">lc/dashboard-get-next</span> ()
+    <span class="org-doc">"Get agenda items for today or for a week from now."</span>
+    (org-compile-prefix-format 'agenda)
+    (org-map-entries 'dashboard-agenda-entry-format
+                     dashboard-match-next-entry
+                     'agenda))
+  (<span class="org-keyword">defun</span> <span class="org-function-name">lc/dashboard-insert-next</span> (list-size)
+    <span class="org-doc">"Add the list of LIST-SIZE items of next tasks"</span>
+    (<span class="org-keyword">require</span> '<span class="org-constant">org-agenda</span>)
+    (<span class="org-keyword">let</span> ((next (lc/dashboard-get-next)))
+      (dashboard-insert-section
+       <span class="org-string">"Next tasks"</span>
+       next
+       list-size
+       <span class="org-string">"n"</span>
+       `(<span class="org-keyword">lambda</span> (<span class="org-type">&amp;rest</span> ignore)
+          (<span class="org-keyword">let</span> ((buffer (find-file-other-window (nth 2 ',el))))
+            (<span class="org-keyword">with-current-buffer</span> buffer
+              (goto-char (nth 1 ',el))
+              (switch-to-buffer buffer))))
+       (format <span class="org-string">"%s"</span> (nth 0 el)))))
+  <span class="org-builtin">:config</span>
+  (dashboard-setup-startup-hook)
+  (set-face-attribute 'dashboard-items-face nil <span class="org-builtin">:height</span> (lc/get-font-size))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">show next tasks in dashboard</span>
+  (add-to-list 'dashboard-item-generators  '(next . lc/dashboard-insert-next))
+  (<span class="org-keyword">setq</span> dashboard-items '((agenda . 5)
+                          (next . 5)
+                          (projects . 5))))
+</pre>
+</div>
+
+<p>
+There are a few useful features here:
+</p>
+<ul class="org-ul">
+<li>Show weekly agenda, i.e. tasks that I have scheduled for the coming week.</li>
+<li>Filter agenda items according to time of day and day of week. Today is Sunday so in the screenshot you don't see my work tasks.</li>
+<li>Show "NEXT" unscheduled tasks. Think of these tasks as your backlog, the next tasks you should schedule.</li>
+<li>BONUS: nice buttons that brings you to a website or restore the latest session (if you want to know more about this one, read <a href="https://luca.cambiaghi.me/vanilla-emacs/readme.html#h:6E4E5BD6-1930-4DCE-8E26-5ADAC2B9A152">here</a>).</li>
+</ul>
+
+<p>
+The dashboard is the reminder to myself about my tasks.
+When I start up Emacs, I will find my tasks staring right at me.
+If I am in a good mood, I will review my <code>todo.org</code> file, schedule some more, put some to "DONE".
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="categorize-tasks">Categorize tasks</h2>
+<div class="outline-text-2">
+<p>
+As mentioned, I keep all my tasks in one file called <code>todo.org</code>, which is included in my <code>org-agenda-files</code>.
+</p>
+
+<p>
+I categorize my tasks in "projects".
+Two example projects are "Life" and "Work".
+</p>
+
+<p>
+Each project is then categorized in subprojects.
+An example subproject for "Work" could be a user story I am working on.
+For a subproject I would have individual headings corresponding to tasks.
+</p>
+
+<p>
+Here a practical example:
+</p>
+<div class="org-src-container">
+<pre class="src src-org"><span class="org-org-level-1">* Work </span><span class="org-org-checkbox-statistics-todo">[0/2]</span>
+<span class="org-org-drawer">:PROPERTIES:</span>
+<span class="org-org-special-keyword">:COOKIE_DATA:</span> <span class="org-org-property-value">todo recursive</span>
+<span class="org-org-special-keyword">:CATEGORY:</span> <span class="org-org-property-value">work</span>
+<span class="org-org-drawer">:END:</span>
+<span class="org-org-level-2">** Recursive least squares model </span><span class="org-org-checkbox-statistics-todo">[0/2]</span>
+<span class="org-org-level-3">*** </span><span class="org-org-todo">TODO</span><span class="org-org-level-3"> Implement RLS model</span>
+<span class="org-org-level-3">*** </span><span class="org-org-todo">TODO</span><span class="org-org-level-3"> Validate results</span>
+</pre>
+</div>
+
+<p>
+So we model user stories as subheadings and we categorize them within "projects".
+</p>
+
+<p>
+Some details:
+</p>
+<ul class="org-ul">
+<li>The header properties set the category to work. The <code>recursive</code> part make it so that subheadings/subprojects can inherit it.</li>
+<li>If you put <code>[/]</code> in your header title, you will get for free a count of how many you have completed and the total.</li>
+</ul>
+
+<p>
+The <code>work</code> category can then be used to filter agenda views like described in the previous section.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="agenda-and-notifications-on-your-iphone">Agenda and notifications on your iPhone</h2>
+<div class="outline-text-2">
+<p>
+Ok, the system we configured on Emacs seems pretty solid.
+What about when we are away from the laptop?
+</p>
+
+<p>
+Wouldn't it be great to be able to view your agenda on the go, get push notifications?
+The <a href="https://beorgapp.com">BeOrg</a> app for iOS goes pretty close to what I need from it.
+</p>
+
+<p>
+I keep my <code>org</code> folder on Dropbox and version control.
+BeOrg can sync from Dropbox without hassle.
+I hardly ever edit files on the go, I neved had a Dropbox conflict.
+</p>
+
+<p>
+I can see my agenda (same that I see in the dashboard) and I get notifications for scheduled tasks.
+I can read org files on the go, nice to quickly check up on some notes, recipes or guitar chords.
+Highly recommended.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="capture-new-ideas-from-your-iphone">Capture new ideas from your iPhone</h2>
+<div class="outline-text-2">
+<p>
+In the first section we have described 3 problems but we still haven't solved the third:
+</p>
+<blockquote>
+<ol class="org-ol">
+<li>I am not good at capturing my tasks in this file during my day.</li>
+</ol>
+</blockquote>
+
+<p>
+I found a nice way to capture ideas from my iPhone.
+That is achieved through the <a href="https://getdrafts.com">Drafts</a> app for iOS.
+</p>
+
+<p>
+You can get an "action" for free called <a href="https://actions.getdrafts.com/a/1Pd">Org-mode capture</a>.
+Once you set it up on your iPhone, you can write quick notes and send them to a file in Dropbox.
+</p>
+
+<p>
+Unfortunately you can't edit the action template unless you pay for the premium tier of Drafts.
+I am personally fine with leaving the default, which will write to <code>Notes/Test.inbox.org</code>.
+I can just create symlink from <code>Notes</code> to my <code>org</code> folder in Dropbox.
+I usually send a bunch of ideas during my day to my "mobile inbox" and then refile (<code>org-refile</code>)  them to appropriate headers.
+</p>
+
+<p>
+This was the last trick, I hope you found the article useful!
+If something was not clear, please leave a comment below.
+</p>
+</div>
+</div>
+
+  </section>
+  <section>
+		<div id="hyvor-talk-view"></div>
+		<script type="text/javascript">
+			var HYVOR_TALK_WEBSITE = 793; // DO NOT CHANGE THIS
+			var HYVOR_TALK_CONFIG = {
+					url: false,
+					id: "org-gtd"
+			};
+		</script>
+		<script async type="text/javascript" src="//talk.hyvor.com/web-api/embed"></script>
+  </section>
+</article>
+
+    </main>
+
+
+    
+    
+    <footer class="footer">
+      <div class="ack">
+        Made with &#x2665; by
+        <a href="https://emacs.love/weblorg" target="_blank">
+          weblorg
+        </a>
+      </div>
+    </footer>
+    
+
+  </body>
+</html>
