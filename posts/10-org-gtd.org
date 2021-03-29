@@ -1,0 +1,231 @@
+#+TITLE: My simple org mode system
+#+SUBTITLE: And how to receive notifications and capture ideas from iPhone
+#+DATE: <2021-03-29>
+#+AUTHOR: Luca Cambiaghi
+#+SLUG: org-gtd
+#+OPTIONS: toc:nil num:nil
+#+OPTIONS: ^:nil
+#+FILETAGS: :emacs:org:
+
+* Organize your life
+Org mode has so many useful features, in this year of Emacs I integrated the following in my life:
+- Literate emacs configuration (you can see the HTMl export of mine [[https://luca.cambiaghi.me/vanilla-emacs/readme.html][here]] )
+- Literate programming (explained in [[url_for:posts,slug=think-stats][this previous blog post]])
+- Publish a static blog (explained in [[url_for:posts,slug=weblorg][this previous blog post]])
+- Knowledge library
+- Task management
+
+In this post I will focus on the GTD (Getting Things Done) org facilities and how I interface with them.
+
+The first org mode abstraction is an headline with a TODO  status.
+The first natural step is then to create an org file (e.g. ~todos.org~) where we can monitor our TODO headings.
+When we complete one, we set it to DONE and archive it with ~org-archive-subtree~.
+
+Example file:
+#+begin_src org
+ * TODO finish to write slides 
+ * DONE add docs 
+#+end_src
+
+This all sounds great, except..
+1. I don't know what tasks are important
+2. I forget to check the file for days, also forgetting tasks
+3. I am not good at capturing my tasks in this file during my day.
+
+Solving any of these 3 problems is useless, we need to solve all three of them.
+
+Problem 1. is solved by scheduling a task.
+You commit to do a task on a certain day (e.g. today, or tomorrow. Why wait?) and you execute ~org-schedule~ on that heading.
+
+#+begin_src org
+ * TODO finish to write slides 
+SCHEDULED: <2021-03-02 Tue>
+ * DONE add docs 
+#+end_src
+
+This leads to the next big org abstraction, the agenda!
+When you call ~org-agenda-list~ you will see all the *scheduled* TODOs for the week (including the task you just scheduled for today).
+This is now your /agenda/, it would be great to follow it and to complete the tasks that you have just marked as important!
+
+Let's tackle problem 2. by introducing habits!! Let's say we want to check our ~todos.org~ every 3 days?
+Then we can mark it as an habit:
+#+begin_src org
+ * TODO finish to write slides 
+SCHEDULED: <2021-01-24 Tue>
+ * DONE add docs 
+ * TODO Check todos.org (start with #inbox)
+SCHEDULED: <2021-01-24 Sun .+2d/4d>
+:PROPERTIES:
+:STYLE:    habit
+:LAST_REPEAT: [2021-01-22 Fri 18:08]
+:END:
+- State "DONE"       from "TODO"       [2021-01-22 Fri 18:08]
+- State "DONE"       from "TODO"       [2021-01-18 Mon 20:53]
+- State "DONE"       from "TODO"       [2021-01-17 Sun 21:40]
+#+end_src
+
+Now it will be scheduled in the agenda once every 3 days..
+Now, if we only weren't so bad at checking our agendas...
+
+* Show agenda in emacs-dashboard
+In the previous section we introduced the fundamental blocks of org GTD system: scheduled
+tasks, habits and the agenda.
+
+I use the ~dashboard~ package so that my first buffer is a "dashboard" which provides
+a quick access to weekly agenda and my next tasks.
+#+BEGIN_EXPORT html
+<img src="../static/img/dashboard-agenda.png" alt="Dashboard with agenda section" style="margin:auto; width:80%;" />
+#+END_EXPORT
+
+Here is my configuration for the package (you can read the up-to-date configuration [[https://luca.cambiaghi.me/vanilla-emacs/readme.html#h:2F4C0A6C-96BE-4818-B794-D1593C23FB00][here]]):
+#+BEGIN_SRC emacs-lisp
+(use-package dashboard
+  :demand
+  :init
+  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  (setq dashboard-center-content t)
+  (setq dashboard-projects-backend 'projectile)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-banner-logo-title nil)
+  (setq dashboard-set-footer nil)
+  (setq dashboard-set-navigator t)
+  (defun lc/is-after-17-or-weekends? ()
+    (or (-> (nth 3 (split-string (current-time-string) " ")) ; time of the day e.g. 18
+            (substring 0 2)
+            (string-to-number)
+            (> 16))
+        (-> (substring (current-time-string) 0 3) ; day of the week e.g. Fri
+            (member  '("Sat" "Sun")))))
+  ;; exclude work items after 17 and on weekends
+  (run-at-time "00:00" (* 60 60 24)
+               (lambda ()
+                 (if (lc/is-after-17-or-weekends?)
+                     (setq dashboard-match-agenda-entry "life|habits"
+                           dashboard-match-next-entry "TODO=\"NEXT\"-work")
+                   (setq dashboard-match-agenda-entry "work|life|habits"
+                         dashboard-match-next-entry "TODO=\"NEXT\""))))
+	;; buttons above agenda
+  (setq dashboard-navigator-buttons
+        `((;; Github
+           (,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0)
+            "Github"
+            "Go to wondercast"
+            (lambda (&rest _) (browse-url "https://github.com/Maersk-Global/wondercast")))
+           ;; Codebase
+           (,(all-the-icons-faicon "briefcase" :height 1.1 :v-adjust -0.1)
+            "JIRA"
+            "Go to Kanban"
+            (lambda (&rest _) (browse-url "https://jira.maerskdev.net/secure/RapidBoard.jspa?rapidView=6378&projectKey=AVOC&quickFilter=15697")))
+           ;; Perspectives
+           (,(all-the-icons-octicon "history" :height 1.1 :v-adjust 0.0)
+            "Restore"
+            "Restore"
+            (lambda (&rest _) (persp-state-load persp-state-default-file)))
+           )))
+  ;; show next tasks in dashboard
+  (defun lc/dashboard-get-next ()
+    "Get agenda items for today or for a week from now."
+    (org-compile-prefix-format 'agenda)
+    (org-map-entries 'dashboard-agenda-entry-format
+                     dashboard-match-next-entry
+                     'agenda))
+  (defun lc/dashboard-insert-next (list-size)
+    "Add the list of LIST-SIZE items of next tasks"
+    (require 'org-agenda)
+    (let ((next (lc/dashboard-get-next)))
+      (dashboard-insert-section
+       "Next tasks"
+       next
+       list-size
+       "n"
+       `(lambda (&rest ignore)
+          (let ((buffer (find-file-other-window (nth 2 ',el))))
+            (with-current-buffer buffer
+              (goto-char (nth 1 ',el))
+              (switch-to-buffer buffer))))
+       (format "%s" (nth 0 el)))))
+  :config
+  (dashboard-setup-startup-hook)
+  (set-face-attribute 'dashboard-items-face nil :height (lc/get-font-size))
+  ;; show next tasks in dashboard
+  (add-to-list 'dashboard-item-generators  '(next . lc/dashboard-insert-next))
+  (setq dashboard-items '((agenda . 5)
+                          (next . 5)
+                          (projects . 5))))
+#+END_SRC
+
+There are a few useful features here:
+- Show weekly agenda, i.e. tasks that I have scheduled for the coming week.
+- Filter agenda items according to time of day and day of week. Today is Sunday so in the screenshot you don't see my work tasks.
+- Show "NEXT" unscheduled tasks. Think of these tasks as your backlog, the next tasks you should schedule.
+- BONUS: nice buttons that brings you to a website or restore the latest session (if you want to know more about this one, read [[https://luca.cambiaghi.me/vanilla-emacs/readme.html#h:6E4E5BD6-1930-4DCE-8E26-5ADAC2B9A152][here]]).
+
+The dashboard is the reminder to myself about my tasks.
+When I start up Emacs, I will find my tasks staring right at me.
+If I am in a good mood, I will review my ~todo.org~ file, schedule some more, put some to "DONE".
+
+* Categorize tasks
+As mentioned, I keep all my tasks in one file called ~todo.org~, which is included in my ~org-agenda-files~.
+
+I categorize my tasks in "projects".
+Two example projects are "Life" and "Work".
+
+Each project is then categorized in subprojects.
+An example subproject for "Work" could be a user story I am working on.
+For a subproject I would have individual headings corresponding to tasks.
+
+Here a practical example:
+#+begin_src org
+,* Work [0/2]
+:PROPERTIES:
+:COOKIE_DATA: todo recursive
+:CATEGORY: work
+:END:
+,** Recursive least squares model [0/2]
+,*** TODO Implement RLS model
+,*** TODO Validate results
+#+end_src
+
+So we model user stories as subheadings and we categorize them within "projects".
+
+Some details:
+- The header properties set the category to work. The ~recursive~ part make it so that subheadings/subprojects can inherit it.
+- If you put ~[/]~ in your header title, you will get for free a count of how many you have completed and the total.
+
+The ~work~ category can then be used to filter agenda views like described in the previous section.
+
+* Agenda and notifications on your iPhone
+Ok, the system we configured on Emacs seems pretty solid.
+What about when we are away from the laptop?
+
+Wouldn't it be great to be able to view your agenda on the go, get push notifications?
+The [[https://beorgapp.com][BeOrg]] app for iOS goes pretty close to what I need from it.
+
+I keep my ~org~ folder on Dropbox and version control.
+BeOrg can sync from Dropbox without hassle.
+I hardly ever edit files on the go, I neved had a Dropbox conflict.
+
+I can see my agenda (same that I see in the dashboard) and I get notifications for scheduled tasks.
+I can read org files on the go, nice to quickly check up on some notes, recipes or guitar chords.
+Highly recommended.
+
+* Capture new ideas from your iPhone
+In the first section we have described 3 problems but we still haven't solved the third:
+#+begin_quote
+3. I am not good at capturing my tasks in this file during my day.
+#+end_quote
+
+I found a nice way to capture ideas from my iPhone.
+That is achieved through the [[https://getdrafts.com][Drafts]] app for iOS.
+
+You can get an "action" for free called [[https://actions.getdrafts.com/a/1Pd][Org-mode capture]].
+Once you set it up on your iPhone, you can write quick notes and send them to a file in Dropbox.
+
+Unfortunately you can't edit the action template unless you pay for the premium tier of Drafts.
+I am personally fine with leaving the default, which will write to ~Notes/Test.inbox.org~.
+I can just create symlink from ~Notes~ to my ~org~ folder in Dropbox.
+I usually send a bunch of ideas during my day to my "mobile inbox" and then refile (~org-refile~)  them to appropriate headers.
+
+This was the last trick, I hope you found the article useful!
+If something was not clear, please leave a comment below.
