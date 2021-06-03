@@ -12,27 +12,27 @@
   <channel>
     <title>Luca&#39;s blog</title>
     <atom:link
-      href="https://luca.cambiaghi.me/feed.xml"
+      href="https://lucacambiaghi.com/feed.xml"
       rel="self" type="application/rss+xml" />
-    <link>https://luca.cambiaghi.me</link>
+    <link>https://lucacambiaghi.com</link>
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
-    <lastBuildDate>Mon, 29 Mar 2021 07:15:28 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Jun 2021 21:19:59 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
-      <url>https://luca.cambiaghi.me/favicon.png</url>
+      <url>https://lucacambiaghi.com/favicon.png</url>
       <title>Luca&#39;s blog</title>
-      <link>https://luca.cambiaghi.me</link>
+      <link>https://lucacambiaghi.com</link>
     </image>
 
     
     <item>
       <title>My simple org mode system</title>
-      <link>https://luca.cambiaghi.me/posts/org-gtd.html</link>
+      <link>https://lucacambiaghi.com/posts/org-gtd.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/org-gtd.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/org-gtd.html</guid>
       <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -46,9 +46,9 @@
 Org mode has so many useful features, in this year of Emacs I integrated the following in my life:
 </p>
 <ul class="org-ul">
-<li>Literate emacs configuration (you can see the HTMl export of mine <a href="https://luca.cambiaghi.me/vanilla-emacs/readme.html">here</a> )</li>
-<li>Literate programming (explained in <a href="https://luca.cambiaghi.me/posts/think-stats.html">this previous blog post</a>)</li>
-<li>Publish a static blog (explained in <a href="https://luca.cambiaghi.me/posts/weblorg.html">this previous blog post</a>)</li>
+<li>Literate emacs configuration (you can see the HTMl export of mine <a href="https://lucacambiaghi.com/vanilla-emacs/readme.html">here</a> )</li>
+<li>Literate programming (explained in <a href="https://lucacambiaghi.com/posts/think-stats.html">this previous blog post</a>)</li>
+<li>Publish a static blog (explained in <a href="https://lucacambiaghi.com/posts/weblorg.html">this previous blog post</a>)</li>
 <li>Knowledge library</li>
 <li>Task management</li>
 </ul>
@@ -145,7 +145,7 @@ a quick access to weekly agenda and my next tasks.
 <img src="../static/img/dashboard-agenda.png" alt="Dashboard with agenda section" style="margin:auto; width:80%;" />
 
 <p>
-Here is my configuration for the package (you can read the up-to-date configuration <a href="https://luca.cambiaghi.me/vanilla-emacs/readme.html#h:2F4C0A6C-96BE-4818-B794-D1593C23FB00">here</a>):
+Here is my configuration for the package (you can read the up-to-date configuration <a href="https://lucacambiaghi.com/vanilla-emacs/readme.html#h:2F4C0A6C-96BE-4818-B794-D1593C23FB00">here</a>):
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">dashboard</span>
@@ -232,7 +232,7 @@ There are a few useful features here:
 <li>Show weekly agenda, i.e. tasks that I have scheduled for the coming week.</li>
 <li>Filter agenda items according to time of day and day of week. Today is Sunday so in the screenshot you don't see my work tasks.</li>
 <li>Show "NEXT" unscheduled tasks. Think of these tasks as your backlog, the next tasks you should schedule.</li>
-<li>BONUS: nice buttons that brings you to a website or restore the latest session (if you want to know more about this one, read <a href="https://luca.cambiaghi.me/vanilla-emacs/readme.html#h:6E4E5BD6-1930-4DCE-8E26-5ADAC2B9A152">here</a>).</li>
+<li>BONUS: nice buttons that brings you to a website or restore the latest session (if you want to know more about this one, read <a href="https://lucacambiaghi.com/vanilla-emacs/readme.html#h:6E4E5BD6-1930-4DCE-8E26-5ADAC2B9A152">here</a>).</li>
 </ul>
 
 <p>
@@ -363,9 +363,9 @@ If something was not clear, please leave a comment below.
     
     <item>
       <title>New blog setup</title>
-      <link>https://luca.cambiaghi.me/posts/weblorg.html</link>
+      <link>https://lucacambiaghi.com/posts/weblorg.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/weblorg.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/weblorg.html</guid>
       <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -376,13 +376,13 @@ If something was not clear, please leave a comment below.
 <h2 id="what-was-wrong">What was wrong?</h2>
 <div class="outline-text-2">
 <p>
-Ooops, I did it again! In my <a href="https://luca.cambiaghi.me/posts/new-website.html">first blog post</a> I described how cool was my setup with
+Ooops, I did it again! In my <a href="https://lucacambiaghi.com/posts/new-website.html">first blog post</a> I described how cool was my setup with
 <code>shadow-cljs</code>, <code>clojurescript</code> and <code>react-native</code> and big my ambitions of improving my knowledge
 of this amazing stack was.
 </p>
 
 <p>
-Well, I learned <i>something</i> (see <a href="https://luca.cambiaghi.me/posts/blog-comments.html">this blog post</a>) but I am going to be honest: the setup had its quirks. Org files
+Well, I learned <i>something</i> (see <a href="https://lucacambiaghi.com/posts/blog-comments.html">this blog post</a>) but I am going to be honest: the setup had its quirks. Org files
 would be converted to markdown and the markdown would be then exported to HTMl by a <a href="https://github.com/yogthos/markdown-clj">clojure library</a>.
 Plus, the routing logic was using another clojure library which was kind of hard to work with: I spent hours
 trying to place a link to my resume.
@@ -486,9 +486,9 @@ am confident this will further reduce the friction between me and blogging!
     
     <item>
       <title>Nix, the functional package manager</title>
-      <link>https://luca.cambiaghi.me/posts/nix-package-manager.html</link>
+      <link>https://lucacambiaghi.com/posts/nix-package-manager.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/nix-package-manager.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/nix-package-manager.html</guid>
       <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -904,9 +904,9 @@ I will just end with a link to my personal <code>nixpkgs</code> repo which holds
     
     <item>
       <title>Restoring my Mac</title>
-      <link>https://luca.cambiaghi.me/posts/restoring-my-mac.html</link>
+      <link>https://lucacambiaghi.com/posts/restoring-my-mac.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/restoring-my-mac.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/restoring-my-mac.html</guid>
       <pubDate>Mon, 26 Oct 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1072,9 +1072,9 @@ Expect a blog post about it in the near future!
     
     <item>
       <title>Doom gccemacs on MacOS</title>
-      <link>https://luca.cambiaghi.me/posts/doom-emacs.html</link>
+      <link>https://lucacambiaghi.com/posts/doom-emacs.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/doom-emacs.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/doom-emacs.html</guid>
       <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1291,9 +1291,9 @@ I hope some early adopter can find this blog post and solve some of his installa
     
     <item>
       <title>React Native from Clojurescript</title>
-      <link>https://luca.cambiaghi.me/posts/react-native-cljs.html</link>
+      <link>https://lucacambiaghi.com/posts/react-native-cljs.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/react-native-cljs.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/react-native-cljs.html</guid>
       <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1531,9 +1531,9 @@ This is the screenshot of the result, it was a lot of fun:
     
     <item>
       <title>Literate learning</title>
-      <link>https://luca.cambiaghi.me/posts/think-stats.html</link>
+      <link>https://lucacambiaghi.com/posts/think-stats.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/think-stats.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/think-stats.html</guid>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1776,9 +1776,9 @@ I hope that somebody can learn from the approach that I shared and maybe can sug
     
     <item>
       <title>Adding comments to the blog</title>
-      <link>https://luca.cambiaghi.me/posts/blog-comments.html</link>
+      <link>https://lucacambiaghi.com/posts/blog-comments.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/blog-comments.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/blog-comments.html</guid>
       <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -1896,9 +1896,9 @@ In the process I learned something abut the philosophy of React and I understand
     
     <item>
       <title>Vega-lite in Clojure</title>
-      <link>https://luca.cambiaghi.me/posts/vega-lite-clj.html</link>
+      <link>https://lucacambiaghi.com/posts/vega-lite-clj.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/vega-lite-clj.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/vega-lite-clj.html</guid>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
@@ -2117,9 +2117,9 @@ When I am satisfied, I can just export to markdown and see the blog post reloadi
     
     <item>
       <title>New website!</title>
-      <link>https://luca.cambiaghi.me/posts/new-website.html</link>
+      <link>https://lucacambiaghi.com/posts/new-website.html</link>
       <author>Luca Cambiaghi</author>
-      <guid isPermaLink="false">https://luca.cambiaghi.me/posts/new-website.html</guid>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/new-website.html</guid>
       <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       <description>
         <![CDATA[
