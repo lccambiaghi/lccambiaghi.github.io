@@ -18,7 +18,7 @@
 	(use-package clojure-mode :ensure t)
 	(use-package nix-mode :ensure t)
 	;; set github URL
-	(setq weblorg-default-url "https://luca.cambiaghi.me")
+	(setq weblorg-default-url "https://lucacambiaghi.com")
 	)
 
 (defun suppress-indentation-message ()
@@ -49,7 +49,7 @@
 														 ;; ("static_path" . "$site/static")
 														 ("site_author" . "Luca Cambiaghi")
 														 ("site_name" . "Luca's blog")
-														 ("site_url" . "https://luca.cambiaghi.me")
+														 ("site_url" . "https://lucacambiaghi.com")
 														 ("site_email" . "luca.cambiaghi@me.com")
 														 ("project_description" . "Luca's blog")))
 
@@ -81,6 +81,13 @@
 	 :output "output/{{ slug }}.html"
 	 :url "/{{ slug }}.html")
 
+	;; (weblorg-route
+	;;  :name "personal"
+	;;  :input-pattern "pages/personal/*.org"
+	;;  :template "page.html"
+	;;  :output "output/{{ slug }}.html"
+	;;  :url "/{{ slug }}.html")
+
 	(weblorg-route
 	 :name "feed"
 	 :input-pattern "posts/*.org"
@@ -96,6 +103,7 @@
 	 :url "/static/{{ file }}")
 	)
 
+;; (setq debug-on-error t)
 (setup-site)
 (weblorg-export)
 

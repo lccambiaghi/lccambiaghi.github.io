@@ -9,7 +9,7 @@
 
 * Organize your life
 Org mode has so many useful features, in this year of Emacs I integrated the following in my life:
-- Literate emacs configuration (you can see the HTMl export of mine [[https://luca.cambiaghi.me/vanilla-emacs/readme.html][here]] )
+- Literate emacs configuration (you can see the HTMl export of mine [[https://lucacambiaghi.com/vanilla-emacs/readme.html][here]] )
 - Literate programming (explained in [[url_for:posts,slug=think-stats][this previous blog post]])
 - Publish a static blog (explained in [[url_for:posts,slug=weblorg][this previous blog post]])
 - Knowledge library
@@ -77,7 +77,7 @@ a quick access to weekly agenda and my next tasks.
 <img src="../static/img/dashboard-agenda.png" alt="Dashboard with agenda section" style="margin:auto; width:80%;" />
 #+END_EXPORT
 
-Here is my configuration for the package (you can read the up-to-date configuration [[https://luca.cambiaghi.me/vanilla-emacs/readme.html#h:2F4C0A6C-96BE-4818-B794-D1593C23FB00][here]]):
+Here is my configuration for the package (you can read the up-to-date configuration [[https://lucacambiaghi.com/vanilla-emacs/readme.html#h:2F4C0A6C-96BE-4818-B794-D1593C23FB00][here]]):
 #+BEGIN_SRC emacs-lisp
 (use-package dashboard
   :demand
@@ -159,7 +159,7 @@ There are a few useful features here:
 - Show weekly agenda, i.e. tasks that I have scheduled for the coming week.
 - Filter agenda items according to time of day and day of week. Today is Sunday so in the screenshot you don't see my work tasks.
 - Show "NEXT" unscheduled tasks. Think of these tasks as your backlog, the next tasks you should schedule.
-- BONUS: nice buttons that brings you to a website or restore the latest session (if you want to know more about this one, read [[https://luca.cambiaghi.me/vanilla-emacs/readme.html#h:6E4E5BD6-1930-4DCE-8E26-5ADAC2B9A152][here]]).
+- BONUS: nice buttons that brings you to a website or restore the latest session (if you want to know more about this one, read [[https://lucacambiaghi.com/vanilla-emacs/readme.html#h:6E4E5BD6-1930-4DCE-8E26-5ADAC2B9A152][here]]).
 
 The dashboard is the reminder to myself about my tasks.
 When I start up Emacs, I will find my tasks staring right at me.
