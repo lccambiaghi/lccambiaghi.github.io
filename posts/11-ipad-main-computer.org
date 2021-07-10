@@ -1,0 +1,267 @@
+#+TITLE: How I turned my iPad Pro into my main computer
+#+SUBTITLE: With a combination of cloud services, iOS apps and jailbreak tweaks
+#+DATE: <2021-07-10>
+#+AUTHOR: Luca Cambiaghi
+#+SLUG: ipad-main-computer
+#+OPTIONS: toc:nil num:nil
+#+OPTIONS: ^:nil
+#+FILETAGS: :ipad:gcp:jailbreak:
+
+* Introduction
+I am in between jobs.
+I had to return my Mac to my previous employer and I will get one from my next employer in a couple of months.
+This gave me an excuse to try different workflows.
+
+I think that in order to get creative, we must try different tools.
+
+So I bought a second-hand 12.9" iPad Pro. It is the 3rd generation (2018), so it has FaceID and no home button (nice full-screen layout).
+It has 4GB of RAM and a A12X 8-core CPU (4 low power cores and 4 normal cores). 
+It has an ARM64e architecture, the same as the praised M1 chips which recently came out.
+
+It has USB-C instead of lightning. This means I can just use my USB-C adapter and connect to my keyboard and monitor with HDMI.
+When I connected it for the first time and tried to use it "docked" it was the first *WOW* moment.
+
+Ok, what next? I came up with a bunch of challenging tasks, if the iPad could solve them all then I would admit it could be my main machine:
+1. ~emacs~ (org mode, magit, TRAMP, ...)
+2. Python development (jupyter notebooks, numpy, pandas, scikit-learn, statsmodels)
+3. Clojure development in Emacs (requires number 1)
+4. Blog writing in Emacs (requires number 1)
+5. Run a linux VM (docker, nix, ...)
+6. Version control
+
+Then some other "leisure" tasks, which would make it a pretty cool personal device:
+1. Cloud gaming (with PS4 joystick)
+2. Streaming files to Chromecast
+3. Taking digital persistent notes (with Apple Pencil 2)
+
+After about one month of experiments, I can say I succeeded in all of these tasks and that makes the iPad Pro a pretty damn versatile tool.
+To run ~emacs~ you will need your iPad to be jailbreakable, which at the moment of writing means being on iOS14.3 or lower.
+
+To do all the rest you only need Safari and iOS apps. Technology has gone that far!
+
+* Blink Shell
+The very first thing you should know about is Blink Shell.
+It is IMHO the best terminal app on the iOS App Store.
+Some of my favourite features are:
+- Support of iOS "windows", which means essentially ability to split full screen app in 2 or more "windows"
+- Support of second monitor, so one window is on the iPad and the other in the monitor
+- [[https://mosh.org][Mosh]] protocol, which is a more robust SSH with slow connections
+
+It is quite pricey if you purchase it from the store but you can also build your ~.ipa~ with XCode on your Mac and then install it on your iOS device for free through XCode. You can follow the tutorial [[https://github.com/blinksh/blink][on github]].
+
+You will need to turn your Apple ID in a Developer Apple ID, which you can do for free.
+Try to look at [[https://developer.apple.com/programs/][this Apple page]].
+With your Dev Apple ID you can sign up to 3 apps but you have to re-sign them every 7 days.
+There exist some tools like AltStore ([[https://altstore.io][link]]) which resign them automatically for you.
+
+If your device is jailbroken you can install a tweak called AppSync Unified (here a [[https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified][link]]).
+This tweak allows you to install any valid signed IPA and it will not expire after 7 days.
+You can use another tweak called Filza File Manager (here a [[http://cydia.saurik.com/package/com.tigisoftware.filza/][link]]), click on the ~.ipa~ you built and install it.
+You can send the ~.ipa~ from your Mac to your iPad with AirDrop for instance and from the Files app you can open with Filza (through the Share menu).
+
+Once you have Blink, you will want to configure it so for that you run the ~config~ command.
+From here you can add hosts to which you SSH/MOSH into.
+You can also generate keys through Blink.
+After setting them up you can just execute ~ssh host~...
+
+... which brings me to my next section.
+
+* Google Cloud Platform
+With the power of a good (free) terminal emulator and SSH, if you "live in your terminal" you might as well have reached happiness.
+Especially because I have discovered that for the "simple" needs (like my experiments) you don't need to pay crazy amounts of money for a VM.
+
+I signed up for the Google Cloud Platform trial period and I was awared 300$ of credit to try products.
+The most obvious product to try out in this setting is Google Compute Engine (GCE), where you can spin up a VM.
+It is very easy, you can configure CPU and RAM according to your requirements.
+Once you have your VM, you can just SSH from Blink and you are back to your comfort zone.
+
+There is another Google Cloud feature I discovered, Google Cloud Shell.
+When you are in the Google Cloud console, you can just click on the "terminal" icon on the top right.
+It will "provision your Google Cloud Shell machine" for you and once loaded you have a shell running in your browser, connected to a small VM (I believe 1.7GB RAM, 0.2 CPU and 5GB of storage, BUT STILL!).
+
+In the same bottom window you can tap/click on "Open Editor" and that will open a new window with the Theia web editor:
+
+#+BEGIN_EXPORT html
+<img src="../static/img/theia-screenshot.png" alt="Theia cloud editor" style="width: 100%;" />
+#+END_EXPORT
+
+Theia is quite similar to VSCode so now we are coding in our browser, for free.
+It comes pre-installed with Python, Go, Java and others.
+You can also install most UNIX tools.
+
+It comes with 5GB of storage if you save data in your ~$HOME~ directory.
+They even have a "Boost Mode" which will give you a better CPU and 3.4GB of RAM.
+This mode has reasonable monthly limits so you can enable it when you need it.
+
+* code-server
+If you find the Theia editor is a bit limited for your use case you can even run "proper VSCode" thanks to the [[https://github.com/cdr/code-server][code-server project]]. 
+Proper VSCode means it is the same UI and you can install (most) extensions.
+
+In the Google Cloud Shell you can install it with:
+#+begin_src shell
+curl -fsSL https://code-server.dev/install.sh | sh -s -- --method=standalone
+#+end_src
+
+Then we need to configure it. First we run:
+#+begin_src shell
+sudo chown USERNAME .local/share/code-server
+#+end_src
+
+And write to ~~/.config/code-server/config.yml~:
+#+begin_src yaml
+bind-addr: 127.0.0.1:5000
+auth: none
+cert: false
+#+end_src
+
+And finally you can start the server with ~code-server~.
+Then you just "click" on the address in the output of the command and that will open a new tab with VSCode running in your browser, for free.
+
+#+BEGIN_EXPORT html
+<img src="../static/img/code-server-screenshot.png" alt="code-server running on Cloud Shell" style="width: 100%;" />
+#+END_EXPORT
+
+You can install ~code-server~ on any GCE VM, you just need to create a firewall rule: Firewall -> New firewall rule -> 0.0.0.0/0 -> tcp, 5000, allow.
+You might need to change the command to ~code-server --host 0.0.0.0~.
+
+* iOS apps for local Python development
+Alright, cloud development is fun.
+What if we are without internet?
+What can we do anything with this device's resources?
+
+As mentioned in the Introduction, it has an 8-core CPU and 4GB of RAM.
+As it turns out, smart people have developed cool iOS apps which let you do Python development on device.
+
+This sounds obvious but it is actually quite hard.
+Since apps in iOS are sandboxed, they cannot access any command line tool so devs have to package a python interpreter AND associated modules in the app.
+If you want to use ~numpy~ and friends you will need to package a C compiler, if you want to use ~scipy~ a Fortran compiler as well.
+
+There are two projects I want to highlight.
+They are both open source on Github, which is amazing.
+
+** Jupyter Notebooks
+The first is Carnets ([[https://apps.apple.com/it/app/carnets-jupyter-with-scipy/id1559497253?l=en][App Store link]]), which is a fully functioning Jupyter Notebook frontend.
+It is packaged with all C and Fortran dependencies you need and it is completely free.
+Props to the amazing developer Nicholas Holzschuch.
+
+By the way, he is also the developer of another incredible app called a-Shell ([[https://apps.apple.com/it/app/a-shell/id1473805438?l=en][App Store link]]), which packages Python, ~vim~ (!), ~git~ (!!!) ~LaTeX~ (!!!!) and others.
+
+Another interesting Jupyter Notebook option (however here we go back to the "cloud" situation) is [[https://gradient.paperspace.com][Paperspace Gradient]], which gives you a nice browser environment and free GPU.
+Google Colab is a similat alternative.
+I like Carnets because it has the familiar Jupyter Notebook UI and keyboard shortcuts, so I am productive from minute 1.
+
+** Scripting and project
+The second app I want to recommend is called Pyto ([[https://apps.apple.com/it/app/pyto-python-3/id1436650069?l=en][App Store link]]) and it is a fully functioning IDE.
+You can navigate a Python project's codebase, execute scripts, DEBUG them!
+
+It also comes packaged with the data science dependencies you need and you can ~pip install~ pure Python packages (e.g. ~joblib~).
+
+Pyto has a 3 days trial after which you are prompted for an in-app purchase.
+I personally did not purchase it because I have access to a better IDE.
+Depending on your needs, you may want to purchase it.
+
+* Jailbreak tweaks and Procursus bootstrap
+We have come to the more advanced section of the article.
+I bought the iPad without expecting to jailbreak it.
+I was lucky and got it on iOS 14.2, for which a stable jailbreak had been released.
+
+I have been out of the JB scene for a while, my latest "serious" attempt at jailbreak was when I purchased my iPhone X. 
+I checked its serial number to be sure it came out with a jailbreakable iOS version.
+That was iOS 11.
+The most annoying part of the jailbreak is that some apps have JB detection and when I could not bypass them I just gave it up.
+
+Having it on the iPad made a lot of sense for this experiment, to see "what more it gives".
+For the uninitiated, JB allows you to install extensions (called tweaks) which can:
+- Modify/toggle iOS system features (e.g. enable App Library on iPadOS14 or enable SplitView for all apps)
+- Modify iOS apps (e.g. remove ads from YouTube)
+- Add new features (e.g. full access to filesystem and Darwin tooling)
+
+Tweak development is done in C++ with a tool called ~theos~ ([[https://iphonedev.wiki/index.php/Theos/Setup][tutorial to set it up]]).
+To develop tweaks you need to learn about iOS Reverse Engineering.
+Tweaks "hook" into iOS methods and extend/override them.
+
+You then compile tweaks into ~.deb~ files, which are distrbuted with ~APT~ repositories.
+Users install tweaks with package managers (which are ~dpkg~ frontends), such as the popular Cydia or the newer Sileo.
+
+I jailbroke with [[https://taurine.app/][Taurine]] and while getting up to speed with the JB scene I stumbled upon a community of very smart (and young!) developers with an amazing project: port the useful UNIX toolchain to the iOS universe.
+
+The project is called Procursus ([[https://github.com/ProcursusTeam/Procursus][github]]) and it is a collection of Makefiles which compile tools like ~git~, ~clang~, ~cmake~, ... into ~.deb~ files which can be installed on your iOS device.
+Amazing.
+
+You can install ~openSSH~ and SSH into ~localhost~ (with Blink for example).
+You can then run whatever CLI tool you installed with Procursus.
+Ported tooling is growing by the day and the community is super helpful.
+I requested Emacs and an amazing developer just compiled a ~.deb~ for me and shared it on Github.
+
+* Emacs on iPad
+So we come to the final section: Emacs on iPad.
+The very first challenging task I listed in the Introduction.
+
+I am currently writing my blog from my iPad, with ~emacs~ and ~org-mode~.
+That was challenge number 4 on my list.
+I just run ~emacs --script publish.el~ and preview the HTML files with Filza, the file manager that every iOS user deserves.
+
+The Procursus repo has ~openjdk~ and ~openjre~ so this morning I simply installed ~clojure~ following the install instructions.
+I could run it from ~org-mode~ with org-babel without setup.
+I am happy I am now starting to get a return on the investment of learning ~emacs~.
+I have achieved good portability and composability of my tools.
+
+Not everything is gold, though: one issue I have is that the packaged ~emacs~ is the terminal version (which I had never used before).
+There is some incompatibility with ~xterm~ so I only have 8 colors.
+I had to spend some time tweaking a theme, which made me realize I don't NEED so many colors.
+
+#+BEGIN_EXPORT html
+<img src="../static/img/emacs-on-ipad.png" alt="Theia cloud editor" style="width: 100%;" />
+#+END_EXPORT
+
+I also adapted my ~.emacs~ to behave differently if I am on iPadOS.
+This is useful because there are some modules of my configuration which I know I will not run.
+To see my configuration just click on the "emacs" link in the top right of this blog (obviously now the config is redacted, version controlled and rendered from my main computer: the iPad).
+
+* iOS advanced features
+My final section will be about some advanced features I discovered in iPadOS with time.
+I think mastering these is absolutely necessary if you want to be productive with this device.
+
+The first step is getting familiar with iPadOS multitasking.
+You start by running an app in full screen (e.g. Blink with an ~emacs~ instance running).
+You then invoke Spotlight (CMD+space) and write Safari.
+You then drag and drop the icon to the right.
+
+The first option is SplitView, by which the screen is vertically split in two "windows".
+The second option is SlideOver, where Safari takes a third of the screen and "overlays" the full screen app.
+You can then "swipe away" the SlideOver app to the right, continue working, "swipe it in" again from the right to check another website.
+
+You can open multiple apps in Slideover, let's say for example you also drag Mail to the SlideOver location.
+If you then drag from the bottom of the app, hold for a sec and release (the gesture to invoke multitasking) you have access to both apps in SlideOver.
+You can close the ones you don't need anymore.
+
+Sorry for not posting screenshots, there are already many great resources to learn iPadOS features.
+I recommend [[https://www.macstories.net/stories/beyond-the-tablet/7/][this MacStories article]] for example.
+
+To be frank, I hate that you have to drag and drop to control multitasking.
+iOS15 will improve this by providing more keyboard shortcuts so that you don't have to touch the screen at all.
+I am currently looking into a tweak called ~zxtouch~ ([[https://github.com/xuan32546/IOS13-SimulateTouch][here Github link]]) which can simulate touch events so I plan to record this touch interactions and play them with a keyboard key.
+
+I will close the section with a very hidden feature of iOS which is supposed to help control the iPad with the keyboard.
+This is called Full Keyboard Access and you can access it with Settings -> Accessibility -> Keyboard.
+When you enable it, you can navigate all iOS menus (e.g. Settings) with the keyboard.
+
+You navigate with arrows, tap with space.
+You have access to common gestures with the TAB prefix, for example TAB+A invokes the app switcher.
+My experience with FKA has been a bit lacking though, what I really need are the shortcuts for multitasking.
+Maybe some tweak developer can port the iOS15 keyboard shortcuts.
+
+* Conclusion
+Wow, it has been quite a long article, thank you for following to the end!
+In conclusion this iPad is an amazing device and it can do most if not all of what I need for personal projects.
+It can also do more things than what my Mac could not do.
+
+I can draw and take notes with Apple Pencil.
+I can play iOS games not available for macOS, as well as iOS apps which offer advantages over web apps (e.g. Netflix allowing offline downloads).
+
+This being said, I will get a Mac from my next employer and I will use it over the iPad every day.
+Working from an actual laptop is just more efficient, in particular multitasking and window tiling software (I use Amethyst).
+I would also hit the limit of 4GB of RAM all the time when doing serious python development.
+
+Nonetheless, I think I have demonstrated that an iPad is more than enough for personal projects.
+This "cloud" movement is exciting and I believe it is the future.
