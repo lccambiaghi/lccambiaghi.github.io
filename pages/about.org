@@ -1,6 +1,6 @@
 #+TITLE: About me
 #+SLUG: about
-#+DATE: <2020-05-28>
+#+DATE: <2021-07-10>
 #+AUTHOR: Luca Cambiaghi
 #+OPTIONS: toc:nil num:nil
 #+OPTIONS: ^:nil
@@ -22,8 +22,15 @@ You can contact me by email at
 #+HTML: <span style="cursor: pointer" onclick="this.textContent = ('luca.cambiaghi' + '@me' + String.fromCharCode(46) + 'com'); this.onclick = null; this.style.cursor='default'">(click.here.or.see.resume)</span>
 
 ** What I do
-I am currently working as Data Scientist in the Demand Forecasting team.
-My team is responsible for providing users with hundreds of thousand of time series forecast every day.
+I am a Data Scientist, currently in between jobs.
+My last employer was Maersk, a big Danish company which contributes to 30% of global trade with their container vessels.
+I was working in the Demand Forecasting team, responsible for providing business users with hundreds of thousand of time series forecast every day.
+
+We modelled customer demand from different angles, for example the number of empty containers imported and exported at each container pool.
+Another example is how many containers would be ready to be loaded at each distinct terminal.
+
+My next employer will be Boston Consulting Group.
+In BCG Gamma, we solve the most challenging and impactful Data Science cases in a number of different industries.
 
 I have experience in developing real world, scalable machine learning pipelines.
 I am skilled in big data ingestion and cleaning, feature engineering, model development, deployment and monitoring.
