@@ -177,11 +177,11 @@ Here is my configuration for the package (you can read the up-to-date configurat
   (<span class="org-keyword">setq</span> dashboard-set-footer nil)
   (<span class="org-keyword">setq</span> dashboard-set-navigator t)
   (<span class="org-keyword">defun</span> <span class="org-function-name">lc/is-after-17-or-weekends?</span> ()
-    (<span class="org-keyword">or</span> (-&gt; (nth 3 (split-string (current-time-string) <span class="org-string">" "</span>)) <span class="org-comment-delimiter">; </span><span class="org-comment">time of the day e.g. 18</span>
+    (<span class="org-keyword">or</span> (<span class="org-keyword">-&gt;</span> (nth 3 (split-string (current-time-string) <span class="org-string">" "</span>)) <span class="org-comment-delimiter">; </span><span class="org-comment">time of the day e.g. 18</span>
             (substring 0 2)
             (string-to-number)
             (&gt; 16))
-        (-&gt; (substring (current-time-string) 0 3) <span class="org-comment-delimiter">; </span><span class="org-comment">day of the week e.g. Fri</span>
+        (<span class="org-keyword">-&gt;</span> (substring (current-time-string) 0 3) <span class="org-comment-delimiter">; </span><span class="org-comment">day of the week e.g. Fri</span>
             (member  '(<span class="org-string">"Sat"</span> <span class="org-string">"Sun"</span>)))))
   <span class="org-comment-delimiter">;; </span><span class="org-comment">exclude work items after 17 and on weekends</span>
   (run-at-time <span class="org-string">"00:00"</span> (* 60 60 24)
