@@ -17,8 +17,8 @@
     <link>https://lucacambiaghi.com</link>
     <description><![CDATA[]]></description>
     <language>en</language>
-    <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
-    <lastBuildDate>Sat, 10 Jul 2021 14:00:10 +0000</lastBuildDate>
+    <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
+    <lastBuildDate>Wed, 21 Jul 2021 12:53:18 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -27,6 +27,234 @@
       <link>https://lucacambiaghi.com</link>
     </image>
 
+    
+    <item>
+      <title>Discovering org-roam</title>
+      <link>https://lucacambiaghi.com/posts/discovering-org-roam.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/discovering-org-roam.html</guid>
+      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>And good standards for personal wikis / digital gardens</strong></p>
+          
+          
+<div class="outline-2">
+<h2 id="the-problem-of-processing-information-efficiently">The problem of processing information efficiently</h2>
+<div class="outline-text-2">
+<p>
+I read a lot of interesting stuff every day.
+New software I want to try, articles I want to read, material that I want to save for <b>future reference</b>.
+</p>
+
+<p>
+I am constantly processing information and trying to internalize as much as possible.
+I think it is a very critical problem in this age and of course smart software and techniques have been invented to tackle it.
+</p>
+
+<p>
+I have always heard very good things about <a href="https://roamresearch.com">Roam Research</a> and its <code>emacs</code> package <a href="https://github.com/org-roam/org-roam">org-roam</a> .
+Recently, <code>org-roam</code> v2 has been released and I finally had some time to play with it to see what the hype was about.
+After few hours with it I already know I discovered an invaluable tool that will accompany me for life.
+</p>
+
+<p>
+In this blog post I will try to explain why that is and how I use it.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="roam-and-zettelstalken">Roam and Zettelstalken</h2>
+<div class="outline-text-2">
+<p>
+The Roam software centers around the <a href="https://en.m.wikipedia.org/wiki/Zettelkasten">Zettelkasten method</a>.
+To be honest, I have read the definition multiple times without really understanding the magic behind it.
+Anyway, here it is:
+</p>
+
+<blockquote>
+<p>
+A zettelkasten consists of many individual notes with ideas and other short pieces of information that are taken down as they occur or are acquired. The notes are numbered hierarchically, so that new notes may be inserted at the appropriate place, and contain metadata to allow the note-taker to associate notes with each other. For example, notes may contain tags that describe key aspects of the note, and they may reference other notes.
+</p>
+
+<p>
+&#x2026;
+</p>
+
+<p>
+The method not only allows a researcher to store and retrieve information related to their research, but also intends to enhance creativity. Cross-referencing notes through tags allows the researcher to perceive connections and relationships between individual items of information that may not be apparent in isolation.
+</p>
+</blockquote>
+
+<p>
+Paraphrasing with my own words, the method consists of 2 actions:
+</p>
+<ul class="org-ul">
+<li>Capturing <b>short</b> notes with good <b>metadata</b>, which results in <b>connected</b> notes</li>
+<li>Regularly inspecting notes to find not obvious connections/topics/clusters of information</li>
+</ul>
+
+<p>
+I think the best way to understand what these words mean is by showing a couple of very good example implementations of this method:
+</p>
+<ul class="org-ul">
+<li><a href="https://notes.andymatuschak.org/About_these_notes">Andy's notes</a></li>
+<li><a href="https://hugocisneros.com/notes/">Hugo's notes</a></li>
+</ul>
+
+<p>
+Websites like these are sometimes affectionately called "digital gardens".
+Often well curated, they are a public exhibition of a person's thoughts and interests.
+It is an amazing invention.
+</p>
+
+<p>
+Andy has very interesting notes about effective note taking and has a beatiful website to navigate and consult his network of thoughts.
+Among them, one note in particulare stroke me: <a href="https://notes.andymatuschak.org/About_these_notes?%20&amp;stackedNotes=z8QSUyNdq3CMK79KSnCW7QTR1MPHEFi4Q2LY8">Collecting material feels more useful than it actually is</a> .
+This is just one of the many mind-blowing notes Andy has <b>curated</b> over the years.
+</p>
+
+<p>
+I am personally guilty of accumulating interesting browser tabs, until I reach hundreds.
+Then one day I set aside 2 hours to "capture" them in a <b>single</b> file with tags.
+The tabs are gone, archived in a text file&#x2026; which I never open again.
+The knowledge is lost, stale.
+</p>
+
+<p>
+He argues that in order to internalize something we need to re-elaborate it, curate it.
+We should also be able to <b>let go</b> some of these resources because they are not so precious.
+Let's add action number 3 to the Zettelkasten method: improve and enrich your existing notes.
+</p>
+
+<p>
+Hugo's website has an amazing visualization of his connected notes.
+This is a really cool way to perform action number 2 I have outlined above.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="personal-wikis-should-not-have-a-hierarchy">Personal wikis should not have a hierarchy</h2>
+<div class="outline-text-2">
+<p>
+I hope I managed to give a glimpse of what can be achieved with this methodology.
+I talked about my ineffective method of "capturing" my browser tabs.
+The second element of my method is my "org" folder, which is what I consider my personal wiki.
+</p>
+
+<p>
+In this folder I have subfolders such as "personal", "work".
+Maybe under work I will have subfolders such as "forecasting" or "spark".
+This gives us the opportunity to discuss another important argument of the Zettelkasten method: 
+notes should not have an hierarchy but structure should emerge spontaneously.
+Andy has a <a href="https://notes.andymatuschak.org/About_these_notes?stackedNotes=z4SDCZQeRo4xFEQ8H4qrSqd68ucpgE6LU155C&amp;stackedNotes=z29hLZHiVt7W2uss2uMpSZquAX5T6vaeSF6Cy">beautifully written note</a> about this concept.
+</p>
+
+<p>
+When I want to add something to my wiki, I don't want to worry about where to place the information (is it personal? is it work? is it machine learning or reinforcement learning?).
+I capture the blog post, notes about a book, youtube video, podcast and I add metadata.
+Then, smart software automates the process of creating a network of notes and visualizing it.
+</p>
+
+<p>
+I just finished converting my structured wiki into an unstructured one and it works much better.
+Let's make an example.
+I had an org file called <code>workflow.org</code>, where I had collected information about different software I use.
+One heading for <code>emacs</code>, one heading for <code>python</code>, one heading for <code>docker</code>&#x2026;
+One subheading for <code>emacs</code> is <code>org-mode</code>, with all the keybindings and useful functions.
+</p>
+
+<p>
+Each heading (and potentially subheading) has been turned into a node (take a look at Hugo's Notes graph).
+It makes sense to have an <code>emacs</code> node, to which other nodes can refer to.
+For example <code>org-mode</code> is a node referring to it.
+The package <code>org-roam</code> I am about to describe is another node linking to both <code>emacs</code> and <code>org</code>.
+</p>
+
+<p>
+Hierarchy is teared apart and structure emerges spontaneously.
+Whenever I want to add a new note about <code>org</code>, I will just add a new node and refer to the <code>org</code> node, I don't need to care about which folder or file to write it in.
+I will also connect it with more concepts, maybe with <code>evil-mode</code>.
+Retrieving, inspecting and adding information is much smoother, it really is a knowledge library with a very smart librarian.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="org-roam">org-roam</h2>
+<div class="outline-text-2">
+<p>
+I am extremly grateful to the author of <code>org-roam</code> for creating an interface to Roam that is accessible from <code>emacs</code>.
+<a href="https://www.jethro.dev">Here</a> you can find his website (and blog and digital garden).
+</p>
+
+<p>
+How does it work in practice?
+</p>
+
+<p>
+Let's say I am reading about FIRE and I want to capture <a href="https://www.mrmoneymustache.com/2012/05/29/how-much-do-i-need-for-retirement/">this article</a> about the 4% rule.
+First, I will call <code>org-roam-node-find</code> (<code>SPC n f</code>) and type the title "4% rule".
+Since the node does not exist, a new one will be created.
+</p>
+
+<p>
+Then, I will add a reference with <code>org-roam-add-ref</code> (<code>SPC n r</code>) and add the URL of the article.
+Finally, I will write my own interpretation of the article, in which I will link to other nodes in my network with <code>org-roam-node-insert</code> (<code>SPC n i</code>), among which the "Financial Independence, Retire Early" node.
+</p>
+
+<p>
+This is the resulting note/node:
+</p>
+
+<img src="../static/img/roam-4-rule.png" alt="Example note" style="width: 100%;" />
+
+<p>
+I can now <code>org-roam-node-find</code> and go to the "Financial Independence, Retire Early" node.
+I then <code>org-roam-alias-add</code> to add the "FIRE" alias to the node so that it is easier to reference it.
+Now nodes can reference to it also by using <code>+filetags: FIRE</code> (otherwise whitespace becomes a problem).
+</p>
+
+<p>
+Finally, we can use <code>org-roam-buffer-toggle</code> (<code>SPC n b</code>) to reveal the <code>org-roam</code> buffer which shows us the backlinks, i.e. the nodes that reference the "FIRE" node.
+In the screenshot below we can see 3 backlinks, which we can navigate to in an instant.
+</p>
+
+<img src="../static/img/roam-backlinks.png" alt="Example backlinks" style="width: 100%;" />
+
+<p>
+It is an amazing system, after few captures I felt right at home with a new set of standards.
+The community is developing <a href="https://www.reddit.com/r/emacs/comments/onyzi8/orgroamserver_replacement_orgroamui_teaser/">a new tool</a> to visualize the connected notes, I am looking forward to it.
+</p>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="conclusion">Conclusion</h2>
+<div class="outline-text-2">
+<p>
+In conclusion, I am very glad I spent some time trying to understand Roam and its ecosystem.
+It's only been a day so I am sure that with the time I will improve my workflow and discover mistakes and new things.
+It is however impressive to see how much <code>org-roam</code> empowers you from day one.
+</p>
+
+<p>
+I hope you enjoyed this blog post and please let me know in the comments if something is not clear or plain wrong.
+</p>
+
+<p>
+For the attentive reader which read <a href="https://lucacambiaghi.com/posts/ipad-main-computer.html">my previous blog post</a>, yes, I am using <code>org-roam</code> from my main computer, i.e. my iPad Pro.
+It works like magic!
+The only "issue" is that I can't use the built-in <code>org-roam-graph</code> because I am missing the <code>graphviz</code> dependency (a kind Procursus developer is already <a href="https://github.com/ProcursusTeam/Procursus/issues/913">trying to help</a>).
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
     
     <item>
       <title>How I turned my iPad Pro into my main computer</title>
