@@ -6,19 +6,6 @@ sudo apachectl start
 #+END_SRC
 * Org -> HTML
 #+BEGIN_SRC sh
-make build
+make setup
+make
 #+END_SRC
-* Tailwind CSS
-** Initial setup
-#+begin_src shell
-npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
-npx tailwindcss init
-npx tailwindcss-cli@latest build -o ./theme/static/tailwind.css
-#+end_src
-
-** Compiling for production
-In production:
-#+begin_src shell
-NODE_ENV=production npx tailwindcss-cli@latest build -o ./theme/static/tailwind.css
-#+end_src
-
