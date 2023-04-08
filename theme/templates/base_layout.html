@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="{{ url_for("static", file="style.css") }}" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <script async src="https://talk.hyvor.com/embed/embed.js" type="module"></script>
-    <script type=text/javascript src="{{ url_for("static", file="/js/appearance.js") }}" integrity="sha512-utqzFskoelpCqEPk60XaZbs9GUpaD1+ko+UWFg5n3wuMZfTxmo4UZDbinVg2mebLQda76Z4F4duqh3djutn44g=="></script>
-    <script defer type=text/javascript id=script-bundle src="{{ url_for("static", file="/js/main.js") }}" integrity="sha512-19lS+7aViez5OQy5upjQjglTTxy+CqKFEy7QoqFN5RhaGExbBYPxHRIgR5n1/K7GMmU2Qh1RPQHAIElGOROKsA==" data-copy=Copy data-copied=Copied></script>
+    <script type=text/javascript src="{{ url_for("static", file="/js/appearance.js") }}"></script>
+    <script defer type=text/javascript id=script-bundle src="{{ url_for("static", file="/js/main.js") }}" data-copy=Copy data-copied=Copied></script>
     {% endblock %}
   </head>
   <body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl">
