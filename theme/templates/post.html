@@ -1,26 +1,31 @@
 {% extends "base_layout.html" %}
 {% block main %}
 <article class="post">
-  <h1 class="post__title">
+  <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
     {{ post.title }}
   </h1>
-  <section class="post__meta">
-    {{ post.date|strftime("%b %d, %Y") }} {{ post.filetags }}
+  <div class="mt-8 mb-8 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+    <div class="flex flex-row flex-wrap items-center">
+      <time> {{ post.date|strftime("%b %d, %Y") }}
+      </time>
+      <span class="px-2 text-primary-500">&#183;</span>
+      <span title="tags">{{ post.filetags }}
+      </span>
+    </div>
+  </div>
+  <section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert">
+    <div class="min-w-0 min-h-0 max-w-prose">
+      {{ post.html|safe }}
+    </div>
   </section>
   <section>
-    {{ post.html|safe }}
+    <div id="hyvor-talk-view"></div>
+    <hyvor-talk-comments website-id="793" page-id="{{ post.slug }}"></hyvor-talk-comments>
   </section>
-  <section>
-		<div id="hyvor-talk-view"></div>
-		<script type="text/javascript">
-			var HYVOR_TALK_WEBSITE = 793; // DO NOT CHANGE THIS
-			var HYVOR_TALK_CONFIG = {
-					url: false,
-					id: "{{ post.slug }}"
-			};
-		</script>
-		<script async type="text/javascript" src="//talk.hyvor.com/web-api/embed"></script>
-  </section>
+
+  <!-- <div class="absolute top-[110vh] ltr:right-0 rtl:left-0 w-12 pointer-events-none bottom-[-5.5rem]"> -->
+  <!--   <a href="#the-top" class="w-12 h-12 sticky pointer-events-auto top-[calc(100vh-5rem)] bg-neutral/50 dark:bg-neutral-800/50 backdrop-blur rounded-full text-xl flex items-center justify-center text-neutral-700 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400" aria-label="Scroll to top" title="Scroll to top">↑</a> -->
+  <!-- </div> -->
+
 </article>
 {% endblock %}
-

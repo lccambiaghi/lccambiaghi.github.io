@@ -5,6 +5,7 @@
 #+OPTIONS: toc:nil num:nil
 #+OPTIONS: ^:nil
 
+** Who I am
 My name is Luca, I am a Computer Scientist.
 I grew up in northern Italy, orbiting around Milan.
 In 2016 I moved to Copenhagen to achieve my MSc in Computer Science.

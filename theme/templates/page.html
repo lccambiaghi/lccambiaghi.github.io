@@ -2,10 +2,10 @@
 
 {% block main %}
 <article class="page">
-  <h1 class="page__title">
+  <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
     {{ post.title }}
   </h1>
-  <section>
+  <section class="prose dark:prose-invert">
     {{ post.html|safe }}
   </section>
 </article>
