@@ -38,6 +38,28 @@
 
 (setq elpa-base-dir "/Users/cambiaghiluca/.config/crafted-emacs/elpa/")
 
+(defun override-weblorg-export ()
+  (defun weblorg--parse-org (input-data &optional input-path)
+    (let (html keywords)
+      (advice-add
+       #'org-html-template :override
+       (lambda(contents _i) (setq html contents)))
+      (advice-add
+       #'org-html-keyword :before
+       (lambda(keyword _c _i)
+         (weblorg--prepend
+          keywords
+          (weblorg--parse-org-keyword keyword))))
+      (with-temp-buffer
+        (insert input-data)
+        (if input-path (set-visited-file-name input-path t t))
+        (org-html-export-as-html))
+      (ad-unadvise 'org-html-template)
+      (ad-unadvise 'org-html-keyword)
+      (ad-unadvise 'org-element-property)
+      (weblorg--prepend keywords (cons "html" html))
+      keywords)))
+
 (defun setup-deps-local ()
   (require 'subr-x)
   (thread-first
@@ -63,8 +85,9 @@
   (thread-first
     "nix-mode" (return-subdir-path elpa-base-dir) (concat "/nix-mode.el" ) (load))
 
-  (setq weblorg-default-url "http://localhost")     ;; "http://localhost:8000"
+  (setq weblorg-default-url "http://localhost")
   (suppress-indentation-message)
+  (override-weblorg-export)
   )
 
 (defun setup-site ()
@@ -130,7 +153,6 @@
    :url "/static/{{ file }}")
   )
 
-;; (setq debug-on-error t)
 (setup-site)
 
 (require 'advice)
