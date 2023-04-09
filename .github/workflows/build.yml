@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         emacs_version:
-          - 27.1
+          - 29
     steps:
       - uses: actions/checkout@v2
       - name: Set env
