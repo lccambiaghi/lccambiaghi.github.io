@@ -40,7 +40,7 @@
     </li>
     <span class="px-2 text-primary-500">&#183;</span>
     <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="http://lucacambiaghi.com/crafted-emacs-config/readme.html">emacs</a>
+      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=href="https://lucacambiaghi.com/emacs.html">emacs</a>
     </li>
     <span class="px-2 text-primary-500">&#183;</span>
     <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
@@ -64,147 +64,14 @@
     Luca&#39;s emacs configuration
   </h1>
   <section class="prose dark:prose-invert">
-    <div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#about-this-config">1. About this config</a>
-<ul>
-<li><a href="#history">1.1. History</a></li>
-<li><a href="#structure">1.2. Structure</a></li>
-</ul>
-</li>
-<li><a href="#emacs-core-settings">2. Emacs core settings</a>
-<ul>
-<li><a href="#use-package">2.1. use-package</a></li>
-<li><a href="#user-variables">2.2. User variables</a></li>
-<li><a href="#helper-for-tangling">2.3. Helper for tangling</a></li>
-<li><a href="#fix-helpful">2.4. Fix helpful</a></li>
-<li><a href="#disable-electric-indent-mode">2.5. Disable electric-indent-mode</a></li>
-<li><a href="#enlarge-window">2.6. Enlarge window</a></li>
-<li><a href="#web-browser-in-emacs">2.7. Web browser in emacs</a></li>
-<li><a href="#search-code-on-github">2.8. Search code on github</a></li>
-<li><a href="#search-on-google">2.9. Search on google</a></li>
-<li><a href="#no-littering">2.10. no-littering</a></li>
-<li><a href="#crafted-modules">2.11. Crafted Modules</a></li>
-<li><a href="#popup-management">2.12. Popup management</a></li>
-<li><a href="#start-server">2.13. Start server</a></li>
-<li><a href="#don-t-compile-jupyter">2.14. Don't compile jupyter</a></li>
-<li><a href="#add-vc-keyword-to-use-package">2.15. add :vc keyword to use-package</a></li>
-</ul>
-</li>
-<li><a href="#user-interface">3. User interface</a>
-<ul>
-<li><a href="#maximize-frame-on-startup">3.1. Maximize frame on startup</a></li>
-<li><a href="#modus-themes">3.2. Modus themes</a></li>
-<li><a href="#add-frame-borders">3.3. Add frame borders</a></li>
-<li><a href="#inhibit-startup-screen">3.4. Inhibit startup screen</a></li>
-<li><a href="#all-the-icons-completion">3.5. all-the-icons completion</a></li>
-<li><a href="#doom-modeline">3.6. Doom modeline</a></li>
-<li><a href="#highlight-todo">3.7. highlight todo</a></li>
-<li><a href="#kind-icon">3.8. kind icon</a></li>
-<li><a href="#centered-cursor-mode">3.9. centered cursor mode</a></li>
-</ul>
-</li>
-<li><a href="#evil">4. Evil</a>
-<ul>
-<li><a href="#evil-mode">4.1. evil mode</a></li>
-<li><a href="#eval-operator">4.2. eval operator</a></li>
-<li><a href="#evil-org-mode-org-text-objects">4.3. evil-org-mode, org text objects</a></li>
-<li><a href="#evil-nerd-commenter">4.4. evil nerd commenter</a></li>
-<li><a href="#evil-surround">4.5. evil surround</a></li>
-<li><a href="#evil-goggles">4.6. evil goggles</a></li>
-<li><a href="#evil-cleverparens-outer-form-text-object">4.7. evil cleverparens, outer form text object</a></li>
-<li><a href="#evil-buffer-text-object">4.8. evil buffer text object</a></li>
-<li><a href="#evil-iedit-state">4.9. evil-iedit-state</a></li>
-<li><a href="#evil-snipe">4.10. evil-snipe</a></li>
-</ul>
-</li>
-<li><a href="#gpt-interface">5. GPT interface</a>
-<ul>
-<li><a href="#notes">5.1. Notes</a></li>
-<li><a href="#complete-region-buffer-with-gpt">5.2. Complete region/buffer with gpt</a></li>
-<li><a href="#search-with-alpaca">5.3. Search with alpaca</a></li>
-<li><a href="#chatgpt-shell">5.4. chatgpt-shell</a></li>
-<li><a href="#copilot">5.5. copilot</a></li>
-</ul>
-</li>
-<li><a href="#git">6. Git</a>
-<ul>
-<li><a href="#magit">6.1. Magit</a></li>
-<li><a href="#git-time-machine">6.2. git time machine</a></li>
-<li><a href="#diff-highlight">6.3. diff highlight</a></li>
-<li><a href="#smerge-hydra">6.4. smerge-hydra</a></li>
-</ul>
-</li>
-<li><a href="#org">7. Org</a>
-<ul>
-<li><a href="#org-mode">7.1. Org mode</a></li>
-<li><a href="#use-org-id-in-links">7.2. use org-id in links</a></li>
-<li><a href="#org-agenda-and-capture">7.3. org agenda and capture</a></li>
-<li><a href="#org-babel">7.4. Org babel</a></li>
-<li><a href="#org-modern">7.5. org modern</a></li>
-<li><a href="#org-export-config-to-html">7.6. <span class="todo TODO">TODO</span> org export config to HTML</a></li>
-</ul>
-</li>
-<li><a href="#other-packages">8. Other packages</a>
-<ul>
-<li><a href="#consult">8.1. consult</a></li>
-<li><a href="#consult-notes">8.2. consult-notes</a></li>
-<li><a href="#corfu">8.3. corfu</a></li>
-<li><a href="#denote">8.4. denote</a></li>
-<li><a href="#denote-menu">8.5. denote menu</a></li>
-<li><a href="#dired-and-extensions">8.6. dired and extensions</a></li>
-<li><a href="#embark">8.7. embark</a></li>
-<li><a href="#eros">8.8. eros</a></li>
-<li><a href="#flymake">8.9. flymake</a></li>
-<li><a href="#hydra-and-windows-hydra">8.10. hydra and windows-hydra</a></li>
-<li><a href="#persistent-scratch">8.11. persistent scratch</a></li>
-<li><a href="#project">8.12. project</a></li>
-<li><a href="#rainbow-parentheses">8.13. Rainbow parentheses</a></li>
-<li><a href="#tempel">8.14. tempel</a></li>
-<li><a href="#transpose-frame">8.15. Transpose frame</a></li>
-<li><a href="#tabspaces">8.16. tabspaces</a></li>
-<li><a href="#tree-sitter">8.17. tree-sitter</a></li>
-<li><a href="#treemacs">8.18. treemacs</a></li>
-<li><a href="#vertico">8.19. vertico</a></li>
-<li><a href="#vterm-and-vterm-toggle">8.20. vterm and vterm-toggle</a></li>
-<li><a href="#xwidget-web-browser-enhancements">8.21. xwidget web browser enhancements</a></li>
-</ul>
-</li>
-<li><a href="#programming-languages">9. Programming languages</a>
-<ul>
-<li><a href="#lsp-mode">9.1. lsp-mode</a></li>
-<li><a href="#lsp-ui">9.2. lsp-ui</a></li>
-<li><a href="#clojure">9.3. clojure</a></li>
-<li><a href="#nix">9.4. Nix</a></li>
-<li><a href="#python">9.5. Python</a>
-<ul>
-<li><a href="#python-mode">9.5.1. python-mode</a></li>
-<li><a href="#csv-mode">9.5.2. csv-mode</a></li>
-<li><a href="#direnv">9.5.3. direnv</a></li>
-<li><a href="#lsp-pyright">9.5.4. lsp-pyright</a></li>
-<li><a href="#dap-mode">9.5.5. dap-mode</a></li>
-<li><a href="#flymake-ruff">9.5.6. flymake-ruff</a></li>
-<li><a href="#jupyter">9.5.7. jupyter</a></li>
-<li><a href="#org-jupyter-mode">9.5.8. Org jupyter mode</a></li>
-<li><a href="#scimax-jupyter">9.5.9. scimax-jupyter</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#global-keybindings">10. Global keybindings</a></li>
-</ul>
-</div>
-</div>
-
+    
 <div id="outline-container-about-this-config" class="outline-2">
-<h2 id="about-this-config"><span class="section-number-2">1.</span> About this config</h2>
+<h2 id="about-this-config">About this config</h2>
 <div class="outline-text-2" id="text-about-this-config">
 </div>
 <div id="outline-container-history" class="outline-3">
-<h3 id="history"><span class="section-number-3">1.1.</span> History</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="history">History</h3>
+<div class="outline-text-3">
 <p>
 After using <a href="https://github.com/doomemacs/doomemacs">doom-emacs</a> for the whole of 2020, in early 2021 I wrote
 <a href="https://github.com/lccambiaghi/vanilla-emacs">my own config from scratch</a>. Over 2 years I accumulated snippets and
@@ -233,8 +100,8 @@ I really need <code>dap-mode</code>.</li>
 </div>
 
 <div id="outline-container-structure" class="outline-3">
-<h3 id="structure"><span class="section-number-3">1.2.</span> Structure</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="structure">Structure</h3>
+<div class="outline-text-3">
 <p>
 Sections:
 </p>
@@ -270,7 +137,7 @@ means I don't need any modules.
 </p>
 
 <p>
-The only exception could the <a href="#orgc9bd1d3">Programming languages</a> section,
+The only exception could the <a href="#org3423275">Programming languages</a> section,
 where maybe I will only rarely need to use the <code>R</code> packages or the
 <code>clojure</code> packages. If you think about it, since all packages are
 deferred, they will only be loaded when needed. This means that the
@@ -282,12 +149,12 @@ installing the packages on the first setup.
 </div>
 
 <div id="outline-container-emacs-core-settings" class="outline-2">
-<h2 id="emacs-core-settings"><span class="section-number-2">2.</span> Emacs core settings</h2>
+<h2 id="emacs-core-settings">Emacs core settings</h2>
 <div class="outline-text-2" id="text-emacs-core-settings">
 </div>
 <div id="outline-container-use-package" class="outline-3">
-<h3 id="use-package"><span class="section-number-3">2.1.</span> use-package</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="use-package">use-package</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -301,8 +168,8 @@ installing the packages on the first setup.
 </div>
 
 <div id="outline-container-user-variables" class="outline-3">
-<h3 id="user-variables"><span class="section-number-3">2.2.</span> User variables</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="user-variables">User variables</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -316,8 +183,8 @@ installing the packages on the first setup.
 </div>
 
 <div id="outline-container-helper-for-tangling" class="outline-3">
-<h3 id="helper-for-tangling"><span class="section-number-3">2.3.</span> Helper for tangling</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="helper-for-tangling">Helper for tangling</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:hook</span>
@@ -336,8 +203,8 @@ installing the packages on the first setup.
 </div>
 
 <div id="outline-container-fix-helpful" class="outline-3">
-<h3 id="fix-helpful"><span class="section-number-3">2.4.</span> Fix helpful</h3>
-<div class="outline-text-3" id="text-2-4">
+<h3 id="fix-helpful">Fix helpful</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">helpful</span>
   <span class="org-builtin">:config</span>
@@ -356,8 +223,8 @@ installing the packages on the first setup.
 </div>
 
 <div id="outline-container-disable-electric-indent-mode" class="outline-3">
-<h3 id="disable-electric-indent-mode"><span class="section-number-3">2.5.</span> Disable electric-indent-mode</h3>
-<div class="outline-text-3" id="text-2-5">
+<h3 id="disable-electric-indent-mode">Disable electric-indent-mode</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -368,8 +235,8 @@ installing the packages on the first setup.
 </div>
 
 <div id="outline-container-enlarge-window" class="outline-3">
-<h3 id="enlarge-window"><span class="section-number-3">2.6.</span> Enlarge window</h3>
-<div class="outline-text-3" id="text-2-6">
+<h3 id="enlarge-window">Enlarge window</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -418,8 +285,8 @@ installing the packages on the first setup.
 </div>
 
 <div id="outline-container-web-browser-in-emacs" class="outline-3">
-<h3 id="web-browser-in-emacs"><span class="section-number-3">2.7.</span> Web browser in emacs</h3>
-<div class="outline-text-3" id="text-2-7">
+<h3 id="web-browser-in-emacs">Web browser in emacs</h3>
+<div class="outline-text-3">
 <p>
 Note:
 </p>
@@ -463,8 +330,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-search-code-on-github" class="outline-3">
-<h3 id="search-code-on-github"><span class="section-number-3">2.8.</span> Search code on github</h3>
-<div class="outline-text-3" id="text-2-8">
+<h3 id="search-code-on-github">Search code on github</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -489,8 +356,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-search-on-google" class="outline-3">
-<h3 id="search-on-google"><span class="section-number-3">2.9.</span> Search on google</h3>
-<div class="outline-text-3" id="text-2-9">
+<h3 id="search-on-google">Search on google</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -515,8 +382,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-no-littering" class="outline-3">
-<h3 id="no-littering"><span class="section-number-3">2.10.</span> no-littering</h3>
-<div class="outline-text-3" id="text-2-10">
+<h3 id="no-littering">no-littering</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">no-littering</span>
   <span class="org-builtin">:init</span>
@@ -530,8 +397,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-crafted-modules" class="outline-3">
-<h3 id="crafted-modules"><span class="section-number-3">2.11.</span> Crafted Modules</h3>
-<div class="outline-text-3" id="text-2-11">
+<h3 id="crafted-modules">Crafted Modules</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">crafted-defaults</span>)    <span class="org-comment-delimiter">; </span><span class="org-comment">Sensible default settings for Emacs</span>
 <span class="org-comment-delimiter">;; </span><span class="org-comment">(require 'crafted-updates)     ; Tools to upgrade Crafted Emacs</span>
@@ -556,8 +423,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-popup-management" class="outline-3">
-<h3 id="popup-management"><span class="section-number-3">2.12.</span> Popup management</h3>
-<div class="outline-text-3" id="text-2-12">
+<h3 id="popup-management">Popup management</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -573,8 +440,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-start-server" class="outline-3">
-<h3 id="start-server"><span class="section-number-3">2.13.</span> Start server</h3>
-<div class="outline-text-3" id="text-2-13">
+<h3 id="start-server">Start server</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -586,8 +453,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-don-t-compile-jupyter" class="outline-3">
-<h3 id="don-t-compile-jupyter"><span class="section-number-3">2.14.</span> Don't compile jupyter</h3>
-<div class="outline-text-3" id="text-2-14">
+<h3 id="don-t-compile-jupyter">Don't compile jupyter</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -599,8 +466,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-add-vc-keyword-to-use-package" class="outline-3">
-<h3 id="add-vc-keyword-to-use-package"><span class="section-number-3">2.15.</span> add :vc keyword to use-package</h3>
-<div class="outline-text-3" id="text-2-15">
+<h3 id="add-vc-keyword-to-use-package">add :vc keyword to use-package</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -614,12 +481,12 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-user-interface" class="outline-2">
-<h2 id="user-interface"><span class="section-number-2">3.</span> User interface</h2>
+<h2 id="user-interface">User interface</h2>
 <div class="outline-text-2" id="text-user-interface">
 </div>
 <div id="outline-container-maximize-frame-on-startup" class="outline-3">
-<h3 id="maximize-frame-on-startup"><span class="section-number-3">3.1.</span> Maximize frame on startup</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="maximize-frame-on-startup">Maximize frame on startup</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -630,8 +497,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-modus-themes" class="outline-3">
-<h3 id="modus-themes"><span class="section-number-3">3.2.</span> Modus themes</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="modus-themes">Modus themes</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -704,8 +571,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-add-frame-borders" class="outline-3">
-<h3 id="add-frame-borders"><span class="section-number-3">3.3.</span> Add frame borders</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="add-frame-borders">Add frame borders</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -730,8 +597,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-inhibit-startup-screen" class="outline-3">
-<h3 id="inhibit-startup-screen"><span class="section-number-3">3.4.</span> Inhibit startup screen</h3>
-<div class="outline-text-3" id="text-3-4">
+<h3 id="inhibit-startup-screen">Inhibit startup screen</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -742,8 +609,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-all-the-icons-completion" class="outline-3">
-<h3 id="all-the-icons-completion"><span class="section-number-3">3.5.</span> all-the-icons completion</h3>
-<div class="outline-text-3" id="text-3-5">
+<h3 id="all-the-icons-completion">all-the-icons completion</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">all-the-icons-completion</span>
   <span class="org-builtin">:if</span> (display-graphic-p)
@@ -757,8 +624,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-doom-modeline" class="outline-3">
-<h3 id="doom-modeline"><span class="section-number-3">3.6.</span> Doom modeline</h3>
-<div class="outline-text-3" id="text-3-6">
+<h3 id="doom-modeline">Doom modeline</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">doom-modeline</span>
   <span class="org-builtin">:hook</span>
@@ -777,8 +644,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-highlight-todo" class="outline-3">
-<h3 id="highlight-todo"><span class="section-number-3">3.7.</span> highlight todo</h3>
-<div class="outline-text-3" id="text-3-7">
+<h3 id="highlight-todo">highlight todo</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">hl-todo</span>
   <span class="org-builtin">:hook</span>
@@ -801,8 +668,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-kind-icon" class="outline-3">
-<h3 id="kind-icon"><span class="section-number-3">3.8.</span> kind icon</h3>
-<div class="outline-text-3" id="text-3-8">
+<h3 id="kind-icon">kind icon</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">kind-icon</span>
   <span class="org-builtin">:after</span> corfu
@@ -822,8 +689,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-centered-cursor-mode" class="outline-3">
-<h3 id="centered-cursor-mode"><span class="section-number-3">3.9.</span> centered cursor mode</h3>
-<div class="outline-text-3" id="text-3-9">
+<h3 id="centered-cursor-mode">centered cursor mode</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">centered-cursor-mode</span>
   <span class="org-builtin">:bind</span>
@@ -835,14 +702,16 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-evil" class="outline-2">
-<h2 id="evil"><span class="section-number-2">4.</span> Evil</h2>
+<h2 id="evil">Evil</h2>
 <div class="outline-text-2" id="text-evil">
 </div>
 <div id="outline-container-evil-mode" class="outline-3">
-<h3 id="evil-mode"><span class="section-number-3">4.1.</span> evil mode</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="evil-mode">evil mode</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil</span>
+  <span class="org-builtin">:hook</span>
+  (edebug-mode . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">require</span> '<span class="org-constant">evil-collection-edebug</span>) (evil-normalize-keymaps)))
   <span class="org-builtin">:custom</span>
   (evil-want-C-u-scroll t)
   (evil-want-C-i-jump t)
@@ -879,8 +748,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-eval-operator" class="outline-3">
-<h3 id="eval-operator"><span class="section-number-3">4.2.</span> eval operator</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="eval-operator">eval operator</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil</span>
   <span class="org-builtin">:config</span>
@@ -925,8 +794,8 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 
 <div id="outline-container-evil-org-mode-org-text-objects" class="outline-3">
-<h3 id="evil-org-mode-org-text-objects"><span class="section-number-3">4.3.</span> evil-org-mode, org text objects</h3>
-<div class="outline-text-3" id="text-4-3">
+<h3 id="evil-org-mode-org-text-objects">evil-org-mode, org text objects</h3>
+<div class="outline-text-3">
 <p>
 Text objects:
 </p>
@@ -1035,8 +904,8 @@ Text objects:
 </div>
 
 <div id="outline-container-evil-nerd-commenter" class="outline-3">
-<h3 id="evil-nerd-commenter"><span class="section-number-3">4.4.</span> evil nerd commenter</h3>
-<div class="outline-text-3" id="text-4-4">
+<h3 id="evil-nerd-commenter">evil nerd commenter</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-nerd-commenter</span>
   <span class="org-builtin">:bind</span>
@@ -1052,8 +921,8 @@ Text objects:
 </div>
 
 <div id="outline-container-evil-surround" class="outline-3">
-<h3 id="evil-surround"><span class="section-number-3">4.5.</span> evil surround</h3>
-<div class="outline-text-3" id="text-4-5">
+<h3 id="evil-surround">evil surround</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-surround</span>
   <span class="org-builtin">:init</span>
@@ -1065,8 +934,8 @@ Text objects:
 </div>
 
 <div id="outline-container-evil-goggles" class="outline-3">
-<h3 id="evil-goggles"><span class="section-number-3">4.6.</span> evil goggles</h3>
-<div class="outline-text-3" id="text-4-6">
+<h3 id="evil-goggles">evil goggles</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-goggles</span>
   <span class="org-builtin">:after</span> evil
@@ -1086,8 +955,8 @@ Text objects:
 </div>
 
 <div id="outline-container-evil-cleverparens-outer-form-text-object" class="outline-3">
-<h3 id="evil-cleverparens-outer-form-text-object"><span class="section-number-3">4.7.</span> evil cleverparens, outer form text object</h3>
-<div class="outline-text-3" id="text-4-7">
+<h3 id="evil-cleverparens-outer-form-text-object">evil cleverparens, outer form text object</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-cleverparens</span>
   <span class="org-builtin">:after</span> (evil)
@@ -1119,8 +988,8 @@ Text objects:
 </div>
 
 <div id="outline-container-evil-buffer-text-object" class="outline-3">
-<h3 id="evil-buffer-text-object"><span class="section-number-3">4.8.</span> evil buffer text object</h3>
-<div class="outline-text-3" id="text-4-8">
+<h3 id="evil-buffer-text-object">evil buffer text object</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil</span>
   <span class="org-builtin">:config</span>
@@ -1147,8 +1016,8 @@ Text objects:
 </div>
 
 <div id="outline-container-evil-iedit-state" class="outline-3">
-<h3 id="evil-iedit-state"><span class="section-number-3">4.9.</span> evil-iedit-state</h3>
-<div class="outline-text-3" id="text-4-9">
+<h3 id="evil-iedit-state">evil-iedit-state</h3>
+<div class="outline-text-3">
 <p>
 Keybindings:
 </p>
@@ -1171,8 +1040,8 @@ Keybindings:
 </div>
 
 <div id="outline-container-evil-snipe" class="outline-3">
-<h3 id="evil-snipe"><span class="section-number-3">4.10.</span> evil-snipe</h3>
-<div class="outline-text-3" id="text-4-10">
+<h3 id="evil-snipe">evil-snipe</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-snipe</span>
   <span class="org-builtin">:hook</span>
@@ -1226,12 +1095,12 @@ Keybindings:
 </div>
 
 <div id="outline-container-gpt-interface" class="outline-2">
-<h2 id="gpt-interface"><span class="section-number-2">5.</span> GPT interface</h2>
+<h2 id="gpt-interface">GPT interface</h2>
 <div class="outline-text-2" id="text-gpt-interface">
 </div>
 <div id="outline-container-notes" class="outline-3">
-<h3 id="notes"><span class="section-number-3">5.1.</span> Notes</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="notes">Notes</h3>
+<div class="outline-text-3">
 <p>
 Interesting ideas:
 </p>
@@ -1286,17 +1155,17 @@ Best practices for writing a function:
 </div>
 
 <div id="outline-container-complete-region-buffer-with-gpt" class="outline-3">
-<h3 id="complete-region-buffer-with-gpt"><span class="section-number-3">5.2.</span> Complete region/buffer with gpt</h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="complete-region-buffer-with-gpt">Complete region/buffer with gpt</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
-  (<span class="org-string">"s-b"</span> . 'lc/gpt-complete-buffer-and-insert)
+  (<span class="org-string">"&lt;leader&gt;cb"</span> . 'lc/gpt-complete-buffer-and-insert)
   (<span class="org-string">"&lt;leader&gt;op"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>)
                     (find-file-other-window lc/gpt-prompts-file)))
   (<span class="org-builtin">:map</span> evil-visual-state-map
-        (<span class="org-string">"s-r"</span> . 'lc/gpt-complete-region-and-insert)
-        (<span class="org-string">"s-p"</span> . 'lc/gpt-complete-with-prompt-prefix-and-insert))
+        (<span class="org-string">"&lt;leader&gt;cr"</span> . 'lc/gpt-complete-region-and-insert)
+        (<span class="org-string">"&lt;leader&gt;cp"</span> . 'lc/gpt-complete-with-prompt-prefix-and-insert))
   <span class="org-builtin">:init</span>
   (<span class="org-keyword">setq</span> lc/gpt-api-key-getter (<span class="org-keyword">lambda</span> () (auth-source-pick-first-password <span class="org-builtin">:host</span> <span class="org-string">"chat.openai.com"</span>)))
   <span class="org-comment-delimiter">;; </span><span class="org-comment">(setq lc/gpt-model 'text-davinci-003)</span>
@@ -1390,8 +1259,8 @@ Best practices for writing a function:
 </div>
 
 <div id="outline-container-search-with-alpaca" class="outline-3">
-<h3 id="search-with-alpaca"><span class="section-number-3">5.3.</span> Search with alpaca</h3>
-<div class="outline-text-3" id="text-5-3">
+<h3 id="search-with-alpaca">Search with alpaca</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -1506,8 +1375,8 @@ Best practices for writing a function:
 </div>
 
 <div id="outline-container-chatgpt-shell" class="outline-3">
-<h3 id="chatgpt-shell"><span class="section-number-3">5.4.</span> chatgpt-shell</h3>
-<div class="outline-text-3" id="text-5-4">
+<h3 id="chatgpt-shell">chatgpt-shell</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">chatgpt-shell</span>
   <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"xenodium/chatgpt-shell"</span>)
@@ -1524,8 +1393,8 @@ Best practices for writing a function:
 </div>
 
 <div id="outline-container-copilot" class="outline-3">
-<h3 id="copilot"><span class="section-number-3">5.5.</span> copilot</h3>
-<div class="outline-text-3" id="text-5-5">
+<h3 id="copilot">copilot</h3>
+<div class="outline-text-3">
 <p>
 Notest:
 </p>
@@ -1544,7 +1413,7 @@ Notest:
   <span class="org-builtin">:bind</span>
   (<span class="org-string">"C-TAB"</span> . 'copilot-accept-completion-by-word)
   (<span class="org-string">"C-&lt;tab&gt;"</span> . 'copilot-accept-completion-by-word)
-  (<span class="org-string">"&lt;leader&gt;tc"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>)
+  (<span class="org-string">"&lt;leader&gt;cc"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>)
              (<span class="org-keyword">setq</span> lc/copilot-enabled (<span class="org-keyword">if</span> lc/copilot-enabled nil t))
              (message (<span class="org-keyword">if</span> lc/copilot-enabled <span class="org-string">"Enabled copilot-mode"</span> <span class="org-string">"Disabled copilot-mode"</span>))
              (lc/toggle-copilot-mode)))
@@ -1554,7 +1423,7 @@ Notest:
         (<span class="org-string">"C-n"</span> . #'copilot-next-completion)
         (<span class="org-string">"C-p"</span> . #'copilot-previous-completion))
   <span class="org-builtin">:init</span>
-  (<span class="org-keyword">setq</span> lc/copilot-enabled t)
+  (<span class="org-keyword">setq</span> lc/copilot-enabled nil)
   (<span class="org-keyword">defun</span> <span class="org-function-name">lc/toggle-copilot-mode</span> ()
     (<span class="org-keyword">interactive</span>)
     (copilot-mode (<span class="org-keyword">if</span> lc/copilot-enabled 1 -1)))
@@ -1566,12 +1435,12 @@ Notest:
 </div>
 
 <div id="outline-container-git" class="outline-2">
-<h2 id="git"><span class="section-number-2">6.</span> Git</h2>
+<h2 id="git">Git</h2>
 <div class="outline-text-2" id="text-git">
 </div>
 <div id="outline-container-magit" class="outline-3">
-<h3 id="magit"><span class="section-number-3">6.1.</span> Magit</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="magit">Magit</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">magit</span>
   <span class="org-builtin">:bind</span>
@@ -1613,8 +1482,8 @@ Notest:
 </div>
 
 <div id="outline-container-git-time-machine" class="outline-3">
-<h3 id="git-time-machine"><span class="section-number-3">6.2.</span> git time machine</h3>
-<div class="outline-text-3" id="text-6-2">
+<h3 id="git-time-machine">git time machine</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">git-timemachine</span>
   <span class="org-builtin">:hook</span>
@@ -1633,8 +1502,8 @@ Notest:
 </div>
 
 <div id="outline-container-diff-highlight" class="outline-3">
-<h3 id="diff-highlight"><span class="section-number-3">6.3.</span> diff highlight</h3>
-<div class="outline-text-3" id="text-6-3">
+<h3 id="diff-highlight">diff highlight</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">diff-hl</span>
   <span class="org-builtin">:bind</span>
@@ -1656,8 +1525,8 @@ Notest:
 </div>
 
 <div id="outline-container-smerge-hydra" class="outline-3">
-<h3 id="smerge-hydra"><span class="section-number-3">6.4.</span> smerge-hydra</h3>
-<div class="outline-text-3" id="text-6-4">
+<h3 id="smerge-hydra">smerge-hydra</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">hydra</span>
   <span class="org-builtin">:bind</span>
@@ -1706,12 +1575,12 @@ Notest:
 </div>
 
 <div id="outline-container-org" class="outline-2">
-<h2 id="org"><span class="section-number-2">7.</span> Org</h2>
+<h2 id="org">Org</h2>
 <div class="outline-text-2" id="text-org">
 </div>
 <div id="outline-container-org-mode" class="outline-3">
-<h3 id="org-mode"><span class="section-number-3">7.1.</span> Org mode</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="org-mode">Org mode</h3>
+<div class="outline-text-3">
 <p>
 When exporting <code>.org</code> file to HTML, we can add this header:
 </p>
@@ -1743,6 +1612,7 @@ We can avoid evaluation of code with:
         (<span class="org-string">"&lt;normal-state&gt;&lt;localleader&gt;el"</span> . 'eros-eval-last-sexp)
         (<span class="org-string">"&lt;visual-state&gt;&lt;localleader&gt;e"</span> . 'eros-eval-last-sexp)
         (<span class="org-string">"&lt;localleader&gt;E"</span> . 'org-export-dispatch)
+        (<span class="org-string">"TAB"</span> . nil)
         )
   <span class="org-builtin">:custom</span>
   (org-src-preserve-indentation t)
@@ -1773,6 +1643,7 @@ We can avoid evaluation of code with:
             (org-cycle-internal-local)
             t)))))
   <span class="org-builtin">:config</span>
+  (remove-hook 'org-mode-hook 'org-appear-mode)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">(add-to-list 'org-src-lang-modes '("jupyter-python" . python-ts))</span>
   (plist-put org-format-latex-options <span class="org-builtin">:background</span> <span class="org-string">"Transparent"</span>)
   (plist-put org-format-latex-options <span class="org-builtin">:scale</span> 1.4)
@@ -1785,8 +1656,8 @@ We can avoid evaluation of code with:
 </div>
 
 <div id="outline-container-use-org-id-in-links" class="outline-3">
-<h3 id="use-org-id-in-links"><span class="section-number-3">7.2.</span> use org-id in links</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="use-org-id-in-links">use org-id in links</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org</span>
   <span class="org-builtin">:preface</span>
@@ -1821,6 +1692,7 @@ We can avoid evaluation of code with:
         (org-map-entries (<span class="org-keyword">lambda</span> () (lc/org-custom-id-get (point) 'create))))))
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">require</span> '<span class="org-constant">org-id</span>)
+  (<span class="org-keyword">setq</span> org-id-track-globally nil)
   (<span class="org-keyword">setq</span> org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
   )
 </pre>
@@ -1829,8 +1701,8 @@ We can avoid evaluation of code with:
 </div>
 
 <div id="outline-container-org-agenda-and-capture" class="outline-3">
-<h3 id="org-agenda-and-capture"><span class="section-number-3">7.3.</span> org agenda and capture</h3>
-<div class="outline-text-3" id="text-7-3">
+<h3 id="org-agenda-and-capture">org agenda and capture</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org</span>
   <span class="org-builtin">:bind</span>
@@ -1866,8 +1738,8 @@ We can avoid evaluation of code with:
 </div>
 
 <div id="outline-container-org-babel" class="outline-3">
-<h3 id="org-babel"><span class="section-number-3">7.4.</span> Org babel</h3>
-<div class="outline-text-3" id="text-7-4">
+<h3 id="org-babel">Org babel</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org</span>
   <span class="org-builtin">:bind</span>
@@ -1904,8 +1776,8 @@ We can avoid evaluation of code with:
 </div>
 
 <div id="outline-container-org-modern" class="outline-3">
-<h3 id="org-modern"><span class="section-number-3">7.5.</span> org modern</h3>
-<div class="outline-text-3" id="text-7-5">
+<h3 id="org-modern">org modern</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org-modern</span>
   <span class="org-builtin">:hook</span>
@@ -1916,8 +1788,8 @@ We can avoid evaluation of code with:
 </div>
 
 <div id="outline-container-org-export-config-to-html" class="outline-3">
-<h3 id="org-export-config-to-html"><span class="section-number-3">7.6.</span> <span class="todo TODO">TODO</span> org export config to HTML</h3>
-<div class="outline-text-3" id="text-7-6">
+<h3 id="org-export-config-to-html"><span class="todo TODO">TODO</span> org export config to HTML</h3>
+<div class="outline-text-3">
 <p>
 Notes:
 </p>
@@ -1953,12 +1825,47 @@ Notes:
 </div>
 
 <div id="outline-container-other-packages" class="outline-2">
-<h2 id="other-packages"><span class="section-number-2">8.</span> Other packages</h2>
+<h2 id="other-packages">Other packages</h2>
 <div class="outline-text-2" id="text-other-packages">
 </div>
+<div id="outline-container-bookmark" class="outline-3">
+<h3 id="bookmark"><span class="todo TODO">TODO</span> bookmark</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">bookmark</span>
+  <span class="org-builtin">:ensure</span> nil
+  <span class="org-builtin">:bind</span>
+  (<span class="org-string">"&lt;leader&gt;rr"</span> . 'bookmark-set)
+  (<span class="org-string">"&lt;leader&gt;rd"</span> . 'bookmark-delete)
+  (<span class="org-string">"&lt;leader&gt;r1"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"1"</span>)))
+  (<span class="org-string">"&lt;leader&gt;r2"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"2"</span>)))
+  (<span class="org-string">"&lt;leader&gt;r3"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"3"</span>)))
+  (<span class="org-string">"&lt;leader&gt;r4"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"4"</span>)))
+  (<span class="org-string">"s-1"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"1"</span>)))
+  (<span class="org-string">"s-2"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"2"</span>)))
+  (<span class="org-string">"s-3"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"3"</span>)))
+  (<span class="org-string">"s-4"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"4"</span>)))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">("s-1" . (lambda () (interactive) (jump-to-numbered-bookmark 0)))</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">("s-2" . (lambda () (interactive) (jump-to-numbered-bookmark 1)))</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">("s-3" . (lambda () (interactive) (jump-to-numbered-bookmark 2)))</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">("s-4" . (lambda () (interactive) (jump-to-numbered-bookmark 3)))</span>
+  <span class="org-builtin">:preface</span>
+  (<span class="org-keyword">defun</span> <span class="org-function-name">jump-to-numbered-bookmark</span> (num)
+    <span class="org-doc">"Jump to the bookmark with the given numeric prefix."</span>
+    (<span class="org-keyword">interactive</span>)
+    (<span class="org-keyword">when-let</span> ((bookmark (nth num bookmark-alist)))
+      (find-file (bookmark-get-filename bookmark))))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">:config</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">(add-hook 'bookmark-bmenu-mode-hook #'hl-line-mode)</span>
+  )
+</pre>
+</div>
+</div>
+</div>
+
 <div id="outline-container-consult" class="outline-3">
-<h3 id="consult"><span class="section-number-3">8.1.</span> consult</h3>
-<div class="outline-text-3" id="text-8-1">
+<h3 id="consult">consult</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">consult</span>
   <span class="org-builtin">:bind</span>
@@ -2001,8 +1908,8 @@ Notes:
 </div>
 
 <div id="outline-container-consult-notes" class="outline-3">
-<h3 id="consult-notes"><span class="section-number-3">8.2.</span> consult-notes</h3>
-<div class="outline-text-3" id="text-8-2">
+<h3 id="consult-notes">consult-notes</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">consult-notes</span>
   <span class="org-builtin">:bind</span>
@@ -2017,24 +1924,31 @@ Notes:
 </div>
 
 <div id="outline-container-corfu" class="outline-3">
-<h3 id="corfu"><span class="section-number-3">8.3.</span> corfu</h3>
-<div class="outline-text-3" id="text-8-3">
+<h3 id="corfu"><span class="todo TODO">TODO</span> corfu</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">corfu</span>
+  <span class="org-builtin">:bind</span>
+  (<span class="org-builtin">:map</span> corfu-map
+        (<span class="org-string">"&lt;insert-state&gt;&lt;escape&gt;"</span> . 'corfu-quit))
   <span class="org-builtin">:custom</span>
   (corfu-min-width 80)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Always have the same width</span>
   (corfu-max-width corfu-min-width)
+  (corfu-auto nil)
+  (tab-always-indent 'complete)
   <span class="org-builtin">:config</span>
-  (corfu-popupinfo-mode -1))
+  (corfu-popupinfo-mode -1)
+  (global-corfu-mode -1)
+)
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-denote" class="outline-3">
-<h3 id="denote"><span class="section-number-3">8.4.</span> denote</h3>
-<div class="outline-text-3" id="text-8-4">
+<h3 id="denote">denote</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">denote</span>
   <span class="org-builtin">:hook</span>
@@ -2083,8 +1997,8 @@ Notes:
 </div>
 
 <div id="outline-container-denote-menu" class="outline-3">
-<h3 id="denote-menu"><span class="section-number-3">8.5.</span> denote menu</h3>
-<div class="outline-text-3" id="text-8-5">
+<h3 id="denote-menu">denote menu</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">denote-menu</span>
   <span class="org-builtin">:commands</span>
@@ -2101,8 +2015,8 @@ Notes:
 </div>
 
 <div id="outline-container-dired-and-extensions" class="outline-3">
-<h3 id="dired-and-extensions"><span class="section-number-3">8.6.</span> dired and extensions</h3>
-<div class="outline-text-3" id="text-8-6">
+<h3 id="dired-and-extensions">dired and extensions</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">dired</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2160,8 +2074,8 @@ Notes:
 </div>
 
 <div id="outline-container-embark" class="outline-3">
-<h3 id="embark"><span class="section-number-3">8.7.</span> embark</h3>
-<div class="outline-text-3" id="text-8-7">
+<h3 id="embark">embark</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">embark</span>
   <span class="org-builtin">:bind</span>
@@ -2176,8 +2090,8 @@ Notes:
 </div>
 
 <div id="outline-container-eros" class="outline-3">
-<h3 id="eros"><span class="section-number-3">8.8.</span> eros</h3>
-<div class="outline-text-3" id="text-8-8">
+<h3 id="eros">eros</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">eros</span>
   <span class="org-builtin">:commands</span>
@@ -2199,8 +2113,8 @@ Notes:
 </div>
 
 <div id="outline-container-flymake" class="outline-3">
-<h3 id="flymake"><span class="section-number-3">8.9.</span> flymake</h3>
-<div class="outline-text-3" id="text-8-9">
+<h3 id="flymake">flymake</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">flymake</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2224,8 +2138,8 @@ Notes:
 </div>
 
 <div id="outline-container-hydra-and-windows-hydra" class="outline-3">
-<h3 id="hydra-and-windows-hydra"><span class="section-number-3">8.10.</span> hydra and windows-hydra</h3>
-<div class="outline-text-3" id="text-8-10">
+<h3 id="hydra-and-windows-hydra">hydra and windows-hydra</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">hydra</span>
   <span class="org-builtin">:after</span> evil
@@ -2251,8 +2165,8 @@ Notes:
 </div>
 
 <div id="outline-container-persistent-scratch" class="outline-3">
-<h3 id="persistent-scratch"><span class="section-number-3">8.11.</span> persistent scratch</h3>
-<div class="outline-text-3" id="text-8-11">
+<h3 id="persistent-scratch">persistent scratch</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">persistent-scratch</span>
   <span class="org-builtin">:bind</span>
@@ -2273,8 +2187,8 @@ Notes:
 </div>
 
 <div id="outline-container-project" class="outline-3">
-<h3 id="project"><span class="section-number-3">8.12.</span> project</h3>
-<div class="outline-text-3" id="text-8-12">
+<h3 id="project">project</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">project</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2290,8 +2204,8 @@ Notes:
 </div>
 
 <div id="outline-container-rainbow-parentheses" class="outline-3">
-<h3 id="rainbow-parentheses"><span class="section-number-3">8.13.</span> Rainbow parentheses</h3>
-<div class="outline-text-3" id="text-8-13">
+<h3 id="rainbow-parentheses">Rainbow parentheses</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">rainbow-delimiters</span>
   <span class="org-builtin">:hook</span>
@@ -2302,8 +2216,8 @@ Notes:
 </div>
 
 <div id="outline-container-tempel" class="outline-3">
-<h3 id="tempel"><span class="section-number-3">8.14.</span> tempel</h3>
-<div class="outline-text-3" id="text-8-14">
+<h3 id="tempel">tempel</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">tempel</span>
   <span class="org-builtin">:custom</span>
@@ -2326,8 +2240,8 @@ Notes:
 </div>
 
 <div id="outline-container-transpose-frame" class="outline-3">
-<h3 id="transpose-frame"><span class="section-number-3">8.15.</span> Transpose frame</h3>
-<div class="outline-text-3" id="text-8-15">
+<h3 id="transpose-frame">Transpose frame</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">transpose-frame</span>
   <span class="org-builtin">:bind</span>
@@ -2340,8 +2254,8 @@ Notes:
 </div>
 
 <div id="outline-container-tabspaces" class="outline-3">
-<h3 id="tabspaces"><span class="section-number-3">8.16.</span> tabspaces</h3>
-<div class="outline-text-3" id="text-8-16">
+<h3 id="tabspaces">tabspaces</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">tabspaces</span>
   <span class="org-builtin">:commands</span>
@@ -2403,8 +2317,8 @@ Notes:
 </div>
 
 <div id="outline-container-tree-sitter" class="outline-3">
-<h3 id="tree-sitter"><span class="section-number-3">8.17.</span> tree-sitter</h3>
-<div class="outline-text-3" id="text-8-17">
+<h3 id="tree-sitter">tree-sitter</h3>
+<div class="outline-text-3">
 <p>
 To build grammar:
 </p>
@@ -2438,8 +2352,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-treemacs" class="outline-3">
-<h3 id="treemacs"><span class="section-number-3">8.18.</span> treemacs</h3>
-<div class="outline-text-3" id="text-8-18">
+<h3 id="treemacs">treemacs</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">treemacs</span>
   <span class="org-builtin">:bind</span>
@@ -2467,8 +2381,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-vertico" class="outline-3">
-<h3 id="vertico"><span class="section-number-3">8.19.</span> vertico</h3>
-<div class="outline-text-3" id="text-8-19">
+<h3 id="vertico">vertico</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">savehist</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2494,8 +2408,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-vterm-and-vterm-toggle" class="outline-3">
-<h3 id="vterm-and-vterm-toggle"><span class="section-number-3">8.20.</span> vterm and vterm-toggle</h3>
-<div class="outline-text-3" id="text-8-20">
+<h3 id="vterm-and-vterm-toggle">vterm and vterm-toggle</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">vterm</span>
   <span class="org-builtin">:bind</span>
@@ -2518,8 +2432,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-xwidget-web-browser-enhancements" class="outline-3">
-<h3 id="xwidget-web-browser-enhancements"><span class="section-number-3">8.21.</span> xwidget web browser enhancements</h3>
-<div class="outline-text-3" id="text-8-21">
+<h3 id="xwidget-web-browser-enhancements">xwidget web browser enhancements</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">xwwp-full</span>
   <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"kchanqvq/xwwp"</span>)
@@ -2540,12 +2454,12 @@ To build grammar:
 </div>
 
 <div id="outline-container-programming-languages" class="outline-2">
-<h2 id="programming-languages"><span class="section-number-2">9.</span> Programming languages</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="programming-languages">Programming languages</h2>
+<div class="outline-text-2">
 </div>
 <div id="outline-container-lsp-mode" class="outline-3">
-<h3 id="lsp-mode"><span class="section-number-3">9.1.</span> lsp-mode</h3>
-<div class="outline-text-3" id="text-9-1">
+<h3 id="lsp-mode">lsp-mode</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">lsp-mode</span>
   <span class="org-builtin">:commands</span>
@@ -2572,7 +2486,6 @@ To build grammar:
   (lsp-auto-execute-action nil)
   (lsp-before-save-edits nil)
   (lsp-headerline-breadcrumb-enable nil)
-  (lsp-diagnostics-provider <span class="org-builtin">:none</span>)
   <span class="org-builtin">:config</span>
   (add-to-list 'lsp-language-id-configuration '(python-ts-mode . <span class="org-string">"python"</span>))
   )
@@ -2582,8 +2495,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-lsp-ui" class="outline-3">
-<h3 id="lsp-ui"><span class="section-number-3">9.2.</span> lsp-ui</h3>
-<div class="outline-text-3" id="text-9-2">
+<h3 id="lsp-ui">lsp-ui</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">lsp-ui</span>
   <span class="org-builtin">:hook</span>
@@ -2609,8 +2522,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-clojure" class="outline-3">
-<h3 id="clojure"><span class="section-number-3">9.3.</span> clojure</h3>
-<div class="outline-text-3" id="text-9-3">
+<h3 id="clojure">clojure</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">clojure-mode</span>)
 </pre>
@@ -2619,8 +2532,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-nix" class="outline-3">
-<h3 id="nix"><span class="section-number-3">9.4.</span> Nix</h3>
-<div class="outline-text-3" id="text-9-4">
+<h3 id="nix">Nix</h3>
+<div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">nix-mode</span>
 <span class="org-builtin">:mode</span> <span class="org-string">"\\.nix\\'"</span>)
@@ -2630,12 +2543,12 @@ To build grammar:
 </div>
 
 <div id="outline-container-python" class="outline-3">
-<h3 id="python"><span class="section-number-3">9.5.</span> Python</h3>
+<h3 id="python">Python</h3>
 <div class="outline-text-3" id="text-python">
 </div>
 <div id="outline-container-python-mode" class="outline-4">
-<h4 id="python-mode"><span class="section-number-4">9.5.1.</span> python-mode</h4>
-<div class="outline-text-4" id="text-9-5-1">
+<h4 id="python-mode">python-mode</h4>
+<div class="outline-text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">python-mode</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2647,8 +2560,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-csv-mode" class="outline-4">
-<h4 id="csv-mode"><span class="section-number-4">9.5.2.</span> csv-mode</h4>
-<div class="outline-text-4" id="text-9-5-2">
+<h4 id="csv-mode">csv-mode</h4>
+<div class="outline-text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">csv-mode</span>
   <span class="org-builtin">:hook</span> (csv-mode . lc/init-csv-mode)
@@ -2707,8 +2620,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-direnv" class="outline-4">
-<h4 id="direnv"><span class="section-number-4">9.5.3.</span> direnv</h4>
-<div class="outline-text-4" id="text-9-5-3">
+<h4 id="direnv">direnv</h4>
+<div class="outline-text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(use-package inheritenv)</span>
 
@@ -2726,8 +2639,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-lsp-pyright" class="outline-4">
-<h4 id="lsp-pyright"><span class="section-number-4">9.5.4.</span> lsp-pyright</h4>
-<div class="outline-text-4" id="text-9-5-4">
+<h4 id="lsp-pyright">lsp-pyright</h4>
+<div class="outline-text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">lsp-pyright</span>
   <span class="org-builtin">:hook</span>
@@ -2767,8 +2680,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-dap-mode" class="outline-4">
-<h4 id="dap-mode"><span class="section-number-4">9.5.5.</span> dap-mode</h4>
-<div class="outline-text-4" id="text-9-5-5">
+<h4 id="dap-mode">dap-mode</h4>
+<div class="outline-text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">dap-mode</span>
   <span class="org-builtin">:hook</span>
@@ -2909,8 +2822,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-flymake-ruff" class="outline-4">
-<h4 id="flymake-ruff"><span class="section-number-4">9.5.6.</span> flymake-ruff</h4>
-<div class="outline-text-4" id="text-9-5-6">
+<h4 id="flymake-ruff">flymake-ruff</h4>
+<div class="outline-text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">flymake-ruff</span>
   <span class="org-builtin">:hook</span>
@@ -2921,8 +2834,8 @@ To build grammar:
 </div>
 
 <div id="outline-container-jupyter" class="outline-4">
-<h4 id="jupyter"><span class="section-number-4">9.5.7.</span> jupyter</h4>
-<div class="outline-text-4" id="text-9-5-7">
+<h4 id="jupyter">jupyter</h4>
+<div class="outline-text-4">
 <p>
 <code>zmq</code> installation:
 </p>
@@ -3035,8 +2948,8 @@ Compile by hand:
 </div>
 
 <div id="outline-container-org-jupyter-mode" class="outline-4">
-<h4 id="org-jupyter-mode"><span class="section-number-4">9.5.8.</span> Org jupyter mode</h4>
-<div class="outline-text-4" id="text-9-5-8">
+<h4 id="org-jupyter-mode">Org jupyter mode</h4>
+<div class="outline-text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:hook</span>
@@ -3086,8 +2999,8 @@ Compile by hand:
 </div>
 
 <div id="outline-container-scimax-jupyter" class="outline-4">
-<h4 id="scimax-jupyter"><span class="section-number-4">9.5.9.</span> scimax-jupyter</h4>
-<div class="outline-text-4" id="text-9-5-9">
+<h4 id="scimax-jupyter">scimax-jupyter</h4>
+<div class="outline-text-4">
 <p>
 Notes:
 </p>
@@ -3160,8 +3073,8 @@ Notes:
 </div>
 
 <div id="outline-container-global-keybindings" class="outline-2">
-<h2 id="global-keybindings"><span class="section-number-2">10.</span> Global keybindings</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="global-keybindings">Global keybindings</h2>
+<div class="outline-text-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil</span>
   <span class="org-builtin">:config</span>
@@ -3190,8 +3103,6 @@ Notes:
     (kbd <span class="org-string">"&lt;leader&gt;lr"</span>)  'raise-sexp
     (kbd <span class="org-string">"&lt;leader&gt;lb"</span>)  'sp-forward-barf-sexp
     (kbd <span class="org-string">"&lt;leader&gt;ls"</span>)  'sp-forward-slurp-sexp
-    (kbd <span class="org-string">"&lt;leader&gt;rr"</span>)  'bookmark-set
-    (kbd <span class="org-string">"&lt;leader&gt;rd"</span>)  'bookmark-delete
     (kbd <span class="org-string">"&lt;leader&gt;td"</span>)  'toggle-debug-on-error
     (kbd <span class="org-string">"&lt;leader&gt;tl"</span>)  'display-line-numbers-mode
     <span class="org-comment-delimiter">;; </span><span class="org-comment">toggle wrapped lines</span>
