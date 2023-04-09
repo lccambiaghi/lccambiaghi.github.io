@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
-    <lastBuildDate>Sat, 08 Apr 2023 21:59:46 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Apr 2023 21:12:22 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -39,7 +39,7 @@
           <p><strong>And good standards for personal wikis / digital gardens</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-the-problem-of-processing-information-efficiently" class="outline-2">
 <h2 id="the-problem-of-processing-information-efficiently">The problem of processing information efficiently</h2>
 <div class="outline-text-2">
 <p>
@@ -64,7 +64,7 @@ In this blog post I will try to explain why that is and how I use it.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-roam-and-zettelstalken" class="outline-2">
 <h2 id="roam-and-zettelstalken">Roam and Zettelstalken</h2>
 <div class="outline-text-2">
 <p>
@@ -135,7 +135,7 @@ This is a really cool way to perform action number 2 I have outlined above.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-personal-wikis-should-not-have-a-hierarchy" class="outline-2">
 <h2 id="personal-wikis-should-not-have-a-hierarchy">Personal wikis should not have a hierarchy</h2>
 <div class="outline-text-2">
 <p>
@@ -182,7 +182,7 @@ Retrieving, inspecting and adding information is much smoother, it really is a k
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-org-roam" class="outline-2">
 <h2 id="org-roam">org-roam</h2>
 <div class="outline-text-2">
 <p>
@@ -231,7 +231,7 @@ The community is developing <a href="https://www.reddit.com/r/emacs/comments/ony
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-conclusion" class="outline-2">
 <h2 id="conclusion">Conclusion</h2>
 <div class="outline-text-2">
 <p>
@@ -267,7 +267,7 @@ The only "issue" is that I can't use the built-in <code>org-roam-graph</code> be
           <p><strong>With a combination of cloud services, iOS apps and jailbreak tweaks</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-introduction" class="outline-2">
 <h2 id="introduction">Introduction</h2>
 <div class="outline-text-2">
 <p>
@@ -323,7 +323,7 @@ To do all the rest you only need Safari and iOS apps. Technology has gone that f
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-blink-shell" class="outline-2">
 <h2 id="blink-shell">Blink Shell</h2>
 <div class="outline-text-2">
 <p>
@@ -368,7 +368,7 @@ After setting them up you can just execute <code>ssh host</code>&#x2026;
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-google-cloud-platform" class="outline-2">
 <h2 id="google-cloud-platform">Google Cloud Platform</h2>
 <div class="outline-text-2">
 <p>
@@ -409,7 +409,7 @@ This mode has reasonable monthly limits so you can enable it when you need it.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-code-server" class="outline-2">
 <h2 id="code-server">code-server</h2>
 <div class="outline-text-2">
 <p>
@@ -457,7 +457,7 @@ You might need to change the command to <code>code-server --host 0.0.0.0</code>.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-ios-apps-for-local-python-development" class="outline-2">
 <h2 id="ios-apps-for-local-python-development">iOS apps for local Python development</h2>
 <div class="outline-text-2">
 <p>
@@ -483,7 +483,7 @@ They are both open source on Github, which is amazing.
 </p>
 </div>
 
-<div class="outline-3">
+<div id="outline-container-jupyter-notebooks" class="outline-3">
 <h3 id="jupyter-notebooks">Jupyter Notebooks</h3>
 <div class="outline-text-3">
 <p>
@@ -504,7 +504,7 @@ I like Carnets because it has the familiar Jupyter Notebook UI and keyboard shor
 </div>
 </div>
 
-<div class="outline-3">
+<div id="outline-container-scripting-and-project" class="outline-3">
 <h3 id="scripting-and-project">Scripting and project</h3>
 <div class="outline-text-3">
 <p>
@@ -525,7 +525,7 @@ Depending on your needs, you may want to purchase it.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-jailbreak-tweaks-and-procursus-bootstrap" class="outline-2">
 <h2 id="jailbreak-tweaks-and-procursus-bootstrap">Jailbreak tweaks and Procursus bootstrap</h2>
 <div class="outline-text-2">
 <p>
@@ -580,7 +580,7 @@ I requested Emacs and an amazing developer just compiled a <code>.deb</code> for
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-emacs-on-ipad" class="outline-2">
 <h2 id="emacs-on-ipad">Emacs on iPad</h2>
 <div class="outline-text-2">
 <p>
@@ -617,7 +617,7 @@ To see my configuration just click on the "emacs" link in the top right of this 
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-ios-advanced-features" class="outline-2">
 <h2 id="ios-advanced-features">iOS advanced features</h2>
 <div class="outline-text-2">
 <p>
@@ -670,7 +670,7 @@ Maybe some tweak developer can port the iOS15 keyboard shortcuts.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-conclusion" class="outline-2">
 <h2 id="conclusion">Conclusion</h2>
 <div class="outline-text-2">
 <p>
@@ -712,7 +712,7 @@ This "cloud" movement is exciting and I believe it is the future.
           <p><strong>And how to receive notifications and capture ideas from iPhone</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-organize-your-life" class="outline-2">
 <h2 id="organize-your-life">Organize your life</h2>
 <div class="outline-text-2">
 <p>
@@ -740,8 +740,8 @@ When we complete one, we set it to DONE and archive it with <code>org-archive-su
 Example file:
 </p>
 <div class="org-src-container">
-<pre class="src src-org"><span class="org-org-level-1">* </span><span class="org-org-todo">TODO</span><span class="org-org-level-1"> finish to write slides </span>
-<span class="org-org-level-1">* </span><span class="org-org-done">DONE</span><span class="org-org-level-1"> add docs </span>
+<pre class="src src-org"><span class="org-org-level-1">* </span><span class="org-org-level-1"><span class="org-org-todo">TODO</span></span><span class="org-org-level-1"> finish to write slides </span>
+<span class="org-org-level-1">* </span><span class="org-org-level-1"><span class="org-org-done">DONE</span></span><span class="org-org-level-1"> </span><span class="org-org-level-1"><span class="org-org-headline-done">add docs</span></span><span class="org-org-level-1"> </span>
 </pre>
 </div>
 
@@ -803,7 +803,7 @@ Now, if we only weren't so bad at checking our agendas&#x2026;
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-show-agenda-in-emacs-dashboard" class="outline-2">
 <h2 id="show-agenda-in-emacs-dashboard">Show agenda in emacs-dashboard</h2>
 <div class="outline-text-2">
 <p>
@@ -916,7 +916,7 @@ If I am in a good mood, I will review my <code>todo.org</code> file, schedule so
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-categorize-tasks" class="outline-2">
 <h2 id="categorize-tasks">Categorize tasks</h2>
 <div class="outline-text-2">
 <p>
@@ -938,14 +938,14 @@ For a subproject I would have individual headings corresponding to tasks.
 Here a practical example:
 </p>
 <div class="org-src-container">
-<pre class="src src-org"><span class="org-org-level-1">* Work </span><span class="org-org-checkbox-statistics-todo">[0/2]</span>
+<pre class="src src-org"><span class="org-org-level-1">* Work </span><span class="org-org-level-1"><span class="org-org-checkbox-statistics-todo">[0/2]</span></span>
 <span class="org-org-drawer">:PROPERTIES:</span>
 <span class="org-org-special-keyword">:COOKIE_DATA:</span> <span class="org-org-property-value">todo recursive</span>
 <span class="org-org-special-keyword">:CATEGORY:</span> <span class="org-org-property-value">work</span>
 <span class="org-org-drawer">:END:</span>
-<span class="org-org-level-2">** Recursive least squares model </span><span class="org-org-checkbox-statistics-todo">[0/2]</span>
-<span class="org-org-level-3">*** </span><span class="org-org-todo">TODO</span><span class="org-org-level-3"> Implement RLS model</span>
-<span class="org-org-level-3">*** </span><span class="org-org-todo">TODO</span><span class="org-org-level-3"> Validate results</span>
+<span class="org-org-level-2">** Recursive least squares model </span><span class="org-org-level-2"><span class="org-org-checkbox-statistics-todo">[0/2]</span></span>
+<span class="org-org-level-3">*** </span><span class="org-org-level-3"><span class="org-org-todo">TODO</span></span><span class="org-org-level-3"> Implement RLS model</span>
+<span class="org-org-level-3">*** </span><span class="org-org-level-3"><span class="org-org-todo">TODO</span></span><span class="org-org-level-3"> Validate results</span>
 </pre>
 </div>
 
@@ -967,7 +967,7 @@ The <code>work</code> category can then be used to filter agenda views like desc
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-agenda-and-notifications-on-your-iphone" class="outline-2">
 <h2 id="agenda-and-notifications-on-your-iphone">Agenda and notifications on your iPhone</h2>
 <div class="outline-text-2">
 <p>
@@ -994,7 +994,7 @@ Highly recommended.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-capture-new-ideas-from-your-iphone" class="outline-2">
 <h2 id="capture-new-ideas-from-your-iphone">Capture new ideas from your iPhone</h2>
 <div class="outline-text-2">
 <p>
@@ -1045,7 +1045,7 @@ If something was not clear, please leave a comment below.
           <p><strong>Simpler is better</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-what-was-wrong" class="outline-2">
 <h2 id="what-was-wrong">What was wrong?</h2>
 <div class="outline-text-2">
 <p>
@@ -1070,7 +1070,7 @@ It is still available at <a href="https://luca--lccambiaghi.netlify.app">this UR
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-welcome-to-the-past" class="outline-2">
 <h2 id="welcome-to-the-past">Welcome to the past!!</h2>
 <div class="outline-text-2">
 <p>
@@ -1104,7 +1104,7 @@ Once the blog is setup, you can just focus on the writing. Oh, and it provides a
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-my-workflow" class="outline-2">
 <h2 id="my-workflow">My workflow</h2>
 <div class="outline-text-2">
 <p>
@@ -1168,7 +1168,7 @@ am confident this will further reduce the friction between me and blogging!
           <p><strong>Declare your software and dotfiles and make them reproducible forever</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-why-should-you-care" class="outline-2">
 <h2 id="why-should-you-care">Why should you care?</h2>
 <div class="outline-text-2">
 <p>
@@ -1207,7 +1207,7 @@ My objective was to declare the fundamental building blocks of my workflow:
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-installing-nix" class="outline-2">
 <h2 id="installing-nix">Installing Nix</h2>
 <div class="outline-text-2">
 <p>
@@ -1239,7 +1239,7 @@ So, with a good dose of patience follow my tutorial.
 </p>
 </div>
 
-<div class="outline-3">
+<div id="outline-container-create-the-nix-volume" class="outline-3">
 <h3 id="create-the-nix-volume">Create the <code>nix</code> volume</h3>
 <div class="outline-text-3">
 <p>
@@ -1296,7 +1296,7 @@ and restart.
 </div>
 </div>
 
-<div class="outline-3">
+<div id="outline-container-iinstall-nix" class="outline-3">
 <h3 id="iinstall-nix">Iinstall <code>nix</code></h3>
 <div class="outline-text-3">
 <p>
@@ -1334,7 +1334,7 @@ Else, head over to the Troubleshooting section.
 </div>
 </div>
 
-<div class="outline-3">
+<div id="outline-container-install-nix-darwin" class="outline-3">
 <h3 id="install-nix-darwin">Install <code>nix-darwin</code></h3>
 <div class="outline-text-3">
 <p>
@@ -1373,7 +1373,7 @@ Once you gained confidence with the <code>nix</code> language, it is easy to wri
 </div>
 </div>
 
-<div class="outline-3">
+<div id="outline-container-troubleshooting" class="outline-3">
 <h3 id="troubleshooting">Troubleshooting</h3>
 <div class="outline-text-3">
 <p>
@@ -1420,7 +1420,7 @@ Export them and run the commands again:
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-home-manager" class="outline-2">
 <h2 id="home-manager">Home Manager</h2>
 <div class="outline-text-2">
 <p>
@@ -1544,7 +1544,7 @@ cask <span class="org-string">"discord"</span>
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-next-steps" class="outline-2">
 <h2 id="next-steps">Next steps</h2>
 <div class="outline-text-2">
 <p>
@@ -1586,7 +1586,7 @@ I will just end with a link to my personal <code>nixpkgs</code> repo which holds
           <p><strong>With an auto-configuring script</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-setup-org" class="outline-2">
 <h2 id="setup-org">setup.org</h2>
 <div class="outline-text-2">
 <p>
@@ -1605,14 +1605,14 @@ I can then <code>tangle</code> the blocks to a file <code>setup.sh</code>, which
 <p>
 I can do this by having this property at the top of <code>setup.org</code>:
 </p>
-<pre class="example">
+<pre class="example" id="org1de813c">
 #+PROPERTY: header-args :tangle ~/git/org/personal/setup.sh
 </pre>
 
 <p>
 This is the structure of the document:
 </p>
-<pre class="example">
+<pre class="example" id="org0d8e5d9">
 * macOs settings
 * brew
 * zsh
@@ -1648,7 +1648,7 @@ I can "export" the <code>org</code> file to <code>setup.sh</code> with <code>M-x
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-recovery-mode-and-setup-sh" class="outline-2">
 <h2 id="recovery-mode-and-setup-sh">Recovery Mode and setup.sh</h2>
 <div class="outline-text-2">
 <p>
@@ -1710,7 +1710,7 @@ With minimal effort, few minutes later, I had restored my feature-complete IDE.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-last-manual-steps" class="outline-2">
 <h2 id="last-manual-steps">Last manual steps</h2>
 <div class="outline-text-2">
 <p>
@@ -1754,7 +1754,7 @@ Expect a blog post about it in the near future!
           <p><strong>The best IDE, now even faster</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-emacs-is-born" class="outline-2">
 <h2 id="emacs-is-born">Emacs is born</h2>
 <div class="outline-text-2">
 <p>
@@ -1794,7 +1794,7 @@ This one will just bedicated to the configuration of it.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-doom" class="outline-2">
 <h2 id="doom">Doom</h2>
 <div class="outline-text-2">
 <p>
@@ -1829,7 +1829,7 @@ I wrote some simple elisp functions to add features I needed.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-gccemacs" class="outline-2">
 <h2 id="gccemacs">gccemacs</h2>
 <div class="outline-text-2">
 <p>
@@ -1897,7 +1897,7 @@ And this are the install options:
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-gotchas" class="outline-2">
 <h2 id="gotchas">Gotchas</h2>
 <div class="outline-text-2">
 <p>
@@ -1973,7 +1973,7 @@ I hope some early adopter can find this blog post and solve some of his installa
           <p><strong>Develop native mobile apps in the most elegant way</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-react-native" class="outline-2">
 <h2 id="react-native">React Native</h2>
 <div class="outline-text-2">
 <p>
@@ -2005,7 +2005,7 @@ It can leverage the React ecosystem, it has good documentation, its generic comp
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-figwheel" class="outline-2">
 <h2 id="figwheel">Figwheel</h2>
 <div class="outline-text-2">
 <p>
@@ -2038,7 +2038,7 @@ With the iOS Simulator running I can then run the Expo app and select my iOS bui
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-reagent" class="outline-2">
 <h2 id="reagent">Reagent</h2>
 <div class="outline-text-2">
 <p>
@@ -2149,7 +2149,7 @@ We can access the data accessing the <code>.-item</code> key.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-calling-clojure" class="outline-2">
 <h2 id="calling-clojure">Calling clojure</h2>
 <div class="outline-text-2">
 <p>
@@ -2191,7 +2191,7 @@ This is the screenshot of the result, it was a lot of fun:
 </p>
 
 
-<div class="figure">
+<div id="org457b039" class="figure">
 <p><img src="https://raw.githubusercontent.com/lccambiaghi/sudoku-cljsrn/master/assets/screen.png" alt="screen.png" />
 </p>
 </div>
@@ -2213,7 +2213,7 @@ This is the screenshot of the result, it was a lot of fun:
           <p><strong>How to learn stats, clojure and vega-lite while having fun</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-think-stats" class="outline-2">
 <h2 id="think-stats">Think stats</h2>
 <div class="outline-text-2">
 <p>
@@ -2237,7 +2237,7 @@ Even though I was familiar with most concepts, implementing them with simple fun
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-org-code-blocks" class="outline-2">
 <h2 id="org-code-blocks">Org code blocks</h2>
 <div class="outline-text-2">
 <p>
@@ -2245,7 +2245,7 @@ One of my favourite features of Emcas is <code>org-mode</code>.
 It is a markup language (arguably the best), which allows you to mix prose and code blocks.
 A code block looks like this:
 </p>
-<pre class="example">
+<pre class="example" id="orgc4a9933">
 #+BEGIN_SRC clojure
 (let [vec [1 2 3]]
   (reduce + vec))
@@ -2309,7 +2309,7 @@ Below I can open a clojure code snippet and rewrite it.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-org-inline-plots" class="outline-2">
 <h2 id="org-inline-plots">Org inline plots</h2>
 <div class="outline-text-2">
 <p>
@@ -2359,7 +2359,7 @@ They set the result to be a link to the path where the plot will be saved.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-clojer-to-metal" class="outline-2">
 <h2 id="clojer-to-metal">Clojer to metal</h2>
 <div class="outline-text-2">
 <p>
@@ -2431,7 +2431,7 @@ I like the idea that these pure functions are forever added to my toolbox, ready
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-conclusion" class="outline-2">
 <h2 id="conclusion">Conclusion</h2>
 <div class="outline-text-2">
 <p>
@@ -2458,7 +2458,7 @@ I hope that somebody can learn from the approach that I shared and maybe can sug
           <p><strong>The simple, privacy-focused, not bloated way</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-the-requirements" class="outline-2">
 <h2 id="the-requirements">The requirements</h2>
 <div class="outline-text-2">
 <p>
@@ -2486,7 +2486,7 @@ The thing is that I would not accept a solution which compromised on even one of
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-good-solutions" class="outline-2">
 <h2 id="good-solutions">Good solutions</h2>
 <div class="outline-text-2">
 <p>
@@ -2513,7 +2513,7 @@ However, before diving into this project, I decided to try out a service which l
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-the-winner" class="outline-2">
 <h2 id="the-winner">The winner</h2>
 <div class="outline-text-2">
 <p>
@@ -2578,7 +2578,7 @@ In the process I learned something abut the philosophy of React and I understand
           <p><strong>How to write visualizations as code</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-discovering-vega-lite" class="outline-2">
 <h2 id="discovering-vega-lite">Discovering Vega-lite</h2>
 <div class="outline-text-2">
 <p>
@@ -2706,7 +2706,7 @@ It is very simple to express the components and quite intuitive how to layer the
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-oz" class="outline-2">
 <h2 id="oz">Oz</h2>
 <div class="outline-text-2">
 <p>
@@ -2755,7 +2755,7 @@ There is no class, no weird API syntax or function kwargs to memorize.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-blog-development" class="outline-2">
 <h2 id="blog-development">Blog development:</h2>
 <div class="outline-text-2">
 <p>
@@ -2799,7 +2799,7 @@ When I am satisfied, I can just export to markdown and see the blog post reloadi
           <p><strong>Why and how I set up my personal website</strong></p>
           
           
-<div class="outline-2">
+<div id="outline-container-the-problem" class="outline-2">
 <h2 id="the-problem">The problem</h2>
 <div class="outline-text-2">
 <p>
@@ -2827,7 +2827,7 @@ In this blog post I explain what brought me to this point.
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-previous-approaches" class="outline-2">
 <h2 id="previous-approaches">Previous approaches</h2>
 <div class="outline-text-2">
 <p>
@@ -2859,7 +2859,7 @@ The setup must have been working very well for its original author, a Data Scien
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-this-approach" class="outline-2">
 <h2 id="this-approach">This approach</h2>
 <div class="outline-text-2">
 <p>
@@ -2903,7 +2903,7 @@ I am happy to <b>need</b> to understand the details for these integrations inste
 </div>
 </div>
 
-<div class="outline-2">
+<div id="outline-container-why-blogging" class="outline-2">
 <h2 id="why-blogging">Why blogging?</h2>
 <div class="outline-text-2">
 <p>
