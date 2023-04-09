@@ -14,6 +14,10 @@ jobs:
       - name: Set env
         run: |
             echo "ENV=GHUB" >> $GITHUB_ENV
+      - name: Download emacsd config
+        run: |
+            curl --output-dir pages/ -LO https://raw.githubusercontent.com/lccambiaghi/crafted-emacs-config/main/readme.org && \
+            mv pages/readme.org pages/emacs.org
       - uses: purcell/setup-emacs@master
         with:
           version: ${{ matrix.emacs_version }}
