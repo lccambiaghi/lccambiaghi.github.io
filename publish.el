@@ -38,7 +38,7 @@
 
 (setq elpa-base-dir "/Users/cambiaghiluca/.config/crafted-emacs/elpa/")
 
-(defun override-weblorg-export ()
+(defun use-org-id-links-in-weblorg-export ()
   (defun weblorg--parse-org (input-data &optional input-path)
     (let (html keywords)
       (advice-add
@@ -87,7 +87,6 @@
 
   (setq weblorg-default-url "http://localhost")
   (suppress-indentation-message)
-  (override-weblorg-export)
   )
 
 (defun setup-site ()
@@ -157,6 +156,7 @@
 (setup-site)
 
 (require 'advice)
+(use-org-id-links-in-weblorg-export)
 (weblorg-export)
 
 ;;; publish.el ends here
