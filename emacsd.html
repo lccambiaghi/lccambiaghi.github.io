@@ -59,13 +59,13 @@
   </h1>
   <section class="prose dark:prose-invert">
     
-<div id="outline-container-about-this-config" class="outline-2">
-<h2 id="about-this-config">About this config</h2>
-<div class="outline-text-2" id="text-about-this-config">
+<div id="outline-container-orgb4ddfcf" class="outline-2">
+<h2 id="orgb4ddfcf">About this config</h2>
+<div class="outline-text-2" id="text-orgb4ddfcf">
 </div>
-<div id="outline-container-history" class="outline-3">
-<h3 id="history">History</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgff052ae" class="outline-3">
+<h3 id="orgff052ae">History</h3>
+<div class="outline-text-3" id="text-orgff052ae">
 <p>
 After using <a href="https://github.com/doomemacs/doomemacs">doom-emacs</a> for the whole of 2020, in early 2021 I wrote
 <a href="https://github.com/lccambiaghi/vanilla-emacs">my own config from scratch</a>. Over 2 years I accumulated snippets and
@@ -93,35 +93,35 @@ I really need <code>dap-mode</code>.</li>
 </div>
 </div>
 
-<div id="outline-container-structure" class="outline-3">
-<h3 id="structure">Structure</h3>
-<div class="outline-text-3">
+<div id="outline-container-org3286a62" class="outline-3">
+<h3 id="org3286a62">Structure</h3>
+<div class="outline-text-3" id="text-org3286a62">
 <p>
 Sections:
 </p>
 <ul class="org-ul">
-<li><a href="#orgda7e240">Emacs core settings</a>
+<li><a href="#orgaae1c7a">Emacs core settings</a>
 <ul class="org-ul">
 <li>Configuration with <code>(use-package emacs)</code> blocks (no external packages), variables, helpers</li>
 <li>Install <code>no-littering</code></li>
 <li>Load modules provided by <code>crafted-emacs</code></li>
 <li>Install <code>vc-use-package</code> to add the <code>:vc</code> keyword to <code>use-package</code></li>
 </ul></li>
-<li><a href="#org995a15c">User interface</a>
+<li><a href="#org0266bc6">User interface</a>
 <ul class="org-ul">
 <li>First <code>(use-package emacs)</code> blocks</li>
 <li>Then external packages</li>
 </ul></li>
 <li>Packages
 <ul class="org-ul">
-<li><a href="#org323fcdf">Evil</a></li>
-<li><a href="#orgb32778e">GPT interface</a></li>
-<li><a href="#org54c848d">Git</a></li>
-<li><a href="#orgdb53de1">Org mode</a></li>
-<li><a href="#orgaf52d96">Other misc packages</a></li>
-<li><a href="#org11aa1be">Programming languages</a></li>
+<li><a href="#org1c57236">Evil</a></li>
+<li><a href="#orgf440e53">GPT interface</a></li>
+<li><a href="#org939cda0">Git</a></li>
+<li><a href="#orgad49cff">Org mode</a></li>
+<li><a href="#org4280fad">Other misc packages</a></li>
+<li><a href="#orga319530">Programming languages</a></li>
 </ul></li>
-<li><a href="#orgae7aced">Global keybindings</a></li>
+<li><a href="#orgef01fb4">Global keybindings</a></li>
 </ul>
 
 <p>
@@ -132,7 +132,7 @@ means I don't need any modules.
 </p>
 
 <p>
-The only exception could the <a href="#org11aa1be">Programming languages</a> section,
+The only exception could the <a href="#orga319530">Programming languages</a> section,
 where maybe I will only rarely need to use the <code>R</code> packages or the
 <code>clojure</code> packages. If you think about it, since all packages are
 deferred, they will only be loaded when needed. This means that the
@@ -141,9 +141,9 @@ installing the packages on the first setup.
 </p>
 </div>
 </div>
-<div id="outline-container-notable-sections" class="outline-3">
-<h3 id="notable-sections">Notable sections</h3>
-<div class="outline-text-3">
+<div id="outline-container-org237e1db" class="outline-3">
+<h3 id="org237e1db">Notable sections</h3>
+<div class="outline-text-3" id="text-org237e1db">
 <p>
 Here I report sections that greatly improve my productivity or that I
 am particularly proud of. 
@@ -153,30 +153,30 @@ am particularly proud of.
 In order of appearance in my config:
 </p>
 <ul class="org-ul">
-<li><a href="#org3b5f046">Enlarge window</a> (copied from DOOM)</li>
-<li><a href="#orgb66c3df">Web browser in emacs</a> (requires <code>emacs</code> built with widgets support)</li>
-<li><a href="#org5438b09">Search code on github</a></li>
-<li><a href="#org08578a5">Jump to bookmark</a></li>
-<li><a href="#org87932d7">Eval operator</a> (copied from DOOM)</li>
-<li>evil text objects <a href="#orgac5a4ce">for org mode</a> (code block and subtree), <a href="#org79e6a77">for outer form</a> and <a href="#org928f687">for buffer</a></li>
-<li><a href="#org5d6734b">Complete region with chatGPT</a></li>
-<li><a href="#org0504dca">Use org-id in links</a></li>
-<li><a href="#orgad5b4d4">csv mode</a></li>
-<li><a href="#orge220cbf">dap mode</a> (<code>dap-inspect-df</code> function)</li>
-<li><a href="#orgf21a8dd">jupyter</a></li>
-<li><a href="#orge06974f">org-jupyter-mode</a> and <a href="#org11d2373">scimax-jupyter</a></li>
+<li><a href="#org436de91">Enlarge window</a> (copied from DOOM)</li>
+<li><a href="#orgde17626">Web browser in emacs</a> (requires <code>emacs</code> built with widgets support)</li>
+<li><a href="#org697f0a4">Search code on github</a></li>
+<li><a href="#org3d73273">Jump to bookmark</a></li>
+<li><a href="#org6b3cc0f">Eval operator</a> (copied from DOOM)</li>
+<li>evil text objects <a href="#orgf08c855">for org mode</a> (code block and subtree), <a href="#orge3ef57a">for outer form</a> and <a href="#org020f8f4">for buffer</a></li>
+<li><a href="#orgdbce12b">Complete region with chatGPT</a></li>
+<li><a href="#org29e5ce8">Use org-id in links</a></li>
+<li><a href="#orga11c2e0">csv mode</a></li>
+<li><a href="#org880ebbd">dap mode</a> (<code>dap-inspect-df</code> function)</li>
+<li><a href="#org8b32436">jupyter</a></li>
+<li><a href="#orge0e2bb1">org-jupyter-mode</a> and <a href="#orgbf622aa">scimax-jupyter</a></li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-emacs-core-settings" class="outline-2">
-<h2 id="emacs-core-settings">Emacs core settings</h2>
-<div class="outline-text-2">
+<div id="outline-container-orgaae1c7a" class="outline-2">
+<h2 id="orgaae1c7a">Emacs core settings</h2>
+<div class="outline-text-2" id="text-orgaae1c7a">
 </div>
-<div id="outline-container-use-package" class="outline-3">
-<h3 id="use-package">use-package</h3>
-<div class="outline-text-3">
+<div id="outline-container-org4db1d1b" class="outline-3">
+<h3 id="org4db1d1b">use-package</h3>
+<div class="outline-text-3" id="text-org4db1d1b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -189,9 +189,9 @@ In order of appearance in my config:
 </div>
 </div>
 
-<div id="outline-container-user-variables" class="outline-3">
-<h3 id="user-variables">User variables</h3>
-<div class="outline-text-3">
+<div id="outline-container-org2e02c5c" class="outline-3">
+<h3 id="org2e02c5c">User variables</h3>
+<div class="outline-text-3" id="text-org2e02c5c">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -204,9 +204,9 @@ In order of appearance in my config:
 </div>
 </div>
 
-<div id="outline-container-helper-for-tangling" class="outline-3">
-<h3 id="helper-for-tangling">Helper for tangling</h3>
-<div class="outline-text-3">
+<div id="outline-container-org2202900" class="outline-3">
+<h3 id="org2202900">Helper for tangling</h3>
+<div class="outline-text-3" id="text-org2202900">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:hook</span>
@@ -224,9 +224,9 @@ In order of appearance in my config:
 </div>
 </div>
 
-<div id="outline-container-fix-helpful" class="outline-3">
-<h3 id="fix-helpful">Fix helpful</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgdd33b6b" class="outline-3">
+<h3 id="orgdd33b6b">Fix helpful</h3>
+<div class="outline-text-3" id="text-orgdd33b6b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">helpful</span>
   <span class="org-builtin">:config</span>
@@ -244,9 +244,9 @@ In order of appearance in my config:
 </div>
 </div>
 
-<div id="outline-container-disable-electric-indent-mode" class="outline-3">
-<h3 id="disable-electric-indent-mode">Disable electric-indent-mode</h3>
-<div class="outline-text-3">
+<div id="outline-container-orge1160a2" class="outline-3">
+<h3 id="orge1160a2">Disable electric-indent-mode</h3>
+<div class="outline-text-3" id="text-orge1160a2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -256,9 +256,9 @@ In order of appearance in my config:
 </div>
 </div>
 
-<div id="outline-container-jump-to-bookmark" class="outline-3">
-<h3 id="jump-to-bookmark">jump to bookmark</h3>
-<div class="outline-text-3">
+<div id="outline-container-org3d73273" class="outline-3">
+<h3 id="org3d73273">jump to bookmark</h3>
+<div class="outline-text-3" id="text-org3d73273">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">bookmark</span>
   <span class="org-builtin">:ensure</span> nil
@@ -278,9 +278,9 @@ In order of appearance in my config:
 </div>
 </div>
 
-<div id="outline-container-enlarge-window" class="outline-3">
-<h3 id="enlarge-window">Enlarge window</h3>
-<div class="outline-text-3">
+<div id="outline-container-org436de91" class="outline-3">
+<h3 id="org436de91">Enlarge window</h3>
+<div class="outline-text-3" id="text-org436de91">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -328,9 +328,9 @@ In order of appearance in my config:
 </div>
 </div>
 
-<div id="outline-container-web-browser-in-emacs" class="outline-3">
-<h3 id="web-browser-in-emacs">Web browser in emacs</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgde17626" class="outline-3">
+<h3 id="orgde17626">Web browser in emacs</h3>
+<div class="outline-text-3" id="text-orgde17626">
 <p>
 Note:
 </p>
@@ -373,9 +373,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-search-code-on-github" class="outline-3">
-<h3 id="search-code-on-github">Search code on github</h3>
-<div class="outline-text-3">
+<div id="outline-container-org697f0a4" class="outline-3">
+<h3 id="org697f0a4">Search code on github</h3>
+<div class="outline-text-3" id="text-org697f0a4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -399,9 +399,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-search-on-google" class="outline-3">
-<h3 id="search-on-google">Search on google</h3>
-<div class="outline-text-3">
+<div id="outline-container-orga68f628" class="outline-3">
+<h3 id="orga68f628">Search on google</h3>
+<div class="outline-text-3" id="text-orga68f628">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -425,9 +425,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-no-littering" class="outline-3">
-<h3 id="no-littering">no-littering</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgb2509a8" class="outline-3">
+<h3 id="orgb2509a8">no-littering</h3>
+<div class="outline-text-3" id="text-orgb2509a8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">no-littering</span>
   <span class="org-builtin">:init</span>
@@ -440,9 +440,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-crafted-modules" class="outline-3">
-<h3 id="crafted-modules">Crafted Modules</h3>
-<div class="outline-text-3">
+<div id="outline-container-org134bc26" class="outline-3">
+<h3 id="org134bc26">Crafted Modules</h3>
+<div class="outline-text-3" id="text-org134bc26">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">crafted-defaults</span>)    <span class="org-comment-delimiter">; </span><span class="org-comment">Sensible default settings for Emacs</span>
 <span class="org-comment-delimiter">;; </span><span class="org-comment">(require 'crafted-updates)     ; Tools to upgrade Crafted Emacs</span>
@@ -466,9 +466,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-popup-management" class="outline-3">
-<h3 id="popup-management">Popup management</h3>
-<div class="outline-text-3">
+<div id="outline-container-org9540e3e" class="outline-3">
+<h3 id="org9540e3e">Popup management</h3>
+<div class="outline-text-3" id="text-org9540e3e">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -483,9 +483,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-start-server" class="outline-3">
-<h3 id="start-server">Start server</h3>
-<div class="outline-text-3">
+<div id="outline-container-org0574877" class="outline-3">
+<h3 id="org0574877">Start server</h3>
+<div class="outline-text-3" id="text-org0574877">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -496,9 +496,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-add-vc-keyword-to-use-package" class="outline-3">
-<h3 id="add-vc-keyword-to-use-package">add :vc keyword to use-package</h3>
-<div class="outline-text-3">
+<div id="outline-container-org23f4558" class="outline-3">
+<h3 id="org23f4558">add :vc keyword to use-package</h3>
+<div class="outline-text-3" id="text-org23f4558">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -511,13 +511,13 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-user-interface" class="outline-2">
-<h2 id="user-interface">User interface</h2>
-<div class="outline-text-2">
+<div id="outline-container-org0266bc6" class="outline-2">
+<h2 id="org0266bc6">User interface</h2>
+<div class="outline-text-2" id="text-org0266bc6">
 </div>
-<div id="outline-container-maximize-frame-on-startup" class="outline-3">
-<h3 id="maximize-frame-on-startup">Maximize frame on startup</h3>
-<div class="outline-text-3">
+<div id="outline-container-org7cf354f" class="outline-3">
+<h3 id="org7cf354f">Maximize frame on startup</h3>
+<div class="outline-text-3" id="text-org7cf354f">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -527,9 +527,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-modus-themes" class="outline-3">
-<h3 id="modus-themes">Modus themes</h3>
-<div class="outline-text-3">
+<div id="outline-container-org490ca36" class="outline-3">
+<h3 id="org490ca36">Modus themes</h3>
+<div class="outline-text-3" id="text-org490ca36">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -601,9 +601,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-inhibit-startup-screen" class="outline-3">
-<h3 id="inhibit-startup-screen">Inhibit startup screen</h3>
-<div class="outline-text-3">
+<div id="outline-container-orga68a1d7" class="outline-3">
+<h3 id="orga68a1d7">Inhibit startup screen</h3>
+<div class="outline-text-3" id="text-orga68a1d7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
@@ -613,9 +613,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-all-the-icons" class="outline-3">
-<h3 id="all-the-icons">all-the-icons</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgb96d10b" class="outline-3">
+<h3 id="orgb96d10b">all-the-icons</h3>
+<div class="outline-text-3" id="text-orgb96d10b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">all-the-icons</span>
   <span class="org-builtin">:config</span>
@@ -626,9 +626,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-all-the-icons-completion" class="outline-3">
-<h3 id="all-the-icons-completion">all-the-icons completion</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgee636e2" class="outline-3">
+<h3 id="orgee636e2">all-the-icons completion</h3>
+<div class="outline-text-3" id="text-orgee636e2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">all-the-icons-completion</span>
   <span class="org-builtin">:if</span> (display-graphic-p)
@@ -641,9 +641,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-all-the-icons-dired" class="outline-3">
-<h3 id="all-the-icons-dired">all-the-icons-dired</h3>
-<div class="outline-text-3">
+<div id="outline-container-org42a9161" class="outline-3">
+<h3 id="org42a9161">all-the-icons-dired</h3>
+<div class="outline-text-3" id="text-org42a9161">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">all-the-icons-dired</span>
   <span class="org-builtin">:if</span> (display-graphic-p)
@@ -656,9 +656,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-doom-modeline" class="outline-3">
-<h3 id="doom-modeline">Doom modeline</h3>
-<div class="outline-text-3">
+<div id="outline-container-org7f5278c" class="outline-3">
+<h3 id="org7f5278c">Doom modeline</h3>
+<div class="outline-text-3" id="text-org7f5278c">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">doom-modeline</span>
   <span class="org-builtin">:hook</span>
@@ -676,9 +676,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-highlight-todo" class="outline-3">
-<h3 id="highlight-todo">highlight todo</h3>
-<div class="outline-text-3">
+<div id="outline-container-orge370dc7" class="outline-3">
+<h3 id="orge370dc7">highlight todo</h3>
+<div class="outline-text-3" id="text-orge370dc7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">hl-todo</span>
   <span class="org-builtin">:hook</span>
@@ -700,9 +700,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-kind-icon" class="outline-3">
-<h3 id="kind-icon">kind icon</h3>
-<div class="outline-text-3">
+<div id="outline-container-org48b375b" class="outline-3">
+<h3 id="org48b375b">kind icon</h3>
+<div class="outline-text-3" id="text-org48b375b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">kind-icon</span>
   <span class="org-builtin">:after</span> corfu
@@ -721,9 +721,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-centered-cursor-mode" class="outline-3">
-<h3 id="centered-cursor-mode">centered cursor mode</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgb0c32d5" class="outline-3">
+<h3 id="orgb0c32d5">centered cursor mode</h3>
+<div class="outline-text-3" id="text-orgb0c32d5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">centered-cursor-mode</span>
   <span class="org-builtin">:bind</span>
@@ -733,9 +733,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-sideline-flymake" class="outline-3">
-<h3 id="sideline-flymake">sideline-flymake</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgf690e8f" class="outline-3">
+<h3 id="orgf690e8f">sideline-flymake</h3>
+<div class="outline-text-3" id="text-orgf690e8f">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">sideline-flymake</span>
   <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"emacs-sideline/sideline-flymake"</span>)
@@ -758,13 +758,13 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-evil" class="outline-2">
-<h2 id="evil">Evil</h2>
-<div class="outline-text-2">
+<div id="outline-container-org1c57236" class="outline-2">
+<h2 id="org1c57236">Evil</h2>
+<div class="outline-text-2" id="text-org1c57236">
 </div>
-<div id="outline-container-evil-mode" class="outline-3">
-<h3 id="evil-mode">evil mode</h3>
-<div class="outline-text-3">
+<div id="outline-container-org0b16345" class="outline-3">
+<h3 id="org0b16345">evil mode</h3>
+<div class="outline-text-3" id="text-org0b16345">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil</span>
   <span class="org-builtin">:hook</span>
@@ -804,9 +804,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-eval-operator" class="outline-3">
-<h3 id="eval-operator">eval operator</h3>
-<div class="outline-text-3">
+<div id="outline-container-org6b3cc0f" class="outline-3">
+<h3 id="org6b3cc0f">eval operator</h3>
+<div class="outline-text-3" id="text-org6b3cc0f">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil</span>
   <span class="org-builtin">:config</span>
@@ -850,9 +850,9 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-evil-org-mode-org-text-objects" class="outline-3">
-<h3 id="evil-org-mode-org-text-objects">evil-org-mode, org text objects</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgf08c855" class="outline-3">
+<h3 id="orgf08c855">evil-org-mode, org text objects</h3>
+<div class="outline-text-3" id="text-orgf08c855">
 <p>
 Text objects:
 </p>
@@ -960,9 +960,9 @@ Text objects:
 </div>
 </div>
 
-<div id="outline-container-evil-nerd-commenter" class="outline-3">
-<h3 id="evil-nerd-commenter">evil nerd commenter</h3>
-<div class="outline-text-3">
+<div id="outline-container-org5de2fe8" class="outline-3">
+<h3 id="org5de2fe8">evil nerd commenter</h3>
+<div class="outline-text-3" id="text-org5de2fe8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-nerd-commenter</span>
   <span class="org-builtin">:bind</span>
@@ -977,9 +977,9 @@ Text objects:
 </div>
 </div>
 
-<div id="outline-container-evil-surround" class="outline-3">
-<h3 id="evil-surround">evil surround</h3>
-<div class="outline-text-3">
+<div id="outline-container-org3f0c10f" class="outline-3">
+<h3 id="org3f0c10f">evil surround</h3>
+<div class="outline-text-3" id="text-org3f0c10f">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-surround</span>
   <span class="org-builtin">:init</span>
@@ -990,9 +990,9 @@ Text objects:
 </div>
 </div>
 
-<div id="outline-container-evil-goggles" class="outline-3">
-<h3 id="evil-goggles">evil goggles</h3>
-<div class="outline-text-3">
+<div id="outline-container-orga74c82f" class="outline-3">
+<h3 id="orga74c82f">evil goggles</h3>
+<div class="outline-text-3" id="text-orga74c82f">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-goggles</span>
   <span class="org-builtin">:after</span> evil
@@ -1011,9 +1011,9 @@ Text objects:
 </div>
 </div>
 
-<div id="outline-container-evil-cleverparens-outer-form-text-object" class="outline-3">
-<h3 id="evil-cleverparens-outer-form-text-object">evil cleverparens, outer form text object</h3>
-<div class="outline-text-3">
+<div id="outline-container-orge3ef57a" class="outline-3">
+<h3 id="orge3ef57a">evil cleverparens, outer form text object</h3>
+<div class="outline-text-3" id="text-orge3ef57a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-cleverparens</span>
   <span class="org-builtin">:after</span> (evil)
@@ -1044,9 +1044,9 @@ Text objects:
 </div>
 </div>
 
-<div id="outline-container-evil-buffer-text-object" class="outline-3">
-<h3 id="evil-buffer-text-object">evil buffer text object</h3>
-<div class="outline-text-3">
+<div id="outline-container-org020f8f4" class="outline-3">
+<h3 id="org020f8f4">evil buffer text object</h3>
+<div class="outline-text-3" id="text-org020f8f4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil</span>
   <span class="org-builtin">:config</span>
@@ -1072,9 +1072,9 @@ Text objects:
 </div>
 </div>
 
-<div id="outline-container-evil-iedit-state" class="outline-3">
-<h3 id="evil-iedit-state">evil-iedit-state</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgc02c088" class="outline-3">
+<h3 id="orgc02c088">evil-iedit-state</h3>
+<div class="outline-text-3" id="text-orgc02c088">
 <p>
 Keybindings:
 </p>
@@ -1096,9 +1096,9 @@ Keybindings:
 </div>
 </div>
 
-<div id="outline-container-evil-snipe" class="outline-3">
-<h3 id="evil-snipe">evil-snipe</h3>
-<div class="outline-text-3">
+<div id="outline-container-org973fb77" class="outline-3">
+<h3 id="org973fb77">evil-snipe</h3>
+<div class="outline-text-3" id="text-org973fb77">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil-snipe</span>
   <span class="org-builtin">:hook</span>
@@ -1151,13 +1151,13 @@ Keybindings:
 </div>
 </div>
 
-<div id="outline-container-gpt-interface" class="outline-2">
-<h2 id="gpt-interface">GPT interface</h2>
-<div class="outline-text-2">
+<div id="outline-container-orgf440e53" class="outline-2">
+<h2 id="orgf440e53">GPT interface</h2>
+<div class="outline-text-2" id="text-orgf440e53">
 </div>
-<div id="outline-container-notes" class="outline-3">
-<h3 id="notes">Notes</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgd522f99" class="outline-3">
+<h3 id="orgd522f99">Notes</h3>
+<div class="outline-text-3" id="text-orgd522f99">
 <p>
 Interesting ideas:
 </p>
@@ -1211,9 +1211,9 @@ Best practices for writing a function:
 </div>
 </div>
 
-<div id="outline-container-complete-region-buffer-with-gpt" class="outline-3">
-<h3 id="complete-region-buffer-with-gpt">Complete region/buffer with gpt</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgdbce12b" class="outline-3">
+<h3 id="orgdbce12b">Complete region/buffer with gpt</h3>
+<div class="outline-text-3" id="text-orgdbce12b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -1313,9 +1313,9 @@ Best practices for writing a function:
 </div>
 </div>
 
-<div id="outline-container-search-with-alpaca" class="outline-3">
-<h3 id="search-with-alpaca">Search with alpaca</h3>
-<div class="outline-text-3">
+<div id="outline-container-org1313df1" class="outline-3">
+<h3 id="org1313df1">Search with alpaca</h3>
+<div class="outline-text-3" id="text-org1313df1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
@@ -1429,9 +1429,9 @@ Best practices for writing a function:
 </div>
 </div>
 
-<div id="outline-container-chatgpt-shell" class="outline-3">
-<h3 id="chatgpt-shell">chatgpt-shell</h3>
-<div class="outline-text-3">
+<div id="outline-container-org6695d50" class="outline-3">
+<h3 id="org6695d50">chatgpt-shell</h3>
+<div class="outline-text-3" id="text-org6695d50">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">chatgpt-shell</span>
   <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"xenodium/chatgpt-shell"</span>)
@@ -1452,9 +1452,9 @@ Best practices for writing a function:
 </div>
 </div>
 
-<div id="outline-container-copilot" class="outline-3">
-<h3 id="copilot">copilot</h3>
-<div class="outline-text-3">
+<div id="outline-container-org8fc416e" class="outline-3">
+<h3 id="org8fc416e">copilot</h3>
+<div class="outline-text-3" id="text-org8fc416e">
 <p>
 Notest:
 </p>
@@ -1494,13 +1494,13 @@ Notest:
 </div>
 </div>
 
-<div id="outline-container-git" class="outline-2">
-<h2 id="git">Git</h2>
-<div class="outline-text-2">
+<div id="outline-container-org939cda0" class="outline-2">
+<h2 id="org939cda0">Git</h2>
+<div class="outline-text-2" id="text-org939cda0">
 </div>
-<div id="outline-container-magit" class="outline-3">
-<h3 id="magit">Magit</h3>
-<div class="outline-text-3">
+<div id="outline-container-org775b5fc" class="outline-3">
+<h3 id="org775b5fc">Magit</h3>
+<div class="outline-text-3" id="text-org775b5fc">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">magit</span>
   <span class="org-builtin">:bind</span>
@@ -1541,9 +1541,9 @@ Notest:
 </div>
 </div>
 
-<div id="outline-container-git-time-machine" class="outline-3">
-<h3 id="git-time-machine">git time machine</h3>
-<div class="outline-text-3">
+<div id="outline-container-orge8c99e0" class="outline-3">
+<h3 id="orge8c99e0">git time machine</h3>
+<div class="outline-text-3" id="text-orge8c99e0">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">git-timemachine</span>
   <span class="org-builtin">:hook</span>
@@ -1561,9 +1561,9 @@ Notest:
 </div>
 </div>
 
-<div id="outline-container-diff-highlight" class="outline-3">
-<h3 id="diff-highlight">diff highlight</h3>
-<div class="outline-text-3">
+<div id="outline-container-org77ad69a" class="outline-3">
+<h3 id="org77ad69a">diff highlight</h3>
+<div class="outline-text-3" id="text-org77ad69a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">diff-hl</span>
   <span class="org-builtin">:bind</span>
@@ -1584,9 +1584,9 @@ Notest:
 </div>
 </div>
 
-<div id="outline-container-smerge-hydra" class="outline-3">
-<h3 id="smerge-hydra">smerge-hydra</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgd835f20" class="outline-3">
+<h3 id="orgd835f20">smerge-hydra</h3>
+<div class="outline-text-3" id="text-orgd835f20">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">hydra</span>
   <span class="org-builtin">:bind</span>
@@ -1634,13 +1634,13 @@ Notest:
 </div>
 </div>
 
-<div id="outline-container-org" class="outline-2">
-<h2 id="org">Org</h2>
-<div class="outline-text-2">
+<div id="outline-container-orgad49cff" class="outline-2">
+<h2 id="orgad49cff">Org</h2>
+<div class="outline-text-2" id="text-orgad49cff">
 </div>
-<div id="outline-container-org-mode" class="outline-3">
-<h3 id="org-mode">Org mode</h3>
-<div class="outline-text-3">
+<div id="outline-container-org5425761" class="outline-3">
+<h3 id="org5425761">Org mode</h3>
+<div class="outline-text-3" id="text-org5425761">
 <p>
 When exporting <code>.org</code> file to HTML, we can add this header:
 </p>
@@ -1715,9 +1715,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-use-org-id-in-links" class="outline-3">
-<h3 id="use-org-id-in-links">use org-id in links</h3>
-<div class="outline-text-3">
+<div id="outline-container-org29e5ce8" class="outline-3">
+<h3 id="org29e5ce8">use org-id in links</h3>
+<div class="outline-text-3" id="text-org29e5ce8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org</span>
   <span class="org-builtin">:preface</span>
@@ -1760,9 +1760,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-org-agenda-and-capture" class="outline-3">
-<h3 id="org-agenda-and-capture">org agenda and capture</h3>
-<div class="outline-text-3">
+<div id="outline-container-orge07f117" class="outline-3">
+<h3 id="orge07f117">org agenda and capture</h3>
+<div class="outline-text-3" id="text-orge07f117">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org</span>
   <span class="org-builtin">:bind</span>
@@ -1797,9 +1797,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-org-babel" class="outline-3">
-<h3 id="org-babel">Org babel</h3>
-<div class="outline-text-3">
+<div id="outline-container-org48a6bc1" class="outline-3">
+<h3 id="org48a6bc1">Org babel</h3>
+<div class="outline-text-3" id="text-org48a6bc1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org</span>
   <span class="org-builtin">:bind</span>
@@ -1831,9 +1831,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-org-modern" class="outline-3">
-<h3 id="org-modern">org modern</h3>
-<div class="outline-text-3">
+<div id="outline-container-org42bc923" class="outline-3">
+<h3 id="org42bc923">org modern</h3>
+<div class="outline-text-3" id="text-org42bc923">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">add frame borders to show code block "line"</span>
 (<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
@@ -1862,9 +1862,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-org-fragtog" class="outline-3">
-<h3 id="org-fragtog">org fragtog</h3>
-<div class="outline-text-3">
+<div id="outline-container-org7dbbff3" class="outline-3">
+<h3 id="org7dbbff3">org fragtog</h3>
+<div class="outline-text-3" id="text-org7dbbff3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org-fragtog</span>
   <span class="org-builtin">:hook</span>
@@ -1875,13 +1875,13 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-other-packages" class="outline-2">
-<h2 id="other-packages">Other packages</h2>
-<div class="outline-text-2">
+<div id="outline-container-org4280fad" class="outline-2">
+<h2 id="org4280fad">Other packages</h2>
+<div class="outline-text-2" id="text-org4280fad">
 </div>
-<div id="outline-container-consult" class="outline-3">
-<h3 id="consult">consult</h3>
-<div class="outline-text-3">
+<div id="outline-container-org9e9d12d" class="outline-3">
+<h3 id="org9e9d12d">consult</h3>
+<div class="outline-text-3" id="text-org9e9d12d">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">consult</span>
   <span class="org-builtin">:bind</span>
@@ -1923,9 +1923,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-consult-notes" class="outline-3">
-<h3 id="consult-notes">consult-notes</h3>
-<div class="outline-text-3">
+<div id="outline-container-org690d2a9" class="outline-3">
+<h3 id="org690d2a9">consult-notes</h3>
+<div class="outline-text-3" id="text-org690d2a9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">consult-notes</span>
   <span class="org-builtin">:bind</span>
@@ -1939,9 +1939,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-corfu" class="outline-3">
-<h3 id="corfu"><span class="todo TODO">TODO</span> corfu</h3>
-<div class="outline-text-3">
+<div id="outline-container-orga876cb3" class="outline-3">
+<h3 id="orga876cb3"><span class="todo TODO">TODO</span> corfu</h3>
+<div class="outline-text-3" id="text-orga876cb3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">corfu</span>
   <span class="org-builtin">:bind</span>
@@ -1962,9 +1962,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-denote" class="outline-3">
-<h3 id="denote">denote</h3>
-<div class="outline-text-3">
+<div id="outline-container-org5c106be" class="outline-3">
+<h3 id="org5c106be">denote</h3>
+<div class="outline-text-3" id="text-org5c106be">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">denote</span>
   <span class="org-builtin">:hook</span>
@@ -2012,9 +2012,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-denote-menu" class="outline-3">
-<h3 id="denote-menu">denote menu</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgb1f01b5" class="outline-3">
+<h3 id="orgb1f01b5">denote menu</h3>
+<div class="outline-text-3" id="text-orgb1f01b5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">denote-menu</span>
   <span class="org-builtin">:commands</span>
@@ -2030,9 +2030,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-dired-and-extensions" class="outline-3">
-<h3 id="dired-and-extensions">dired and extensions</h3>
-<div class="outline-text-3">
+<div id="outline-container-orge2d9a53" class="outline-3">
+<h3 id="orge2d9a53">dired and extensions</h3>
+<div class="outline-text-3" id="text-orge2d9a53">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">dired</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2083,9 +2083,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-embark" class="outline-3">
-<h3 id="embark">embark</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgb787b70" class="outline-3">
+<h3 id="orgb787b70">embark</h3>
+<div class="outline-text-3" id="text-orgb787b70">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">embark</span>
   <span class="org-builtin">:bind</span>
@@ -2099,9 +2099,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-eros" class="outline-3">
-<h3 id="eros">eros</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgf1831dc" class="outline-3">
+<h3 id="orgf1831dc">eros</h3>
+<div class="outline-text-3" id="text-orgf1831dc">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">eros</span>
   <span class="org-builtin">:commands</span>
@@ -2122,9 +2122,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-flymake" class="outline-3">
-<h3 id="flymake">flymake</h3>
-<div class="outline-text-3">
+<div id="outline-container-orge6da628" class="outline-3">
+<h3 id="orge6da628">flymake</h3>
+<div class="outline-text-3" id="text-orge6da628">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">flymake</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2140,9 +2140,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-hydra-and-windows-hydra" class="outline-3">
-<h3 id="hydra-and-windows-hydra">hydra and windows-hydra</h3>
-<div class="outline-text-3">
+<div id="outline-container-orga7f9dac" class="outline-3">
+<h3 id="orga7f9dac">hydra and windows-hydra</h3>
+<div class="outline-text-3" id="text-orga7f9dac">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">hydra</span>
   <span class="org-builtin">:after</span> evil
@@ -2167,9 +2167,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-persistent-scratch" class="outline-3">
-<h3 id="persistent-scratch">persistent scratch</h3>
-<div class="outline-text-3">
+<div id="outline-container-org8c77e3b" class="outline-3">
+<h3 id="org8c77e3b">persistent scratch</h3>
+<div class="outline-text-3" id="text-org8c77e3b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">persistent-scratch</span>
   <span class="org-builtin">:bind</span>
@@ -2189,9 +2189,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-project" class="outline-3">
-<h3 id="project">project</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgf7c19d2" class="outline-3">
+<h3 id="orgf7c19d2">project</h3>
+<div class="outline-text-3" id="text-orgf7c19d2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">project</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2206,9 +2206,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-rainbow-parentheses" class="outline-3">
-<h3 id="rainbow-parentheses">Rainbow parentheses</h3>
-<div class="outline-text-3">
+<div id="outline-container-orga4d5e13" class="outline-3">
+<h3 id="orga4d5e13">Rainbow parentheses</h3>
+<div class="outline-text-3" id="text-orga4d5e13">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">rainbow-delimiters</span>
   <span class="org-builtin">:hook</span>
@@ -2218,9 +2218,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-tempel" class="outline-3">
-<h3 id="tempel">tempel</h3>
-<div class="outline-text-3">
+<div id="outline-container-org4995833" class="outline-3">
+<h3 id="org4995833">tempel</h3>
+<div class="outline-text-3" id="text-org4995833">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">tempel</span>
   <span class="org-builtin">:custom</span>
@@ -2242,9 +2242,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-transpose-frame" class="outline-3">
-<h3 id="transpose-frame">Transpose frame</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgce296e9" class="outline-3">
+<h3 id="orgce296e9">Transpose frame</h3>
+<div class="outline-text-3" id="text-orgce296e9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">transpose-frame</span>
   <span class="org-builtin">:bind</span>
@@ -2256,9 +2256,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-tabspaces" class="outline-3">
-<h3 id="tabspaces">tabspaces</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgc149094" class="outline-3">
+<h3 id="orgc149094">tabspaces</h3>
+<div class="outline-text-3" id="text-orgc149094">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">tabspaces</span>
   <span class="org-builtin">:commands</span>
@@ -2319,9 +2319,9 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-tree-sitter" class="outline-3">
-<h3 id="tree-sitter">tree-sitter</h3>
-<div class="outline-text-3">
+<div id="outline-container-org989f749" class="outline-3">
+<h3 id="org989f749">tree-sitter</h3>
+<div class="outline-text-3" id="text-org989f749">
 <p>
 To build grammar:
 </p>
@@ -2354,9 +2354,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-treemacs" class="outline-3">
-<h3 id="treemacs"><span class="todo TODO">TODO</span> treemacs</h3>
-<div class="outline-text-3">
+<div id="outline-container-org44097ac" class="outline-3">
+<h3 id="org44097ac"><span class="todo TODO">TODO</span> treemacs</h3>
+<div class="outline-text-3" id="text-org44097ac">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">treemacs</span>
   <span class="org-builtin">:bind</span>
@@ -2379,9 +2379,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-vertico" class="outline-3">
-<h3 id="vertico">vertico</h3>
-<div class="outline-text-3">
+<div id="outline-container-orgf0bc8fb" class="outline-3">
+<h3 id="orgf0bc8fb">vertico</h3>
+<div class="outline-text-3" id="text-orgf0bc8fb">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">savehist</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2403,9 +2403,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-vterm-and-vterm-toggle" class="outline-3">
-<h3 id="vterm-and-vterm-toggle">vterm and vterm-toggle</h3>
-<div class="outline-text-3">
+<div id="outline-container-org791e1dc" class="outline-3">
+<h3 id="org791e1dc">vterm and vterm-toggle</h3>
+<div class="outline-text-3" id="text-org791e1dc">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">vterm</span>
   <span class="org-builtin">:bind</span>
@@ -2427,9 +2427,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-xwidget-web-browser-enhancements" class="outline-3">
-<h3 id="xwidget-web-browser-enhancements">xwidget web browser enhancements</h3>
-<div class="outline-text-3">
+<div id="outline-container-org34181be" class="outline-3">
+<h3 id="org34181be">xwidget web browser enhancements</h3>
+<div class="outline-text-3" id="text-org34181be">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">xwwp-full</span>
   <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"kchanqvq/xwwp"</span>)
@@ -2449,13 +2449,13 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-programming-languages" class="outline-2">
-<h2 id="programming-languages">Programming languages</h2>
-<div class="outline-text-2">
+<div id="outline-container-orga319530" class="outline-2">
+<h2 id="orga319530">Programming languages</h2>
+<div class="outline-text-2" id="text-orga319530">
 </div>
-<div id="outline-container-lsp-mode" class="outline-3">
-<h3 id="lsp-mode">lsp-mode</h3>
-<div class="outline-text-3">
+<div id="outline-container-orga2a8ebc" class="outline-3">
+<h3 id="orga2a8ebc">lsp-mode</h3>
+<div class="outline-text-3" id="text-orga2a8ebc">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">lsp-mode</span>
   <span class="org-builtin">:commands</span>
@@ -2491,9 +2491,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-clojure" class="outline-3">
-<h3 id="clojure">clojure</h3>
-<div class="outline-text-3">
+<div id="outline-container-org1c9ca11" class="outline-3">
+<h3 id="org1c9ca11">clojure</h3>
+<div class="outline-text-3" id="text-org1c9ca11">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">clojure-mode</span>)
 </pre>
@@ -2501,9 +2501,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-nix" class="outline-3">
-<h3 id="nix">Nix</h3>
-<div class="outline-text-3">
+<div id="outline-container-org4929e11" class="outline-3">
+<h3 id="org4929e11">Nix</h3>
+<div class="outline-text-3" id="text-org4929e11">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">nix-mode</span>
 <span class="org-builtin">:mode</span> <span class="org-string">"\\.nix\\'"</span>)
@@ -2512,13 +2512,13 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-python" class="outline-3">
-<h3 id="python">Python</h3>
-<div class="outline-text-3" id="text-python">
+<div id="outline-container-org9a76ee3" class="outline-3">
+<h3 id="org9a76ee3">Python</h3>
+<div class="outline-text-3" id="text-org9a76ee3">
 </div>
-<div id="outline-container-python-mode" class="outline-4">
-<h4 id="python-mode">python-mode</h4>
-<div class="outline-text-4">
+<div id="outline-container-org010cde9" class="outline-4">
+<h4 id="org010cde9">python-mode</h4>
+<div class="outline-text-4" id="text-org010cde9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">python-mode</span>
   <span class="org-builtin">:ensure</span> nil
@@ -2529,9 +2529,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-csv-mode" class="outline-4">
-<h4 id="csv-mode">csv-mode</h4>
-<div class="outline-text-4">
+<div id="outline-container-orga11c2e0" class="outline-4">
+<h4 id="orga11c2e0">csv-mode</h4>
+<div class="outline-text-4" id="text-orga11c2e0">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">csv-mode</span>
   <span class="org-builtin">:hook</span> (csv-mode . lc/init-csv-mode)
@@ -2589,9 +2589,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-direnv" class="outline-4">
-<h4 id="direnv">direnv</h4>
-<div class="outline-text-4">
+<div id="outline-container-org002a042" class="outline-4">
+<h4 id="org002a042">direnv</h4>
+<div class="outline-text-4" id="text-org002a042">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">envrc</span>
   <span class="org-builtin">:hook</span>
@@ -2601,9 +2601,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-lsp-pyright" class="outline-4">
-<h4 id="lsp-pyright">lsp-pyright</h4>
-<div class="outline-text-4">
+<div id="outline-container-org1775d36" class="outline-4">
+<h4 id="org1775d36">lsp-pyright</h4>
+<div class="outline-text-4" id="text-org1775d36">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">lsp-pyright</span>
   <span class="org-builtin">:hook</span>
@@ -2642,9 +2642,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-dap-mode" class="outline-4">
-<h4 id="dap-mode">dap-mode</h4>
-<div class="outline-text-4">
+<div id="outline-container-org880ebbd" class="outline-4">
+<h4 id="org880ebbd">dap-mode</h4>
+<div class="outline-text-4" id="text-org880ebbd">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">dap-mode</span>
   <span class="org-builtin">:hook</span>
@@ -2777,9 +2777,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-flymake-ruff" class="outline-4">
-<h4 id="flymake-ruff">flymake-ruff</h4>
-<div class="outline-text-4">
+<div id="outline-container-org9682bc4" class="outline-4">
+<h4 id="org9682bc4">flymake-ruff</h4>
+<div class="outline-text-4" id="text-org9682bc4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">flymake-ruff</span>
   <span class="org-builtin">:hook</span>
@@ -2789,9 +2789,9 @@ To build grammar:
 </div>
 </div>
 
-<div id="outline-container-jupyter" class="outline-4">
-<h4 id="jupyter">jupyter</h4>
-<div class="outline-text-4">
+<div id="outline-container-org8b32436" class="outline-4">
+<h4 id="org8b32436">jupyter</h4>
+<div class="outline-text-4" id="text-org8b32436">
 <p>
 <code>zmq</code> installation:
 </p>
@@ -2908,9 +2908,9 @@ Compile by hand:
 </div>
 </div>
 
-<div id="outline-container-org-jupyter-mode" class="outline-4">
-<h4 id="org-jupyter-mode">Org jupyter mode</h4>
-<div class="outline-text-4">
+<div id="outline-container-orge0e2bb1" class="outline-4">
+<h4 id="orge0e2bb1">Org jupyter mode</h4>
+<div class="outline-text-4" id="text-orge0e2bb1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:hook</span>
@@ -2959,9 +2959,9 @@ Compile by hand:
 </div>
 </div>
 
-<div id="outline-container-scimax-jupyter" class="outline-4">
-<h4 id="scimax-jupyter">scimax-jupyter</h4>
-<div class="outline-text-4">
+<div id="outline-container-orgbf622aa" class="outline-4">
+<h4 id="orgbf622aa">scimax-jupyter</h4>
+<div class="outline-text-4" id="text-orgbf622aa">
 <p>
 Notes:
 </p>
@@ -3033,9 +3033,9 @@ Notes:
 </div>
 </div>
 
-<div id="outline-container-global-keybindings" class="outline-2">
-<h2 id="global-keybindings">Global keybindings</h2>
-<div class="outline-text-2">
+<div id="outline-container-orgef01fb4" class="outline-2">
+<h2 id="orgef01fb4">Global keybindings</h2>
+<div class="outline-text-2" id="text-orgef01fb4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">evil</span>
   <span class="org-builtin">:config</span>
