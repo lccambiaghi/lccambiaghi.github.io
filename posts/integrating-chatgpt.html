@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en-us" class=scroll-smooth data-default-appearance=light data-auto-appearance=true>
+  <head>
+    
+    <!-- Clicky -->
+    <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101320555);</script>
+    <script async src="//static.getclicky.com/js"></script>
+    <!-- Clicky -->
+    <meta charset="utf-8">
+    <title>Luca's blog - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Luca Cambiaghi" />
+    <meta name="description" content="Luca&#39;s blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://lucacambiaghi.com/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script async src="https://talk.hyvor.com/embed/embed.js" type="module"></script>
+    <script type=text/javascript src="https://lucacambiaghi.com/static//js/appearance.js"></script>
+    <script defer type=text/javascript id=script-bundle src="https://lucacambiaghi.com/static//js/main.js" data-copy=Copy data-copied=Copied></script>
+    
+  </head>
+
+  <body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl">
+    
+    <div id=the-top class="absolute flex self-center">
+  <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 dark:bg-neutral-600 focus:translate-y-0" href=#main-content>
+    <span class="font-bold ltr:pr-2 rtl:pl-2 text-primary-600 dark:text-primary-400">&darr;
+    </span>Skip to main content
+  </a>
+</div>
+
+<header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral print:hidden">
+  <div><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/index.html">Luca</a></div>
+<nav>
+  <ul class="flex list-none sm:flex-row">
+    <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/posts.html">posts</a>
+    </li>
+    <span class="px-2 text-primary-500">&#183;</span>
+    <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/emacsd.html">emacs</a>
+    </li>
+    <span class="px-2 text-primary-500">&#183;</span>
+    <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/nix.html">nix</a>
+    </li>
+  </ul>
+</nav>
+</header>
+
+    
+
+    <main id="main" class="relative grow">
+      
+<article class="post">
+  <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+    Integrating chatGPT into my workflow
+  </h1>
+  <div class="mt-8 mb-8 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+    <div class="flex flex-row flex-wrap items-center">
+      <time> Apr 10, 2023
+      </time>
+      <span class="px-2 text-primary-500">&#183;</span>
+      <span title="tags">(emacs llm)
+      </span>
+    </div>
+  </div>
+
+  <section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert">
+    <div class="min-w-0 min-h-0 max-w-prose">
+      
+<div id="outline-container-cambrian-explosion-of-generative-ai" class="outline-2">
+<h2 id="cambrian-explosion-of-generative-ai">Cambrian explosion of generative AI</h2>
+<div class="outline-text-2">
+<p>
+What a time to be alive! <code>chatgpt4</code> has just been released; <code>chatgpt3.5</code>, <code>dall-e</code>
+and <code>copilot</code> are available to the general public; <code>llama.cpp</code> and
+<code>alpaca.cpp</code> are being developed very fast with the promise of
+democratizing large language models.
+</p>
+
+<p>
+With these tools available to every programmer and data scientist,
+whoever is not leveraging them will simply be left behind. It is
+therefore very critical to me to become good at interfacing with these
+tools. 
+</p>
+
+<p>
+This means:
+</p>
+<ul class="org-ul">
+<li>Learning how to design effective prompts</li>
+<li>Learning to identify use cases when using LLMs will lead to a faster / more correct solution</li>
+<li>Integrate these tools into my development environment: minimize
+context switching and time to solution</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-chatgpt-and-completing-code-from-region" class="outline-2">
+<h2 id="chatgpt-and-completing-code-from-region">ChatGPT and completing code from region</h2>
+<div class="outline-text-2">
+<p>
+OpenAI and <code>chatgpt</code> are the current leaders of this space. Trial
+period and credits, great user experience, sensible answers, fast
+response time.
+</p>
+
+<p>
+They provide a simple API: you provide your openAI key and prompt and
+they will reply with the LLM's prediction.
+</p>
+
+<p>
+Let's write an <code>emacs-lisp</code> function that given the key and prompt will
+return the result:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">gpt-complete-str</span> (api-key prompt)
+  <span class="org-doc">"Return the prompt answer from OpenAI API."</span>
+  (<span class="org-keyword">let</span> ((result nil)
+        (auth-value (format <span class="org-string">"Bearer %s"</span> api-key)))
+    (request
+      <span class="org-string">"https://api.openai.com/v1/chat/completions"</span>
+      <span class="org-builtin">:type</span> <span class="org-string">"POST"</span>
+      <span class="org-builtin">:data</span> (json-encode `((<span class="org-string">"prompt"</span> . ,prompt)
+                           (<span class="org-string">"model"</span>  . 'gpt-3.5-turbo)))
+      <span class="org-builtin">:headers</span> `((<span class="org-string">"Authorization"</span> . ,auth-value) (<span class="org-string">"Content-Type"</span> . <span class="org-string">"application/json"</span>))
+      <span class="org-builtin">:sync</span> t
+      <span class="org-builtin">:parser</span> 'json-read
+      <span class="org-builtin">:success</span> (<span class="org-keyword">cl-function</span>
+                (<span class="org-keyword">lambda</span> (<span class="org-type">&amp;key</span> data <span class="org-type">&amp;allow-other-keys</span>)
+                  (<span class="org-keyword">setq</span> result (<span class="org-keyword">-&gt;&gt;</span> (elt (alist-get 'choices data) 0) (alist-get 'message (alist-get 'content))))))
+      <span class="org-builtin">:error</span> (<span class="org-keyword">cl-function</span> (<span class="org-keyword">lambda</span> (<span class="org-type">&amp;rest</span> args <span class="org-type">&amp;key</span> error-thrown <span class="org-type">&amp;allow-other-keys</span>)
+                            (message <span class="org-string">"Got error: %S"</span> error-thrown))))
+    result))
+</pre>
+</div>
+
+<p>
+Small note: the code above uses an external package called <code>request</code>, which needs to be installed.
+Now we simply need to write a function that takes the selected region as input and inserts chatGPT's completion.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">gpt-complete-region-and-insert</span> (start end)
+  <span class="org-doc">"Send the region to OpenAI and insert the result to the end of buffer. "</span>
+  (<span class="org-keyword">interactive</span> <span class="org-string">"r"</span>)
+  (<span class="org-keyword">let*</span> ((prompt (buffer-substring-no-properties start end))
+         (messages `[((<span class="org-string">"role"</span>    . <span class="org-string">"user"</span>) (<span class="org-string">"content"</span> . ,prompt))])
+         (openai-key (funcall lc/gpt-api-key-getter))
+         (result (lc/gpt-complete-str openai-key messages)))
+    (<span class="org-keyword">when</span> result
+      (goto-char (point-max))
+      (insert <span class="org-string">"\n"</span> result)
+      (fill-paragraph))))
+</pre>
+</div>
+
+<p>
+And we are done! Let's look at a .gif to make it more tangible:
+</p>
+
+<img src="../static/img/gpt-complete.gif" alt="Completing region with ChatGPT" style="width: 100%;" />
+
+<p>
+I have taken inspiration for these functions from <a href="https://github.com/junjizhi/aide.el">this tiny package</a>.
+</p>
+
+<p>
+I can easily extend the <code>gpt-complete-region-and-insert</code> to support "completion prefixes", such as:
+</p>
+<ul class="org-ul">
+<li>"Add docstring to the following function: \n"</li>
+<li>"Explain what the following code does. \n"</li>
+<li>"Improve the following code. \n"</li>
+</ul>
+
+<p>
+I can then interactively choose the prompt prefix when I invoke the
+function and build the prompt with prefix and selected region.
+</p>
+</div>
+</div>
+
+<div id="outline-container-chat-with-the-model-and-store-your-prompts-in-org-mode" class="outline-2">
+<h2 id="chat-with-the-model-and-store-your-prompts-in-org-mode">Chat with the model and store your prompts in org-mode</h2>
+<div class="outline-text-2">
+<p>
+Apart from completing code, it can be useful to have conversation with
+<code>chatgpt</code>, where the model will take as input previous prompts and
+outputs. For this purpose I can recommend the amazing <a href="https://github.com/xenodium/chatgpt-shell">chatgpt-shell
+package</a>.
+</p>
+
+<p>
+After <code>M-x chatgpt-shell</code> you can interact with the model in a similar
+way to the official website (from the comfort of your editor) with
+minimal setup. You can also interact with <code>dall-E</code> by running the
+function <code>dall-e-shell</code>. I recommend watching the <code>.gif</code> in the readme.
+</p>
+
+<p>
+Finally, it allows you to send query to the model via org code blocks,
+which is probably my favourite feature. A <code>.gif</code> speaks for itself:
+</p>
+
+<img src="../static/img/gpt-complete-org.gif" alt="ChatGPT prompts in org-mode" style="width: 100%;" />
+
+<p>
+Here I use a keybinding to open my "prompts" file and execute the
+<code>chatgpt-shell</code> code block.
+</p>
+
+<p>
+This approach has two benefits:
+</p>
+<ul class="org-ul">
+<li>I can now store my prompts and results in a plain text file.</li>
+<li>I can use <code>org-mode</code> facilities to create templates.</li>
+</ul>
+
+<p>
+For example I can use <code>noweb</code> and store the prompt prefix "Act as an
+emacs-lisp expert." and the prompt outro "Wrap your code in a code
+block. The code block should be org-mode, NOT markdown" in named
+blocks. Then, my org prompt template can look like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org"><span class="org-org-target">&lt;&lt;emacs-lisp-expert-prefix&gt;&gt;</span>
+PROMPT HERE
+<span class="org-org-target">&lt;&lt;org-mode-code-block-outro&gt;&gt;</span>
+</pre>
+</div>
+
+<p>
+I will conclude with the words generated in the above <code>.gif</code>: integrating
+ChatGPT into my programming workflow has revolutionized the way I
+approach problem-solving and collaboration with my team. The ease of
+use and powerful natural language processing capabilities make it a
+valuable addition to any programmer's toolkit.
+</p>
+</div>
+</div>
+
+    </div>
+  </section>
+
+  <section>
+    <div id="hyvor-talk-view"></div>
+    <hyvor-talk-comments website-id="793" page-id="integrating-chatgpt"></hyvor-talk-comments>
+  </section>
+
+  <!-- <div class="absolute top-[110vh] ltr:right-0 rtl:left-0 w-12 pointer-events-none bottom-[-5.5rem]"> -->
+  <!--   <a href="#the-top" class="w-12 h-12 sticky pointer-events-auto top-[calc(100vh-5rem)] bg-neutral/50 dark:bg-neutral-800/50 backdrop-blur rounded-full text-xl flex items-center justify-center text-neutral-700 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400" aria-label="Scroll to top" title="Scroll to top">↑</a> -->
+  <!-- </div> -->
+
+</article>
+
+    </main>
+
+    <footer class="py-10 print:hidden">
+      
+      <div class="flex justify-between">
+  <div>
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">&copy;
+      Luca Cambiaghi
+    </p>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">Theme inspired by
+      <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" "href=https://git.io/hugo-congo" target=_blank rel="noopener noreferrer">Congo
+      </a>
+    </p>
+  </div>
+  <div class="text-sm cursor-pointer text-neutral-700 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400 ltr:mr-14 rtl:ml-14">
+    <button id=appearance-switcher class="w-12 h-12" type=button title="Switch to dark appearance">
+      <span class="inline dark:hidden"><span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M32 256C32 132.2 132.3 32 255.8 32c11.36.0 29.7 1.668 40.9 3.746 9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3 9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480 132.1 480 32 379.6 32 256z"/></svg></span></span><span class="hidden dark:inline"><span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 159.1c-53.02.0-95.1 42.98-95.1 95.1s41.2 96.9 95.1 96.9 95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347l-63.2-91.9 63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89 164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6 12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256 2.74 347.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7 19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109 109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69.0-127.1-57.31-127.1-127.1.0-70.69 57.31-127.1 127.1-127.1S383.1 186.2 383.1 256c0 70.7-56.4 127.1-127.1 127.1z"/></svg></span></span></button></div></div>
+
+      
+    </footer>
+
+  </body>
+</html>

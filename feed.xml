@@ -17,8 +17,8 @@
     <link>https://lucacambiaghi.com</link>
     <description><![CDATA[]]></description>
     <language>en</language>
-    <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
-    <lastBuildDate>Mon, 10 Apr 2023 15:59:52 +0000</lastBuildDate>
+    <pubDate>Mon, 10 Apr 2023 00:00:00 +0000</pubDate>
+    <lastBuildDate>Mon, 10 Apr 2023 17:09:14 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -27,6 +27,198 @@
       <link>https://lucacambiaghi.com</link>
     </image>
 
+    
+    <item>
+      <title>Integrating chatGPT into my workflow</title>
+      <link>https://lucacambiaghi.com/posts/integrating-chatgpt.html</link>
+      <author>Luca Cambiaghi</author>
+      <guid isPermaLink="false">https://lucacambiaghi.com/posts/integrating-chatgpt.html</guid>
+      <pubDate>Mon, 10 Apr 2023 00:00:00 +0000</pubDate>
+      <description>
+        <![CDATA[
+          <p><strong>And become exponentially more productive</strong></p>
+          
+          
+<div id="outline-container-cambrian-explosion-of-generative-ai" class="outline-2">
+<h2 id="cambrian-explosion-of-generative-ai">Cambrian explosion of generative AI</h2>
+<div class="outline-text-2">
+<p>
+What a time to be alive! <code>chatgpt4</code> has just been released; <code>chatgpt3.5</code>, <code>dall-e</code>
+and <code>copilot</code> are available to the general public; <code>llama.cpp</code> and
+<code>alpaca.cpp</code> are being developed very fast with the promise of
+democratizing large language models.
+</p>
+
+<p>
+With these tools available to every programmer and data scientist,
+whoever is not leveraging them will simply be left behind. It is
+therefore very critical to me to become good at interfacing with these
+tools. 
+</p>
+
+<p>
+This means:
+</p>
+<ul class="org-ul">
+<li>Learning how to design effective prompts</li>
+<li>Learning to identify use cases when using LLMs will lead to a faster / more correct solution</li>
+<li>Integrate these tools into my development environment: minimize
+context switching and time to solution</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-chatgpt-and-completing-code-from-region" class="outline-2">
+<h2 id="chatgpt-and-completing-code-from-region">ChatGPT and completing code from region</h2>
+<div class="outline-text-2">
+<p>
+OpenAI and <code>chatgpt</code> are the current leaders of this space. Trial
+period and credits, great user experience, sensible answers, fast
+response time.
+</p>
+
+<p>
+They provide a simple API: you provide your openAI key and prompt and
+they will reply with the LLM's prediction.
+</p>
+
+<p>
+Let's write an <code>emacs-lisp</code> function that given the key and prompt will
+return the result:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">gpt-complete-str</span> (api-key prompt)
+  <span class="org-doc">"Return the prompt answer from OpenAI API."</span>
+  (<span class="org-keyword">let</span> ((result nil)
+        (auth-value (format <span class="org-string">"Bearer %s"</span> api-key)))
+    (request
+      <span class="org-string">"https://api.openai.com/v1/chat/completions"</span>
+      <span class="org-builtin">:type</span> <span class="org-string">"POST"</span>
+      <span class="org-builtin">:data</span> (json-encode `((<span class="org-string">"prompt"</span> . ,prompt)
+                           (<span class="org-string">"model"</span>  . 'gpt-3.5-turbo)))
+      <span class="org-builtin">:headers</span> `((<span class="org-string">"Authorization"</span> . ,auth-value) (<span class="org-string">"Content-Type"</span> . <span class="org-string">"application/json"</span>))
+      <span class="org-builtin">:sync</span> t
+      <span class="org-builtin">:parser</span> 'json-read
+      <span class="org-builtin">:success</span> (<span class="org-keyword">cl-function</span>
+                (<span class="org-keyword">lambda</span> (<span class="org-type">&amp;key</span> data <span class="org-type">&amp;allow-other-keys</span>)
+                  (<span class="org-keyword">setq</span> result (<span class="org-keyword">-&gt;&gt;</span> (elt (alist-get 'choices data) 0) (alist-get 'message (alist-get 'content))))))
+      <span class="org-builtin">:error</span> (<span class="org-keyword">cl-function</span> (<span class="org-keyword">lambda</span> (<span class="org-type">&amp;rest</span> args <span class="org-type">&amp;key</span> error-thrown <span class="org-type">&amp;allow-other-keys</span>)
+                            (message <span class="org-string">"Got error: %S"</span> error-thrown))))
+    result))
+</pre>
+</div>
+
+<p>
+Small note: the code above uses an external package called <code>request</code>, which needs to be installed.
+Now we simply need to write a function that takes the selected region as input and inserts chatGPT's completion.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">gpt-complete-region-and-insert</span> (start end)
+  <span class="org-doc">"Send the region to OpenAI and insert the result to the end of buffer. "</span>
+  (<span class="org-keyword">interactive</span> <span class="org-string">"r"</span>)
+  (<span class="org-keyword">let*</span> ((prompt (buffer-substring-no-properties start end))
+         (messages `[((<span class="org-string">"role"</span>    . <span class="org-string">"user"</span>) (<span class="org-string">"content"</span> . ,prompt))])
+         (openai-key (funcall lc/gpt-api-key-getter))
+         (result (lc/gpt-complete-str openai-key messages)))
+    (<span class="org-keyword">when</span> result
+      (goto-char (point-max))
+      (insert <span class="org-string">"\n"</span> result)
+      (fill-paragraph))))
+</pre>
+</div>
+
+<p>
+And we are done! Let's look at a .gif to make it more tangible:
+</p>
+
+<img src="../static/img/gpt-complete.gif" alt="Completing region with ChatGPT" style="width: 100%;" />
+
+<p>
+I have taken inspiration for these functions from <a href="https://github.com/junjizhi/aide.el">this tiny package</a>.
+</p>
+
+<p>
+I can easily extend the <code>gpt-complete-region-and-insert</code> to support "completion prefixes", such as:
+</p>
+<ul class="org-ul">
+<li>"Add docstring to the following function: \n"</li>
+<li>"Explain what the following code does. \n"</li>
+<li>"Improve the following code. \n"</li>
+</ul>
+
+<p>
+I can then interactively choose the prompt prefix when I invoke the
+function and build the prompt with prefix and selected region.
+</p>
+</div>
+</div>
+
+<div id="outline-container-chat-with-the-model-and-store-your-prompts-in-org-mode" class="outline-2">
+<h2 id="chat-with-the-model-and-store-your-prompts-in-org-mode">Chat with the model and store your prompts in org-mode</h2>
+<div class="outline-text-2">
+<p>
+Apart from completing code, it can be useful to have conversation with
+<code>chatgpt</code>, where the model will take as input previous prompts and
+outputs. For this purpose I can recommend the amazing <a href="https://github.com/xenodium/chatgpt-shell">chatgpt-shell
+package</a>.
+</p>
+
+<p>
+After <code>M-x chatgpt-shell</code> you can interact with the model in a similar
+way to the official website (from the comfort of your editor) with
+minimal setup. You can also interact with <code>dall-E</code> by running the
+function <code>dall-e-shell</code>. I recommend watching the <code>.gif</code> in the readme.
+</p>
+
+<p>
+Finally, it allows you to send query to the model via org code blocks,
+which is probably my favourite feature. A <code>.gif</code> speaks for itself:
+</p>
+
+<img src="../static/img/gpt-complete-org.gif" alt="ChatGPT prompts in org-mode" style="width: 100%;" />
+
+<p>
+Here I use a keybinding to open my "prompts" file and execute the
+<code>chatgpt-shell</code> code block.
+</p>
+
+<p>
+This approach has two benefits:
+</p>
+<ul class="org-ul">
+<li>I can now store my prompts and results in a plain text file.</li>
+<li>I can use <code>org-mode</code> facilities to create templates.</li>
+</ul>
+
+<p>
+For example I can use <code>noweb</code> and store the prompt prefix "Act as an
+emacs-lisp expert." and the prompt outro "Wrap your code in a code
+block. The code block should be org-mode, NOT markdown" in named
+blocks. Then, my org prompt template can look like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org"><span class="org-org-target">&lt;&lt;emacs-lisp-expert-prefix&gt;&gt;</span>
+PROMPT HERE
+<span class="org-org-target">&lt;&lt;org-mode-code-block-outro&gt;&gt;</span>
+</pre>
+</div>
+
+<p>
+I will conclude with the words generated in the above <code>.gif</code>: integrating
+ChatGPT into my programming workflow has revolutionized the way I
+approach problem-solving and collaboration with my team. The ease of
+use and powerful natural language processing capabilities make it a
+valuable addition to any programmer's toolkit.
+</p>
+</div>
+</div>
+
+        ]]>
+      </description>
+    </item>
     
     <item>
       <title>Discovering org-roam</title>
@@ -1605,14 +1797,14 @@ I can then <code>tangle</code> the blocks to a file <code>setup.sh</code>, which
 <p>
 I can do this by having this property at the top of <code>setup.org</code>:
 </p>
-<pre class="example" id="orgec89f9a">
+<pre class="example" id="org248f7c1">
 #+PROPERTY: header-args :tangle ~/git/org/personal/setup.sh
 </pre>
 
 <p>
 This is the structure of the document:
 </p>
-<pre class="example" id="org56e32d0">
+<pre class="example" id="org960aec5">
 * macOs settings
 * brew
 * zsh
@@ -2191,7 +2383,7 @@ This is the screenshot of the result, it was a lot of fun:
 </p>
 
 
-<div id="org25d146f" class="figure">
+<div id="org946ed52" class="figure">
 <p><img src="https://raw.githubusercontent.com/lccambiaghi/sudoku-cljsrn/master/assets/screen.png" alt="screen.png" />
 </p>
 </div>
@@ -2245,7 +2437,7 @@ One of my favourite features of Emcas is <code>org-mode</code>.
 It is a markup language (arguably the best), which allows you to mix prose and code blocks.
 A code block looks like this:
 </p>
-<pre class="example" id="org923fcae">
+<pre class="example" id="org7b8ac37">
 #+BEGIN_SRC clojure
 (let [vec [1 2 3]]
   (reduce + vec))
