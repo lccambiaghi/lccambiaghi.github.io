@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en-us" class=scroll-smooth data-default-appearance=light data-auto-appearance=true>
+  <head>
+    
+    <!-- Clicky -->
+    <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101320555);</script>
+    <script async src="//static.getclicky.com/js"></script>
+    <!-- Clicky -->
+    <meta charset="utf-8">
+    <title>Luca's blog - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Luca Cambiaghi" />
+    <meta name="description" content="Luca&#39;s blog" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://lucacambiaghi.com/static/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script async src="https://talk.hyvor.com/embed/embed.js" type="module"></script>
+    <script type=text/javascript src="https://lucacambiaghi.com/static//js/appearance.js"></script>
+    <script defer type=text/javascript id=script-bundle src="https://lucacambiaghi.com/static//js/main.js" data-copy=Copy data-copied=Copied></script>
+    
+  </head>
+
+  <body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl">
+    
+    <div id=the-top class="absolute flex self-center">
+  <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 dark:bg-neutral-600 focus:translate-y-0" href=#main-content>
+    <span class="font-bold ltr:pr-2 rtl:pl-2 text-primary-600 dark:text-primary-400">&darr;
+    </span>Skip to main content
+  </a>
+</div>
+
+<header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral print:hidden">
+  <div><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/index.html">Luca</a></div>
+<nav>
+  <ul class="flex list-none sm:flex-row">
+    <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/posts.html">posts</a>
+    </li>
+    <span class="px-2 text-primary-500">&#183;</span>
+    <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/emacsd.html">emacs</a>
+    </li>
+    <span class="px-2 text-primary-500">&#183;</span>
+    <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="http://lucacambiaghi.com/nixpkgs/readme.html">nix</a>
+    </li>
+  </ul>
+</nav>
+</header>
+
+    
+
+    <main id="main" class="relative grow">
+      
+<article class="page">
+  <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+    Luca&#39;s nix configuration
+  </h1>
+  <section class="prose dark:prose-invert">
+    
+<div id="outline-container-introduction" class="outline-2">
+<h2 id="introduction">Introduction</h2>
+<div class="outline-text-2" id="text-introduction">
+</div>
+<div id="outline-container-this-repository" class="outline-3">
+<h3 id="this-repository">This repository</h3>
+<div class="outline-text-3">
+<p>
+This repository contains my system configuration.
+The main objective is to have a portable and reproducible system in order to for example bootstrap a new system in a quick and automated way.
+The ideal is to share packages and configuration across different operating systems.
+At the moment I only use a <code>macOS</code> system but I am prepared for the day I will switch to <code>nixOS</code>
+</p>
+
+<p>
+Tools:
+</p>
+<ul class="org-ul">
+<li><code>nix</code> as a package manager
+<ul class="org-ul">
+<li>In particular, an experimental feature called <code>flake</code> to achieve complete reproducibility</li>
+</ul></li>
+<li><code>home-manager</code> to configure packages and dotfiles</li>
+<li><code>nix-darwin</code> to configure macOS systems (e.g. it has a great <code>brew</code> module)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-this-file" class="outline-3">
+<h3 id="this-file">This file</h3>
+<div class="outline-text-3">
+<p>
+This file (<code>readme.org</code>) is used to generate (the correct term is <code>tangle</code>) my <code>flake.nix</code> file, where I specify the inputs and outputs of my system configuration.
+The tangled <code>flake.nix</code> file imports other <code>.nix</code> files (e.g. <code>darwin/default.nix</code>).
+</p>
+
+<p>
+This file is better viewed in HTML format <a href="https://luca.cambiaghi.me/nixpkgs/readme.html">here</a> or through <code>org-mode</code> (clone the repo and open in <code>emacs</code>).
+You can visit my blog at the same <a href="https://luca.cambiaghi.me">website</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-manual-steps" class="outline-3">
+<h3 id="manual-steps">Manual steps</h3>
+<div class="outline-text-3">
+<p>
+First build:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">nix --extra-experimental-features <span class="org-string">"nix-command flakes"</span> build .#darwinConfigurations.macbookpro.system
+./result/sw/bin/darwin-rebuild switch &#8212;flake .#macbookpro
+</pre>
+</div>
+
+<p>
+If something goes wrong with synthetic volume:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span class="org-builtin">echo</span> -e <span class="org-string">"run\tprivate/var/run"</span> | sudo tee -a /etc/synthetic.conf &gt;/dev/null
+/System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t
+</pre>
+</div>
+
+<p>
+Some files to backup:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.bak
+sudo mv /etc/shells /etc/shells.bak
+mv ~/.zshrc ~/.zshrc.bak
+</pre>
+</div>
+
+<p>
+Misc TODOs:
+</p>
+<ul class="org-ul">
+<li>To use touch id for sudo (e.g. every time you reload configuration) follow this link: <a href="https://www.imore.com/how-use-sudo-your-mac-touch-id">https://www.imore.com/how-use-sudo-your-mac-touch-id</a> (open file with <code>sudo vim</code>)</li>
+<li>Install FontAwesome</li>
+<li>Configure Amethyst shortcuts (throw windows) and turn off "focus follows mouse"</li>
+<li>Configure macOS ctrl to be caps</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-flake-nix" class="outline-2">
+<h2 id="flake-nix">flake.nix</h2>
+<div class="outline-text-2" id="text-flake-nix">
+</div>
+<div id="outline-container-file-structure" class="outline-3">
+<h3 id="file-structure">file structure</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix"><span class="org-comment-delimiter"># </span><span class="org-comment">NOTE: this file is tangled from readme.org</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">DO NOT edit by hand</span>
+{
+  <span class="org-nix-attribute">description</span> = <span class="org-string">"Luca Cambiaghi's darwin configuration"</span>;
+  &lt;<span class="org-nix-constant">&lt;inputs&gt;</span>&gt;
+
+  <span class="org-comment"># outputs = { self, darwin, home-manager, flake-utils, ... }@inputs:</span>
+  <span class="org-nix-attribute">outputs</span> = inputs@{ self, nixpkgs, darwin, home-manager, flake-utils, ... }:
+    <span class="org-nix-keyword">let</span>
+      <span class="org-nix-keyword">inherit</span> (darwin.lib) darwinSystem;
+      <span class="org-nix-keyword">inherit</span> (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
+      &lt;<span class="org-nix-constant">&lt;nixpkgs-config&gt;</span>&gt;
+      &lt;<span class="org-nix-constant">&lt;home-manager-config&gt;</span>&gt;
+      &lt;<span class="org-nix-constant">&lt;nix-darwin-config&gt;</span>&gt;
+    <span class="org-nix-keyword">in</span> {
+      <span class="org-nix-attribute">darwinConfigurations</span> = <span class="org-nix-keyword">rec</span> {
+        &lt;<span class="org-nix-constant">&lt;bootstrap-x86&gt;</span>&gt;
+        &lt;<span class="org-nix-constant">&lt;bootstrap-arm&gt;</span>&gt;
+        &lt;<span class="org-nix-constant">&lt;macbook-pro&gt;</span>&gt;
+        &lt;<span class="org-nix-constant">&lt;macbook-pro-m1&gt;</span>&gt;
+        &lt;<span class="org-nix-constant">&lt;github-ci&gt;</span>&gt;
+      };
+      &lt;<span class="org-nix-constant">&lt;cloud-vm&gt;</span>&gt;
+      &lt;<span class="org-nix-constant">&lt;home-manager-modules&gt;</span>&gt;
+      <span class="org-nix-attribute">overlays</span> = {
+        &lt;<span class="org-nix-constant">&lt;overlays&gt;</span>&gt;
+      };
+    } //
+    &lt;<span class="org-nix-constant">&lt;re-export-with-overlays&gt;</span>&gt;
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-inputs" class="outline-3">
+<h3 id="inputs">inputs</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="orgeb6c034"><span class="org-nix-attribute">inputs</span> = {
+  <span class="org-comment"># Package sets</span>
+  <span class="org-nix-attribute">nixpkgs-unstable.url</span> = <span class="org-nix-constant">github:NixOS/nixpkgs/nixpkgs-unstable</span>;
+  <span class="org-nix-attribute">nixpkgs-master.url</span> = <span class="org-string">"github:nixos/nixpkgs/master"</span>;
+  <span class="org-nix-attribute">nixpkgs-stable.url</span> = <span class="org-nix-constant">github:NixOS/nixpkgs/nixpkgs-21.11-darwin</span>;
+  <span class="org-nix-attribute">nixos-stable.url</span> = <span class="org-nix-constant">github:NixOS/nixpkgs/nixos-21.11</span>;
+
+  <span class="org-comment"># Environment/system management</span>
+  <span class="org-nix-attribute">darwin.url</span> = <span class="org-nix-constant">github:LnL7/nix-darwin</span>;
+  <span class="org-nix-attribute">darwin.inputs.nixpkgs.follows</span> = <span class="org-string">"nixpkgs-unstable"</span>;
+  <span class="org-nix-attribute">home-manager.url</span> = <span class="org-nix-constant">github:nix-community/home-manager</span>;
+  <span class="org-nix-attribute">home-manager.inputs.nixpkgs.follows</span> = <span class="org-string">"nixpkgs-unstable"</span>;
+
+  <span class="org-comment"># Other sources</span>
+  <span class="org-nix-attribute">emacs.url</span> = <span class="org-string">"github:nix-community/emacs-overlay"</span>;
+  <span class="org-nix-attribute">fish-done</span> = { <span class="org-nix-attribute">url</span> = <span class="org-string">"github:franciscolourenco/done"</span>; <span class="org-nix-attribute">flake</span> = <span class="org-nix-builtin">false</span>; };
+  <span class="org-nix-attribute">flake-compat</span> = { <span class="org-nix-attribute">url</span> = <span class="org-string">"github:edolstra/flake-compat"</span>; <span class="org-nix-attribute">flake</span> = <span class="org-nix-builtin">false</span>; };
+  <span class="org-nix-attribute">flake-utils.url</span> = <span class="org-string">"github:numtide/flake-utils"</span>;
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-nixpkgs-config" class="outline-3">
+<h3 id="nixpkgs-config">nixpkgs config</h3>
+<div class="outline-text-3">
+<p>
+The trick in the <code>overlays</code> variable allows us to use the stable version of problematic
+packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> in <code>home/default.nix</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix" id="orgb6f8f9c"><span class="org-nix-attribute">nixpkgsConfig</span> = {
+  <span class="org-nix-attribute">config</span> = { <span class="org-nix-attribute">allowUnfree</span> = <span class="org-nix-builtin">true</span>; <span class="org-nix-attribute">allowUnsupportedSystem</span> = <span class="org-nix-builtin">true</span>;};
+  <span class="org-nix-attribute">overlays</span> = attrValues self.overlays ++ singleton (
+    <span class="org-comment"># Sub in x86 version of packages that don't build on Apple Silicon yet</span>
+    final: prev: (optionalAttrs (prev.stdenv.system == <span class="org-string">"aarch64-darwin"</span>) {
+      <span class="org-nix-keyword">inherit</span> (final.pkgs-x86)
+        idris2
+        nix-index
+        niv;
+    })
+  );
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-home-manager-config" class="outline-3">
+<h3 id="home-manager-config">home-manager config</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org2d5ed58"><span class="org-nix-attribute">homeManagerCommonConfig</span> = {
+  <span class="org-nix-attribute">imports</span> = <span class="org-nix-keyword">with</span> self.homeManagerModules; [
+    <span class="org-nix-constant">./home</span>
+    { <span class="org-nix-attribute">home.stateVersion</span> = <span class="org-string">"22.05"</span>; }
+    <span class="org-comment"># configs.git.aliases</span>
+    <span class="org-comment"># configs.starship.symbols</span>
+    <span class="org-comment"># programs.kitty.extras</span>
+  ];
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-nix-darwin-config" class="outline-3">
+<h3 id="nix-darwin-config">nix-darwin config</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org7fa9e04"><span class="org-nix-attribute">nixDarwinCommonModules</span> = [
+  <span class="org-comment"># Main `nix-darwin` config</span>
+  <span class="org-nix-constant">./darwin</span>
+  <span class="org-comment"># `home-manager` module</span>
+  home-manager.darwinModules.home-manager
+  (
+    { config, lib, pkgs, ... }:
+    <span class="org-nix-keyword">let</span>
+      <span class="org-nix-attribute">primaryUser</span> = <span class="org-string">"cambiaghiluca"</span>;
+    <span class="org-nix-keyword">in</span>
+      {
+        <span class="org-nix-attribute">nixpkgs</span> = nixpkgsConfig;
+        <span class="org-comment"># Hack to support legacy worklows that use `&lt;nixpkgs&gt;` etc.</span>
+        <span class="org-comment"># nix.nixPath = { nixpkgs = "$HOME/.config/nixpkgs/nixpkgs.nix"; };</span>
+        <span class="org-comment"># `home-manager` config</span>
+        users.users.${primaryUser}.<span class="org-nix-attribute">home</span> = <span class="org-string">"/Users/</span><span class="org-nix-antiquote">${</span>primaryUser<span class="org-nix-antiquote">}</span>";
+        <span class="org-nix-attribute">home-manager.useGlobalPkgs</span> = <span class="org-nix-builtin">true</span>;
+        home-manager.users.${primaryUser} = homeManagerCommonConfig;
+      }
+  )
+];
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-bootstrap-x86" class="outline-3">
+<h3 id="bootstrap-x86">bootstrap-x86</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org34327ac"><span class="org-comment-delimiter"># </span><span class="org-comment">Mininal configurations to bootstrap systems</span>
+<span class="org-nix-attribute">bootstrap-x86</span> = makeOverridable darwinSystem {
+  <span class="org-nix-attribute">system</span> = <span class="org-string">"x86_64-darwin"</span>;
+  <span class="org-nix-attribute">modules</span> = [ <span class="org-nix-constant">./darwin/bootstrap</span> { <span class="org-nix-attribute">nixpkgs</span> = nixpkgsConfig; } ];
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-bootstrap-arm" class="outline-3">
+<h3 id="bootstrap-arm">bootstrap-arm</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org706b9ed"><span class="org-nix-attribute">bootstrap-arm</span> = bootstrap-x86.override { <span class="org-nix-attribute">system</span> = <span class="org-string">"aarch64-darwin"</span>; };
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-macbook-pro" class="outline-3">
+<h3 id="macbook-pro">macbook-pro</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org10ae66d"><span class="org-comment-delimiter"># </span><span class="org-comment">main macbook configuration</span>
+<span class="org-nix-attribute">macbookpro</span> = makeOverridable darwinSystem {
+  <span class="org-nix-attribute">system</span> = <span class="org-string">"x86_64-darwin"</span>;
+  <span class="org-nix-attribute">modules</span> = nixDarwinCommonModules ++ [
+    {
+      <span class="org-comment"># users.primaryUser = "cambiaghiluca";</span>
+      <span class="org-nix-attribute">networking</span> = {
+        <span class="org-nix-attribute">knownNetworkServices</span> = [<span class="org-string">"Wi-Fi"</span> <span class="org-string">"Bluetooth PAN"</span> <span class="org-string">"Thunderbolt Bridge"</span>];
+        <span class="org-comment"># hostName =  "luca-macbookpro";</span>
+        <span class="org-comment"># computerName = "luca-macbookpro";</span>
+        <span class="org-comment"># localHostName = "luca-macbookpro";</span>
+      };
+    }
+  ];
+  <span class="org-nix-attribute">specialArgs</span> = { <span class="org-nix-keyword">inherit</span> inputs nixpkgs; };
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-macbook-pro-m1" class="outline-3">
+<h3 id="macbook-pro-m1">macbook-pro-m1</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="orgca7d19f"><span class="org-comment-delimiter"># </span><span class="org-comment">My new Apple Silicon macOS laptop config</span>
+<span class="org-nix-attribute">macbookpro-m1</span> = macbookpro.override { <span class="org-nix-attribute">system</span> = <span class="org-string">"aarch64-darwin"</span>; };
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-github-ci" class="outline-3">
+<h3 id="github-ci">github-ci</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org2f1e504"><span class="org-nix-attribute">githubCI</span> = darwin.lib.darwinSystem {
+  <span class="org-nix-attribute">modules</span> = nixDarwinCommonModules { <span class="org-nix-attribute">user</span> = <span class="org-string">"runner"</span>; } ++ [
+    ({ lib, ... }: { <span class="org-nix-attribute">homebrew.enable</span> = lib.mkForce <span class="org-nix-builtin">false</span>; })
+  ];
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-home-manager-modules" class="outline-3">
+<h3 id="home-manager-modules">home-manager-modules</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org7d96fca"><span class="org-comment-delimiter"># </span><span class="org-comment">homeManagerModules = {</span>
+<span class="org-comment-delimiter">#   </span><span class="org-comment">configs.git.aliases = import ./home/configs/git-aliases.nix;</span>
+<span class="org-comment-delimiter">#   </span><span class="org-comment">configs.gh.aliases = import ./home/configs/gh-aliases.nix;</span>
+<span class="org-comment-delimiter">#   </span><span class="org-comment">configs.starship.symbols = import ./home/configs/starship-symbols.nix;</span>
+<span class="org-comment-delimiter">#   </span><span class="org-comment">programs.neovim.extras = import ./home/modules/programs/neovim/extras.nix;</span>
+<span class="org-comment-delimiter">#   </span><span class="org-comment">programs.kitty.extras = import ./home/modules/programs/kitty/extras.nix;</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">};</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-cloud-vm" class="outline-3">
+<h3 id="cloud-vm">cloud-vm</h3>
+<div class="outline-text-3">
+<p>
+Build and activate with <code>nix build .#cloudVM.activationPackage; ./result/activate</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-nix" id="org288abb3"><span class="org-nix-attribute">cloudVM</span> = home-manager.lib.homeManagerConfiguration {
+  <span class="org-nix-attribute">system</span> = <span class="org-string">"x86_64-linux"</span>;
+  <span class="org-nix-attribute">homeDirectory</span> = <span class="org-string">"/home/luca"</span>;
+  <span class="org-nix-attribute">username</span> = <span class="org-string">"luca"</span>;
+  <span class="org-nix-attribute">configuration</span> = {
+    <span class="org-nix-attribute">imports</span> = [ homeManagerCommonConfig ];
+    <span class="org-nix-attribute">nixpkgs</span> = nixpkgsConfig;
+  };
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-overlays" class="outline-3">
+<h3 id="overlays">overlays</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org83b5186"><span class="org-comment-delimiter"># </span><span class="org-comment">Overlays to add different versions `nixpkgs` into package set</span>
+<span class="org-nix-attribute">pkgs-master</span> = final: prev: {
+  <span class="org-nix-attribute">pkgs-master</span> = <span class="org-nix-builtin">import</span> inputs.nixpkgs-master {
+    <span class="org-nix-keyword">inherit</span> (prev.stdenv) system;
+    <span class="org-nix-keyword">inherit</span> (nixpkgsConfig) config;
+  };
+};
+<span class="org-nix-attribute">pkgs-stable</span> = final: prev: {
+  <span class="org-nix-attribute">pkgs-stable</span> = <span class="org-nix-builtin">import</span> inputs.nixpkgs-stable {
+    <span class="org-nix-keyword">inherit</span> (prev.stdenv) system;
+    <span class="org-nix-keyword">inherit</span> (nixpkgsConfig) config;
+  };
+};
+<span class="org-nix-attribute">pkgs-unstable</span> = final: prev: {
+  <span class="org-nix-attribute">pkgs-unstable</span> = <span class="org-nix-builtin">import</span> inputs.nixpkgs-unstable {
+    <span class="org-nix-keyword">inherit</span> (prev.stdenv) system;
+    <span class="org-nix-keyword">inherit</span> (nixpkgsConfig) config;
+  };
+};
+<span class="org-nix-attribute">apple-silicon</span> = final: prev: optionalAttrs (prev.stdenv.system == <span class="org-string">"aarch64-darwin"</span>) {
+  <span class="org-comment"># Add access to x86 packages system is running Apple Silicon</span>
+  <span class="org-nix-attribute">pkgs-x86</span> = <span class="org-nix-builtin">import</span> inputs.nixpkgs-unstable {
+    <span class="org-nix-attribute">system</span> = <span class="org-string">"x86_64-darwin"</span>;
+    <span class="org-nix-keyword">inherit</span> (nixpkgsConfig) config;
+  };
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-re-export-with-overlays" class="outline-3">
+<h3 id="re-export-with-overlays">re-export with overlays</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-nix" id="org49828a8">flake-utils.lib.eachDefaultSystem (system: {
+  <span class="org-nix-attribute">legacyPackages</span> = <span class="org-nix-builtin">import</span> inputs.nixpkgs-unstable {
+    <span class="org-nix-keyword">inherit</span> system;
+    <span class="org-nix-keyword">inherit</span> (nixpkgsConfig) config;
+    <span class="org-nix-attribute">overlays</span> = <span class="org-nix-keyword">with</span> self.overlays; [
+      pkgs-master
+      pkgs-stable
+      apple-silicon
+    ];
+  };
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-practical-commands" class="outline-2">
+<h2 id="practical-commands">Practical commands</h2>
+<div class="outline-text-2" id="text-practical-commands">
+</div>
+<div id="outline-container-install-nix-flakes" class="outline-3">
+<h3 id="install-nix-flakes">Install nix (flakes)</h3>
+<div class="outline-text-3">
+<p>
+thanks <a href="https://github.com/kclejeune/system">https://github.com/kclejeune/system</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span class="org-comment-delimiter"># </span><span class="org-comment">1.</span>
+<span class="org-keyword">if</span> [[ $(uname -s) == <span class="org-string">'Darwin'</span> ]]; <span class="org-keyword">then</span>
+    sh &lt;(curl -L https://nixos.org/nix/install) --daemon --darwin-use-unencrypted-nix-store-volume
+    <span class="org-comment-delimiter"># </span><span class="org-comment">sh &lt;(curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210126_f15f0b8/install) --daemon --darwin-use-unencrypted-nix-store-volume</span>
+<span class="org-keyword">else</span>
+    sh &lt;(curl -L https://nixos.org/nix/install) --daemon
+<span class="org-keyword">fi</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">2.</span>
+git clone git@github.com:lccambiaghi/nixpkgs.git ~/git/nixpkgs
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">3.</span>
+<span class="org-builtin">cd</span> ~/git/nixpkgs &amp;&amp; nix build <span class="org-string">".#darwinConfigurations.bootstrap-x86.system"</span> &amp;&amp; ./result/sw/bin/darwin-rebuild switch --flake .#luca-macbookpro
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-darwin-rebuild" class="outline-3">
+<h3 id="darwin-rebuild">darwin-rebuild</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-sh">darwin-rebuild build --flake .#luca-macbookpro
+<span class="org-comment-delimiter"># </span><span class="org-comment">nix build ".#darwinConfigurations.luca-macbookpro.system"</span>
+darwin-rebuild switch --flake .#luca-macbookpro
+<span class="org-comment-delimiter"># </span><span class="org-comment">./result/sw/bin/darwin-rebuild switch --flake .#luca-macbookpro</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-nix-flake-update" class="outline-3">
+<h3 id="nix-flake-update">nix flake update</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-sh">nix flake update --update-input nixpkgs
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-brew86-pyenv86" class="outline-2">
+<h2 id="brew86-pyenv86">brew86, pyenv86</h2>
+<div class="outline-text-2">
+<p>
+Reference: <a href="https://sixty-north.com/blog/pyenv-apple-silicon.html">https://sixty-north.com/blog/pyenv-apple-silicon.html</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">arch -x86_64 /bin/bash -c <span class="org-string">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"</span>
+alias <span class="org-variable-name">brew86</span>=<span class="org-string">"arch -x86_64 /usr/local/bin/brew"</span>
+
+brew86 install openssl readline sqlite3 xz zlib python@3.9
+<span class="org-comment-delimiter"># </span><span class="org-comment">CFLAGS="-I$(brew86 --prefix openssl)/include" LDFLAGS="-L$(brew86 --prefix openssl)/lib" pyenv86 install 3.9.16</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-references" class="outline-2">
+<h2 id="references">References</h2>
+<div class="outline-text-2">
+<ul class="org-ul">
+<li><a href="https://github.com/malob/nixpkgs">https://github.com/malob/nixpkgs</a></li>
+<li><a href="https://github.com/kclejeune/system">https://github.com/kclejeune/system</a></li>
+</ul>
+</div>
+</div>
+
+  </section>
+</article>
+
+    </main>
+
+    <footer class="py-10 print:hidden">
+      
+      <div class="flex justify-between">
+  <div>
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">&copy;
+      Luca Cambiaghi
+    </p>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">Theme inspired by
+      <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" "href=https://git.io/hugo-congo" target=_blank rel="noopener noreferrer">Congo
+      </a>
+    </p>
+  </div>
+  <div class="text-sm cursor-pointer text-neutral-700 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400 ltr:mr-14 rtl:ml-14">
+    <button id=appearance-switcher class="w-12 h-12" type=button title="Switch to dark appearance">
+      <span class="inline dark:hidden"><span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M32 256C32 132.2 132.3 32 255.8 32c11.36.0 29.7 1.668 40.9 3.746 9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3 9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480 132.1 480 32 379.6 32 256z"/></svg></span></span><span class="hidden dark:inline"><span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M256 159.1c-53.02.0-95.1 42.98-95.1 95.1s41.2 96.9 95.1 96.9 95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347l-63.2-91.9 63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89 164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6 12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256 2.74 347.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7 19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109 109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69.0-127.1-57.31-127.1-127.1.0-70.69 57.31-127.1 127.1-127.1S383.1 186.2 383.1 256c0 70.7-56.4 127.1-127.1 127.1z"/></svg></span></span></button></div></div>
+
+      
+    </footer>
+
+  </body>
+</html>

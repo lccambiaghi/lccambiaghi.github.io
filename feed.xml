@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
-    <lastBuildDate>Mon, 10 Apr 2023 15:35:44 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Apr 2023 15:51:43 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -1605,14 +1605,14 @@ I can then <code>tangle</code> the blocks to a file <code>setup.sh</code>, which
 <p>
 I can do this by having this property at the top of <code>setup.org</code>:
 </p>
-<pre class="example" id="orgfa2bd87">
+<pre class="example" id="orgd7f0966">
 #+PROPERTY: header-args :tangle ~/git/org/personal/setup.sh
 </pre>
 
 <p>
 This is the structure of the document:
 </p>
-<pre class="example" id="org37c896f">
+<pre class="example" id="org296d3c2">
 * macOs settings
 * brew
 * zsh
@@ -2191,7 +2191,7 @@ This is the screenshot of the result, it was a lot of fun:
 </p>
 
 
-<div id="org9587f7b" class="figure">
+<div id="org58cd2e9" class="figure">
 <p><img src="https://raw.githubusercontent.com/lccambiaghi/sudoku-cljsrn/master/assets/screen.png" alt="screen.png" />
 </p>
 </div>
@@ -2245,7 +2245,7 @@ One of my favourite features of Emcas is <code>org-mode</code>.
 It is a markup language (arguably the best), which allows you to mix prose and code blocks.
 A code block looks like this:
 </p>
-<pre class="example" id="orgc6dffd5">
+<pre class="example" id="org2d5bde2">
 #+BEGIN_SRC clojure
 (let [vec [1 2 3]]
   (reduce + vec))
