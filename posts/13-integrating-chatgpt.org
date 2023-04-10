@@ -1,0 +1,134 @@
+#+TITLE: Integrating chatGPT into my workflow
+#+SUBTITLE: And become exponentially more productive
+#+DATE: <2023-04-10>
+#+AUTHOR: Luca Cambiaghi
+#+SLUG: integrating-chatgpt
+#+OPTIONS: toc:nil num:nil ^:nil
+#+FILETAGS: :emacs:llm:
+
+* Cambrian explosion of generative AI
+
+What a time to be alive! =chatgpt4= has just been released; =chatgpt3.5=, =dall-e=
+and =copilot= are available to the general public; =llama.cpp= and
+=alpaca.cpp= are being developed very fast with the promise of
+democratizing large language models.
+
+With these tools available to every programmer and data scientist,
+whoever is not leveraging them will simply be left behind. It is
+therefore very critical to me to become good at interfacing with these
+tools. 
+
+This means:
+- Learning how to design effective prompts
+- Learning to identify use cases when using LLMs will lead to a faster / more correct solution
+- Integrate these tools into my development environment: minimize
+  context switching and time to solution
+
+* ChatGPT and completing code from region
+
+OpenAI and =chatgpt= are the current leaders of this space. Trial
+period and credits, great user experience, sensible answers, fast
+response time.
+
+They provide a simple API: you provide your openAI key and prompt and
+they will reply with the LLM's prediction.
+
+Let's write an =emacs-lisp= function that given the key and prompt will
+return the result:
+
+#+begin_src emacs-lisp
+(defun gpt-complete-str (api-key prompt)
+  "Return the prompt answer from OpenAI API."
+  (let ((result nil)
+        (auth-value (format "Bearer %s" api-key)))
+    (request
+      "https://api.openai.com/v1/chat/completions"
+      :type "POST"
+      :data (json-encode `(("prompt" . ,prompt)
+                           ("model"  . 'gpt-3.5-turbo)))
+      :headers `(("Authorization" . ,auth-value) ("Content-Type" . "application/json"))
+      :sync t
+      :parser 'json-read
+      :success (cl-function
+                (lambda (&key data &allow-other-keys)
+                  (setq result (->> (elt (alist-get 'choices data) 0) (alist-get 'message (alist-get 'content))))))
+      :error (cl-function (lambda (&rest args &key error-thrown &allow-other-keys)
+                            (message "Got error: %S" error-thrown))))
+    result))
+#+end_src
+
+Small note: the code above uses an external package called =request=, which needs to be installed.
+Now we simply need to write a function that takes the selected region as input and inserts chatGPT's completion.
+
+#+begin_src emacs-lisp
+(defun gpt-complete-region-and-insert (start end)
+  "Send the region to OpenAI and insert the result to the end of buffer. "
+  (interactive "r")
+  (let* ((prompt (buffer-substring-no-properties start end))
+         (messages `[(("role"    . "user") ("content" . ,prompt))])
+         (openai-key (funcall lc/gpt-api-key-getter))
+         (result (lc/gpt-complete-str openai-key messages)))
+    (when result
+      (goto-char (point-max))
+      (insert "\n" result)
+      (fill-paragraph))))
+#+end_src
+
+And we are done! Let's look at a .gif to make it more tangible:
+
+#+BEGIN_EXPORT html
+<img src="../static/img/gpt-complete.gif" alt="Completing region with ChatGPT" style="width: 100%;" />
+#+END_EXPORT
+
+I have taken inspiration for these functions from [[https://github.com/junjizhi/aide.el][this tiny package]].
+
+I can easily extend the =gpt-complete-region-and-insert= to support "completion prefixes", such as:
+- "Add docstring to the following function: \n"
+- "Explain what the following code does. \n"
+- "Improve the following code. \n"
+
+I can then interactively choose the prompt prefix when I invoke the
+function and build the prompt with prefix and selected region.
+
+* Chat with the model and store your prompts in org-mode
+
+Apart from completing code, it can be useful to have conversation with
+=chatgpt=, where the model will take as input previous prompts and
+outputs. For this purpose I can recommend the amazing [[https://github.com/xenodium/chatgpt-shell][chatgpt-shell
+package]].
+
+After =M-x chatgpt-shell= you can interact with the model in a similar
+way to the official website (from the comfort of your editor) with
+minimal setup. You can also interact with =dall-E= by running the
+function =dall-e-shell=. I recommend watching the =.gif= in the readme.
+
+Finally, it allows you to send query to the model via org code blocks,
+which is probably my favourite feature. A =.gif= speaks for itself:
+
+#+BEGIN_EXPORT html
+<img src="../static/img/gpt-complete-org.gif" alt="ChatGPT prompts in org-mode" style="width: 100%;" />
+#+END_EXPORT
+
+Here I use a keybinding to open my "prompts" file and execute the
+=chatgpt-shell= code block.
+
+This approach has two benefits:
+- I can now store my prompts and results in a plain text file.
+- I can use =org-mode= facilities to create templates. 
+
+For example I can use =noweb= and store the prompt prefix "Act as an
+emacs-lisp expert." and the prompt outro "Wrap your code in a code
+block. The code block should be org-mode, NOT markdown" in named
+blocks. Then, my org prompt template can look like this:
+
+#+begin_src org
+<<emacs-lisp-expert-prefix>>
+PROMPT HERE
+<<org-mode-code-block-outro>>
+#+end_src
+
+I will conclude with the words generated in the above =.gif=: integrating
+ChatGPT into my programming workflow has revolutionized the way I
+approach problem-solving and collaboration with my team. The ease of
+use and powerful natural language processing capabilities make it a
+valuable addition to any programmer's toolkit.
