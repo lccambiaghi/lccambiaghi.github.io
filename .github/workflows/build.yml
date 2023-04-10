@@ -18,6 +18,10 @@ jobs:
         run: |
             curl --output-dir pages/ -LO https://raw.githubusercontent.com/lccambiaghi/crafted-emacs-config/main/readme.org && \
             mv pages/readme.org pages/emacs.org
+      - name: Download nix config
+        run: |
+            curl --output-dir pages/ -LO https://raw.githubusercontent.com/lccambiaghi/nixpkgs/main/readme.org && \
+            mv pages/readme.org pages/nix.org
       - uses: purcell/setup-emacs@master
         with:
           version: ${{ matrix.emacs_version }}
