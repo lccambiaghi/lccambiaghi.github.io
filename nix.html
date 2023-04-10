@@ -43,7 +43,7 @@
     </li>
     <span class="px-2 text-primary-500">&#183;</span>
     <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="http://lucacambiaghi.com/nixpkgs/readme.html">nix</a>
+      <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/nix.html">nix</a>
     </li>
   </ul>
 </nav>
@@ -192,7 +192,7 @@ Misc TODOs:
 <h3 id="inputs">inputs</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="orgeb6c034"><span class="org-nix-attribute">inputs</span> = {
+<pre class="src src-nix" id="orga2318f3"><span class="org-nix-attribute">inputs</span> = {
   <span class="org-comment"># Package sets</span>
   <span class="org-nix-attribute">nixpkgs-unstable.url</span> = <span class="org-nix-constant">github:NixOS/nixpkgs/nixpkgs-unstable</span>;
   <span class="org-nix-attribute">nixpkgs-master.url</span> = <span class="org-string">"github:nixos/nixpkgs/master"</span>;
@@ -225,7 +225,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 </p>
 
 <div class="org-src-container">
-<pre class="src src-nix" id="orgb6f8f9c"><span class="org-nix-attribute">nixpkgsConfig</span> = {
+<pre class="src src-nix" id="orgfd0ffab"><span class="org-nix-attribute">nixpkgsConfig</span> = {
   <span class="org-nix-attribute">config</span> = { <span class="org-nix-attribute">allowUnfree</span> = <span class="org-nix-builtin">true</span>; <span class="org-nix-attribute">allowUnsupportedSystem</span> = <span class="org-nix-builtin">true</span>;};
   <span class="org-nix-attribute">overlays</span> = attrValues self.overlays ++ singleton (
     <span class="org-comment"># Sub in x86 version of packages that don't build on Apple Silicon yet</span>
@@ -246,7 +246,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 <h3 id="home-manager-config">home-manager config</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org2d5ed58"><span class="org-nix-attribute">homeManagerCommonConfig</span> = {
+<pre class="src src-nix" id="org02036c5"><span class="org-nix-attribute">homeManagerCommonConfig</span> = {
   <span class="org-nix-attribute">imports</span> = <span class="org-nix-keyword">with</span> self.homeManagerModules; [
     <span class="org-nix-constant">./home</span>
     { <span class="org-nix-attribute">home.stateVersion</span> = <span class="org-string">"22.05"</span>; }
@@ -264,7 +264,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 <h3 id="nix-darwin-config">nix-darwin config</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org7fa9e04"><span class="org-nix-attribute">nixDarwinCommonModules</span> = [
+<pre class="src src-nix" id="org1ea92f4"><span class="org-nix-attribute">nixDarwinCommonModules</span> = [
   <span class="org-comment"># Main `nix-darwin` config</span>
   <span class="org-nix-constant">./darwin</span>
   <span class="org-comment"># `home-manager` module</span>
@@ -294,7 +294,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 <h3 id="bootstrap-x86">bootstrap-x86</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org34327ac"><span class="org-comment-delimiter"># </span><span class="org-comment">Mininal configurations to bootstrap systems</span>
+<pre class="src src-nix" id="org18cf9da"><span class="org-comment-delimiter"># </span><span class="org-comment">Mininal configurations to bootstrap systems</span>
 <span class="org-nix-attribute">bootstrap-x86</span> = makeOverridable darwinSystem {
   <span class="org-nix-attribute">system</span> = <span class="org-string">"x86_64-darwin"</span>;
   <span class="org-nix-attribute">modules</span> = [ <span class="org-nix-constant">./darwin/bootstrap</span> { <span class="org-nix-attribute">nixpkgs</span> = nixpkgsConfig; } ];
@@ -308,7 +308,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 <h3 id="bootstrap-arm">bootstrap-arm</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org706b9ed"><span class="org-nix-attribute">bootstrap-arm</span> = bootstrap-x86.override { <span class="org-nix-attribute">system</span> = <span class="org-string">"aarch64-darwin"</span>; };
+<pre class="src src-nix" id="org9e403a8"><span class="org-nix-attribute">bootstrap-arm</span> = bootstrap-x86.override { <span class="org-nix-attribute">system</span> = <span class="org-string">"aarch64-darwin"</span>; };
 </pre>
 </div>
 </div>
@@ -318,7 +318,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 <h3 id="macbook-pro">macbook-pro</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org10ae66d"><span class="org-comment-delimiter"># </span><span class="org-comment">main macbook configuration</span>
+<pre class="src src-nix" id="orgfb656ce"><span class="org-comment-delimiter"># </span><span class="org-comment">main macbook configuration</span>
 <span class="org-nix-attribute">macbookpro</span> = makeOverridable darwinSystem {
   <span class="org-nix-attribute">system</span> = <span class="org-string">"x86_64-darwin"</span>;
   <span class="org-nix-attribute">modules</span> = nixDarwinCommonModules ++ [
@@ -343,7 +343,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 <h3 id="macbook-pro-m1">macbook-pro-m1</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="orgca7d19f"><span class="org-comment-delimiter"># </span><span class="org-comment">My new Apple Silicon macOS laptop config</span>
+<pre class="src src-nix" id="orgc7535c1"><span class="org-comment-delimiter"># </span><span class="org-comment">My new Apple Silicon macOS laptop config</span>
 <span class="org-nix-attribute">macbookpro-m1</span> = macbookpro.override { <span class="org-nix-attribute">system</span> = <span class="org-string">"aarch64-darwin"</span>; };
 </pre>
 </div>
@@ -354,7 +354,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 <h3 id="github-ci">github-ci</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org2f1e504"><span class="org-nix-attribute">githubCI</span> = darwin.lib.darwinSystem {
+<pre class="src src-nix" id="org9ca3b22"><span class="org-nix-attribute">githubCI</span> = darwin.lib.darwinSystem {
   <span class="org-nix-attribute">modules</span> = nixDarwinCommonModules { <span class="org-nix-attribute">user</span> = <span class="org-string">"runner"</span>; } ++ [
     ({ lib, ... }: { <span class="org-nix-attribute">homebrew.enable</span> = lib.mkForce <span class="org-nix-builtin">false</span>; })
   ];
@@ -368,7 +368,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 <h3 id="home-manager-modules">home-manager-modules</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org7d96fca"><span class="org-comment-delimiter"># </span><span class="org-comment">homeManagerModules = {</span>
+<pre class="src src-nix" id="org5118ffc"><span class="org-comment-delimiter"># </span><span class="org-comment">homeManagerModules = {</span>
 <span class="org-comment-delimiter">#   </span><span class="org-comment">configs.git.aliases = import ./home/configs/git-aliases.nix;</span>
 <span class="org-comment-delimiter">#   </span><span class="org-comment">configs.gh.aliases = import ./home/configs/gh-aliases.nix;</span>
 <span class="org-comment-delimiter">#   </span><span class="org-comment">configs.starship.symbols = import ./home/configs/starship-symbols.nix;</span>
@@ -387,7 +387,7 @@ packages. You can just use <code>stable.pkg</code> instead of <code>pkg</code> i
 Build and activate with <code>nix build .#cloudVM.activationPackage; ./result/activate</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-nix" id="org288abb3"><span class="org-nix-attribute">cloudVM</span> = home-manager.lib.homeManagerConfiguration {
+<pre class="src src-nix" id="org096b3d2"><span class="org-nix-attribute">cloudVM</span> = home-manager.lib.homeManagerConfiguration {
   <span class="org-nix-attribute">system</span> = <span class="org-string">"x86_64-linux"</span>;
   <span class="org-nix-attribute">homeDirectory</span> = <span class="org-string">"/home/luca"</span>;
   <span class="org-nix-attribute">username</span> = <span class="org-string">"luca"</span>;
@@ -405,7 +405,7 @@ Build and activate with <code>nix build .#cloudVM.activationPackage; ./result/ac
 <h3 id="overlays">overlays</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org83b5186"><span class="org-comment-delimiter"># </span><span class="org-comment">Overlays to add different versions `nixpkgs` into package set</span>
+<pre class="src src-nix" id="org24a6021"><span class="org-comment-delimiter"># </span><span class="org-comment">Overlays to add different versions `nixpkgs` into package set</span>
 <span class="org-nix-attribute">pkgs-master</span> = final: prev: {
   <span class="org-nix-attribute">pkgs-master</span> = <span class="org-nix-builtin">import</span> inputs.nixpkgs-master {
     <span class="org-nix-keyword">inherit</span> (prev.stdenv) system;
@@ -440,7 +440,7 @@ Build and activate with <code>nix build .#cloudVM.activationPackage; ./result/ac
 <h3 id="re-export-with-overlays">re-export with overlays</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-nix" id="org49828a8">flake-utils.lib.eachDefaultSystem (system: {
+<pre class="src src-nix" id="org6fecd54">flake-utils.lib.eachDefaultSystem (system: {
   <span class="org-nix-attribute">legacyPackages</span> = <span class="org-nix-builtin">import</span> inputs.nixpkgs-unstable {
     <span class="org-nix-keyword">inherit</span> system;
     <span class="org-nix-keyword">inherit</span> (nixpkgsConfig) config;
