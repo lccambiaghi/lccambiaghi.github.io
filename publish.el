@@ -114,29 +114,30 @@
    :output "output/posts/{{ slug }}.html"
    :url "/posts/{{ slug }}.html")
 
-  ;; route for rendering the index page of the blog
+  ;; route for rendering the posts page of the blog
   (weblorg-route
-   :name "index"
+   :name "blog"
    :input-pattern "posts/*.org"
    :input-aggregate #'weblorg-input-aggregate-all-desc
    :template "blog.html"
-   :output "output/index.html"
-   :url "/")
+   :output "output/posts.html"
+   :url "/posts.html")
 
   ;; route for rendering each page
   (weblorg-route
    :name "pages"
    :input-pattern "pages/*.org"
+   :input-exclude "pages/index.org"
    :template "page.html"
    :output "output/{{ slug }}.html"
    :url "/{{ slug }}.html")
 
-  ;; (weblorg-route
-  ;;  :name "personal"
-  ;;  :input-pattern "pages/personal/*.org"
-  ;;  :template "page.html"
-  ;;  :output "output/{{ slug }}.html"
-  ;;  :url "/{{ slug }}.html")
+  (weblorg-route
+   :name "index"
+   :input-pattern "pages/index.org"
+   :template "index.html"
+   :output "output/{{ slug }}.html"
+   :url "/")
 
   (weblorg-route
    :name "feed"

@@ -1,0 +1,21 @@
+#+TITLE: Index
+#+SLUG: index
+#+DATE: <2023-04-10>
+#+AUTHOR: Luca Cambiaghi
+#+OPTIONS: toc:nil num:nil ^:nil
+
+Hi! I am Luca, a computer scientist currently working as Data
+Scientist at Boston Consulting Group (BCG). My work consists of a mix
+of management consulting, software engineering and data science. I
+enjoy solving the most critical business problems of our clients,
+co-creating with them the final solution.
+
+I do most of my professional coding in Emacs, writing Python code. For
+hobby projects, I like to [[url_for:posts,slug=react-native-cljs][mess around with Clojure]] and Emacs Lisp. I
+am very curios, I love exploring new tools and [[url_for:posts,slug=think-stats][to study new methods]].
+
+I love travelling, in my most recent trip I have spent 2 months
+between Hawaii and New Zealand. In my free time you will find me
+climbing, scuba diving or hiking. Feel free to check out [[url_for:pages,slug=posts][my latest posts]].
+
+

@@ -13,11 +13,13 @@
       </span>
     </div>
   </div>
+
   <section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert">
     <div class="min-w-0 min-h-0 max-w-prose">
       {{ post.html|safe }}
     </div>
   </section>
+
   <section>
     <div id="hyvor-talk-view"></div>
     <hyvor-talk-comments website-id="793" page-id="{{ post.slug }}"></hyvor-talk-comments>
