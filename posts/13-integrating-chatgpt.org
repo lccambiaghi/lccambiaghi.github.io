@@ -92,7 +92,7 @@ function and build the prompt with prefix and selected region.
 
 * Chat with the model and store your prompts in org-mode
 
-Apart from completing code, it can be useful to have conversation with
+Apart from completing code, it can be useful to have a conversation with
 =chatgpt=, where the model will take as input previous prompts and
 outputs. For this purpose I can recommend the amazing [[https://github.com/xenodium/chatgpt-shell][chatgpt-shell
 package]].
