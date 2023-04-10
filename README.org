@@ -1,11 +1,12 @@
-* Configure macOS Apache server
+* Install and build the website
+
+Requirements
+- =macOS=
+- =emacs=
+
 #+BEGIN_SRC sh
-mkdir ~/Sites
-sudo ln -s ~/Sites /Library/WebServer/Documents
-sudo apachectl start
-#+END_SRC
-* Org -> HTML
-#+BEGIN_SRC sh
+# configure macOS Apache server
 make setup
+# export .org files to HTML
 make
 #+END_SRC

@@ -1,6 +1,5 @@
 .DEFAULT_GOAL := build
 EMACS := /opt/homebrew/bin/emacs
-SITES_DIR := /Users/cambiaghiluca/Sites
 SITES_DIR := /Library/WebServer/Documents
 
 clean:
@@ -12,5 +11,6 @@ build: clean
 	open -a Safari http://localhost/index.html
 
 setup:
-	sudo chmod -R o+w $(SITES_DIR)
 	mkdir -p $(SITES_DIR)
+	sudo chmod -R o+w $(SITES_DIR)
+	sudo apachectl start
