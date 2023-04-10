@@ -100,27 +100,28 @@ I really need <code>dap-mode</code>.</li>
 Sections:
 </p>
 <ul class="org-ul">
-<li>Emacs core settings
+<li><a href="#orgda7e240">Emacs core settings</a>
 <ul class="org-ul">
 <li>Configuration with <code>(use-package emacs)</code> blocks (no external packages), variables, helpers</li>
 <li>Install <code>no-littering</code></li>
 <li>Load modules provided by <code>crafted-emacs</code></li>
 <li>Install <code>vc-use-package</code> to add the <code>:vc</code> keyword to <code>use-package</code></li>
 </ul></li>
-<li>User interface
+<li><a href="#org995a15c">User interface</a>
 <ul class="org-ul">
-<li>Configuration with <code>(use-package emacs)</code> blocks</li>
+<li>First <code>(use-package emacs)</code> blocks</li>
 <li>Then external packages</li>
 </ul></li>
 <li>Packages
 <ul class="org-ul">
-<li>External packages</li>
-<li>Evil</li>
-<li>Git</li>
-<li>Org mode</li>
-<li>Programming languages</li>
+<li><a href="#org323fcdf">Evil</a></li>
+<li><a href="#orgb32778e">GPT interface</a></li>
+<li><a href="#org54c848d">Git</a></li>
+<li><a href="#orgdb53de1">Org mode</a></li>
+<li><a href="#orgaf52d96">Other misc packages</a></li>
+<li><a href="#org11aa1be">Programming languages</a></li>
 </ul></li>
-<li>Keybindings</li>
+<li><a href="#orgae7aced">Global keybindings</a></li>
 </ul>
 
 <p>
@@ -131,7 +132,7 @@ means I don't need any modules.
 </p>
 
 <p>
-The only exception could the <a href="#org9e0b9d7">Programming languages</a> section,
+The only exception could the <a href="#org11aa1be">Programming languages</a> section,
 where maybe I will only rarely need to use the <code>R</code> packages or the
 <code>clojure</code> packages. If you think about it, since all packages are
 deferred, they will only be loaded when needed. This means that the
@@ -140,11 +141,38 @@ installing the packages on the first setup.
 </p>
 </div>
 </div>
+<div id="outline-container-notable-sections" class="outline-3">
+<h3 id="notable-sections">Notable sections</h3>
+<div class="outline-text-3">
+<p>
+Here I report sections that greatly improve my productivity or that I
+am particularly proud of. 
+</p>
+
+<p>
+In order of appearance in my config:
+</p>
+<ul class="org-ul">
+<li><a href="#org3b5f046">Enlarge window</a> (copied from DOOM)</li>
+<li><a href="#orgb66c3df">Web browser in emacs</a> (requires <code>emacs</code> built with widgets support)</li>
+<li><a href="#org5438b09">Search code on github</a></li>
+<li><a href="#org08578a5">Jump to bookmark</a></li>
+<li><a href="#org87932d7">Eval operator</a> (copied from DOOM)</li>
+<li>evil text objects <a href="#orgac5a4ce">for org mode</a> (code block and subtree), <a href="#org79e6a77">for outer form</a> and <a href="#org928f687">for buffer</a></li>
+<li><a href="#org5d6734b">Complete region with chatGPT</a></li>
+<li><a href="#org0504dca">Use org-id in links</a></li>
+<li><a href="#orgad5b4d4">csv mode</a></li>
+<li><a href="#orge220cbf">dap mode</a> (<code>dap-inspect-df</code> function)</li>
+<li><a href="#orgf21a8dd">jupyter</a></li>
+<li><a href="#orge06974f">org-jupyter-mode</a> and <a href="#org11d2373">scimax-jupyter</a></li>
+</ul>
+</div>
+</div>
 </div>
 
 <div id="outline-container-emacs-core-settings" class="outline-2">
 <h2 id="emacs-core-settings">Emacs core settings</h2>
-<div class="outline-text-2" id="text-emacs-core-settings">
+<div class="outline-text-2">
 </div>
 <div id="outline-container-use-package" class="outline-3">
 <h3 id="use-package">use-package</h3>
@@ -223,6 +251,28 @@ installing the packages on the first setup.
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
   (electric-indent-mode -1))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-jump-to-bookmark" class="outline-3">
+<h3 id="jump-to-bookmark">jump to bookmark</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">bookmark</span>
+  <span class="org-builtin">:ensure</span> nil
+  <span class="org-builtin">:bind</span>
+  (<span class="org-string">"&lt;leader&gt;rr"</span> . 'bookmark-set)
+  (<span class="org-string">"&lt;leader&gt;rd"</span> . 'bookmark-delete)
+  (<span class="org-string">"&lt;leader&gt;r1"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"1"</span>)))
+  (<span class="org-string">"&lt;leader&gt;r2"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"2"</span>)))
+  (<span class="org-string">"&lt;leader&gt;r3"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"3"</span>)))
+  (<span class="org-string">"&lt;leader&gt;r4"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"4"</span>)))
+  (<span class="org-string">"s-1"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"1"</span>)))
+  (<span class="org-string">"s-2"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"2"</span>)))
+  (<span class="org-string">"s-3"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"3"</span>)))
+  (<span class="org-string">"s-4"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"4"</span>))))
 </pre>
 </div>
 </div>
@@ -446,19 +496,6 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-don-t-compile-jupyter" class="outline-3">
-<h3 id="don-t-compile-jupyter">Don't compile jupyter</h3>
-<div class="outline-text-3">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
-  <span class="org-builtin">:init</span>
-  (add-to-list 'native-comp-bootstrap-deny-list <span class="org-string">".*jupyter.*"</span>)
-  (add-to-list 'native-comp-jit-compilation-deny-list <span class="org-string">".*jupyter.*"</span>))
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-add-vc-keyword-to-use-package" class="outline-3">
 <h3 id="add-vc-keyword-to-use-package">add :vc keyword to use-package</h3>
 <div class="outline-text-3">
@@ -476,7 +513,7 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 
 <div id="outline-container-user-interface" class="outline-2">
 <h2 id="user-interface">User interface</h2>
-<div class="outline-text-2" id="text-user-interface">
+<div class="outline-text-2">
 </div>
 <div id="outline-container-maximize-frame-on-startup" class="outline-3">
 <h3 id="maximize-frame-on-startup">Maximize frame on startup</h3>
@@ -564,32 +601,6 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 
-<div id="outline-container-add-frame-borders" class="outline-3">
-<h3 id="add-frame-borders">Add frame borders</h3>
-<div class="outline-text-3">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
-  <span class="org-builtin">:init</span>
-  (modify-all-frames-parameters
-   '((right-divider-width . 10)
-     (internal-border-width . 10)))
-  (<span class="org-keyword">defun</span> <span class="org-function-name">lc/hide-divider-and-fringe</span> ()
-    (<span class="org-keyword">dolist</span> (face '(window-divider
-                    window-divider-first-pixel
-                    window-divider-last-pixel))
-      (face-spec-reset-face face)
-      (set-face-foreground face (face-attribute 'default <span class="org-builtin">:background</span>)))
-    (set-face-background 'fringe (face-attribute 'default <span class="org-builtin">:background</span>)))
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">call it once at init time</span>
-  (lc/hide-divider-and-fringe)
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">call it every time the theme changes</span>
-  (advice-add 'lc/modus-themes-toggle
-              <span class="org-builtin">:after</span> (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (lc/hide-divider-and-fringe))))
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-inhibit-startup-screen" class="outline-3">
 <h3 id="inhibit-startup-screen">Inhibit startup screen</h3>
 <div class="outline-text-3">
@@ -597,6 +608,19 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:init</span>
   (<span class="org-keyword">setq</span> crafted-startup-inhibit-splash t))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-all-the-icons" class="outline-3">
+<h3 id="all-the-icons">all-the-icons</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">all-the-icons</span>
+  <span class="org-builtin">:config</span>
+  (add-to-list 'all-the-icons-extension-icon-alist
+               '(<span class="org-string">"eld"</span> all-the-icons-fileicon <span class="org-string">"elisp"</span> <span class="org-builtin">:height</span> 1.0 <span class="org-builtin">:v-adjust</span> -0.2 <span class="org-builtin">:face</span> all-the-icons-purple)))
 </pre>
 </div>
 </div>
@@ -612,6 +636,21 @@ just kill the tabspace, reopen the buffer and they get restored</li>
   <span class="org-builtin">:hook</span> (marginalia-mode . all-the-icons-completion-marginalia-setup)
   <span class="org-builtin">:init</span>
   (all-the-icons-completion-mode))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-all-the-icons-dired" class="outline-3">
+<h3 id="all-the-icons-dired">all-the-icons-dired</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">all-the-icons-dired</span>
+  <span class="org-builtin">:if</span> (display-graphic-p)
+  <span class="org-builtin">:hook</span>
+  (dired-mode . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>)
+                  (<span class="org-keyword">unless</span> (file-remote-p default-directory)
+                    (all-the-icons-dired-mode)))))
 </pre>
 </div>
 </div>
@@ -693,11 +732,35 @@ just kill the tabspace, reopen the buffer and they get restored</li>
 </div>
 </div>
 </div>
+
+<div id="outline-container-sideline-flymake" class="outline-3">
+<h3 id="sideline-flymake">sideline-flymake</h3>
+<div class="outline-text-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">sideline-flymake</span>
+  <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"emacs-sideline/sideline-flymake"</span>)
+  <span class="org-builtin">:hook</span> (flymake-mode . sideline-mode)
+  <span class="org-builtin">:init</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">(setq sideline-display-backend-name t)</span>
+  (<span class="org-keyword">setq</span> sideline-flymake-display-mode 'line)
+  (<span class="org-keyword">setq</span> sideline-backends-right '(sideline-flymake)))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">(use-package sideline-lsp</span>
+<span class="org-comment-delimiter">;;   </span><span class="org-comment">:vc (:fetcher "github" :repo "emacs-sideline/sideline-lsp")</span>
+<span class="org-comment-delimiter">;;   </span><span class="org-comment">:hook (lsp-mode . sideline-mode)</span>
+<span class="org-comment-delimiter">;;   </span><span class="org-comment">:init</span>
+<span class="org-comment-delimiter">;;   </span><span class="org-comment">(add-to-list 'sideline-backends-right 'sideline-lsp)</span>
+<span class="org-comment-delimiter">;;   </span><span class="org-comment">(setq sideline-lsp-update-mode 'line)</span>
+<span class="org-comment-delimiter">;; </span><span class="org-comment">)</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 
 <div id="outline-container-evil" class="outline-2">
 <h2 id="evil">Evil</h2>
-<div class="outline-text-2" id="text-evil">
+<div class="outline-text-2">
 </div>
 <div id="outline-container-evil-mode" class="outline-3">
 <h3 id="evil-mode">evil mode</h3>
@@ -1090,7 +1153,7 @@ Keybindings:
 
 <div id="outline-container-gpt-interface" class="outline-2">
 <h2 id="gpt-interface">GPT interface</h2>
-<div class="outline-text-2" id="text-gpt-interface">
+<div class="outline-text-2">
 </div>
 <div id="outline-container-notes" class="outline-3">
 <h3 id="notes">Notes</h3>
@@ -1155,8 +1218,6 @@ Best practices for writing a function:
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
   <span class="org-builtin">:bind</span>
   (<span class="org-string">"&lt;leader&gt;cb"</span> . 'lc/gpt-complete-buffer-and-insert)
-  (<span class="org-string">"&lt;leader&gt;op"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>)
-                    (find-file-other-window lc/gpt-prompts-file)))
   (<span class="org-builtin">:map</span> evil-visual-state-map
         (<span class="org-string">"&lt;leader&gt;cr"</span> . 'lc/gpt-complete-region-and-insert)
         (<span class="org-string">"&lt;leader&gt;cp"</span> . 'lc/gpt-complete-with-prompt-prefix-and-insert))
@@ -1183,8 +1244,8 @@ Best practices for writing a function:
         <span class="org-builtin">:type</span> <span class="org-string">"POST"</span>
         <span class="org-builtin">:data</span> (json-encode `((,prompt-key . ,prompt-or-messages)
                              (<span class="org-string">"model"</span>  . ,lc/gpt-model)
+                             (<span class="org-string">"temperature"</span> . ,lc/gpt-temperature)
                              <span class="org-comment-delimiter">;; </span><span class="org-comment">("max_tokens" . ,lc/gpt-max-output-tokens)</span>
-                             <span class="org-comment-delimiter">;; </span><span class="org-comment">("temperature" . ,lc/gpt-temperature)</span>
                              <span class="org-comment-delimiter">;; </span><span class="org-comment">("frequency_penalty" . ,lc/gpt-frequency-penalty)</span>
                              <span class="org-comment-delimiter">;; </span><span class="org-comment">("presence_penalty" . ,lc/gpt-presence-penalty)</span>
                              <span class="org-comment-delimiter">;; </span><span class="org-comment">("top_p" . ,lc/gpt-top-p)</span>
@@ -1235,18 +1296,18 @@ Best practices for writing a function:
     <span class="org-doc">"Send the region to OpenAI and insert the result to the end of buffer. "</span>
     (<span class="org-keyword">interactive</span> <span class="org-string">"r"</span>)
     (<span class="org-keyword">let*</span> ((prompt (buffer-substring-no-properties start end))
-          (messages `[((<span class="org-string">"role"</span>    . <span class="org-string">"user"</span>) (<span class="org-string">"content"</span> . ,prompt))])
-          (chat-model (eq lc/gpt-model 'gpt-3.5-turbo-0301)))
+           (messages `[((<span class="org-string">"role"</span>    . <span class="org-string">"user"</span>) (<span class="org-string">"content"</span> . ,prompt))])
+           (chat-model (eq lc/gpt-model 'gpt-3.5-turbo-0301)))
       (lc/gpt-complete-and-insert (<span class="org-keyword">if</span> chat-model messages prompt))))
 
-    (<span class="org-keyword">defun</span> <span class="org-function-name">lc/gpt-complete-buffer-and-insert</span> ()
-      <span class="org-doc">"Send the ENTIRE buffer, up to max tokens, to OpenAI and insert the result to the end of buffer."</span>
-      (<span class="org-keyword">interactive</span>)
-      (<span class="org-keyword">let</span> ((prompt (buffer-substring-no-properties (point-min) (point-max))))
-        (lc/gpt-complete-and-insert prompt)))
+  (<span class="org-keyword">defun</span> <span class="org-function-name">lc/gpt-complete-buffer-and-insert</span> ()
+    <span class="org-doc">"Send the ENTIRE buffer, up to max tokens, to OpenAI and insert the result to the end of buffer."</span>
+    (<span class="org-keyword">interactive</span>)
+    (<span class="org-keyword">let</span> ((prompt (buffer-substring-no-properties (point-min) (point-max))))
+      (lc/gpt-complete-and-insert prompt)))
 
-    <span class="org-builtin">:config</span>
-    (<span class="org-keyword">require</span> '<span class="org-constant">request</span>))
+  <span class="org-builtin">:config</span>
+  (<span class="org-keyword">require</span> '<span class="org-constant">request</span>))
 </pre>
 </div>
 </div>
@@ -1377,9 +1438,14 @@ Best practices for writing a function:
   <span class="org-builtin">:bind</span>
   (<span class="org-string">"s-g"</span> . 'chatgpt-shell)
   (<span class="org-string">"s-d"</span> . 'dall-e-shell)
-  <span class="org-builtin">:init</span>
-  (<span class="org-keyword">setq</span> chatgpt-shell-openai-key (auth-source-pick-first-password <span class="org-builtin">:host</span> <span class="org-string">"chat.openai.com"</span>))
-  (<span class="org-keyword">setq</span> chatgpt-shell-chatgpt-model-version <span class="org-string">"gpt-3.5-turbo-0301"</span>)
+  (<span class="org-string">"&lt;leader&gt;op"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>)
+                    (<span class="org-keyword">require</span> '<span class="org-constant">ob-chatgpt-shell</span>)
+                    (ob-chatgpt-shell-setup)
+                    (find-file-other-window lc/gpt-prompts-file)))
+  <span class="org-builtin">:custom</span>
+  (chatgpt-shell-chatgpt-streaming t)
+  (chatgpt-shell-chatgpt-model-version <span class="org-string">"gpt-3.5-turbo-0301"</span>)
+  (chatgpt-shell-openai-key (<span class="org-keyword">lambda</span> () (auth-source-pick-first-password <span class="org-builtin">:host</span> <span class="org-string">"chat.openai.com"</span>)))
   )
 </pre>
 </div>
@@ -1430,7 +1496,7 @@ Notest:
 
 <div id="outline-container-git" class="outline-2">
 <h2 id="git">Git</h2>
-<div class="outline-text-2" id="text-git">
+<div class="outline-text-2">
 </div>
 <div id="outline-container-magit" class="outline-3">
 <h3 id="magit">Magit</h3>
@@ -1570,7 +1636,7 @@ Notest:
 
 <div id="outline-container-org" class="outline-2">
 <h2 id="org">Org</h2>
-<div class="outline-text-2" id="text-org">
+<div class="outline-text-2">
 </div>
 <div id="outline-container-org-mode" class="outline-3">
 <h3 id="org-mode">Org mode</h3>
@@ -1596,12 +1662,12 @@ We can avoid evaluation of code with:
   (<span class="org-builtin">:map</span> org-mode-map
         (<span class="org-string">"&lt;localleader&gt;a"</span> . 'org-archive-subtree)
         (<span class="org-string">"&lt;localleader&gt;i"</span> . 'org-insert-structure-template)
-        (<span class="org-string">"&lt;visual-state&gt;&lt;localleader&gt;l"</span> . 'org-insert-link)
-        (<span class="org-string">"&lt;normal-state&gt;&lt;localleader&gt;ll"</span> . 'org-insert-link)
-        (<span class="org-string">"&lt;normal-state&gt;&lt;localleader&gt;ls"</span> . 'org-store-link)
+        (<span class="org-string">"&lt;localleader&gt;ll"</span> . 'org-insert-link)
+        (<span class="org-string">"&lt;localleader&gt;ls"</span> . 'org-store-link)
         (<span class="org-string">"&lt;localleader&gt;L"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (org-latex-preview)))
         (<span class="org-string">"&lt;localleader&gt;n"</span> . 'org-toggle-narrow-to-subtree)
         (<span class="org-string">"&lt;localleader&gt;r"</span> . 'org-refile)
+        (<span class="org-string">"&lt;localleader&gt;t"</span> . 'org-todo)
         (<span class="org-string">"&lt;localleader&gt;x"</span> . 'org-toggle-checkbox)
         (<span class="org-string">"&lt;normal-state&gt;&lt;localleader&gt;el"</span> . 'eros-eval-last-sexp)
         (<span class="org-string">"&lt;visual-state&gt;&lt;localleader&gt;e"</span> . 'eros-eval-last-sexp)
@@ -1613,8 +1679,8 @@ We can avoid evaluation of code with:
   (org-src-tab-acts-natively t)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">(org-startup-indented t)</span>
   (org-hide-emphasis-markers t)
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(org-hide-leading-stars t)</span>
-  (org-catch-invisible-edits 'smart)
+  (org-catch-invisible-edits 'error)
+  (org-link-descriptive nil)
   (org-pretty-entities t)
   (org-ellipsis <span class="org-string">"&#8230;"</span>)
   (org-insert-heading-respect-content t)
@@ -1637,8 +1703,8 @@ We can avoid evaluation of code with:
             (org-cycle-internal-local)
             t)))))
   <span class="org-builtin">:config</span>
-  (remove-hook 'org-mode-hook 'org-appear-mode)
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(add-to-list 'org-src-lang-modes '("jupyter-python" . python-ts))</span>
+  (<span class="org-keyword">with-eval-after-load</span> 'org-appear
+    (<span class="org-keyword">setq</span> org-appear-autolinks t))
   (plist-put org-format-latex-options <span class="org-builtin">:background</span> <span class="org-string">"Transparent"</span>)
   (plist-put org-format-latex-options <span class="org-builtin">:scale</span> 1.4)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Only fold the current tree, rather than recursively</span>
@@ -1744,8 +1810,6 @@ We can avoid evaluation of code with:
         (<span class="org-string">"&lt;localleader&gt;z"</span> . 'org-babel-hide-result-toggle))
   (<span class="org-builtin">:map</span> org-src-mode-map
         (<span class="org-string">"&lt;localleader&gt;."</span> . 'org-edit-src-exit))
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">:hook</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">((prog-mode org-mode) . (lambda () (setq indent-line-function #'(lambda () 'noindent))))</span>
   <span class="org-builtin">:custom</span>
   (org-confirm-babel-evaluate nil)
   (org-src-ask-before-returning-to-edit-buffer nil)
@@ -1755,10 +1819,8 @@ We can avoid evaluation of code with:
    'org-babel-load-languages
    '((emacs-lisp . t)
      <span class="org-comment-delimiter">;; </span><span class="org-comment">(clojure . t)</span>
-     <span class="org-comment-delimiter">;; </span><span class="org-comment">(ledger . t)</span>
      (shell . t)))
-  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
-  )
+  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">(use-package ob-async</span>
 <span class="org-comment-delimiter">;;   </span><span class="org-comment">:hook (org-load . (lambda () (require 'ob-async)))</span>
@@ -1773,7 +1835,26 @@ We can avoid evaluation of code with:
 <h3 id="org-modern">org modern</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org-modern</span>
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">add frame borders to show code block "line"</span>
+(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
+  <span class="org-builtin">:init</span>
+  (modify-all-frames-parameters
+   '((right-divider-width . 10)
+     (internal-border-width . 10)))
+  (<span class="org-keyword">defun</span> <span class="org-function-name">lc/hide-divider-and-fringe</span> ()
+    (<span class="org-keyword">dolist</span> (face '(window-divider
+                    window-divider-first-pixel
+                    window-divider-last-pixel))
+      (face-spec-reset-face face)
+      (set-face-foreground face (face-attribute 'default <span class="org-builtin">:background</span>)))
+    (set-face-background 'fringe (face-attribute 'default <span class="org-builtin">:background</span>)))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">call it once at init time</span>
+  (lc/hide-divider-and-fringe)
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">call it every time the theme changes</span>
+  (advice-add 'lc/modus-themes-toggle
+              <span class="org-builtin">:after</span> (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (lc/hide-divider-and-fringe))))
+
+(<span class="org-keyword">use-package</span> <span class="org-constant">org-modern</span>
   <span class="org-builtin">:hook</span>
   (org-mode . org-modern-mode))
 </pre>
@@ -1781,37 +1862,13 @@ We can avoid evaluation of code with:
 </div>
 </div>
 
-<div id="outline-container-org-export-config-to-html" class="outline-3">
-<h3 id="org-export-config-to-html"><span class="todo TODO">TODO</span> org export config to HTML</h3>
+<div id="outline-container-org-fragtog" class="outline-3">
+<h3 id="org-fragtog">org fragtog</h3>
 <div class="outline-text-3">
-<p>
-Notes:
-</p>
-<ul class="org-ul">
-<li>Github pages is set up on my config repo
-<ul class="org-ul">
-<li>Every time I push to <code>main</code> the HTML files get deployed to e.g. <code>https://lucacambiaghi.com/crafted-emacs-config/readme.html</code></li>
-</ul></li>
-<li>To export:
-<ul class="org-ul">
-<li>Restart emacs and run <code>org-export-dispatch</code></li>
-</ul></li>
-</ul>
-
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org-html-themify</span>
-  <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"DogLooksGood/org-html-themify"</span>)
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">:hook (org-mode . org-html-themify-mode)</span>
-  <span class="org-builtin">:config</span>
-  (<span class="org-keyword">use-package</span> <span class="org-constant">hexrgb</span>
-    <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"emacsmirror/hexrgb"</span>)
-    <span class="org-builtin">:demand</span> t)
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">otherwise it complains about invalid face</span>
-  (<span class="org-keyword">require</span> '<span class="org-constant">hl-line</span>)
-  (<span class="org-keyword">setq</span> org-html-themify-themes
-        '((light . modus-operandi)
-          (dark . modus-operandi)))
-  (<span class="org-keyword">setq</span> org-export-backends '(html)))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">org-fragtog</span>
+  <span class="org-builtin">:hook</span>
+  (org-mode))
 </pre>
 </div>
 </div>
@@ -1820,43 +1877,8 @@ Notes:
 
 <div id="outline-container-other-packages" class="outline-2">
 <h2 id="other-packages">Other packages</h2>
-<div class="outline-text-2" id="text-other-packages">
+<div class="outline-text-2">
 </div>
-<div id="outline-container-bookmark" class="outline-3">
-<h3 id="bookmark"><span class="todo TODO">TODO</span> bookmark</h3>
-<div class="outline-text-3">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">bookmark</span>
-  <span class="org-builtin">:ensure</span> nil
-  <span class="org-builtin">:bind</span>
-  (<span class="org-string">"&lt;leader&gt;rr"</span> . 'bookmark-set)
-  (<span class="org-string">"&lt;leader&gt;rd"</span> . 'bookmark-delete)
-  (<span class="org-string">"&lt;leader&gt;r1"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"1"</span>)))
-  (<span class="org-string">"&lt;leader&gt;r2"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"2"</span>)))
-  (<span class="org-string">"&lt;leader&gt;r3"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"3"</span>)))
-  (<span class="org-string">"&lt;leader&gt;r4"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-set <span class="org-string">"4"</span>)))
-  (<span class="org-string">"s-1"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"1"</span>)))
-  (<span class="org-string">"s-2"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"2"</span>)))
-  (<span class="org-string">"s-3"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"3"</span>)))
-  (<span class="org-string">"s-4"</span> . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>) (bookmark-jump <span class="org-string">"4"</span>)))
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">("s-1" . (lambda () (interactive) (jump-to-numbered-bookmark 0)))</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">("s-2" . (lambda () (interactive) (jump-to-numbered-bookmark 1)))</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">("s-3" . (lambda () (interactive) (jump-to-numbered-bookmark 2)))</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">("s-4" . (lambda () (interactive) (jump-to-numbered-bookmark 3)))</span>
-  <span class="org-builtin">:preface</span>
-  (<span class="org-keyword">defun</span> <span class="org-function-name">jump-to-numbered-bookmark</span> (num)
-    <span class="org-doc">"Jump to the bookmark with the given numeric prefix."</span>
-    (<span class="org-keyword">interactive</span>)
-    (<span class="org-keyword">when-let</span> ((bookmark (nth num bookmark-alist)))
-      (find-file (bookmark-get-filename bookmark))))
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">:config</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(add-hook 'bookmark-bmenu-mode-hook #'hl-line-mode)</span>
-  )
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-consult" class="outline-3">
 <h3 id="consult">consult</h3>
 <div class="outline-text-3">
@@ -1960,7 +1982,6 @@ Notes:
                     (find-file (concat denote-directory <span class="org-string">"/todo.org"</span>))))
   <span class="org-builtin">:custom</span>
   (denote-known-keywords '())
-  (lc/gpt-prompts-file (concat denote-directory <span class="org-string">"/20230330T145824--useful-gpt-prompts__llm_org.org"</span>))
   <span class="org-builtin">:preface</span>
   (<span class="org-keyword">defun</span> <span class="org-function-name">lc/denote-org-extract-subtree</span> ()
     <span class="org-doc">"Create new Denote note using current Org subtree. Delete the original subtree."</span>
@@ -1980,10 +2001,11 @@ Notes:
      '(<span class="org-string">"journal"</span>))) <span class="org-comment-delimiter">; </span><span class="org-comment">multiple keywords are a list of strings: '("one" "two")</span>
   <span class="org-builtin">:init</span>
   (<span class="org-keyword">setq</span> denote-directory <span class="org-string">"/Users/cambiaghiluca/OneDrive - The Boston Consulting Group, Inc/Documents/denote"</span>)
+  (<span class="org-keyword">setq</span> lc/gpt-prompts-file (concat denote-directory <span class="org-string">"/20230330T145824--useful-gpt-prompts__llm_org.org"</span>))
 
   (<span class="org-keyword">with-eval-after-load</span> 'org
     (<span class="org-keyword">setq</span> org-directory denote-directory)
-    (<span class="org-keyword">setq</span> org-agenda-files (directory-files-recursively denote-directory <span class="org-string">"\\.org$"</span>)))
+    (<span class="org-keyword">setq</span> org-agenda-files (directory-files-recursively denote-directory <span class="org-string">"\\todo.org$"</span>)))
   )
 </pre>
 </div>
@@ -2056,12 +2078,6 @@ Notes:
     (evil-collection-define-key 'normal 'dired-mode-map
       <span class="org-string">"i"</span> 'dired-subtree-toggle)))
 
-(<span class="org-keyword">use-package</span> <span class="org-constant">all-the-icons-dired</span>
-  <span class="org-builtin">:if</span> (display-graphic-p)
-  <span class="org-builtin">:hook</span>
-  (dired-mode . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">interactive</span>)
-                  (<span class="org-keyword">unless</span> (file-remote-p default-directory)
-                    (all-the-icons-dired-mode)))))
 </pre>
 </div>
 </div>
@@ -2112,20 +2128,13 @@ Notes:
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">flymake</span>
   <span class="org-builtin">:ensure</span> nil
-  <span class="org-builtin">:hook</span> (((python-base-mode emacs-lisp-mode) . flymake-mode)
-         <span class="org-comment-delimiter">;; </span><span class="org-comment">(lsp-managed-mode . (lambda () (cond ((derived-mode-p 'python-base-mode)</span>
-         <span class="org-comment-delimiter">;;                                       </span><span class="org-comment">(add-hook 'flymake-diagnostic-functions 'python-flymake nil t))</span>
-         <span class="org-comment-delimiter">;;                                      </span><span class="org-comment">;; if not adding diagnostic functions to other modes just use an if</span>
-         <span class="org-comment-delimiter">;;                                      </span><span class="org-comment">;; ...</span>
-         <span class="org-comment-delimiter">;;                                      </span><span class="org-comment">(t nil))))</span>
-         )
-<span class="org-builtin">:custom</span>
-(flymake-fringe-indicator-position 'right-fringe)
-<span class="org-comment-delimiter">;; </span><span class="org-comment">(python-flymake-command '("ruff" "--quiet" "--stdin-filename=stdin" "-"))</span>
-                        <span class="org-comment-delimiter">;; </span><span class="org-comment">:general</span>
-                        <span class="org-comment-delimiter">;; </span><span class="org-comment">(general-nmap "] !" 'flymake-goto-next-error)</span>
-                        <span class="org-comment-delimiter">;; </span><span class="org-comment">(general-nmap "[ !" 'flymake-goto-prev-error)</span>
-)
+  <span class="org-builtin">:bind</span>
+  (<span class="org-string">"&lt;leader&gt;!j"</span> . 'flymake-goto-next-error)
+  (<span class="org-string">"&lt;leader&gt;!k"</span> . 'flymake-goto-prev-error)
+  <span class="org-builtin">:hook</span>
+  (python-base-mode emacs-lisp-mode)
+  <span class="org-builtin">:custom</span>
+  (flymake-fringe-indicator-position 'right-fringe))
 </pre>
 </div>
 </div>
@@ -2346,7 +2355,7 @@ To build grammar:
 </div>
 
 <div id="outline-container-treemacs" class="outline-3">
-<h3 id="treemacs">treemacs</h3>
+<h3 id="treemacs"><span class="todo TODO">TODO</span> treemacs</h3>
 <div class="outline-text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">treemacs</span>
@@ -2355,8 +2364,7 @@ To build grammar:
   (<span class="org-builtin">:map</span> evil-treemacs-state-map
         (<span class="org-string">"SPC"</span> . evil-send-leader))
   <span class="org-builtin">:config</span>
-  (<span class="org-keyword">use-package</span> <span class="org-constant">treemacs-evil</span>
-    <span class="org-builtin">:demand</span> t)
+  (<span class="org-keyword">use-package</span> <span class="org-constant">treemacs-evil</span> <span class="org-builtin">:demand</span> t)
   (<span class="org-keyword">use-package</span> <span class="org-constant">treemacs-tab-bar</span>
     <span class="org-builtin">:demand</span> t
     <span class="org-builtin">:config</span>
@@ -2365,10 +2373,7 @@ To build grammar:
   (treemacs-filewatch-mode t)
   (treemacs-fringe-indicator-mode 'always)
   (<span class="org-keyword">when</span> treemacs-python-executable
-    (treemacs-git-commit-diff-mode t))
-
-
-  )
+    (treemacs-git-commit-diff-mode t)))
 </pre>
 </div>
 </div>
@@ -2384,10 +2389,7 @@ To build grammar:
   (savehist-mode))
 
 (<span class="org-keyword">use-package</span> <span class="org-constant">vertico</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">:hook</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(minibuffer-setup . 'vertico-repeat-save)</span>
   <span class="org-builtin">:bind</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">("&lt;leader&gt;." . 'vertico-repeat)</span>
   (<span class="org-builtin">:map</span> vertico-map
         (<span class="org-string">"C-k"</span> . 'vertico-next)
         (<span class="org-string">"C-j"</span> . 'vertico-previous))
@@ -2480,35 +2482,9 @@ To build grammar:
   (lsp-auto-execute-action nil)
   (lsp-before-save-edits nil)
   (lsp-headerline-breadcrumb-enable nil)
+  (lsp-diagnostics-provider nil)
   <span class="org-builtin">:config</span>
   (add-to-list 'lsp-language-id-configuration '(python-ts-mode . <span class="org-string">"python"</span>))
-  )
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-lsp-ui" class="outline-3">
-<h3 id="lsp-ui">lsp-ui</h3>
-<div class="outline-text-3">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">lsp-ui</span>
-  <span class="org-builtin">:hook</span>
-  (lsp-mode . lsp-ui-mode)
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">:general</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(lsp-ui-peek-mode-map</span>
-  <span class="org-comment-delimiter">;;  </span><span class="org-comment">:states 'normal</span>
-  <span class="org-comment-delimiter">;;  </span><span class="org-comment">"C-j" 'lsp-ui-peek--select-next</span>
-  <span class="org-comment-delimiter">;;  </span><span class="org-comment">"C-k" 'lsp-ui-peek--select-prev)</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(outline-mode-map</span>
-  <span class="org-comment-delimiter">;;  </span><span class="org-comment">:states 'normal</span>
-  <span class="org-comment-delimiter">;;  </span><span class="org-comment">"C-j" 'nil</span>
-  <span class="org-comment-delimiter">;;  </span><span class="org-comment">"C-k" 'nil)</span>
-  <span class="org-builtin">:custom</span>
-  (lsp-ui-doc-show-with-cursor nil)
-  (lsp-ui-doc-show-with-mouse nil)
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-peek-fontify 'always)
   )
 </pre>
 </div>
@@ -2617,16 +2593,9 @@ To build grammar:
 <h4 id="direnv">direnv</h4>
 <div class="outline-text-4">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(use-package inheritenv)</span>
-
-(<span class="org-keyword">use-package</span> <span class="org-constant">envrc</span>
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">envrc</span>
   <span class="org-builtin">:hook</span>
   (python-mode python-ts-mode org-jupyter-mode))
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">(use-package direnv</span>
-<span class="org-comment-delimiter">;;  </span><span class="org-comment">:vc (:fetcher "github" :repo "wyuenho/emacs-direnv" :rev "early-reliable-update-env")</span>
-<span class="org-comment-delimiter">;;  </span><span class="org-comment">:config</span>
-<span class="org-comment-delimiter">;;  </span><span class="org-comment">(direnv-mode))</span>
 </pre>
 </div>
 </div>
@@ -2733,8 +2702,7 @@ To build grammar:
       (<span class="org-keyword">when-let</span>
           (start-stop (alist-get feature-start-stop
                                  <span class="org-comment-delimiter">;; </span><span class="org-comment">&lt;</span>
-                                 dap-features-&gt;windows
-                                 ))
+                                 dap-features-&gt;windows))
         (funcall (car start-stop))))
     <span class="org-comment-delimiter">;; </span><span class="org-comment">display output buffer</span>
     (<span class="org-keyword">save-excursion</span> (dap-go-to-output-buffer t))
@@ -2766,17 +2734,11 @@ To build grammar:
   (<span class="org-keyword">require</span> '<span class="org-constant">dap-ui</span>)
   (<span class="org-keyword">setq</span> dap-ui-buffer-configurations
         '((<span class="org-string">"*dap-ui-sessions*"</span>
-           (side . bottom)
-           (slot . 1)
-           (window-height . 0.33))
+           (side . bottom) (slot . 1) (window-height . 0.33))
           (<span class="org-string">"*debug-window*"</span>
-           (side . bottom)
-           (slot . 2)
-           (window-height . 0.33))
+           (side . bottom) (slot . 2) (window-height . 0.33))
           (<span class="org-string">"*dap-ui-repl*"</span>
-           (side . bottom)
-           (slot . 3)
-           (window-height . 0.33))))
+           (side . bottom) (slot . 3) (window-height . 0.33))))
   (dap-ui-mode 1)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">python virtualenv</span>
   (<span class="org-keyword">require</span> '<span class="org-constant">dap-python</span>)
@@ -2860,7 +2822,12 @@ Compile by hand:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">jupyter</span>
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">emacs</span>
+  <span class="org-builtin">:init</span>
+  (add-to-list 'native-comp-bootstrap-deny-list <span class="org-string">".*jupyter.*"</span>)
+  (add-to-list 'native-comp-jit-compilation-deny-list <span class="org-string">".*jupyter.*"</span>))
+
+(<span class="org-keyword">use-package</span> <span class="org-constant">jupyter</span>
   <span class="org-builtin">:vc</span> (<span class="org-builtin">:fetcher</span> <span class="org-string">"github"</span> <span class="org-builtin">:repo</span> <span class="org-string">"nnicandro/emacs-jupyter"</span>)
   <span class="org-builtin">:bind</span>
   (<span class="org-builtin">:map</span> python-base-mode-map
@@ -3098,6 +3065,7 @@ Notes:
     (kbd <span class="org-string">"&lt;leader&gt;lb"</span>)  'sp-forward-barf-sexp
     (kbd <span class="org-string">"&lt;leader&gt;ls"</span>)  'sp-forward-slurp-sexp
     (kbd <span class="org-string">"&lt;leader&gt;td"</span>)  'toggle-debug-on-error
+    (kbd <span class="org-string">"&lt;leader&gt;tf"</span>)  'auto-fill-mode
     (kbd <span class="org-string">"&lt;leader&gt;tl"</span>)  'display-line-numbers-mode
     <span class="org-comment-delimiter">;; </span><span class="org-comment">toggle wrapped lines</span>
     (kbd <span class="org-string">"&lt;leader&gt;tw"</span>)  '(lambda () (<span class="org-keyword">interactive</span>) (toggle-truncate-lines))

@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Mon, 10 Apr 2023 00:00:00 +0000</pubDate>
-    <lastBuildDate>Mon, 10 Apr 2023 17:52:35 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Apr 2023 23:30:14 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -159,7 +159,7 @@ function and build the prompt with prefix and selected region.
 <h2 id="chat-with-the-model-and-store-your-prompts-in-org-mode">Chat with the model and store your prompts in org-mode</h2>
 <div class="outline-text-2">
 <p>
-Apart from completing code, it can be useful to have conversation with
+Apart from completing code, it can be useful to have a conversation with
 <code>chatgpt</code>, where the model will take as input previous prompts and
 outputs. For this purpose I can recommend the amazing <a href="https://github.com/xenodium/chatgpt-shell">chatgpt-shell
 package</a>.
@@ -1797,14 +1797,14 @@ I can then <code>tangle</code> the blocks to a file <code>setup.sh</code>, which
 <p>
 I can do this by having this property at the top of <code>setup.org</code>:
 </p>
-<pre class="example" id="orgfa1c2e4">
+<pre class="example" id="orge5d0052">
 #+PROPERTY: header-args :tangle ~/git/org/personal/setup.sh
 </pre>
 
 <p>
 This is the structure of the document:
 </p>
-<pre class="example" id="org2ab63b5">
+<pre class="example" id="org1bb188f">
 * macOs settings
 * brew
 * zsh
@@ -2383,7 +2383,7 @@ This is the screenshot of the result, it was a lot of fun:
 </p>
 
 
-<div id="orgae3929c" class="figure">
+<div id="org1a9e117" class="figure">
 <p><img src="https://raw.githubusercontent.com/lccambiaghi/sudoku-cljsrn/master/assets/screen.png" alt="screen.png" />
 </p>
 </div>
@@ -2437,7 +2437,7 @@ One of my favourite features of Emcas is <code>org-mode</code>.
 It is a markup language (arguably the best), which allows you to mix prose and code blocks.
 A code block looks like this:
 </p>
-<pre class="example" id="orge039cdf">
+<pre class="example" id="org82a06a4">
 #+BEGIN_SRC clojure
 (let [vec [1 2 3]]
   (reduce + vec))
