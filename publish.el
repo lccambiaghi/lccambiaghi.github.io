@@ -36,7 +36,7 @@
         (expand-file-name subdir)
       nil)))
 
-(setq elpa-base-dir "/Users/cambiaghiluca/.config/crafted-emacs/elpa/")
+(setq elpa-base-dir "~/.config/emacs/elpa/")
 
 (defun use-org-id-links-in-weblorg-export ()
   (defun weblorg--parse-org (input-data &optional input-path)
@@ -66,7 +66,7 @@
     "templatel" (return-subdir-path elpa-base-dir) (concat "/templatel.el") (load))
 
   (thread-first
-    "emacs-htmlize" (return-subdir-path elpa-base-dir) (concat "/htmlize.el" ) (load))
+    "htmlize" (return-subdir-path elpa-base-dir) (concat "/htmlize.el" ) (load))
   (setq org-html-htmlize-output-type 'css)
 
   (thread-first
