@@ -18,7 +18,7 @@
     <description><![CDATA[]]></description>
     <language>en</language>
     <pubDate>Mon, 10 Apr 2023 00:00:00 +0000</pubDate>
-    <lastBuildDate>Wed, 26 Apr 2023 20:50:32 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Oct 2023 21:59:41 +0000</lastBuildDate>
     <generator>weblorg 0.1.0 (https://emacs.love/weblorg)</generator>
     <webMaster>luca.cambiaghi@me.com (Luca Cambiaghi)</webMaster>
     <image>
@@ -39,9 +39,9 @@
           <p><strong>And become exponentially more productive</strong></p>
           
           
-<div id="outline-container-org6e0f9de" class="outline-2">
-<h2 id="org6e0f9de">Cambrian explosion of generative AI</h2>
-<div class="outline-text-2" id="text-org6e0f9de">
+<div id="outline-container-orgaf55852" class="outline-2">
+<h2 id="orgaf55852">Cambrian explosion of generative AI</h2>
+<div class="outline-text-2" id="text-orgaf55852">
 <p>
 What a time to be alive! <code>chatgpt4</code> has just been released; <code>chatgpt3.5</code>, <code>dall-e</code>
 and <code>copilot</code> are available to the general public; <code>llama.cpp</code> and
@@ -68,9 +68,9 @@ context switching and time to solution</li>
 </div>
 </div>
 
-<div id="outline-container-org6c2d62d" class="outline-2">
-<h2 id="org6c2d62d">ChatGPT and completing code from region</h2>
-<div class="outline-text-2" id="text-org6c2d62d">
+<div id="outline-container-org8d92588" class="outline-2">
+<h2 id="org8d92588">ChatGPT and completing code from region</h2>
+<div class="outline-text-2" id="text-org8d92588">
 <p>
 OpenAI and <code>chatgpt</code> are the current leaders of this space. Trial
 period and credits, great user experience, sensible answers, fast
@@ -155,9 +155,9 @@ function and build the prompt with prefix and selected region.
 </div>
 </div>
 
-<div id="outline-container-org189dfac" class="outline-2">
-<h2 id="org189dfac">Chat with the model and store your prompts in org-mode</h2>
-<div class="outline-text-2" id="text-org189dfac">
+<div id="outline-container-org8b332f8" class="outline-2">
+<h2 id="org8b332f8">Chat with the model and store your prompts in org-mode</h2>
+<div class="outline-text-2" id="text-org8b332f8">
 <p>
 Apart from completing code, it can be useful to have a conversation with
 <code>chatgpt</code>, where the model will take as input previous prompts and
@@ -231,9 +231,9 @@ valuable addition to any programmer's toolkit.
           <p><strong>And good standards for personal wikis / digital gardens</strong></p>
           
           
-<div id="outline-container-org107b619" class="outline-2">
-<h2 id="org107b619">The problem of processing information efficiently</h2>
-<div class="outline-text-2" id="text-org107b619">
+<div id="outline-container-orgbcdcce2" class="outline-2">
+<h2 id="orgbcdcce2">The problem of processing information efficiently</h2>
+<div class="outline-text-2" id="text-orgbcdcce2">
 <p>
 I read a lot of interesting stuff every day.
 New software I want to try, articles I want to read, material that I want to save for <b>future reference</b>.
@@ -256,9 +256,9 @@ In this blog post I will try to explain why that is and how I use it.
 </div>
 </div>
 
-<div id="outline-container-orgc6ce7e4" class="outline-2">
-<h2 id="orgc6ce7e4">Roam and Zettelstalken</h2>
-<div class="outline-text-2" id="text-orgc6ce7e4">
+<div id="outline-container-org13e9251" class="outline-2">
+<h2 id="org13e9251">Roam and Zettelstalken</h2>
+<div class="outline-text-2" id="text-org13e9251">
 <p>
 The Roam software centers around the <a href="https://en.m.wikipedia.org/wiki/Zettelkasten">Zettelkasten method</a>.
 To be honest, I have read the definition multiple times without really understanding the magic behind it.
@@ -327,9 +327,9 @@ This is a really cool way to perform action number 2 I have outlined above.
 </div>
 </div>
 
-<div id="outline-container-orgb6f13d1" class="outline-2">
-<h2 id="orgb6f13d1">Personal wikis should not have a hierarchy</h2>
-<div class="outline-text-2" id="text-orgb6f13d1">
+<div id="outline-container-org4f0e2a5" class="outline-2">
+<h2 id="org4f0e2a5">Personal wikis should not have a hierarchy</h2>
+<div class="outline-text-2" id="text-org4f0e2a5">
 <p>
 I hope I managed to give a glimpse of what can be achieved with this methodology.
 I talked about my ineffective method of "capturing" my browser tabs.
@@ -374,9 +374,9 @@ Retrieving, inspecting and adding information is much smoother, it really is a k
 </div>
 </div>
 
-<div id="outline-container-org947978c" class="outline-2">
-<h2 id="org947978c">org-roam</h2>
-<div class="outline-text-2" id="text-org947978c">
+<div id="outline-container-org7f7a1a0" class="outline-2">
+<h2 id="org7f7a1a0">org-roam</h2>
+<div class="outline-text-2" id="text-org7f7a1a0">
 <p>
 I am extremly grateful to the author of <code>org-roam</code> for creating an interface to Roam that is accessible from <code>emacs</code>.
 <a href="https://www.jethro.dev">Here</a> you can find his website (and blog and digital garden).
@@ -423,9 +423,9 @@ The community is developing <a href="https://www.reddit.com/r/emacs/comments/ony
 </div>
 </div>
 
-<div id="outline-container-org5d9abab" class="outline-2">
-<h2 id="org5d9abab">Conclusion</h2>
-<div class="outline-text-2" id="text-org5d9abab">
+<div id="outline-container-org3f2aabb" class="outline-2">
+<h2 id="org3f2aabb">Conclusion</h2>
+<div class="outline-text-2" id="text-org3f2aabb">
 <p>
 In conclusion, I am very glad I spent some time trying to understand Roam and its ecosystem.
 It's only been a day so I am sure that with the time I will improve my workflow and discover mistakes and new things.
@@ -459,9 +459,9 @@ The only "issue" is that I can't use the built-in <code>org-roam-graph</code> be
           <p><strong>With a combination of cloud services, iOS apps and jailbreak tweaks</strong></p>
           
           
-<div id="outline-container-org3aeaa9d" class="outline-2">
-<h2 id="org3aeaa9d">Introduction</h2>
-<div class="outline-text-2" id="text-org3aeaa9d">
+<div id="outline-container-orgfdf064c" class="outline-2">
+<h2 id="orgfdf064c">Introduction</h2>
+<div class="outline-text-2" id="text-orgfdf064c">
 <p>
 I am in between jobs.
 I had to return my Mac to my previous employer and I will get one from my next employer in a couple of months.
@@ -515,9 +515,9 @@ To do all the rest you only need Safari and iOS apps. Technology has gone that f
 </div>
 </div>
 
-<div id="outline-container-org22e85a9" class="outline-2">
-<h2 id="org22e85a9">Blink Shell</h2>
-<div class="outline-text-2" id="text-org22e85a9">
+<div id="outline-container-orgc0fe361" class="outline-2">
+<h2 id="orgc0fe361">Blink Shell</h2>
+<div class="outline-text-2" id="text-orgc0fe361">
 <p>
 The very first thing you should know about is Blink Shell.
 It is IMHO the best terminal app on the iOS App Store.
@@ -560,9 +560,9 @@ After setting them up you can just execute <code>ssh host</code>&#x2026;
 </div>
 </div>
 
-<div id="outline-container-org3ceeee4" class="outline-2">
-<h2 id="org3ceeee4">Google Cloud Platform</h2>
-<div class="outline-text-2" id="text-org3ceeee4">
+<div id="outline-container-orgb866ad7" class="outline-2">
+<h2 id="orgb866ad7">Google Cloud Platform</h2>
+<div class="outline-text-2" id="text-orgb866ad7">
 <p>
 With the power of a good (free) terminal emulator and SSH, if you "live in your terminal" you might as well have reached happiness.
 Especially because I have discovered that for the "simple" needs (like my experiments) you don't need to pay crazy amounts of money for a VM.
@@ -601,9 +601,9 @@ This mode has reasonable monthly limits so you can enable it when you need it.
 </div>
 </div>
 
-<div id="outline-container-org70e8c10" class="outline-2">
-<h2 id="org70e8c10">code-server</h2>
-<div class="outline-text-2" id="text-org70e8c10">
+<div id="outline-container-org8901915" class="outline-2">
+<h2 id="org8901915">code-server</h2>
+<div class="outline-text-2" id="text-org8901915">
 <p>
 If you find the Theia editor is a bit limited for your use case you can even run "proper VSCode" thanks to the <a href="https://github.com/cdr/code-server">code-server project</a>. 
 Proper VSCode means it is the same UI and you can install (most) extensions.
@@ -649,9 +649,9 @@ You might need to change the command to <code>code-server --host 0.0.0.0</code>.
 </div>
 </div>
 
-<div id="outline-container-org3de3417" class="outline-2">
-<h2 id="org3de3417">iOS apps for local Python development</h2>
-<div class="outline-text-2" id="text-org3de3417">
+<div id="outline-container-orgc0c2b97" class="outline-2">
+<h2 id="orgc0c2b97">iOS apps for local Python development</h2>
+<div class="outline-text-2" id="text-orgc0c2b97">
 <p>
 Alright, cloud development is fun.
 What if we are without internet?
@@ -675,9 +675,9 @@ They are both open source on Github, which is amazing.
 </p>
 </div>
 
-<div id="outline-container-orgda07431" class="outline-3">
-<h3 id="orgda07431">Jupyter Notebooks</h3>
-<div class="outline-text-3" id="text-orgda07431">
+<div id="outline-container-orgca7d3b5" class="outline-3">
+<h3 id="orgca7d3b5">Jupyter Notebooks</h3>
+<div class="outline-text-3" id="text-orgca7d3b5">
 <p>
 The first is Carnets (<a href="https://apps.apple.com/it/app/carnets-jupyter-with-scipy/id1559497253?l=en">App Store link</a>), which is a fully functioning Jupyter Notebook frontend.
 It is packaged with all C and Fortran dependencies you need and it is completely free.
@@ -696,9 +696,9 @@ I like Carnets because it has the familiar Jupyter Notebook UI and keyboard shor
 </div>
 </div>
 
-<div id="outline-container-org849773c" class="outline-3">
-<h3 id="org849773c">Scripting and project</h3>
-<div class="outline-text-3" id="text-org849773c">
+<div id="outline-container-orgcd638c1" class="outline-3">
+<h3 id="orgcd638c1">Scripting and project</h3>
+<div class="outline-text-3" id="text-orgcd638c1">
 <p>
 The second app I want to recommend is called Pyto (<a href="https://apps.apple.com/it/app/pyto-python-3/id1436650069?l=en">App Store link</a>) and it is a fully functioning IDE.
 You can navigate a Python project's codebase, execute scripts, DEBUG them!
@@ -717,9 +717,9 @@ Depending on your needs, you may want to purchase it.
 </div>
 </div>
 
-<div id="outline-container-orgd6ee6b4" class="outline-2">
-<h2 id="orgd6ee6b4">Jailbreak tweaks and Procursus bootstrap</h2>
-<div class="outline-text-2" id="text-orgd6ee6b4">
+<div id="outline-container-org5651031" class="outline-2">
+<h2 id="org5651031">Jailbreak tweaks and Procursus bootstrap</h2>
+<div class="outline-text-2" id="text-org5651031">
 <p>
 We have come to the more advanced section of the article.
 I bought the iPad without expecting to jailbreak it.
@@ -772,9 +772,9 @@ I requested Emacs and an amazing developer just compiled a <code>.deb</code> for
 </div>
 </div>
 
-<div id="outline-container-org2f888a6" class="outline-2">
-<h2 id="org2f888a6">Emacs on iPad</h2>
-<div class="outline-text-2" id="text-org2f888a6">
+<div id="outline-container-org2e94cfb" class="outline-2">
+<h2 id="org2e94cfb">Emacs on iPad</h2>
+<div class="outline-text-2" id="text-org2e94cfb">
 <p>
 So we come to the final section: Emacs on iPad.
 The very first challenging task I listed in the Introduction.
@@ -809,9 +809,9 @@ To see my configuration just click on the "emacs" link in the top right of this 
 </div>
 </div>
 
-<div id="outline-container-org857ed6a" class="outline-2">
-<h2 id="org857ed6a">iOS advanced features</h2>
-<div class="outline-text-2" id="text-org857ed6a">
+<div id="outline-container-org991823c" class="outline-2">
+<h2 id="org991823c">iOS advanced features</h2>
+<div class="outline-text-2" id="text-org991823c">
 <p>
 My final section will be about some advanced features I discovered in iPadOS with time.
 I think mastering these is absolutely necessary if you want to be productive with this device.
@@ -862,9 +862,9 @@ Maybe some tweak developer can port the iOS15 keyboard shortcuts.
 </div>
 </div>
 
-<div id="outline-container-org2c63f25" class="outline-2">
-<h2 id="org2c63f25">Conclusion</h2>
-<div class="outline-text-2" id="text-org2c63f25">
+<div id="outline-container-orgffdf539" class="outline-2">
+<h2 id="orgffdf539">Conclusion</h2>
+<div class="outline-text-2" id="text-orgffdf539">
 <p>
 Wow, it has been quite a long article, thank you for following to the end!
 In conclusion this iPad is an amazing device and it can do most if not all of what I need for personal projects.
@@ -904,9 +904,9 @@ This "cloud" movement is exciting and I believe it is the future.
           <p><strong>And how to receive notifications and capture ideas from iPhone</strong></p>
           
           
-<div id="outline-container-org0cddca9" class="outline-2">
-<h2 id="org0cddca9">Organize your life</h2>
-<div class="outline-text-2" id="text-org0cddca9">
+<div id="outline-container-org27b57a1" class="outline-2">
+<h2 id="org27b57a1">Organize your life</h2>
+<div class="outline-text-2" id="text-org27b57a1">
 <p>
 Org mode has so many useful features, in this year of Emacs I integrated the following in my life:
 </p>
@@ -995,9 +995,9 @@ Now, if we only weren't so bad at checking our agendas&#x2026;
 </div>
 </div>
 
-<div id="outline-container-orga4977a7" class="outline-2">
-<h2 id="orga4977a7">Show agenda in emacs-dashboard</h2>
-<div class="outline-text-2" id="text-orga4977a7">
+<div id="outline-container-orgcd79782" class="outline-2">
+<h2 id="orgcd79782">Show agenda in emacs-dashboard</h2>
+<div class="outline-text-2" id="text-orgcd79782">
 <p>
 In the previous section we introduced the fundamental blocks of org GTD system: scheduled
 tasks, habits and the agenda.
@@ -1013,7 +1013,7 @@ a quick access to weekly agenda and my next tasks.
 Here is my configuration for the package (you can read the up-to-date configuration <a href="https://lucacambiaghi.com/vanilla-emacs/readme.html#h:2F4C0A6C-96BE-4818-B794-D1593C23FB00">here</a>):
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> <span class="org-constant">dashboard</span>
+<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> dashboard
   <span class="org-builtin">:demand</span>
   <span class="org-builtin">:init</span>
   (<span class="org-keyword">setq</span> initial-buffer-choice (<span class="org-keyword">lambda</span> () (get-buffer <span class="org-string">"*dashboard*"</span>)))
@@ -1108,9 +1108,9 @@ If I am in a good mood, I will review my <code>todo.org</code> file, schedule so
 </div>
 </div>
 
-<div id="outline-container-org637392b" class="outline-2">
-<h2 id="org637392b">Categorize tasks</h2>
-<div class="outline-text-2" id="text-org637392b">
+<div id="outline-container-orgd1b05c3" class="outline-2">
+<h2 id="orgd1b05c3">Categorize tasks</h2>
+<div class="outline-text-2" id="text-orgd1b05c3">
 <p>
 As mentioned, I keep all my tasks in one file called <code>todo.org</code>, which is included in my <code>org-agenda-files</code>.
 </p>
@@ -1159,9 +1159,9 @@ The <code>work</code> category can then be used to filter agenda views like desc
 </div>
 </div>
 
-<div id="outline-container-org449c712" class="outline-2">
-<h2 id="org449c712">Agenda and notifications on your iPhone</h2>
-<div class="outline-text-2" id="text-org449c712">
+<div id="outline-container-org088e3e7" class="outline-2">
+<h2 id="org088e3e7">Agenda and notifications on your iPhone</h2>
+<div class="outline-text-2" id="text-org088e3e7">
 <p>
 Ok, the system we configured on Emacs seems pretty solid.
 What about when we are away from the laptop?
@@ -1186,9 +1186,9 @@ Highly recommended.
 </div>
 </div>
 
-<div id="outline-container-org6865edc" class="outline-2">
-<h2 id="org6865edc">Capture new ideas from your iPhone</h2>
-<div class="outline-text-2" id="text-org6865edc">
+<div id="outline-container-org271ee42" class="outline-2">
+<h2 id="org271ee42">Capture new ideas from your iPhone</h2>
+<div class="outline-text-2" id="text-org271ee42">
 <p>
 In the first section we have described 3 problems but we still haven't solved the third:
 </p>
@@ -1237,9 +1237,9 @@ If something was not clear, please leave a comment below.
           <p><strong>Simpler is better</strong></p>
           
           
-<div id="outline-container-orgf287ce5" class="outline-2">
-<h2 id="orgf287ce5">What was wrong?</h2>
-<div class="outline-text-2" id="text-orgf287ce5">
+<div id="outline-container-org0ae803c" class="outline-2">
+<h2 id="org0ae803c">What was wrong?</h2>
+<div class="outline-text-2" id="text-org0ae803c">
 <p>
 Ooops, I did it again! In my <a href="https://lucacambiaghi.com/posts/new-website.html">first blog post</a> I described how cool was my setup with
 <code>shadow-cljs</code>, <code>clojurescript</code> and <code>react-native</code> and big my ambitions of improving my knowledge
@@ -1262,9 +1262,9 @@ It is still available at <a href="https://luca--lccambiaghi.netlify.app">this UR
 </div>
 </div>
 
-<div id="outline-container-org40c41b4" class="outline-2">
-<h2 id="org40c41b4">Welcome to the past!!</h2>
-<div class="outline-text-2" id="text-org40c41b4">
+<div id="outline-container-org39567c5" class="outline-2">
+<h2 id="org39567c5">Welcome to the past!!</h2>
+<div class="outline-text-2" id="text-org39567c5">
 <p>
 Since that first blog post in May 2020, I must admit I have become even more of an emacs fanboy.
 I am now heavily invested in org mode for all my prose and most of my experimental code
@@ -1296,9 +1296,9 @@ Once the blog is setup, you can just focus on the writing. Oh, and it provides a
 </div>
 </div>
 
-<div id="outline-container-org1480850" class="outline-2">
-<h2 id="org1480850">My workflow</h2>
-<div class="outline-text-2" id="text-org1480850">
+<div id="outline-container-org494a7ec" class="outline-2">
+<h2 id="org494a7ec">My workflow</h2>
+<div class="outline-text-2" id="text-org494a7ec">
 <p>
 Starting from the basic example I added a few nice things.
 </p>
@@ -1360,9 +1360,9 @@ am confident this will further reduce the friction between me and blogging!
           <p><strong>Declare your software and dotfiles and make them reproducible forever</strong></p>
           
           
-<div id="outline-container-orgb01147c" class="outline-2">
-<h2 id="orgb01147c">Why should you care?</h2>
-<div class="outline-text-2" id="text-orgb01147c">
+<div id="outline-container-org65906ac" class="outline-2">
+<h2 id="org65906ac">Why should you care?</h2>
+<div class="outline-text-2" id="text-org65906ac">
 <p>
 I recently had to restore my Mac, as I covered in my previous blog post.
 I have now experienced what it is to start from scratch and have a software configure your new OS.
@@ -1399,9 +1399,9 @@ My objective was to declare the fundamental building blocks of my workflow:
 </div>
 </div>
 
-<div id="outline-container-orgb92fe87" class="outline-2">
-<h2 id="orgb92fe87">Installing Nix</h2>
-<div class="outline-text-2" id="text-orgb92fe87">
+<div id="outline-container-org8a669ed" class="outline-2">
+<h2 id="org8a669ed">Installing Nix</h2>
+<div class="outline-text-2" id="text-org8a669ed">
 <p>
 If you are on <code>macOS</code>, there are very high chances you are using <code>brew</code>.
 It is stable, user friendly, basically all packages are available.
@@ -1431,9 +1431,9 @@ So, with a good dose of patience follow my tutorial.
 </p>
 </div>
 
-<div id="outline-container-org7724224" class="outline-3">
-<h3 id="org7724224">Create the <code>nix</code> volume</h3>
-<div class="outline-text-3" id="text-org7724224">
+<div id="outline-container-org9c9d6c7" class="outline-3">
+<h3 id="org9c9d6c7">Create the <code>nix</code> volume</h3>
+<div class="outline-text-3" id="text-org9c9d6c7">
 <p>
 If you have the latest <code>macOS</code> Catalina, we will need to create a volume
 where <code>nix</code> will download packages and build our environment.
@@ -1488,9 +1488,9 @@ and restart.
 </div>
 </div>
 
-<div id="outline-container-org0ab24d0" class="outline-3">
-<h3 id="org0ab24d0">Iinstall <code>nix</code></h3>
-<div class="outline-text-3" id="text-org0ab24d0">
+<div id="outline-container-org77f3a48" class="outline-3">
+<h3 id="org77f3a48">Iinstall <code>nix</code></h3>
+<div class="outline-text-3" id="text-org77f3a48">
 <p>
 After the restart, we can set the volume as read-only:
 </p>
@@ -1526,9 +1526,9 @@ Else, head over to the Troubleshooting section.
 </div>
 </div>
 
-<div id="outline-container-org3ae9b37" class="outline-3">
-<h3 id="org3ae9b37">Install <code>nix-darwin</code></h3>
-<div class="outline-text-3" id="text-org3ae9b37">
+<div id="outline-container-org3704d4b" class="outline-3">
+<h3 id="org3704d4b">Install <code>nix-darwin</code></h3>
+<div class="outline-text-3" id="text-org3704d4b">
 <p>
 In order for <code>nix</code> to control some of the system services of <code>macOS</code>, we need to install <code>nix-darwin</code>.
 </p>
@@ -1565,9 +1565,9 @@ Once you gained confidence with the <code>nix</code> language, it is easy to wri
 </div>
 </div>
 
-<div id="outline-container-org61bf665" class="outline-3">
-<h3 id="org61bf665">Troubleshooting</h3>
-<div class="outline-text-3" id="text-org61bf665">
+<div id="outline-container-org5d0e399" class="outline-3">
+<h3 id="org5d0e399">Troubleshooting</h3>
+<div class="outline-text-3" id="text-org5d0e399">
 <p>
 Skip this section if you installed successfully.
 </p>
@@ -1612,9 +1612,9 @@ Export them and run the commands again:
 </div>
 </div>
 
-<div id="outline-container-orge14b9e5" class="outline-2">
-<h2 id="orge14b9e5">Home Manager</h2>
-<div class="outline-text-2" id="text-orge14b9e5">
+<div id="outline-container-org6d6d3f0" class="outline-2">
+<h2 id="org6d6d3f0">Home Manager</h2>
+<div class="outline-text-2" id="text-org6d6d3f0">
 <p>
 Alright, the complicated part is behind us.
 We have just opened the door to new cool functional workflows.
@@ -1736,9 +1736,9 @@ cask <span class="org-string">"discord"</span>
 </div>
 </div>
 
-<div id="outline-container-org369a32e" class="outline-2">
-<h2 id="org369a32e">Next steps</h2>
-<div class="outline-text-2" id="text-org369a32e">
+<div id="outline-container-orgc46b4f6" class="outline-2">
+<h2 id="orgc46b4f6">Next steps</h2>
+<div class="outline-text-2" id="text-orgc46b4f6">
 <p>
 In this short post I tried to keep things simple.
 There is a lot to explore in the ecosystem.
@@ -1778,9 +1778,9 @@ I will just end with a link to my personal <code>nixpkgs</code> repo which holds
           <p><strong>With an auto-configuring script</strong></p>
           
           
-<div id="outline-container-org650d342" class="outline-2">
-<h2 id="org650d342">setup.org</h2>
-<div class="outline-text-2" id="text-org650d342">
+<div id="outline-container-org7c6444c" class="outline-2">
+<h2 id="org7c6444c">setup.org</h2>
+<div class="outline-text-2" id="text-org7c6444c">
 <p>
 This week-end I restored my Mac.
 I was having some major iCloud issues, my Documents and Desktop folders would not sync.
@@ -1797,14 +1797,14 @@ I can then <code>tangle</code> the blocks to a file <code>setup.sh</code>, which
 <p>
 I can do this by having this property at the top of <code>setup.org</code>:
 </p>
-<pre class="example" id="orga6fee3b">
+<pre class="example" id="org975a185">
 #+PROPERTY: header-args :tangle ~/git/org/personal/setup.sh
 </pre>
 
 <p>
 This is the structure of the document:
 </p>
-<pre class="example" id="orge1b21e4">
+<pre class="example" id="org77a36c1">
 * macOs settings
 * brew
 * zsh
@@ -1840,9 +1840,9 @@ I can "export" the <code>org</code> file to <code>setup.sh</code> with <code>M-x
 </div>
 </div>
 
-<div id="outline-container-orgc0542a4" class="outline-2">
-<h2 id="orgc0542a4">Recovery Mode and setup.sh</h2>
-<div class="outline-text-2" id="text-orgc0542a4">
+<div id="outline-container-org3814e99" class="outline-2">
+<h2 id="org3814e99">Recovery Mode and setup.sh</h2>
+<div class="outline-text-2" id="text-org3814e99">
 <p>
 Before erasing all content gathered in 12 months, I quickly offloaded some files to a USB key.
 I mostly cared about an "AI for trading" course and some work analyses not in version control.
@@ -1902,9 +1902,9 @@ With minimal effort, few minutes later, I had restored my feature-complete IDE.
 </div>
 </div>
 
-<div id="outline-container-orgd4bc40b" class="outline-2">
-<h2 id="orgd4bc40b">Last manual steps</h2>
-<div class="outline-text-2" id="text-orgd4bc40b">
+<div id="outline-container-org1b968ba" class="outline-2">
+<h2 id="org1b968ba">Last manual steps</h2>
+<div class="outline-text-2" id="text-org1b968ba">
 <p>
 I then documented some final manual steps I had forgotten to include in my install script.
 Some examples:
@@ -1946,9 +1946,9 @@ Expect a blog post about it in the near future!
           <p><strong>The best IDE, now even faster</strong></p>
           
           
-<div id="outline-container-org4fa4e0b" class="outline-2">
-<h2 id="org4fa4e0b">Emacs is born</h2>
-<div class="outline-text-2" id="text-org4fa4e0b">
+<div id="outline-container-orgb45aee4" class="outline-2">
+<h2 id="orgb45aee4">Emacs is born</h2>
+<div class="outline-text-2" id="text-orgb45aee4">
 <p>
 The first time I saw Emacs was on the ThinkPad of my Master Thesis' supervisor.
 He was coding in R and he had split the screen in two parts, writing code to the left, evaluating it to see the results in the REPL on the right.
@@ -1986,9 +1986,9 @@ This one will just bedicated to the configuration of it.
 </div>
 </div>
 
-<div id="outline-container-org0dffb42" class="outline-2">
-<h2 id="org0dffb42">Doom</h2>
-<div class="outline-text-2" id="text-org0dffb42">
+<div id="outline-container-orga977655" class="outline-2">
+<h2 id="orga977655">Doom</h2>
+<div class="outline-text-2" id="text-orga977655">
 <p>
 Some of Spacemacs qualities:
 </p>
@@ -2021,9 +2021,9 @@ I wrote some simple elisp functions to add features I needed.
 </div>
 </div>
 
-<div id="outline-container-org9160ca9" class="outline-2">
-<h2 id="org9160ca9">gccemacs</h2>
-<div class="outline-text-2" id="text-org9160ca9">
+<div id="outline-container-org588b383" class="outline-2">
+<h2 id="org588b383">gccemacs</h2>
+<div class="outline-text-2" id="text-org588b383">
 <p>
 The Doom Emacs community is active on Discord, here is where I hear about the latest trends.
 Lately (August 2020) the latest trend has definitely been <a href="https://www.emacswiki.org/emacs/GccEmacs">gccemacs</a>.
@@ -2089,9 +2089,9 @@ And this are the install options:
 </div>
 </div>
 
-<div id="outline-container-orgd1703e5" class="outline-2">
-<h2 id="orgd1703e5">Gotchas</h2>
-<div class="outline-text-2" id="text-orgd1703e5">
+<div id="outline-container-orge7bdb77" class="outline-2">
+<h2 id="orge7bdb77">Gotchas</h2>
+<div class="outline-text-2" id="text-orge7bdb77">
 <p>
 Doom Emacs already unofficially kind of supports <code>gccemacs</code>.
 I just replaced my Emacs.app with the new one and had to run:
@@ -2165,9 +2165,9 @@ I hope some early adopter can find this blog post and solve some of his installa
           <p><strong>Develop native mobile apps in the most elegant way</strong></p>
           
           
-<div id="outline-container-org53ed3d9" class="outline-2">
-<h2 id="org53ed3d9">React Native</h2>
-<div class="outline-text-2" id="text-org53ed3d9">
+<div id="outline-container-orgcdcc89e" class="outline-2">
+<h2 id="orgcdcc89e">React Native</h2>
+<div class="outline-text-2" id="text-orgcdcc89e">
 <p>
 I have always been curious about mobile apps development.
 In 2018 I tried with a friend to launch a startup and the first thing I tried was to develop a mobile app.
@@ -2197,9 +2197,9 @@ It can leverage the React ecosystem, it has good documentation, its generic comp
 </div>
 </div>
 
-<div id="outline-container-org3aaabde" class="outline-2">
-<h2 id="org3aaabde">Figwheel</h2>
-<div class="outline-text-2" id="text-org3aaabde">
+<div id="outline-container-org9231b8b" class="outline-2">
+<h2 id="org9231b8b">Figwheel</h2>
+<div class="outline-text-2" id="text-org9231b8b">
 <p>
 Inspired by <a href="https://increasinglyfunctional.com/2020/05/07/clojurescript-react-native-krell-emacs.html">this blog post</a>, my first attemp at React Native from Clojurescript was with Krell.
 Krell's philoshopy is to provide a very thin layer over React Native.
@@ -2230,9 +2230,9 @@ With the iOS Simulator running I can then run the Expo app and select my iOS bui
 </div>
 </div>
 
-<div id="outline-container-org80a598c" class="outline-2">
-<h2 id="org80a598c">Reagent</h2>
-<div class="outline-text-2" id="text-org80a598c">
+<div id="outline-container-org3a09b6c" class="outline-2">
+<h2 id="org3a09b6c">Reagent</h2>
+<div class="outline-text-2" id="text-org3a09b6c">
 <p>
 My first steps consisted of learning what a React Native component is.
 This is the first example in the Rect Native docs:
@@ -2341,9 +2341,9 @@ We can access the data accessing the <code>.-item</code> key.
 </div>
 </div>
 
-<div id="outline-container-org942f684" class="outline-2">
-<h2 id="org942f684">Calling clojure</h2>
-<div class="outline-text-2" id="text-org942f684">
+<div id="outline-container-org31a5481" class="outline-2">
+<h2 id="org31a5481">Calling clojure</h2>
+<div class="outline-text-2" id="text-org31a5481">
 <p>
 You soon come to the realization that 99% of the mobile apps we use can be represented by React Native components, some simple data logic and styling.
 What makes <code>cljs</code> attractive for mobile app development is that you can write your logic in <code>clojure</code>.
@@ -2383,7 +2383,7 @@ This is the screenshot of the result, it was a lot of fun:
 </p>
 
 
-<div id="org7836a71" class="figure">
+<div id="org51fdb9b" class="figure">
 <p><img src="https://raw.githubusercontent.com/lccambiaghi/sudoku-cljsrn/master/assets/screen.png" alt="screen.png" />
 </p>
 </div>
@@ -2405,9 +2405,9 @@ This is the screenshot of the result, it was a lot of fun:
           <p><strong>How to learn stats, clojure and vega-lite while having fun</strong></p>
           
           
-<div id="outline-container-org922d35d" class="outline-2">
-<h2 id="org922d35d">Think stats</h2>
-<div class="outline-text-2" id="text-org922d35d">
+<div id="outline-container-org2c170ef" class="outline-2">
+<h2 id="org2c170ef">Think stats</h2>
+<div class="outline-text-2" id="text-org2c170ef">
 <p>
 When I first approached Clojure my curiosity brough me to look up what people were using to do Data Science in Clojure.
 I found a book called <a href="https://www.packtpub.com/big-data-and-business-intelligence/clojure-data-science">Clojure for Data Science</a>, available through my employer's O'Reilly subscription.
@@ -2429,15 +2429,15 @@ Even though I was familiar with most concepts, implementing them with simple fun
 </div>
 </div>
 
-<div id="outline-container-org30221e2" class="outline-2">
-<h2 id="org30221e2">Org code blocks</h2>
-<div class="outline-text-2" id="text-org30221e2">
+<div id="outline-container-org790829f" class="outline-2">
+<h2 id="org790829f">Org code blocks</h2>
+<div class="outline-text-2" id="text-org790829f">
 <p>
 One of my favourite features of Emcas is <code>org-mode</code>.
 It is a markup language (arguably the best), which allows you to mix prose and code blocks.
 A code block looks like this:
 </p>
-<pre class="example" id="org957324e">
+<pre class="example" id="orgc98df8c">
 #+BEGIN_SRC clojure
 (let [vec [1 2 3]]
   (reduce + vec))
@@ -2501,9 +2501,9 @@ Below I can open a clojure code snippet and rewrite it.
 </div>
 </div>
 
-<div id="outline-container-orgdc0090d" class="outline-2">
-<h2 id="orgdc0090d">Org inline plots</h2>
-<div class="outline-text-2" id="text-orgdc0090d">
+<div id="outline-container-org95498a6" class="outline-2">
+<h2 id="org95498a6">Org inline plots</h2>
+<div class="outline-text-2" id="text-org95498a6">
 <p>
 Another fantastic feature of <code>org-mode</code>'s inline images.
 In fact we can embed the result of a plot directly in the document.
@@ -2551,9 +2551,9 @@ They set the result to be a link to the path where the plot will be saved.
 </div>
 </div>
 
-<div id="outline-container-org6d61745" class="outline-2">
-<h2 id="org6d61745">Clojer to metal</h2>
-<div class="outline-text-2" id="text-org6d61745">
+<div id="outline-container-org870d3c9" class="outline-2">
+<h2 id="org870d3c9">Clojer to metal</h2>
+<div class="outline-text-2" id="text-org870d3c9">
 <p>
 Reading this book with this setup is a lot of fun.
 I usually have the .pdf open on the right and Emacs on the left.
@@ -2623,9 +2623,9 @@ I like the idea that these pure functions are forever added to my toolbox, ready
 </div>
 </div>
 
-<div id="outline-container-org31f3c27" class="outline-2">
-<h2 id="org31f3c27">Conclusion</h2>
-<div class="outline-text-2" id="text-org31f3c27">
+<div id="outline-container-org81d3a46" class="outline-2">
+<h2 id="org81d3a46">Conclusion</h2>
+<div class="outline-text-2" id="text-org81d3a46">
 <p>
 This post has briefly touched some topics and technologies that are really interesting to me such as data science, literate programming and clojure.
 I barely scratched the topic of literature programming but I was glad to experiment with one of its use cases.
@@ -2650,9 +2650,9 @@ I hope that somebody can learn from the approach that I shared and maybe can sug
           <p><strong>The simple, privacy-focused, not bloated way</strong></p>
           
           
-<div id="outline-container-orgea8dff1" class="outline-2">
-<h2 id="orgea8dff1">The requirements</h2>
-<div class="outline-text-2" id="text-orgea8dff1">
+<div id="outline-container-org31062d3" class="outline-2">
+<h2 id="org31062d3">The requirements</h2>
+<div class="outline-text-2" id="text-org31062d3">
 <p>
 I spent a day trying to integrate comments on this blog.
 As always, things were simple but since I am a terrible web developer I spent a lot of time figuring out how to do it.
@@ -2678,9 +2678,9 @@ The thing is that I would not accept a solution which compromised on even one of
 </div>
 </div>
 
-<div id="outline-container-orge1139fe" class="outline-2">
-<h2 id="orge1139fe">Good solutions</h2>
-<div class="outline-text-2" id="text-orge1139fe">
+<div id="outline-container-org772f3c2" class="outline-2">
+<h2 id="org772f3c2">Good solutions</h2>
+<div class="outline-text-2" id="text-org772f3c2">
 <p>
 The most popular solution for blogs is by far Disqus.
 It is simple and free, however it is not lightweight and it has ads(!!).
@@ -2705,9 +2705,9 @@ However, before diving into this project, I decided to try out a service which l
 </div>
 </div>
 
-<div id="outline-container-orge91832f" class="outline-2">
-<h2 id="orge91832f">The winner</h2>
-<div class="outline-text-2" id="text-orge91832f">
+<div id="outline-container-org9054c1a" class="outline-2">
+<h2 id="org9054c1a">The winner</h2>
+<div class="outline-text-2" id="text-org9054c1a">
 <p>
 I decided to try <a href="https://talk.hyvor.com/">Hyvor Talk</a>, they offer a similar service to Disqus but privacy-focused.
 It does not look lightweight when you see a demo site but then you found out that you can load the component "on scroll" or by clicking a button. Nice!
@@ -2770,9 +2770,9 @@ In the process I learned something abut the philosophy of React and I understand
           <p><strong>How to write visualizations as code</strong></p>
           
           
-<div id="outline-container-orgbb2e594" class="outline-2">
-<h2 id="orgbb2e594">Discovering Vega-lite</h2>
-<div class="outline-text-2" id="text-orgbb2e594">
+<div id="outline-container-org721ac07" class="outline-2">
+<h2 id="org721ac07">Discovering Vega-lite</h2>
+<div class="outline-text-2" id="text-org721ac07">
 <p>
 I am in the middle of my journey discovering Clojure and its ecosystem of libraries.
 So far I have explored quite thoroughly the areas of Data Science (most notable mention: <code>tech.ml.dataset</code>) and R/Python interoperability (mentions: <code>libpython-clj</code> and <code>clojisr</code>).
@@ -2898,9 +2898,9 @@ It is very simple to express the components and quite intuitive how to layer the
 </div>
 </div>
 
-<div id="outline-container-org6d75386" class="outline-2">
-<h2 id="org6d75386">Oz</h2>
-<div class="outline-text-2" id="text-org6d75386">
+<div id="outline-container-org6143476" class="outline-2">
+<h2 id="org6143476">Oz</h2>
+<div class="outline-text-2" id="text-org6143476">
 <p>
 Well, Vega-lite is nothing new, might not be so exciting for the majority of people.
 What makes it extremely interesting for me is that it has something in common with Clojure: this visualization spec is just data.
@@ -2947,9 +2947,9 @@ There is no class, no weird API syntax or function kwargs to memorize.
 </div>
 </div>
 
-<div id="outline-container-org0b6601a" class="outline-2">
-<h2 id="org0b6601a">Blog development:</h2>
-<div class="outline-text-2" id="text-org0b6601a">
+<div id="outline-container-orgf7448fd" class="outline-2">
+<h2 id="orgf7448fd">Blog development:</h2>
+<div class="outline-text-2" id="text-orgf7448fd">
 <p>
 Anoter interesting learning I had was how to embed Vega into this blog!
 Because I don't know enough about web development, it took me way more than it should have.
@@ -2991,9 +2991,9 @@ When I am satisfied, I can just export to markdown and see the blog post reloadi
           <p><strong>Why and how I set up my personal website</strong></p>
           
           
-<div id="outline-container-org2034659" class="outline-2">
-<h2 id="org2034659">The problem</h2>
-<div class="outline-text-2" id="text-org2034659">
+<div id="outline-container-orga8b71ee" class="outline-2">
+<h2 id="orga8b71ee">The problem</h2>
+<div class="outline-text-2" id="text-orga8b71ee">
 <p>
 I have always wanted a personal website. I have attempted several times at creating one.
 The first function a personal website should serve is showcase your achievements, e.g. your former experience and projects.
@@ -3019,9 +3019,9 @@ In this blog post I explain what brought me to this point.
 </div>
 </div>
 
-<div id="outline-container-org5562a78" class="outline-2">
-<h2 id="org5562a78">Previous approaches</h2>
-<div class="outline-text-2" id="text-org5562a78">
+<div id="outline-container-org4121683" class="outline-2">
+<h2 id="org4121683">Previous approaches</h2>
+<div class="outline-text-2" id="text-org4121683">
 <p>
 A popular approach is to host a static website on Github Pages with Ruby+Jekyll.
 Github recently made this very easy with the <a href="https://github.com/github/personal-website">personal website project</a>.
@@ -3051,9 +3051,9 @@ The setup must have been working very well for its original author, a Data Scien
 </div>
 </div>
 
-<div id="outline-container-org0dfff07" class="outline-2">
-<h2 id="org0dfff07">This approach</h2>
-<div class="outline-text-2" id="text-org0dfff07">
+<div id="outline-container-org18ef6b7" class="outline-2">
+<h2 id="org18ef6b7">This approach</h2>
+<div class="outline-text-2" id="text-org18ef6b7">
 <p>
 Lately I have been very fascinated by the Clojure programming language. I will write a post in the future about it.
 In the websites I am lurking, the community often speaks about Clojurescript which can compile to Javascript code.
@@ -3095,9 +3095,9 @@ I am happy to <b>need</b> to understand the details for these integrations inste
 </div>
 </div>
 
-<div id="outline-container-org71b2be4" class="outline-2">
-<h2 id="org71b2be4">Why blogging?</h2>
-<div class="outline-text-2" id="text-org71b2be4">
+<div id="outline-container-org604d028" class="outline-2">
+<h2 id="org604d028">Why blogging?</h2>
+<div class="outline-text-2" id="text-org604d028">
 <p>
 Technical blogging is a great opportunity to learn how to explain something you <span class="underline">think</span> you know something about and how to organise your thoughts.
 Before writing this post I thought I had a clear idea of what to write but at the end of the post I can see that I digressed and I could have benefitted from organizing the structure of the post beforehand.
